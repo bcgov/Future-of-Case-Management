@@ -68,15 +68,15 @@ Inference from location fails the first time a fact appears in two places, which
 What it costs
 Every evidence type needs a records determination before it can be used, which puts the records office on the critical path.
 How the design was arrived at
-The architecture document marks every claim with how well it is supported: verified against a primary source, internally confirmed but not publicly checkable, derived by arithmetic from marked inputs, or unverified. Unverified claims carry an owner and a date by which someone must resolve them.
-That convention produced a section most architecture documents do not have: a list of things the authors believed at the outset and then disproved. Eleven assumptions were tested and failed. Two examples.
+This architecture was based on exhaustive analysis of all documentation that could be recovered about ICM and the business processes it supports. Each claim is traceable to a primary source, internally confirmed, or derived by arithmetic. Unverified claims are marked as such, but were no simple guesses.
+The initial design started with a set of assumptions that underpinned both the design of ICM and many of the approaches of MIS. Eleven assumptions were tested, none survived completely intact. These include:
 System residency is a legal requirement
-Neither the federal nor the provincial statute book requires systems to be located in Canada for government applications, and no published policy stipulating it could be found.
-The design still keeps systems in Canada, because cloud policy independently requires Canadian data centres. What changed is the stated reason, which is now policy rather than law.
+Neither federal nor the provincial statute requires systems to be located in Canada for government applications, and no published policy stipulating it yet exists.
+Current concerns around data sovereignty and trade militate toward Canadian residency, and that was respected in the architecture. Howeve, no official or formal guidance is available.
 Replacing the existing system has a deadline
 Vendor support for the current platform is committed through at least December 2037, on a rolling ten-year basis.
-Nothing external forces the replacement to finish. Anything that does has to be built into how the programme is run, which is why the design says so plainly rather than assuming urgency.
-Two of eleven assumptions that did not survive testing. Recording them makes the design reviewable; an architecture whose failed premises are invisible cannot be checked.
+Nothing external forces the replacement to finish at a particular time. This allows the project to take its time and conduct thorough discovery, research and analysis before committing to large scale development. The lack of specific urgency radically de-risks deployment.
+Two of eleven assumptions that did not survive testing.
 What the evidence base is
 Two bodies of source material sit behind this. The technical design documents for the current release of the existing system, 57 of them, describing the application, its integrations, its data conversion and its reporting. And the 326 service-delivery procedures describing how the work is done.
 Reading both matters, because they disagree about what the system is. The technical documents describe 61 applications. The procedures reveal 28 further tools that a worker actually touches and that appear in no technical document: a standalone calculator, a reporting tool, credit and asset-check portals, a worker-safety device, a vital statistics service.
@@ -610,6 +610,7 @@ Correspondence is usually treated as output rather than part of the record.
 Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
 Current State
 Current State — The Future of Case Management IT
+Current concerns around data sovereignty and trade militate toward Canadian residency, and that was respected in the architecture. Howeve, no official or formal guidance is available.
 Current version of the record:
 Decisions read no live data
 Decisions that affect people carry their own classification
@@ -689,7 +690,7 @@ Move the case file back to where it came from.
 Move the case file to their own office in the mainframe so they have permission to act on it.
 Named once so that "overdue" does not acquire five different definitions.
 Names the policy that was applied.
-Neither the federal nor the provincial statute book requires systems to be located in Canada for government applications, and no published policy stipulating it could be found.
+Neither federal nor the provincial statute requires systems to be located in Canada for government applications, and no published policy stipulating it yet exists.
 No addresses, no payment details, no employment records, no relationships. Those are evidence, owned elsewhere.
 No part reads another part's database
 No shared tables. No joins across schemas. Not for a report, and not in a test environment. This is the rule that erodes first and takes the longest to notice.
@@ -697,7 +698,7 @@ No system named
 Nobody can explain the decision in words. It can perhaps be re-run, but it cannot be accounted for.
 None of this can be added later. Events are immutable, so a field can be added with a default but cannot be populated retroactively. The axis has to exist before the first production event is written.
 None of this is anyone's poor practice. It is written down as the correct procedure, because given the systems that exist it is the correct procedure.
-Nothing external forces the replacement to finish. Anything that does has to be built into how the programme is run, which is why the design says so plainly rather than assuming urgency.
+Nothing external forces the replacement to finish at a particular time. This allows the project to take its time and conduct thorough discovery, research and analysis before committing to large scale development. The lack of specific urgency radically de-risks deployment.
 Notices & Correspondence
 Number of procedures by count of separate systems required, across
 Once something is recorded it is never edited in place. Four operations change what the system believes, and they differ in one respect: what each does to the period the claim covers.
@@ -761,7 +762,6 @@ Telling those apart requires knowing
 Template lifecycle, content hashing, rendering, channel selection, proof of what was sent.
 Template versions and content hashes have to be retained for as long as the decisions that reference them.
 That constraint sounds academic. It is what makes the next part possible: if nothing hidden went in, then storing what went in is enough to reproduce what came out.
-That convention produced a section most architecture documents do not have: a list of things the authors believed at the outset and then disproved. Eleven assumptions were tested and failed. Two examples.
 That distinction is the reason the model exists. It is a policy rule expressed in the shape of the data, and it can be applied consistently because the operation that produced a recalculation is recorded on the record itself rather than inferred afterwards.
 That label travels with the decision into the letter. An adverse determination emits its reasons, its appeal period and the route to challenge it because the classification says it must, not because somebody remembered.
 The Future of Case Management IT
@@ -769,7 +769,6 @@ The Future of Case Management IT — overview
 The New Design is Built on Three Pillars
 The aggregate is the evidence succession set: the stream of versions of one logical fact about one subject. Commands append events; current state is a projection. Verification status transitions are themselves events.
 The architecture carries 40 open verification items and 30 items that must be resolved before the design is frozen. Three are worth naming here because they change the shape of the work rather than its detail:
-The architecture document marks every claim with how well it is supported: verified against a primary source, internally confirmed but not publicly checkable, derived by arithmetic from marked inputs, or unverified. Unverified claims carry an owner and a date by which someone must resolve them.
 The assertion is withdrawn. It remains visible in the history as withdrawn.
 The assertion should never have existed
 The case model for child care subsidy.
@@ -781,7 +780,6 @@ The conventional move is a single configurable case model shared across programs
 The decision can be replayed.
 The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to meet the needs of the organizations it is meant to serve. The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.
 The design makes entitlement a calculation with no hidden inputs. It reads the rules, the facts and the date it is deciding for. It does not read the clock, does not query a database, and does not call another service while it runs. Everything it needs is handed to it.
-The design still keeps systems in Canada, because cloud policy independently requires Canadian data centres. What changed is the stated reason, which is now policy rather than law.
 The determination function, the decision record, the bound artefacts.
 The determination reproduces perfectly and still fails to answer the question actually asked, which is often about the letter.
 The earlier assertion stays true for its own period. The new one takes over from a later date.
@@ -794,6 +792,7 @@ The fifth is the one most often left out. A determination that reproduces perfec
 The finding was filed against the wrong participant.
 The four things that can happen to an assertion
 The function signature
+The initial design started with a set of assumptions that underpinned both the design of ICM and many of the approaches of MIS. Eleven assumptions were tested, none survived completely intact. These include:
 The interface outlives its implementation
 The least conventional decisions in the design, what each is for, and what it costs.
 The ledger.
@@ -833,6 +832,7 @@ There are exactly two ways to talk
 There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
 These design pages set out how the proposal resolves these conditions. The clearest place to see the connection is
 These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive. They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
+This architecture was based on exhaustive analysis of all documentation that could be recovered about ICM and the business processes it supports. Each claim is traceable to a primary source, internally confirmed, or derived by arithmetic. Unverified claims are marked as such, but were no simple guesses.
 This cannot be added later. Events are immutable: a field can be introduced with a default, but it cannot be filled in retroactively, because the source was either decoded at migration or it was not. The decision has to be made before the first production record is written.
 This design embraces reality. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
 This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
@@ -849,7 +849,7 @@ Treating a decision as a function
 Two bodies of source material sit behind this. The technical design documents for the current release of the existing system, 57 of them, describing the application, its integrations, its data conversion and its reporting. And the 326 service-delivery procedures describing how the work is done.
 Two decisions made moments apart can disagree
 Two ministries with broad mandates carry a very diverse portfolio. Yet our current system shoehorns this diversity into a fixed, rigid model. This is how designs drift and become brittle. Each of the program families gets its own model.
-Two of eleven assumptions that did not survive testing. Recording them makes the design reviewable; an architecture whose failed premises are invisible cannot be checked.
+Two of eleven assumptions that did not survive testing.
 Two of them are worth naming, because their charters are deliberately opposite. The published interface is permanent: it is the contract built to outlive the systems that implement it. The translation layer over the existing Siebel system is temporary, and the team that builds it is accountable for its own disbandment.
 Two systems
 Two time axes are standard. This design carries a third, and it exists because the new system inherits fifteen years of records from systems that are still running.

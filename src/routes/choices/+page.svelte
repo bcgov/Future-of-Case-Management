@@ -106,16 +106,14 @@
     <h2>How the design was arrived at</h2>
 
     <p>
-      The architecture document marks every claim with how well it is supported: verified against a
-      primary source, internally confirmed but not publicly checkable, derived by arithmetic from
-      marked inputs, or unverified. Unverified claims carry an owner and a date by which someone
-      must resolve them.
+      This architecture was based on exhaustive analysis of all documentation that could be recovered about ICM and the business processes it supports.
+      Each claim is traceable to a primary source, internally confirmed, or derived by arithmetic.
+      Unverified claims are marked as such, but were no simple guesses.
     </p>
 
     <p>
-      That convention produced a section most architecture documents do not have: a list of things
-      the authors believed at the outset and then disproved. Eleven assumptions were tested and
-      failed. Two examples.
+      The initial design started with a set of assumptions that underpinned both the design of ICM and many of the approaches of MIS.
+      Eleven assumptions were tested, none survived completely intact. These include:
     </p>
 
     <figure>
@@ -123,14 +121,12 @@
         <div>
           <h3>System residency is a legal requirement</h3>
           <p class="found">
-            Neither the federal nor the provincial statute book requires systems to be located in
-            Canada for government applications, and no published policy stipulating it could be
-            found.
+            Neither federal nor the provincial statute requires systems to be located in
+            Canada for government applications, and no published policy stipulating it yet exists.
           </p>
           <p class="conseq">
-            The design still keeps systems in Canada, because cloud policy independently requires
-            Canadian data centres. What changed is the stated reason, which is now policy rather
-            than law.
+            Current concerns around data sovereignty and trade militate toward Canadian residency, and that was respected in the architecture.
+            Howeve, no official or formal guidance is available.
           </p>
         </div>
         <div>
@@ -140,15 +136,13 @@
             a rolling ten-year basis.
           </p>
           <p class="conseq">
-            Nothing external forces the replacement to finish. Anything that does has to be built
-            into how the programme is run, which is why the design says so plainly rather than
-            assuming urgency.
+            Nothing external forces the replacement to finish at a particular time. This allows the project to take its time and conduct 
+            thorough discovery, research and analysis before committing to large scale development. The lack of specific urgency radically de-risks deployment.
           </p>
         </div>
       </div>
       <figcaption>
-        Two of eleven assumptions that did not survive testing. Recording them makes the design
-        reviewable; an architecture whose failed premises are invisible cannot be checked.
+        Two of eleven assumptions that did not survive testing. 
       </figcaption>
     </figure>
 
