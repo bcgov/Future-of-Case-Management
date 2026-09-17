@@ -1,0 +1,305 @@
+/* ---------------------------------------------------------------
+   Tokens.
+   Two accent hues do semantic work throughout the site and are
+   never used decoratively:
+     --valid  (ochre) = valid time, when a fact held in the world
+     --txn    (teal)  = transaction time, when this system learned it
+   --------------------------------------------------------------- */
+
+:root {
+  --paper: #f2f4f3;
+  --paper-raised: #fbfcfb;
+  --ink: #141821;
+  --muted: #545c5a;
+  --rule: #ccd3d0;
+  --rule-strong: #a6b0ac;
+
+  --valid: #7d5809;
+  --valid-soft: #f0e3c8;
+  --valid-mid: #d8b978;
+
+  --txn: #0e6e77;
+  --txn-soft: #d3e8ea;
+  --txn-mid: #6fb3ba;
+
+  --focus: #1b4dd8;
+
+  --font-prose: Literata, Georgia, 'Times New Roman', serif;
+  --font-ui: Archivo, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --measure: 64ch;
+  --step--1: 0.9rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.33rem;
+  --step-2: 1.66rem;
+  --step-3: 2.07rem;
+  --step-4: 2.59rem;
+  --step-5: 3.24rem;
+
+  --gap: 1.5rem;
+  --radius: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #12161b;
+    --paper-raised: #191e25;
+    --ink: #e8ecea;
+    --muted: #a3aead;
+    --rule: #2e3740;
+    --rule-strong: #47535c;
+
+    --valid: #e0b463;
+    --valid-soft: #3a2f16;
+    --valid-mid: #8a6f31;
+
+    --txn: #67c2cb;
+    --txn-soft: #10333a;
+    --txn-mid: #2f7d87;
+
+    --focus: #8ab4ff;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-prose);
+  font-size: var(--step-0);
+  line-height: 1.7;
+  font-optical-sizing: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: var(--step-5);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+h2 {
+  font-size: var(--step-3);
+  margin-top: 2.5em;
+}
+h3 {
+  font-size: var(--step-1);
+  margin-top: 2em;
+}
+h4 {
+  font-size: var(--step-0);
+  margin-top: 1.6em;
+}
+
+p,
+ul,
+ol,
+dl {
+  margin: 0 0 1.15em;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  margin: 0 0 1.5em;
+}
+caption {
+  text-align: left;
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  padding-bottom: 0.6rem;
+}
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.9rem 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+th {
+  font-weight: 600;
+  border-bottom-color: var(--rule-strong);
+}
+
+/* --- shared layout --- */
+
+.shell {
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.prose {
+  max-width: var(--measure);
+}
+.prose > * + h2 {
+  margin-top: 2.8em;
+}
+/* A heading that opens a block has nothing to separate itself from. */
+.prose > :is(h1, h2, h3):first-child {
+  margin-top: 0;
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 58ch;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.7rem 1rem;
+  z-index: 50;
+  font-family: var(--font-ui);
+}
+.skip:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* --- semantic colour keys --- */
+
+.k-valid,
+.k-txn {
+  font-family: var(--font-ui);
+  font-size: 0.82em;
+  font-weight: 600;
+  padding: 0.1em 0.45em;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+.k-valid {
+  background: var(--valid-soft);
+  color: var(--valid);
+  box-shadow: inset 0 0 0 1px var(--valid-mid);
+}
+.k-txn {
+  background: var(--txn-soft);
+  color: var(--txn);
+  box-shadow: inset 0 0 0 1px var(--txn-mid);
+}
+
+/* --- figures --- */
+
+figure {
+  margin: 2.5rem 0;
+}
+figcaption {
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 0.85rem;
+  max-width: 58ch;
+}
+
+/* Interactives break out of the prose measure. Capped to the viewport so they
+   never cause a horizontal scrollbar. */
+.wide {
+  width: min(62rem, calc(100vw - 3rem));
+  max-width: none;
+}
+
+:target,
+h2[id],
+h3[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* --- buttons and controls --- */
+
+button {
+  font: inherit;
+  font-family: var(--font-ui);
+  color: inherit;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  cursor: pointer;
+}
+.btn[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+input[type='range'] {
+  width: 100%;
+  accent-color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
