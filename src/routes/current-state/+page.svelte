@@ -16,24 +16,24 @@
   <div class="prose">
     <h1>Current State</h1>
     <p class="lede">
-      The design answers problems that are visible in how the work is done now. Those problems were
-      measured rather than assumed, by reading the ministry's own 326 standard operating
-      procedures.
+      The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, 
+      expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to 
+      meet the needs of the organizations it is meant to serve.
+      The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.  
     </p>
 
-    <h2>What the procedures are</h2>
+    <h2>What the SDPR procedures are</h2>
 
     <p>
       Every recurring task a caseworker performs has a written procedure: what starts it, which
       screens to open, which form to send, what to type in which field. Together they run to 8.2
-      million characters. They describe the service as it is actually delivered rather than as it
-      was designed.
+      million characters. They describe the service as it is actually delivered.
     </p>
 
     <p>
       Each one carries a header naming its purpose, the policy it implements, the legislation
       behind it, and how the work is classified in the system. That makes the whole set readable as
-      a map of the service.
+      a map of the services.
     </p>
 
     <div class="stats">
@@ -144,20 +144,19 @@
 
     <Technical summary="How these figures were produced">
       <p>
-        All counts come from the 326 markdown procedures held in the project corpus. System counts
-        were produced by pattern-matching named systems per procedure; capability areas were
-        derived from the policy-manual sections each procedure links to, with the remainder
-        classified by content.
+        All counts and analysis were derived from a comprehensive examination of the Resource Finder and other document repositories.
+        This corpus was analyzed, pattern-matched and mapped. Named systems, capability areas and procedure backing were derived from the documents and the policy manual.
       </p>
       <p>
-        Volumetrics are the one thing the procedures do not carry. Caseload, transaction rates and
-        queue depths appear nowhere in them, and had to be recovered separately from interface
-        specifications in the technical design documents.
+        Volumetrics are not yet calculated. Caseload throughput, worker streams, 
+        transaction rates and queue depth can be measured, but in this analysis 
+        they were drawn from the technical design documents.  
+      
       </p>
     </Technical>
 
     <p>
-      The design pages set out how the proposal answers these conditions. The clearest place to see
+      These design pages set out how the proposal resolves these conditions. The clearest place to see
       the connection is <a href="{base}/evidence">evidence</a>, because the overpayment
       journey above is a direct consequence of a record that cannot say what was known and when.
     </p>

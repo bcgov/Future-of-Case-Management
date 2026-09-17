@@ -15,12 +15,12 @@
   <div class="prose">
     <h1>Evidence</h1>
     <p class="lede">
-      Current case management tracks facts, fields are overwritten, history is lost. In the new system,
-      the unit of informationv is not a "fact" it is a timestamped, attributable <em>claim</em>. 
+      ICM tracks facts. Fields are overwritten, history is obscured. In the new system,
+      the unit of informationv is not a "fact" it is a timestamped, attributable <em>claim</em> linked to evidence. 
       That claim can be falsified, validated, overturned or replaced - and no information is lost.
     </p>
 
-    <h2>Why not just store facts</h2>
+    <h2>Why not store facts?</h2>
 
     <p>
       A system that stores just the current state, "Income: $900" has left unanswered some of the most important questions.
@@ -227,21 +227,10 @@
       <p>
         Retroactive recalculation runs off valid time, which a competent migration preserves, so
         recalculation is unaffected. What breaks without the third axis is narrower: the question of
-        what the ministry knew and when, which is the question a tribunal asks.
+        what the ministry knew and when, which is crucial for the integrity of our processes.
       </p>
     </Technical>
 
-    <h2>What the design refuses to do</h2>
-
-    <p>
-      There is a tempting move here: reconstruct the missing history by generating events that look
-      like real ones, inferred from the old system's audit trail. The design forbids it. Recovering
-      a timestamp and marking how confident you are in it makes a bounded, checkable claim.
-      Manufacturing a sequence of events that were never recorded invents history, and a tribunal is
-      exactly the place that would come apart.
-    </p>
-
-    <p class="pull">Provenance may be recovered. Intent may not be reconstructed.</p>
   </div>
 </div>
 

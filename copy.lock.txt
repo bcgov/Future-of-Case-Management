@@ -17,10 +17,10 @@ Domains
 Determinations
 Decisions
 Current State
-The design answers problems that are visible in how the work is done now. Those problems were measured rather than assumed, by reading the ministry's own 326 standard operating procedures.
-What the procedures are
-Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered rather than as it was designed.
-Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the service.
+The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to meet the needs of the organizations it is meant to serve. The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.
+What the SDPR procedures are
+Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered.
+Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the services.
 326procedures
 15capability areas
 128kinds of work request
@@ -74,9 +74,9 @@ Accommodation and the signature problem
 There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
 Because that path skips portal registration, no personal identification number is created for the applicant. The electronic signature depends on that number. The people the accommodation exists for are the people who cannot then sign electronically.
 How these figures were produced
-All counts come from the 326 markdown procedures held in the project corpus. System counts were produced by pattern-matching named systems per procedure; capability areas were derived from the policy-manual sections each procedure links to, with the remainder classified by content.
-Volumetrics are the one thing the procedures do not carry. Caseload, transaction rates and queue depths appear nowhere in them, and had to be recovered separately from interface specifications in the technical design documents.
-The design pages set out how the proposal answers these conditions. The clearest place to see the connection is evidence, because the overpayment journey above is a direct consequence of a record that cannot say what was known and when.
+All counts and analysis were derived from a comprehensive examination of the Resource Finder and other document repositories. This corpus was analyzed, pattern-matched and mapped. Named systems, capability areas and procedure backing were derived from the documents and the policy manual.
+Volumetrics are not yet calculated. Caseload throughput, worker streams, transaction rates and queue depth can be measured, but in this analysis they were drawn from the technical design documents.
+These design pages set out how the proposal resolves these conditions. The clearest place to see the connection is evidence, because the overpayment journey above is a direct consequence of a record that cannot say what was known and when.
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
@@ -310,8 +310,8 @@ Domains
 Determinations
 Decisions
 Evidence
-Current case management tracks facts, fields are overwritten, history is lost. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable claim. That claim can be falsified, validated, overturned or replaced - and no information is lost.
-Why not just store facts
+ICM tracks facts. Fields are overwritten, history is obscured. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable claim linked to evidence. That claim can be falsified, validated, overturned or replaced - and no information is lost.
+Why not store facts?
 A system that stores just the current state, "Income: $900" has left unanswered some of the most important questions. How do we know? What evidence is there? When did we know? Is this the corrected number or the number recorded at the time? Frontline staff are adaptable, this information isn't truly lost it's just not modeled by the system. It goes in notes, forms, attachments and other ancillary documents, only the tiny slice of information is actually held as data.
 This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate. Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform. Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.
 So the unit of storage is an assertion:
@@ -386,10 +386,7 @@ This cannot be added later. Events are immutable: a field can be introduced with
 Confidence values and replay behaviour
 legacy_asserted_at is accompanied by legacy_assertion_confidence, which takes DECODED (read directly from the legacy record or audit trail), INFERRED (derived from a related artefact by a documented rule) or UNKNOWN.
 On UNKNOWN, any consumer computing a knowledge-state answer (the overpayment classification rule, a tribunal reconstruction view, a disclosure history) must return INDETERMINATE. Projections that answer only valid-time questions ignore the field.
-Retroactive recalculation runs off valid time, which a competent migration preserves, so recalculation is unaffected. What breaks without the third axis is narrower: the question of what the ministry knew and when, which is the question a tribunal asks.
-What the design refuses to do
-There is a tempting move here: reconstruct the missing history by generating events that look like real ones, inferred from the old system's audit trail. The design forbids it. Recovering a timestamp and marking how confident you are in it makes a bounded, checkable claim. Manufacturing a sequence of events that were never recorded invents history, and a tribunal is exactly the place that would come apart.
-Provenance may be recovered. Intent may not be reconstructed.
+Retroactive recalculation runs off valid time, which a competent migration preserves, so recalculation is unaffected. What breaks without the third axis is narrower: the question of what the ministry knew and when, which is crucial for the integrity of our processes.
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
@@ -549,7 +546,6 @@ Figures on this site are drawn from the architecture document and from 326 servi
 . Every other context maintains its own projection (Payee, Applicant, Caregiver, Reporter, Appellant, Debtor) keyed by participant identifier.
 . On
 . Projections that answer only valid-time questions ignore the field.
-. That claim can be falsified, validated, overturned or replaced - and no information is lost.
 . That is a transaction-time question. A system that records only when a fact was true, or that stamps every migrated record with the date it was migrated, cannot answer it. The existing overpayment backlog sits almost entirely in records from before any cutover.
 . The hard horizontal edge is the July decision reaching back over every month before it, which is what a retroactive determination looks like when both axes are kept.
 . The payment actually made that month was correct when it was issued, and is now an underpayment of
@@ -581,7 +577,7 @@ A tribunal asks equally what the client was told.
 A tribunal asks what the person was told as often as it asks what was computed. A determination that reproduces perfectly alongside an unreconstructable letter does not answer the question.
 Accommodation and the signature problem
 Accounts, accruals, schedules, double-entry postings.
-All counts come from the 326 markdown procedures held in the project corpus. System counts were produced by pattern-matching named systems per procedure; capability areas were derived from the policy-manual sections each procedure links to, with the remainder classified by content.
+All counts and analysis were derived from a comprehensive examination of the Resource Finder and other document repositories. This corpus was analyzed, pattern-matched and mapped. Named systems, capability areas and procedure backing were derived from the documents and the policy manual.
 An engine upgrade can change how the same rules evaluate.
 An entitlement determined twice must not be paid twice, and that guarantee lives here rather than in five case contexts.
 Appeals & Reconsideration
@@ -613,7 +609,6 @@ Correspondence is usually treated as output rather than part of the record.
 Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
 Current State
 Current State — The Future of Case Management IT
-Current case management tracks facts, fields are overwritten, history is lost. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable
 Current version of the record:
 Decisions read no live data
 Decisions that affect people carry their own classification
@@ -625,7 +620,7 @@ Determine(rulesArtefactVersion, evidenceSnapshot, referenceDate) → Determinati
 Documents & Capture
 Does not own
 Domains — The Future of Case Management IT
-Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the service.
+Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the services.
 Each part can be released on its own
 Eligibility & Entitlement
 Employment assistance
@@ -635,7 +630,7 @@ Every entitlement decision stores the rules, the engine, the facts it saw, its o
 Every evidence assertion carries three time dimensions:
 Every evidence type needs a records determination before it can be used, which puts the records office on the critical path.
 Every read is more complex. Developers have to think in periods rather than values, and reporting has to specify which point in time it means.
-Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered rather than as it was designed.
+Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered.
 Every rule is labelled with what kind of decision it produces: an administrative decision that requires reasons, a decision that a person must make before it takes effect, or an intermediate calculation that affects nobody on its own.
 Evidence & Verification
 Evidence & Verification publishes
@@ -660,6 +655,7 @@ How long replay has to work
 How the design was arrived at
 How these figures were produced
 How this is modelled
+ICM tracks facts. Fields are overwritten, history is obscured. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable
 Identifiers, enough demographics to match candidates, identity-proofing status, merge and split.
 If a decision reads anything not stored with it, it cannot be reproduced. Reproduction is the difference between showing a tribunal what happened and reconstructing it from memory.
 If it gains a column outside this definition, the shared model has been rebuilt. Treat that as a defect, not as debt.
@@ -723,7 +719,6 @@ Plumbing gets written five times. This is a real cost and it is accepted deliber
 Print the result, scan it, and attach it back to the case.
 Programmes like this usually begin by building one model of a case that every program can share. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
 Protocols are shared; the case model is not.
-Provenance may be recovered. Intent may not be reconstructed.
 Provider & Outcome
 Published events and the boundary test
 Pure: no clock, no database, no service calls.
@@ -736,7 +731,7 @@ Replacing the existing system has a deadline
 Retention is commonly inferred from where something is stored.
 Retention lives on the type, not the storage location
 Retention periods, access levels, privacy calculations
-Retroactive recalculation runs off valid time, which a competent migration preserves, so recalculation is unaffected. What breaks without the third axis is narrower: the question of what the ministry knew and when, which is the question a tribunal asks.
+Retroactive recalculation runs off valid time, which a competent migration preserves, so recalculation is unaffected. What breaks without the third axis is narrower: the question of what the ministry knew and when, which is crucial for the integrity of our processes.
 Routing runs on a spreadsheet
 Rules engines are usually called as a service that fetches what it needs while it runs.
 Scans, uploads, attachments, signatures.
@@ -785,9 +780,8 @@ The case model for employment assistance.
 The case model for employment services.
 The conventional move is a single configurable case model shared across programs.
 The decision can be replayed.
-The design answers problems that are visible in how the work is done now. Those problems were measured rather than assumed, by reading the ministry's own 326 standard operating procedures.
+The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to meet the needs of the organizations it is meant to serve. The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.
 The design makes entitlement a calculation with no hidden inputs. It reads the rules, the facts and the date it is deciding for. It does not read the clock, does not query a database, and does not call another service while it runs. Everything it needs is handed to it.
-The design pages set out how the proposal answers these conditions. The clearest place to see the connection is
 The design still keeps systems in Canada, because cloud policy independently requires Canadian data centres. What changed is the stated reason, which is now policy rather than law.
 The determination function, the decision record, the bound artefacts.
 The determination reproduces perfectly and still fails to answer the question actually asked, which is often about the letter.
@@ -838,7 +832,7 @@ The world changed
 The world changed.
 There are exactly two ways to talk
 There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
-There is a tempting move here: reconstruct the missing history by generating events that look like real ones, inferred from the old system's audit trail. The design forbids it. Recovering a timestamp and marking how confident you are in it makes a bounded, checkable claim. Manufacturing a sequence of events that were never recorded invents history, and a tribunal is exactly the place that would come apart.
+These design pages set out how the proposal resolves these conditions. The clearest place to see the connection is
 These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive. They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
 This cannot be added later. Events are immutable: a field can be introduced with a default, but it cannot be filled in retroactively, because the source was either decoded at migration or it was not. The decision has to be made before the first production record is written.
 This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
@@ -863,7 +857,7 @@ Type the amount into the mainframe by hand.
 Valid time
 Vendor support for the current platform is committed through at least December 2037, on a rolling ten-year basis.
 Version number and the archived binary
-Volumetrics are the one thing the procedures do not carry. Caseload, transaction rates and queue depths appear nowhere in them, and had to be recovered separately from interface specifications in the technical design documents.
+Volumetrics are not yet calculated. Caseload throughput, worker streams, transaction rates and queue depth can be measured, but in this analysis they were drawn from the technical design documents.
 We learned a new fact
 We learned something new.
 We were wrong about the world
@@ -876,12 +870,11 @@ What it is for
 What remains unresolved
 What service levels the analytical platform can commit to, which depends on a storage benchmark that has not yet been run.
 What start date the ministry now asserts.
+What the SDPR procedures are
 What the client was actually told.
-What the design refuses to do
 What the evidence base is
 What the ministry believed about the household in each of those eight months.
 What the parts are
-What the procedures are
 What this site covers
 When old records are brought across, they all arrive on the same day. If that migration date becomes the "when we learned it" date for every inherited record, then every historical fact appears to have been learned simultaneously. Supersede and Correct become indistinguishable across the whole pre-cutover record, and the overpayment classification rule cannot run against the records where most overpayments actually sit.
 When someone is paid more than they were entitled to, the money is treated one of two ways. If the client's circumstances changed and they reported it late, it is a recoverable overpayment, and the ministry takes it back at $10 a month out of a payment that was already only just enough. If the ministry already held the information and did not act on it, that is administrative error, and the client should not be the one carrying it.
@@ -903,7 +896,7 @@ Who someone is, and nothing else about them.
 Why an entitlement decision is treated as a function that can be re-run years later.
 Why do backdates matter?
 Why it is unusual
-Why not just store facts
+Why not store facts?
 Why the design uses sixteen separate models rather than one, and the rules that keep them separate.
 Why the system records dated claims rather than facts, and why it tracks two kinds of time.
 Work Management
@@ -926,6 +919,7 @@ it's just not modeled by the system. It goes in notes, forms, attachments and ot
 kinds of work request
 learned on
 legacy assertion time
+linked to evidence. That claim can be falsified, validated, overturned or replaced - and no information is lost.
 new period
 of documented procedures need two or more systems to finish one task.
 on what basis
