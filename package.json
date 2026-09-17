@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "copy:check": "vite build && node scripts/copy-lock.js check",
+    "copy:update": "vite build && node scripts/copy-lock.js update"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",

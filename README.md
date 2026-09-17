@@ -15,6 +15,25 @@ npm run build    # static output into build/
 npm run preview  # serve the built output
 ```
 
+## Editing copy
+
+The wording is locked. `copy.lock.txt` holds every piece of reader-facing text:
+page titles and descriptions, body text, accessible names, and the strings in
+the interactive components. A refactor that changes any of it fails the check,
+and the deploy workflow runs the same check before it publishes.
+
+```bash
+npm run copy:check   # build, then compare the copy with copy.lock.txt
+npm run copy:update  # after an intentional wording change: rewrite the lock
+```
+
+To change copy, edit the text, run `npm run copy:update`, and commit the lock
+file in the same commit as the text. The lock file's diff then shows exactly what
+the wording change was.
+
+Changes to markup, classes, component structure and line wrapping don't affect
+the lock. Moving component data between files doesn't either.
+
 ## Deploying to GitHub Pages
 
 `.github/workflows/pages.yml` builds and publishes on every push to `main`, and

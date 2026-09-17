@@ -36,6 +36,11 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}
 
+      # Fails the deploy if the wording changed without copy.lock.txt changing
+      # with it. See "Editing copy" in README.md.
+      - name: Copy lock
+        run: node scripts/copy-lock.js check
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
