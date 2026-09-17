@@ -17,20 +17,20 @@ npm run preview  # serve the built output
 
 ## Deploying to GitHub Pages
 
-`.github/workflows/pages.yml` builds and publishes on every push to `main`.
+`.github/workflows/pages.yml` builds and publishes on every push to `main`, and
+can also be run by hand from the Actions tab.
 
-Two things to set up once:
+One thing to set up: in **Settings → Pages**, set **Source** to **GitHub
+Actions**. The workflow needs no other configuration.
 
-1. In the repository, go to **Settings → Pages** and set **Source** to
-   **GitHub Actions**.
-2. Check the base path. GitHub serves a project site from `/<repo-name>/`, so
-   the workflow passes `BASE_PATH="/<repo-name>"` to the build. If you are
-   publishing to a user or organisation site (`<user>.github.io`), change that
-   line to pass an empty string instead.
+The build is served from `https://<org>.github.io/<repo>/`, so the workflow
+passes the repository name as `BASE_PATH`. If this ever moves to a user or
+organisation site (`<org>.github.io`), set `BASE_PATH` to an empty string
+instead.
 
-The site lives in the `site/` subdirectory of this repository, which the
-workflow accounts for. If you move it to the repository root, drop the
-`working-directory` and `path` prefixes from the workflow.
+Asset URLs are emitted relative (`paths.relative` in `svelte.config.js`), so the
+built output also works when served from any other subdirectory, or opened from
+disk.
 
 ## Structure
 
