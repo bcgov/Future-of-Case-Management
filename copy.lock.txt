@@ -2,86 +2,8 @@
 
 === page: 404.html
 
-=== page: current-state/index.html
-title: Current State — The Future of Case Management IT
-description: What 326 service-delivery procedures show about how the work is actually done.
-Skip to content
-[aria-label] The Future of Case Management IT — overview
-The Future of Case Management IT
-Menu
-[aria-label] Sections
-Overview
-Current State
-Evidence
-Domains
-Determinations
-Decisions
-Current State
-The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to meet the needs of the organizations it is meant to serve. The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.
-What the SDPR procedures are
-Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered.
-Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the services.
-326procedures
-15capability areas
-128kinds of work request
-84statutory provisions cited
-146distinct forms
-13ways to reach the ministry
-Work crosses system boundaries constantly
-63% of documented procedures need two or more systems to finish one task.
-Number of procedures by count of separate systems required, across 326 procedures.
-Systems
-Procedures
-Proportion
-0
-39
-1
-80
-2
-114
-3
-51
-4+
-42
-Highlighted rows are the 207 procedures that cross a system boundary. Four procedures require seven.
-Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
-One journey, three systems, two re-keys
-Recovering an overpayment is the clearest example. A worker who has decided that someone was paid too much must:
-Open a separate web application to calculate the amount. It does not connect to either system of record.
-Print the result, scan it, and attach it back to the case.
-Move the case file to their own office in the mainframe so they have permission to act on it.
-Type the amount into the mainframe by hand.
-Move the case file back to where it came from.
-For clients whose earnings are annualised there is a further step: a spreadsheet, with figures read off one screen, typed into the spreadsheet, and the result typed back.
-None of this is anyone's poor practice. It is written down as the correct procedure, because given the systems that exist it is the correct procedure.
-Where the rules actually live
-A modernisation needs to know what it is replacing. The rules that decide entitlement are in four separate places, and only one of them is a rules engine.
-Business rules by location
-Where
-What it holds
-A rules engine
-29 separate rulebases covering eligibility, validation, debt and payment calculation
-The mainframe
-Benefit calculation, rate recalculation, time limits, sanction end dates
-Formulas inside the case system
-Retention periods, access levels, privacy calculations
-A database table
-The rates the public-facing eligibility estimator uses
-Found by reading the technical design documents for the current release alongside the procedures. No source control, promotion pipeline or version register is documented for the 29 rulebases.
-Routing runs on a spreadsheet
-Which queue a request joins, how urgent it is, how long it has, and where a scanned document goes are all defined in an Excel workbook that 56 procedures refer to. One of its sheets maps 445 form numbers to their handling. Priority and service-level targets for the whole service sit outside the platform, maintained by hand.
-Accommodation and the signature problem
-There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
-Because that path skips portal registration, no personal identification number is created for the applicant. The electronic signature depends on that number. The people the accommodation exists for are the people who cannot then sign electronically.
-How these figures were produced
-All counts and analysis were derived from a comprehensive examination of the Resource Finder and other document repositories. This corpus was analyzed, pattern-matched and mapped. Named systems, capability areas and procedure backing were derived from the documents and the policy manual.
-Volumetrics are not yet calculated. Caseload throughput, worker streams, transaction rates and queue depth can be measured, but in this analysis they were drawn from the technical design documents.
-These design pages set out how the proposal resolves these conditions. The clearest place to see the connection is evidence, because the overpayment journey above is a direct consequence of a record that cannot say what was known and when.
-A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
-Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
-
-=== page: decisions/index.html
-title: Decisions — The Future of Case Management IT
+=== page: choices/index.html
+title: Choices — The Future of Case Management IT
 description: The least conventional decisions in the design, what each is for, and what it costs.
 Skip to content
 [aria-label] The Future of Case Management IT — overview
@@ -93,8 +15,8 @@ Current State
 Evidence
 Domains
 Determinations
-Decisions
-Decisions
+Choices
+Choices
 Several decisions here are not what a team would reach for by default. Each is set out with what it buys and what it costs, so that a reader can disagree with it specifically.
 01 Store dated claims, not facts –
 Why it is unusual
@@ -166,6 +88,84 @@ What service levels the analytical platform can commit to, which depends on a st
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
+=== page: current-state/index.html
+title: Current State — The Future of Case Management IT
+description: What 326 service-delivery procedures show about how the work is actually done.
+Skip to content
+[aria-label] The Future of Case Management IT — overview
+The Future of Case Management IT
+Menu
+[aria-label] Sections
+Overview
+Current State
+Evidence
+Domains
+Determinations
+Choices
+Current State
+The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to meet the needs of the organizations it is meant to serve. The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.
+What the SDPR procedures are
+Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered.
+Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the services.
+326procedures
+15capability areas
+128kinds of work request
+84statutory provisions cited
+146distinct forms
+13ways to reach the ministry
+Work crosses system boundaries constantly
+63% of documented procedures need two or more systems to finish one task.
+Number of procedures by count of separate systems required, across 326 procedures.
+Systems
+Procedures
+Proportion
+0
+39
+1
+80
+2
+114
+3
+51
+4+
+42
+Highlighted rows are the 207 procedures that cross a system boundary. Four procedures require seven.
+Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
+One journey, three systems, two re-keys
+Recovering an overpayment is the clearest example. A worker who has decided that someone was paid too much must:
+Open a separate web application to calculate the amount. It does not connect to either system of record.
+Print the result, scan it, and attach it back to the case.
+Move the case file to their own office in the mainframe so they have permission to act on it.
+Type the amount into the mainframe by hand.
+Move the case file back to where it came from.
+For clients whose earnings are annualised there is a further step: a spreadsheet, with figures read off one screen, typed into the spreadsheet, and the result typed back.
+None of this is anyone's poor practice. It is written down as the correct procedure, because given the systems that exist it is the correct procedure.
+Where the rules actually live
+A modernisation needs to know what it is replacing. The rules that decide entitlement are in four separate places, and only one of them is a rules engine.
+Business rules by location
+Where
+What it holds
+A rules engine
+29 separate rulebases covering eligibility, validation, debt and payment calculation
+The mainframe
+Benefit calculation, rate recalculation, time limits, sanction end dates
+Formulas inside the case system
+Retention periods, access levels, privacy calculations
+A database table
+The rates the public-facing eligibility estimator uses
+Found by reading the technical design documents for the current release alongside the procedures. No source control, promotion pipeline or version register is documented for the 29 rulebases.
+Routing runs on a spreadsheet
+Which queue a request joins, how urgent it is, how long it has, and where a scanned document goes are all defined in an Excel workbook that 56 procedures refer to. One of its sheets maps 445 form numbers to their handling. Priority and service-level targets for the whole service sit outside the platform, maintained by hand.
+Accommodation and the signature problem
+There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
+Because that path skips portal registration, no personal identification number is created for the applicant. The electronic signature depends on that number. The people the accommodation exists for are the people who cannot then sign electronically.
+How these figures were produced
+All counts and analysis were derived from a comprehensive examination of the Resource Finder and other document repositories. This corpus was analyzed, pattern-matched and mapped. Named systems, capability areas and procedure backing were derived from the documents and the policy manual.
+Volumetrics are not yet calculated. Caseload throughput, worker streams, transaction rates and queue depth can be measured, but in this analysis they were drawn from the technical design documents.
+These design pages set out how the proposal resolves these conditions. The clearest place to see the connection is evidence, because the overpayment journey above is a direct consequence of a record that cannot say what was known and when.
+A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
+Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
+
 === page: determinations/index.html
 title: Determinations — The Future of Case Management IT
 description: Why an entitlement decision is treated as a function that can be re-run years later.
@@ -179,7 +179,7 @@ Current State
 Evidence
 Domains
 Determinations
-Decisions
+Choices
 Determinations
 A decision about someone's entitlement may be challenged years after it was made. The design treats every decision as something that can be re-run rather than remembered.
 The problem with asking a system what it decided
@@ -234,13 +234,13 @@ Current State
 Evidence
 Domains
 Determinations
-Decisions
+Choices
 Domains
-The most consequential choice in this design is where to draw lines between parts of the system, and then to defend those lines. Twelve domain models, one of which is really five, so sixteen in total.
-The argument against a single model
-Programmes like this usually begin by building one model of a case that every program can share. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
-What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Making them share a lifecycle means every change to one is negotiated with everyone else. The model becomes something nobody can change, and the programme starts removing scope to avoid changing it. The previous programme here merged its final two phases and cut child protection scope, for exactly this reason.
-So the design accepts duplication. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
+Perhaps the most consequential choice in this design is where to draw lines between parts of the system. Twelve domain models, one of which is really five sub-domains, rendering sixteen.
+The problem of a single model
+Programmes like this usually begin by building one model of a case that every program can share, that is how MIS began, and it is how ICM began. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
+What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Making them share a lifecycle means every change to one is negotiated with everyone else. Multiply that over dozens of programs and the model becomes something nobody can change. So sub-entities get bolted on, and extended, and integration patterns proliferate. Soon the system is a plate of spaghetti, and the scope of change is restricted, the blast radius of problems is total. This isn't hypothetical, ICM merged its final two phases and cut child protection scope for exactly this reason.
+This design embraces reality. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
 What the parts are
 Shared spine
 Participant Identity
@@ -308,7 +308,7 @@ Current State
 Evidence
 Domains
 Determinations
-Decisions
+Choices
 Evidence
 ICM tracks facts. Fields are overwritten, history is obscured. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable claim linked to evidence. That claim can be falsified, validated, overturned or replaced - and no information is lost.
 Why not store facts?
@@ -403,7 +403,7 @@ Current State
 Evidence
 Domains
 Determinations
-Decisions
+Choices
 A PWD* designation granted in July.
 It takes effect from March.
 Four months of payments were correct when they were made, and are now an underpayment: four months a client went without money they turn out to have been entitled to. Our current system keeps only the second, rewriting history rather than recording it. What did we know, how can it be proven, and when? The future captures all of it, rather than ignoring it.
@@ -600,6 +600,7 @@ Case management encompasses a vast array of services and processes across the Mi
 Challenging a decision.
 Child care subsidy
 Child protection
+Choices — The Future of Case Management IT
 Confidence values and replay behaviour
 Content digest, tagged and immutable once released
 Content-hashed template, resolved at decision time
@@ -612,7 +613,6 @@ Current State — The Future of Case Management IT
 Current version of the record:
 Decisions read no live data
 Decisions that affect people carry their own classification
-Decisions — The Future of Case Management IT
 Designated in July as a person with a disability, effective from the March application date.
 Designation, prescribed classes, review cycles.
 Determinations — The Future of Case Management IT
@@ -713,11 +713,12 @@ Participant Identity is deliberately small: identifiers, enough detail to tell t
 Participant Identity publishes
 Parts that are not domain models
 Payments & Issuance
+Perhaps the most consequential choice in this design is where to draw lines between parts of the system. Twelve domain models, one of which is really five sub-domains, rendering sixteen.
 Persons with disabilities
 Plans, referrals, provider interaction.
 Plumbing gets written five times. This is a real cost and it is accepted deliberately.
 Print the result, scan it, and attach it back to the case.
-Programmes like this usually begin by building one model of a case that every program can share. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
+Programmes like this usually begin by building one model of a case that every program can share, that is how MIS began, and it is how ICM began. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
 Protocols are shared; the case model is not.
 Provider & Outcome
 Published events and the boundary test
@@ -744,7 +745,6 @@ Set by whoever asserts it, from the source.
 Several decisions here are not what a team would reach for by default. Each is set out with what it buys and what it costs, so that a reader can disagree with it specifically.
 Shared spine
 Skip to content
-So the design accepts duplication. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
 So the unit of storage is an assertion:
 Social sector case management can be viewed as constructing a consistent timeline as information arrives. That information doesn't arrive consistently in order and past events can reframe current and futures ones. In the retroactive designation above, the client spent four months short of what they were owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the other direction, and it lands on the same person who must pay back the overage.
 Some pieces are shared infrastructure rather than parts of the business. They are owned by platform teams and used by everyone. The distinction matters because a platform part that starts holding program state has quietly become a seventeenth domain model without anyone chartering it.
@@ -770,7 +770,6 @@ The New Design is Built on Three Pillars
 The aggregate is the evidence succession set: the stream of versions of one logical fact about one subject. Commands append events; current state is a projection. Verification status transitions are themselves events.
 The architecture carries 40 open verification items and 30 items that must be resolved before the design is frozen. Three are worth naming here because they change the shape of the work rather than its detail:
 The architecture document marks every claim with how well it is supported: verified against a primary source, internally confirmed but not publicly checkable, derived by arithmetic from marked inputs, or unverified. Unverified claims carry an owner and a date by which someone must resolve them.
-The argument against a single model
 The assertion is withdrawn. It remains visible in the history as withdrawn.
 The assertion should never have existed
 The case model for child care subsidy.
@@ -801,13 +800,13 @@ The ledger.
 The letter
 The mainframe
 The month being asked about
-The most consequential choice in this design is where to draw lines between parts of the system, and then to defend those lines. Twelve domain models, one of which is really five, so sixteen in total.
 The one place money leaves the ministry.
 The operation is an input to the classification rather than the whole of it. Who caused the error matters too, and a client who concealed a relationship is not in the same position as a worker who mis-keyed a figure. What the model guarantees is narrower and more useful: the question is answerable at all, from the record, rather than reconstructed by whoever is looking at the file today.
 The operations, formally
 The organisations that deliver services.
 The period in the world for which the fact holds.
 The previous programme cut scope here specifically because a shared model made the work harder.
+The problem of a single model
 The problem with asking a system what it decided
 The rates the public-facing eligibility estimator uses
 The reasoning
@@ -835,6 +834,7 @@ There is a path for applicants who need an interpreter, find reading difficult, 
 These design pages set out how the proposal resolves these conditions. The clearest place to see the connection is
 These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive. They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
 This cannot be added later. Events are immutable: a field can be introduced with a default, but it cannot be filled in retroactively, because the source was either decoded at migration or it was not. The decision has to be made before the first production record is written.
+This design embraces reality. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
 This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
 This is what a decision-maker reads out at a hearing.
 This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate. Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform. Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.
@@ -863,7 +863,7 @@ We learned something new.
 We were wrong about the world
 We were wrong about the world.
 What 326 service-delivery procedures show about how the work is actually done.
-What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Making them share a lifecycle means every change to one is negotiated with everyone else. The model becomes something nobody can change, and the programme starts removing scope to avoid changing it. The previous programme here merged its final two phases and cut child protection scope, for exactly this reason.
+What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Making them share a lifecycle means every change to one is negotiated with everyone else. Multiply that over dozens of programs and the model becomes something nobody can change. So sub-entities get bolted on, and extended, and integration patterns proliferate. Soon the system is a plate of spaghetti, and the scope of change is restricted, the blast radius of problems is total. This isn't hypothetical, ICM merged its final two phases and cut child protection scope for exactly this reason.
 What it costs
 What it holds
 What it is for

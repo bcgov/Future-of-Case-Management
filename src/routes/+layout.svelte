@@ -11,7 +11,7 @@
     { href: '/evidence', label: 'Evidence' },
     { href: '/domains', label: 'Domains' },
     { href: '/determinations', label: 'Determinations' },  
-    { href: '/decisions', label: 'Decisions' }
+    { href: '/choices', label: 'Choices' }
   ];
 
   const path = $derived($page.url.pathname.replace(base, '').replace(/\/$/, '') || '/');
