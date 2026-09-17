@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>Boundaries — The Future of Case Management IT</title>
+  <title>Domains — The Future of Case Management IT</title>
   <meta
     name="description"
     content="Why the design uses sixteen separate models rather than one, and the rules that keep them separate."
@@ -13,7 +13,7 @@
 
 <div class="shell">
   <div class="prose">
-    <h1>Boundaries</h1>
+    <h1>Domains</h1>
     <p class="lede">
       The most consequential choice in this design is where to draw lines between parts of the
       system, and then to defend those lines. Twelve domain models, one of which is really five,

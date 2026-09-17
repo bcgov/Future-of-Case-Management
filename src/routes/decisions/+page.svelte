@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-  <title>Choices and reasons — The Future of Case Management IT</title>
+  <title>Decisions — The Future of Case Management IT</title>
   <meta
     name="description"
     content="The least conventional decisions in the design, what each is for, and what it costs."
@@ -69,7 +69,7 @@
 
 <div class="shell">
   <div class="prose">
-    <h1>Choices and reasons</h1>
+    <h1>Decisions</h1>
     <p class="lede">
       Several decisions here are not what a team would reach for by default. Each is set out with
       what it buys and what it costs, so that a reader can disagree with it specifically.

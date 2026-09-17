@@ -2,82 +2,86 @@
 
 === page: 404.html
 
-=== page: contexts/index.html
-title: Boundaries — The Future of Case Management IT
-description: Why the design uses sixteen separate models rather than one, and the rules that keep them separate.
+=== page: current-state/index.html
+title: Current State — The Future of Case Management IT
+description: What 326 service-delivery procedures show about how the work is actually done.
 Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
 [aria-label] Sections
 Overview
-Evidence and time
-Boundaries
-Determination
-The service today
-Choices and reasons
-Boundaries
-The most consequential choice in this design is where to draw lines between parts of the system, and then to defend those lines. Twelve domain models, one of which is really five, so sixteen in total.
-The argument against a single model
-Programmes like this usually begin by building one model of a case that every program can share. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
-What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Making them share a lifecycle means every change to one is negotiated with everyone else. The model becomes something nobody can change, and the programme starts removing scope to avoid changing it. The previous programme here merged its final two phases and cut child protection scope, for exactly this reason.
-So the design accepts duplication. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
-What the parts are
-Shared spine
-Participant Identity
-Evidence & Verification
-Eligibility & Entitlement
-One per program family
-Employment assistance
-Child protection
-Child care subsidy
-Employment services
-Persons with disabilities
-Money
-Payments & Issuance
-Financial Components
-Overpayment & Recovery
-Delivery
-Appeals & Reconsideration
-Work Management
-Documents & Capture
-Notices & Correspondence
-Provider & Outcome
-Evidence & Verification
-Every dated claim about the world, and how it was checked.
-Owns
-The evidence succession set, verification policy, the four operations, three time axes.
-Does not own
-It does not decide anything. It records what was claimed and what was verified.
-Boundary test
-Its events are the trigger fabric for everything else.
-Select any part to see what it owns, what it deliberately does not own, and the test that tells you when the boundary has been breached. The five case models share protocols, not a case model.
-Four rules keep the lines in place
-A boundary that exists only in a diagram will not survive delivery pressure. These are written so that a reviewer can point at something and say whether it complies.
-Each part can be released on its own
-It has its own storage and its own message topics. If two parts always have to ship together, they are one part wearing two names.
-No part reads another part's database
-No shared tables. No joins across schemas. Not for a report, and not in a test environment. This is the rule that erodes first and takes the longest to notice.
-There are exactly two ways to talk
-A published interface for reads, and published events for notifications. There is no third mechanism, and adding one is not a shortcut.
-Copies are owned by whoever holds them
-A part needing another's data keeps its own copy, built from that part's events, shaped the way it needs. When the source corrects something, the copy has to follow.
-The thin identity model
-Participant Identity is deliberately small: identifiers, enough detail to tell two people apart, and whether identity has been proven. Not addresses, not income, not relationships.
-This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
-Merge and split are built in from the first day rather than added later. The previous system's audit found duplicate records at scale, with search described as ineffective and exact-match only. Retrofitting merge into a system that assumed one person equals one row is close to impossible, because by then every payment instruction and every stored decision has keyed itself to an identifier the design promised would be stable.
-Published events and the boundary test
-Participant Identity publishes PersonRegistered, IdentityMerged, IdentitySplit, IdentifierAdded and IdentifierInvalidated. Every other context maintains its own projection (Payee, Applicant, Caregiver, Reporter, Appellant, Debtor) keyed by participant identifier.
-Evidence & Verification publishes EvidenceRecorded, EvidenceActivated, EvidenceSuperseded, EvidenceVerified, EvidenceInvalidated and EvidenceCorrectionRecorded.
-Parts that are not domain models
-Some pieces are shared infrastructure rather than parts of the business. They are owned by platform teams and used by everyone. The distinction matters because a platform part that starts holding program state has quietly become a seventeenth domain model without anyone chartering it.
-Two of them are worth naming, because their charters are deliberately opposite. The published interface is permanent: it is the contract built to outlive the systems that implement it. The translation layer over the existing Siebel system is temporary, and the team that builds it is accountable for its own disbandment.
-A team accountable for a thing will grow and protect it. A team measured on its own dissolution will not.
+Current State
+Evidence
+Domains
+Determinations
+Decisions
+Current State
+The design answers problems that are visible in how the work is done now. Those problems were measured rather than assumed, by reading the ministry's own 326 standard operating procedures.
+What the procedures are
+Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered rather than as it was designed.
+Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the service.
+326procedures
+15capability areas
+128kinds of work request
+84statutory provisions cited
+146distinct forms
+13ways to reach the ministry
+Work crosses system boundaries constantly
+63% of documented procedures need two or more systems to finish one task.
+Number of procedures by count of separate systems required, across 326 procedures.
+Systems
+Procedures
+Proportion
+0
+39
+1
+80
+2
+114
+3
+51
+4+
+42
+Highlighted rows are the 207 procedures that cross a system boundary. Four procedures require seven.
+Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
+One journey, three systems, two re-keys
+Recovering an overpayment is the clearest example. A worker who has decided that someone was paid too much must:
+Open a separate web application to calculate the amount. It does not connect to either system of record.
+Print the result, scan it, and attach it back to the case.
+Move the case file to their own office in the mainframe so they have permission to act on it.
+Type the amount into the mainframe by hand.
+Move the case file back to where it came from.
+For clients whose earnings are annualised there is a further step: a spreadsheet, with figures read off one screen, typed into the spreadsheet, and the result typed back.
+None of this is anyone's poor practice. It is written down as the correct procedure, because given the systems that exist it is the correct procedure.
+Where the rules actually live
+A modernisation needs to know what it is replacing. The rules that decide entitlement are in four separate places, and only one of them is a rules engine.
+Business rules by location
+Where
+What it holds
+A rules engine
+29 separate rulebases covering eligibility, validation, debt and payment calculation
+The mainframe
+Benefit calculation, rate recalculation, time limits, sanction end dates
+Formulas inside the case system
+Retention periods, access levels, privacy calculations
+A database table
+The rates the public-facing eligibility estimator uses
+Found by reading the technical design documents for the current release alongside the procedures. No source control, promotion pipeline or version register is documented for the 29 rulebases.
+Routing runs on a spreadsheet
+Which queue a request joins, how urgent it is, how long it has, and where a scanned document goes are all defined in an Excel workbook that 56 procedures refer to. One of its sheets maps 445 form numbers to their handling. Priority and service-level targets for the whole service sit outside the platform, maintained by hand.
+Accommodation and the signature problem
+There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
+Because that path skips portal registration, no personal identification number is created for the applicant. The electronic signature depends on that number. The people the accommodation exists for are the people who cannot then sign electronically.
+How these figures were produced
+All counts come from the 326 markdown procedures held in the project corpus. System counts were produced by pattern-matching named systems per procedure; capability areas were derived from the policy-manual sections each procedure links to, with the remainder classified by content.
+Volumetrics are the one thing the procedures do not carry. Caseload, transaction rates and queue depths appear nowhere in them, and had to be recovered separately from interface specifications in the technical design documents.
+The design pages set out how the proposal answers these conditions. The clearest place to see the connection is evidence, because the overpayment journey above is a direct consequence of a record that cannot say what was known and when.
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
 === page: decisions/index.html
-title: Choices and reasons — The Future of Case Management IT
+title: Decisions — The Future of Case Management IT
 description: The least conventional decisions in the design, what each is for, and what it costs.
 Skip to content
 [aria-label] The Future of Case Management IT — overview
@@ -85,12 +89,12 @@ The Future of Case Management IT
 Menu
 [aria-label] Sections
 Overview
-Evidence and time
-Boundaries
-Determination
-The service today
-Choices and reasons
-Choices and reasons
+Current State
+Evidence
+Domains
+Determinations
+Decisions
+Decisions
 Several decisions here are not what a team would reach for by default. Each is set out with what it buys and what it costs, so that a reader can disagree with it specifically.
 01 Store dated claims, not facts –
 Why it is unusual
@@ -162,8 +166,8 @@ What service levels the analytical platform can commit to, which depends on a st
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
-=== page: determination/index.html
-title: Determination — The Future of Case Management IT
+=== page: determinations/index.html
+title: Determinations — The Future of Case Management IT
 description: Why an entitlement decision is treated as a function that can be re-run years later.
 Skip to content
 [aria-label] The Future of Case Management IT — overview
@@ -171,12 +175,12 @@ The Future of Case Management IT
 Menu
 [aria-label] Sections
 Overview
-Evidence and time
-Boundaries
-Determination
-The service today
-Choices and reasons
-Determination
+Current State
+Evidence
+Domains
+Determinations
+Decisions
+Determinations
 A decision about someone's entitlement may be challenged years after it was made. The design treats every decision as something that can be re-run rather than remembered.
 The problem with asking a system what it decided
 Ask a typical case management system why a person received a particular amount in March 2022 and it will recalculate. It will use today's rules, today's data and today's software, and report the answer with confidence. That answer may be right. There is no way to tell, and no way to show a tribunal the difference.
@@ -217,8 +221,82 @@ That label travels with the decision into the letter. An adverse determination e
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
+=== page: domains/index.html
+title: Domains — The Future of Case Management IT
+description: Why the design uses sixteen separate models rather than one, and the rules that keep them separate.
+Skip to content
+[aria-label] The Future of Case Management IT — overview
+The Future of Case Management IT
+Menu
+[aria-label] Sections
+Overview
+Current State
+Evidence
+Domains
+Determinations
+Decisions
+Domains
+The most consequential choice in this design is where to draw lines between parts of the system, and then to defend those lines. Twelve domain models, one of which is really five, so sixteen in total.
+The argument against a single model
+Programmes like this usually begin by building one model of a case that every program can share. It looks like the responsible choice: less duplication, one place to change things, consistency across the ministry.
+What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Making them share a lifecycle means every change to one is negotiated with everyone else. The model becomes something nobody can change, and the programme starts removing scope to avoid changing it. The previous programme here merged its final two phases and cut child protection scope, for exactly this reason.
+So the design accepts duplication. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
+What the parts are
+Shared spine
+Participant Identity
+Evidence & Verification
+Eligibility & Entitlement
+One per program family
+Employment assistance
+Child protection
+Child care subsidy
+Employment services
+Persons with disabilities
+Money
+Payments & Issuance
+Financial Components
+Overpayment & Recovery
+Delivery
+Appeals & Reconsideration
+Work Management
+Documents & Capture
+Notices & Correspondence
+Provider & Outcome
+Evidence & Verification
+Every dated claim about the world, and how it was checked.
+Owns
+The evidence succession set, verification policy, the four operations, three time axes.
+Does not own
+It does not decide anything. It records what was claimed and what was verified.
+Boundary test
+Its events are the trigger fabric for everything else.
+Select any part to see what it owns, what it deliberately does not own, and the test that tells you when the boundary has been breached. The five case models share protocols, not a case model.
+Four rules keep the lines in place
+A boundary that exists only in a diagram will not survive delivery pressure. These are written so that a reviewer can point at something and say whether it complies.
+Each part can be released on its own
+It has its own storage and its own message topics. If two parts always have to ship together, they are one part wearing two names.
+No part reads another part's database
+No shared tables. No joins across schemas. Not for a report, and not in a test environment. This is the rule that erodes first and takes the longest to notice.
+There are exactly two ways to talk
+A published interface for reads, and published events for notifications. There is no third mechanism, and adding one is not a shortcut.
+Copies are owned by whoever holds them
+A part needing another's data keeps its own copy, built from that part's events, shaped the way it needs. When the source corrects something, the copy has to follow.
+The thin identity model
+Participant Identity is deliberately small: identifiers, enough detail to tell two people apart, and whether identity has been proven. Not addresses, not income, not relationships.
+This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
+Merge and split are built in from the first day rather than added later. The previous system's audit found duplicate records at scale, with search described as ineffective and exact-match only. Retrofitting merge into a system that assumed one person equals one row is close to impossible, because by then every payment instruction and every stored decision has keyed itself to an identifier the design promised would be stable.
+Published events and the boundary test
+Participant Identity publishes PersonRegistered, IdentityMerged, IdentitySplit, IdentifierAdded and IdentifierInvalidated. Every other context maintains its own projection (Payee, Applicant, Caregiver, Reporter, Appellant, Debtor) keyed by participant identifier.
+Evidence & Verification publishes EvidenceRecorded, EvidenceActivated, EvidenceSuperseded, EvidenceVerified, EvidenceInvalidated and EvidenceCorrectionRecorded.
+Parts that are not domain models
+Some pieces are shared infrastructure rather than parts of the business. They are owned by platform teams and used by everyone. The distinction matters because a platform part that starts holding program state has quietly become a seventeenth domain model without anyone chartering it.
+Two of them are worth naming, because their charters are deliberately opposite. The published interface is permanent: it is the contract built to outlive the systems that implement it. The translation layer over the existing Siebel system is temporary, and the team that builds it is accountable for its own disbandment.
+A team accountable for a thing will grow and protect it. A team measured on its own dissolution will not.
+A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
+Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
+
 === page: evidence/index.html
-title: Evidence and time — The Future of Case Management IT
+title: Evidence — The Future of Case Management IT
 description: Why the system records dated claims rather than facts, and why it tracks two kinds of time.
 Skip to content
 [aria-label] The Future of Case Management IT — overview
@@ -226,16 +304,16 @@ The Future of Case Management IT
 Menu
 [aria-label] Sections
 Overview
-Evidence and time
-Boundaries
-Determination
-The service today
-Choices and reasons
-Evidence and time
-The smallest thing this system stores is not a fact about a person. It is a dated claim, with a source attached, that can later turn out to be wrong without the record of having believed it disappearing.
+Current State
+Evidence
+Domains
+Determinations
+Decisions
+Evidence
+Current case management tracks facts, fields are overwritten, history is lost. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable claim. That claim can be falsified, validated, overturned or replaced - and no information is lost.
 Why not just store facts
-A system that stores "income: $900" has thrown away the questions people actually ask. Who told us? When? What did they show us? What did we think last March, when we paid them?
-Those are not audit questions to be answered by a log sitting beside the data. They decide outcomes. Whether a person owes the ministry money turns on whether the ministry knew something and failed to act, or did not know it yet. If the record cannot distinguish the two, someone has to guess, and the person being asked to repay carries the cost of the guess.
+A system that stores just the current state, "Income: $900" has left unanswered some of the most important questions. How do we know? What evidence is there? When did we know? Is this the corrected number or the number recorded at the time? Frontline staff are adaptable, this information isn't truly lost it's just not modeled by the system. It goes in notes, forms, attachments and other ancillary documents, only the tiny slice of information is actually held as data.
+This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate. Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform. Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.
 So the unit of storage is an assertion:
 what household composition: couple
 about whomparticipant 4471-A
@@ -324,11 +402,11 @@ The Future of Case Management IT
 Menu
 [aria-label] Sections
 Overview
-Evidence and time
-Boundaries
-Determination
-The service today
-Choices and reasons
+Current State
+Evidence
+Domains
+Determinations
+Decisions
 A PWD* designation granted in July.
 It takes effect from March.
 Four months of payments were correct when they were made, and are now an underpayment: four months a client went without money they turn out to have been entitled to. Our current system keeps only the second, rewriting history rather than recording it. What did we know, how can it be proven, and when? The future captures all of it, rather than ignoring it.
@@ -424,107 +502,30 @@ Current version of the record: At application in March, no disability designatio
 Today the system reports $1,535.50 for May. The payment actually made that month was correct when it was issued, and is now an underpayment of $475.50.
 Move either slider. The left one changes the month you are asking about. The right one changes the month you are asking in. The hard horizontal edge is the July decision reaching back over every month before it, which is what a retroactive determination looks like when both axes are kept.
 Current State
-Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction. The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for works to respond with awareness, compassion, integrity, and efficiency. This system is life-critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
+Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction. The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for workers to respond with awareness, compassion, integrity, and efficiency. This system is life critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
 The systems doing the work are a pair, an Oracle Siebel Custom Relationship Management application adapted for use in government and a mainframe system dating back to 1982. They run in parallel, and together administer the core programming. All attempts to phase out the mainframe aborted or failed.
 The New Design is Built on Three Pillars
 Evidence, not 'facts'
-The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded image of identification and determined the identity to match the case and the data of birth to be April 22, 1988. Business rules determine they're an adult." Who or what decided, when, and on what basis are part of the record rather than PDF forms attached to it or external to the system altogether.
-Evidence & Time
+The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded image of identification and determined the identity to match the case and the date of birth to be April 22, 1988. Business rules determine they're an adult." Who or what decided, when, and on what basis are part of the record rather than PDF forms attached to it or external to the system altogether.
+Evidence
 Apt boundaries
 Two ministries with broad mandates carry a very diverse portfolio. Yet our current system shoehorns this diversity into a fixed, rigid model. This is how designs drift and become brittle. Each of the program families gets its own model.
-The context boundaries
+Domains
 A decision you can re-run
 Every entitlement decision stores the rules, the engine, the facts it saw, its own reasoning and outcomes. Four days later for a manager or years later at a tribunal, the decision can be replayed rather than reconstructed from memory.
 Determinations
-Why the two dates matter so much
-In the retroactive designation above, the client spent four months short of what they were owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the other direction, and it lands on the same person.
+Why do backdates matter?
+Social sector case management can be viewed as constructing a consistent timeline as information arrives. That information doesn't arrive consistently in order and past events can reframe current and futures ones. In the retroactive designation above, the client spent four months short of what they were owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the other direction, and it lands on the same person who must pay back the overage.
 When someone is paid more than they were entitled to, the money is treated one of two ways. If the client's circumstances changed and they reported it late, it is a recoverable overpayment, and the ministry takes it back at $10 a month out of a payment that was already only just enough. If the ministry already held the information and did not act on it, that is administrative error, and the client should not be the one carrying it.
 Telling those apart requires knowing when the ministry knew. That is a transaction-time question. A system that records only when a fact was true, or that stamps every migrated record with the date it was migrated, cannot answer it. The existing overpayment backlog sits almost entirely in records from before any cutover.
+Mispayment is only one simple example. Nearly every claim a client makes must be corroborated by evidence. This cycle of claim, evidence and substantiation is the "core loop" of how social assistance is handled.
 How this is modelled
 Every evidence assertion carries three time dimensions: valid_time (the period in the world for which the fact holds), recorded_at (when this system learned it), and legacy_asserted_at (when the predecessor system asserted it, where that can be decoded from the legacy record).
 The third axis is nullable and carries a confidence enumeration of DECODED, INFERRED or UNKNOWN. On UNKNOWN, any consumer computing a knowledge-state answer must return INDETERMINATE rather than silently substituting the migration timestamp.
 None of this can be added later. Events are immutable, so a field can be added with a default but cannot be populated retroactively. The axis has to exist before the first production event is written.
 What this site covers
-The pages that follow set out the domain model and the reasoning behind the choices that are least conventional. Plain English comes first on every page. Where a technical statement adds precision, it sits behind a disclosure you can open.
-The service today is worth reading before the design pages. The architecture answers problems that are visible in how the work is actually done, and those problems are measurable.
-A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
-Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
-
-=== page: service/index.html
-title: The service today — The Future of Case Management IT
-description: What 326 service-delivery procedures show about how the work is actually done.
-Skip to content
-[aria-label] The Future of Case Management IT — overview
-The Future of Case Management IT
-Menu
-[aria-label] Sections
-Overview
-Evidence and time
-Boundaries
-Determination
-The service today
-Choices and reasons
-The service today
-The design answers problems that are visible in how the work is done now. Those problems were measured rather than assumed, by reading the ministry's own 326 standard operating procedures.
-What the procedures are
-Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered rather than as it was designed.
-Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the service.
-326procedures
-15capability areas
-128kinds of work request
-84statutory provisions cited
-146distinct forms
-13ways to reach the ministry
-Work crosses system boundaries constantly
-63% of documented procedures need two or more systems to finish one task.
-Number of procedures by count of separate systems required, across 326 procedures.
-Systems
-Procedures
-Proportion
-0
-39
-1
-80
-2
-114
-3
-51
-4+
-42
-Highlighted rows are the 207 procedures that cross a system boundary. Four procedures require seven.
-Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
-One journey, three systems, two re-keys
-Recovering an overpayment is the clearest example. A worker who has decided that someone was paid too much must:
-Open a separate web application to calculate the amount. It does not connect to either system of record.
-Print the result, scan it, and attach it back to the case.
-Move the case file to their own office in the mainframe so they have permission to act on it.
-Type the amount into the mainframe by hand.
-Move the case file back to where it came from.
-For clients whose earnings are annualised there is a further step: a spreadsheet, with figures read off one screen, typed into the spreadsheet, and the result typed back.
-None of this is anyone's poor practice. It is written down as the correct procedure, because given the systems that exist it is the correct procedure.
-Where the rules actually live
-A modernisation needs to know what it is replacing. The rules that decide entitlement are in four separate places, and only one of them is a rules engine.
-Business rules by location
-Where
-What it holds
-A rules engine
-29 separate rulebases covering eligibility, validation, debt and payment calculation
-The mainframe
-Benefit calculation, rate recalculation, time limits, sanction end dates
-Formulas inside the case system
-Retention periods, access levels, privacy calculations
-A database table
-The rates the public-facing eligibility estimator uses
-Found by reading the technical design documents for the current release alongside the procedures. No source control, promotion pipeline or version register is documented for the 29 rulebases.
-Routing runs on a spreadsheet
-Which queue a request joins, how urgent it is, how long it has, and where a scanned document goes are all defined in an Excel workbook that 56 procedures refer to. One of its sheets maps 445 form numbers to their handling. Priority and service-level targets for the whole service sit outside the platform, maintained by hand.
-Accommodation and the signature problem
-There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
-Because that path skips portal registration, no personal identification number is created for the applicant. The electronic signature depends on that number. The people the accommodation exists for are the people who cannot then sign electronically.
-How these figures were produced
-All counts come from the 326 markdown procedures held in the project corpus. System counts were produced by pattern-matching named systems per procedure; capability areas were derived from the policy-manual sections each procedure links to, with the remainder classified by content.
-Volumetrics are the one thing the procedures do not carry. Caseload, transaction rates and queue depths appear nowhere in them, and had to be recovered separately from interface specifications in the technical design documents.
-The design pages set out how the proposal answers these conditions. The clearest place to see the connection is evidence and time, because the overpayment journey above is a direct consequence of a record that cannot say what was known and when.
+These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive. They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
+Current State is worth reading if you're unfamiliar with ICM/MIS. The proposed architecture's merits are clearest when compared to the conventional methods.
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
@@ -548,6 +549,7 @@ Figures on this site are drawn from the architecture document and from 326 servi
 . Every other context maintains its own projection (Payee, Applicant, Caregiver, Reporter, Appellant, Debtor) keyed by participant identifier.
 . On
 . Projections that answer only valid-time questions ignore the field.
+. That claim can be falsified, validated, overturned or replaced - and no information is lost.
 . That is a transaction-time question. A system that records only when a fact was true, or that stamps every migrated record with the date it was migrated, cannot answer it. The existing overpayment backlog sits almost entirely in records from before any cutover.
 . The hard horizontal edge is the July decision reaching back over every month before it, which is what a retroactive determination looks like when both axes are kept.
 . The payment actually made that month was correct when it was issued, and is now an underpayment of
@@ -573,7 +575,7 @@ A pointer resolves to whatever the database says today. Replay returns today’s
 A published interface for reads, and published events for notifications. There is no third mechanism, and adding one is not a shortcut.
 A review establishes the household was a couple from January, not a single person.
 A rules engine
-A system that stores "income: $900" has thrown away the questions people actually ask. Who told us? When? What did they show us? What did we think last March, when we paid them?
+A system that stores just the current state, "Income: $900" has left unanswered some of the most important questions. How do we know? What evidence is there? When did we know? Is this the corrected number or the number recorded at the time? Frontline staff are adaptable, this information isn't truly
 A team accountable for a thing will grow and protect it. A team measured on its own dissolution will not.
 A tribunal asks equally what the client was told.
 A tribunal asks what the person was told as often as it asks what was computed. A determination that reproduces perfectly alongside an unreconstructable letter does not answer the question.
@@ -595,16 +597,13 @@ Because that path skips portal registration, no personal identification number i
 Benefit calculation, rate recalculation, time limits, sanction end dates
 Beyond 20 years
 Bitemporal modelling is well established in finance and rare in case management.
-Boundaries — The Future of Case Management IT
 Boundary test
 Business rules by location
 Capture, attachment lifecycle, extraction, e-signature, and the link between a document and the claim it supports.
-Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction. The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for works to respond with awareness, compassion, integrity, and efficiency. This system is life-critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
+Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction. The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for workers to respond with awareness, compassion, integrity, and efficiency. This system is life critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
 Challenging a decision.
 Child care subsidy
 Child protection
-Choices and reasons
-Choices and reasons — The Future of Case Management IT
 Confidence values and replay behaviour
 Content digest, tagged and immutable once released
 Content-hashed template, resolved at decision time
@@ -613,15 +612,19 @@ Copies are owned by whoever holds them
 Correspondence is usually treated as output rather than part of the record.
 Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
 Current State
+Current State — The Future of Case Management IT
+Current case management tracks facts, fields are overwritten, history is lost. In the new system, the unit of informationv is not a "fact" it is a timestamped, attributable
 Current version of the record:
 Decisions read no live data
 Decisions that affect people carry their own classification
+Decisions — The Future of Case Management IT
 Designated in July as a person with a disability, effective from the March application date.
 Designation, prescribed classes, review cycles.
-Determination — The Future of Case Management IT
+Determinations — The Future of Case Management IT
 Determine(rulesArtefactVersion, evidenceSnapshot, referenceDate) → DeterminationResult
 Documents & Capture
 Does not own
+Domains — The Future of Case Management IT
 Each one carries a header naming its purpose, the policy it implements, the legislation behind it, and how the work is classified in the system. That makes the whole set readable as a map of the service.
 Each part can be released on its own
 Eligibility & Entitlement
@@ -634,12 +637,10 @@ Every evidence type needs a records determination before it can be used, which p
 Every read is more complex. Developers have to think in periods rather than values, and reporting has to specify which point in time it means.
 Every recurring task a caseworker performs has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as it is actually delivered rather than as it was designed.
 Every rule is labelled with what kind of decision it produces: an administrative decision that requires reasons, a decision that a person must make before it takes effect, or an intermediate calculation that affects nobody on its own.
-Evidence & Time
 Evidence & Verification
 Evidence & Verification publishes
-Evidence and time
-Evidence and time — The Future of Case Management IT
 Evidence operations
+Evidence — The Future of Case Management IT
 Evidence, not 'facts'
 Facilities, placements, authorisations, agreements, outcome measures.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
@@ -663,7 +664,6 @@ Identifiers, enough demographics to match candidates, identity-proofing status, 
 If a decision reads anything not stored with it, it cannot be reproduced. Reproduction is the difference between showing a tribunal what happened and reconstructing it from memory.
 If it gains a column outside this definition, the shared model has been rebuilt. Treat that as a defect, not as debt.
 If this produced an overpayment, the classification rule reads the operation as
-In the retroactive designation above, the client spent four months short of what they were owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the other direction, and it lands on the same person.
 Inference from location fails the first time a fact appears in two places, which is the first day. Attaching classification and retention to the kind of evidence makes disposition tractable.
 Investigations, safety, placements, court-ordered records, decades-long retention.
 Issuance runs, payment instructions, method routing, stop payment, reissue, returned items, month-end cutoff.
@@ -682,6 +682,7 @@ Its events are the trigger fabric for everything else.
 Its own case lifecycle, its own language.
 Its own renewal cycle and authorisation model.
 Merge and split are built in from the first day rather than added later. The previous system's audit found duplicate records at scale, with search described as ineffective and exact-match only. Retrofitting merge into a system that assumed one person equals one row is close to impossible, because by then every payment instruction and every stored decision has keyed itself to an identifier the design promised would be stable.
+Mispayment is only one simple example. Nearly every claim a client makes must be corroborated by evidence. This cycle of claim, evidence and substantiation is the "core loop" of how social assistance is handled.
 Modelled once, not per program family. An allowed appeal is a retroactive determination, not a manual adjustment.
 Money owed back, and what taking it back does to the client.
 Monthly entitlement the system would report, by the month asked about (columns) and the month the question was asked (rows). The highlighted cell matches the two sliders below.
@@ -750,6 +751,7 @@ Shared spine
 Skip to content
 So the design accepts duplication. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
 So the unit of storage is an assertion:
+Social sector case management can be viewed as constructing a consistent timeline as information arrives. That information doesn't arrive consistently in order and past events can reframe current and futures ones. In the retroactive designation above, the client spent four months short of what they were owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the other direction, and it lands on the same person who must pay back the overage.
 Some pieces are shared infrastructure rather than parts of the business. They are owned by platform teams and used by everyone. The distinction matters because a platform part that starts holding program state has quietly become a seventeenth domain model without anyone chartering it.
 Statutory clocks, reconsideration packages, the tribunal as an external party, interim assistance.
 Store dated claims, not facts
@@ -781,7 +783,6 @@ The case model for child protection.
 The case model for disability assistance and designation.
 The case model for employment assistance.
 The case model for employment services.
-The context boundaries
 The conventional move is a single configurable case model shared across programs.
 The decision can be replayed.
 The design answers problems that are visible in how the work is done now. Those problems were measured rather than assumed, by reading the ministry's own 326 standard operating procedures.
@@ -811,7 +812,6 @@ The one place money leaves the ministry.
 The operation is an input to the classification rather than the whole of it. Who caused the error matters too, and a client who concealed a relationship is not in the same position as a worker who mis-keyed a figure. What the model guarantees is narrower and more useful: the question is answerable at all, from the record, rather than reconstructed by whoever is looking at the file today.
 The operations, formally
 The organisations that deliver services.
-The pages that follow set out the domain model and the reasoning behind the choices that are least conventional. Plain English comes first on every page. Where a technical statement adds precision, it sits behind a disclosure you can open.
 The period in the world for which the fact holds.
 The previous programme cut scope here specifically because a shared model made the work harder.
 The problem with asking a system what it decided
@@ -821,13 +821,10 @@ The record has to hold the world as it was, not a pointer to the world as it is.
 The rule classifying a recalculation as recoverable or as administrative error reads the evidence operation that produced it.
 The rules
 The rules are maintained as a written specification, with a test suite that any re-implementation must reproduce. The suite is kept independent of the engine from the first day, so this transition costs nothing when it arrives.
-The service today
-The service today — The Future of Case Management IT
 The smallest rule surface, which is why it is captured first.
-The smallest thing this system stores is not a fact about a person. It is a dated claim, with a source attached, that can later turn out to be wrong without the record of having believed it disappearing.
 The software itself is archived and tested quarterly to confirm it still runs. Seven years covers the appeal, reconsideration and audit paths that actually re-execute.
 The stored reasoning, the letter and the facts are the record, and re-running is no longer offered. This is what a paper file has always been.
-The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded image of identification and determined the identity to match the case and the data of birth to be April 22, 1988. Business rules determine they're an adult." Who or what decided, when, and
+The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded image of identification and determined the identity to match the case and the date of birth to be April 22, 1988. Business rules determine they're an adult." Who or what decided, when, and
 The systems doing the work are a pair, an Oracle Siebel Custom Relationship Management application adapted for use in government and a mainframe system dating back to 1982. They run in parallel, and together administer the core programming. All attempts to phase out the mainframe aborted or failed.
 The technical statement
 The thin identity model
@@ -842,10 +839,11 @@ The world changed.
 There are exactly two ways to talk
 There is a path for applicants who need an interpreter, find reading difficult, or have limited computer access: a worker reads the questions aloud and enters the answers for them.
 There is a tempting move here: reconstruct the missing history by generating events that look like real ones, inferred from the old system's audit trail. The design forbids it. Recovering a timestamp and marking how confident you are in it makes a bounded, checkable claim. Manufacturing a sequence of events that were never recorded invents history, and a tribunal is exactly the place that would come apart.
+These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive. They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
 This cannot be added later. Events are immutable: a field can be introduced with a default, but it cannot be filled in retroactively, because the source was either decoded at migration or it was not. The decision has to be made before the first production record is written.
 This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
 This is what a decision-maker reads out at a hearing.
-Those are not audit questions to be answered by a log sitting beside the data. They decide outcomes. Whether a person owes the ministry money turns on whether the ministry knew something and failed to act, or did not know it yet. If the record cannot distinguish the two, someone has to guess, and the person being asked to repay carries the cost of the guess.
+This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate. Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform. Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.
 Three dates on every assertion. The third is nullable; the design treats an unknown value as unknown rather than substituting the migration date.
 Three systems
 Three things have moved underneath since March 2022. Policy changed. The person's recorded circumstances changed, possibly several times. The software itself was upgraded, and a rules engine upgrade can alter how the same rule evaluates without anyone noticing until someone appeals.
@@ -903,11 +901,11 @@ Which rules were in force becomes a reconstruction from release notes, argued ra
 Who does what, and by when.
 Who someone is, and nothing else about them.
 Why an entitlement decision is treated as a function that can be re-run years later.
+Why do backdates matter?
 Why it is unusual
 Why not just store facts
 Why the design uses sixteen separate models rather than one, and the rules that keep them separate.
 Why the system records dated claims rather than facts, and why it tracks two kinds of time.
-Why the two dates matter so much
 Work Management
 Work crosses system boundaries constantly
 Work items reference identifiers. They never carry copies of evidence.
@@ -920,11 +918,11 @@ asserted period
 capability areas
 distinct forms
 eligibility review finding
-evidence and time
 from 1 January, open-ended
 household composition: couple
 is accompanied by
-is worth reading before the design pages. The architecture answers problems that are visible in how the work is actually done, and those problems are measurable.
+is worth reading if you're unfamiliar with ICM/MIS. The proposed architecture's merits are clearest when compared to the conventional methods.
+it's just not modeled by the system. It goes in notes, forms, attachments and other ancillary documents, only the tiny slice of information is actually held as data.
 kinds of work request
 learned on
 legacy assertion time

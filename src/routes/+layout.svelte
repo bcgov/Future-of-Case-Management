@@ -7,11 +7,11 @@
 
   const nav = [
     { href: '/', label: 'Overview' },
-    { href: '/evidence', label: 'Evidence and time' },
-    { href: '/contexts', label: 'Boundaries' },
-    { href: '/determination', label: 'Determination' },
-    { href: '/service', label: 'The service today' },
-    { href: '/decisions', label: 'Choices and reasons' }
+    { href: '/current-state', label: 'Current State' },
+    { href: '/evidence', label: 'Evidence' },
+    { href: '/domains', label: 'Domains' },
+    { href: '/determinations', label: 'Determinations' },  
+    { href: '/decisions', label: 'Decisions' }
   ];
 
   const path = $derived($page.url.pathname.replace(base, '').replace(/\/$/, '') || '/');

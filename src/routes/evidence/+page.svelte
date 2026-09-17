@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>Evidence and time — The Future of Case Management IT</title>
+  <title>Evidence — The Future of Case Management IT</title>
   <meta
     name="description"
     content="Why the system records dated claims rather than facts, and why it tracks two kinds of time."
@@ -13,25 +13,27 @@
 
 <div class="shell">
   <div class="prose">
-    <h1>Evidence and time</h1>
+    <h1>Evidence</h1>
     <p class="lede">
-      The smallest thing this system stores is not a fact about a person. It is a dated claim, with
-      a source attached, that can later turn out to be wrong without the record of having believed
-      it disappearing.
+      Current case management tracks facts, fields are overwritten, history is lost. In the new system,
+      the unit of informationv is not a "fact" it is a timestamped, attributable <em>claim</em>. 
+      That claim can be falsified, validated, overturned or replaced - and no information is lost.
     </p>
 
     <h2>Why not just store facts</h2>
 
     <p>
-      A system that stores "income: $900" has thrown away the questions people actually ask. Who
-      told us? When? What did they show us? What did we think last March, when we paid them?
+      A system that stores just the current state, "Income: $900" has left unanswered some of the most important questions.
+      How do we know? What evidence is there? When did we know? Is this the corrected number or the number recorded at the time?
+
+      Frontline staff are adaptable, this information isn't truly <em>lost</em> it's just not modeled by the system. 
+      It goes in notes, forms, attachments and other ancillary documents, only the tiny slice of information is actually held as data.
     </p>
 
     <p>
-      Those are not audit questions to be answered by a log sitting beside the data. They decide
-      outcomes. Whether a person owes the ministry money turns on whether the ministry knew
-      something and failed to act, or did not know it yet. If the record cannot distinguish the
-      two, someone has to guess, and the person being asked to repay carries the cost of the guess.
+      This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate.
+      Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform.
+      Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.
     </p>
 
     <p>So the unit of storage is an assertion:</p>

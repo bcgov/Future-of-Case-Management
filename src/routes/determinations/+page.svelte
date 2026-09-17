@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>Determination — The Future of Case Management IT</title>
+  <title>Determinations — The Future of Case Management IT</title>
   <meta
     name="description"
     content="Why an entitlement decision is treated as a function that can be re-run years later."
@@ -13,7 +13,7 @@
 
 <div class="shell">
   <div class="prose">
-    <h1>Determination</h1>
+    <h1>Determinations</h1>
     <p class="lede">
       A decision about someone's entitlement may be challenged years after it was made. The design
       treats every decision as something that can be re-run rather than remembered.

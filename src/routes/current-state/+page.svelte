@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-  <title>The service today — The Future of Case Management IT</title>
+  <title>Current State — The Future of Case Management IT</title>
   <meta
     name="description"
     content="What 326 service-delivery procedures show about how the work is actually done."
@@ -14,7 +14,7 @@
 
 <div class="shell">
   <div class="prose">
-    <h1>The service today</h1>
+    <h1>Current State</h1>
     <p class="lede">
       The design answers problems that are visible in how the work is done now. Those problems were
       measured rather than assumed, by reading the ministry's own 326 standard operating
@@ -158,7 +158,7 @@
 
     <p>
       The design pages set out how the proposal answers these conditions. The clearest place to see
-      the connection is <a href="{base}/evidence">evidence and time</a>, because the overpayment
+      the connection is <a href="{base}/evidence">evidence</a>, because the overpayment
       journey above is a direct consequence of a record that cannot say what was known and when.
     </p>
   </div>

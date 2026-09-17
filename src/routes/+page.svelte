@@ -39,8 +39,8 @@
 
     <p>
       Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction.
-      The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for works to respond with awareness, compassion, integrity, and efficiency.
-      This system is life-critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
+      The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for workers to respond with awareness, compassion, integrity, and efficiency.
+      This system is life critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
     </p>
 
     <p>
@@ -56,11 +56,11 @@
         <h3>Evidence, not 'facts'</h3>
         <p>
           The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded 
-          image of identification and determined the identity to match the case and the data of birth to be April 22, 1988. 
+          image of identification and determined the identity to match the case and the date of birth to be April 22, 1988. 
           Business rules determine they're an adult."
           Who or what decided, when, and <em>on what basis</em> are part of the record rather than PDF forms attached to it or external to the system altogether.
         </p>
-        <p><a href="{base}/evidence">Evidence & Time</a></p>
+        <p><a href="{base}/evidence">Evidence</a></p>
       </article>
 
       <article>
@@ -70,7 +70,7 @@
           Yet our current system shoehorns this diversity into a fixed, rigid model. This is how designs drift and become brittle. 
           Each of the program families gets its own model.
         </p>
-        <p><a href="{base}/contexts">The context boundaries</a></p>
+        <p><a href="{base}/domains">Domains</a></p>
       </article>
 
       <article>
@@ -80,16 +80,18 @@
           reasoning and outcomes. Four days later for a manager or years later at a tribunal, the decision can
           be replayed rather than reconstructed from memory.
         </p>
-        <p><a href="{base}/determination">Determinations</a></p>
+        <p><a href="{base}/determinations">Determinations</a></p>
       </article>
     </div>
 
-    <h2>Why the two dates matter so much</h2>
+    <h2>Why do backdates matter?</h2>
 
     <p>
+      Social sector case management can be viewed as constructing a consistent timeline as information arrives.
+      That information doesn't arrive consistently in order and past events can reframe current and futures ones. 
       In the retroactive designation above, the client spent four months short of what they were
       owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the
-      other direction, and it lands on the same person.
+      other direction, and it lands on the same person who must pay back the overage.
     </p>
 
     <p>
@@ -105,6 +107,11 @@
       transaction-time question. A system that records only when a fact was true, or that stamps
       every migrated record with the date it was migrated, cannot answer it. The existing
       overpayment backlog sits almost entirely in records from before any cutover.
+    </p>
+
+    <p>
+      Mispayment is only one simple example. Nearly every claim a client makes must be corroborated by evidence. 
+      This cycle of claim, evidence and substantiation is the "core loop" of how social assistance is handled. 
     </p>
 
     <Technical summary="How this is modelled">
@@ -130,15 +137,13 @@
     <h2>What this site covers</h2>
 
     <p>
-      The pages that follow set out the domain model and the reasoning behind the choices that are
-      least conventional. Plain English comes first on every page. Where a technical statement adds
-      precision, it sits behind a disclosure you can open.
+      These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive.
+      They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
     </p>
 
     <p>
-      <a href="{base}/service">The service today</a> is worth reading before the design pages. The
-      architecture answers problems that are visible in how the work is actually done, and those
-      problems are measurable.
+      <a href="{base}/current-state">Current State</a> is worth reading if you're unfamiliar with ICM/MIS. 
+      The proposed architecture's merits are clearest when compared to the conventional methods.  
     </p>
   </div>
 </div>
