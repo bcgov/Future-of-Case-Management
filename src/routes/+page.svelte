@@ -16,7 +16,7 @@
   <div class="shell">
     <h1>A PWD* designation granted in July.<br />It takes effect from March.</h1>
     <p class="lede">
-      Four months of payments were correct when they were made, and are now an underpayment. This triggers additional work, overrides, reviews. Our current system keeps only the second, rewriting history rather than recording it.
+      Four months of payments were correct when they were made, and are now an underpayment: four months a client went without money they turn out to have been entitled to. Our current system keeps only the second, rewriting history rather than recording it.
       What did we know, how can it be proven, and when? The future captures all of it, rather than ignoring it.
     </p>
     <p class="gloss">* Persons With Disability</p>
@@ -35,68 +35,69 @@
 
 <div class="shell">
   <div class="prose">
-    <h2>What this system does</h2>
+    <h2>Current State</h2>
 
     <p>
-      It decides whether a person gets assistance, how much, and when the money arrives. It carries
-      employment assistance, disability assistance, child care subsidy, employment services and
-      child protection. A wrong answer means someone does not eat this month, or a child protection
-      worker cannot see a record they need.
+      Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction.
+      The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for works to respond with awareness, compassion, integrity, and efficiency.
+      This system is life-critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
     </p>
 
     <p>
-      The systems doing this work today are an Oracle Siebel application and a mainframe that
-      predates it. They run alongside each other, and both calculate. A previous programme spent
-      $182 million replacing them and finished with roughly a third of the older systems retired.
+      The systems doing the work are a pair, an Oracle Siebel Custom Relationship Management application adapted for use in government
+      and a mainframe system dating back to 1982. They run in parallel, and together administer the core programming. 
+      All attempts to phase out the mainframe aborted or failed.
     </p>
 
-    <h2>Three ideas hold the design together</h2>
+    <h2>The New Design is Built on Three Pillars</h2>
 
     <div class="triad">
       <article>
-        <h3>Evidence, not facts</h3>
+        <h3>Evidence, not 'facts'</h3>
         <p>
-          The system does not store "this person is designated". It stores "on 14 July, an
-          adjudicator designated this person, effective from 2 March". Who decided, when, and on
-          what basis are part of the record rather than metadata attached to it.
+          The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded 
+          image of identification and determined the identity to match the case and the data of birth to be April 22, 1988. 
+          Business rules determine they're an adult."
+          Who or what decided, when, and <em>on what basis</em> are part of the record rather than PDF forms attached to it or external to the system altogether.
         </p>
-        <p><a href="{base}/evidence">How evidence and time work</a></p>
+        <p><a href="{base}/evidence">Evidence & Time</a></p>
       </article>
 
       <article>
-        <h3>Separate models, not one</h3>
+        <h3>Apt boundaries</h3>
         <p>
-          A child protection investigation and a child care subsidy renewal have almost nothing in
-          common. Forcing them into a shared model is how case management programmes acquire a
-          design nobody can change. Each of the five program families gets its own.
+          Two ministries with broad mandates carry a very diverse portfolio. 
+          Yet our current system shoehorns this diversity into a fixed, rigid model. This is how designs drift and become brittle. 
+          Each of the program families gets its own model.
         </p>
-        <p><a href="{base}/contexts">Where the boundaries fall</a></p>
+        <p><a href="{base}/contexts">The context boundaries</a></p>
       </article>
 
       <article>
         <h3>A decision you can re-run</h3>
         <p>
           Every entitlement decision stores the rules, the engine, the facts it saw, its own
-          reasoning and the letter that was sent. Four years later at a tribunal, the decision can
+          reasoning and outcomes. Four days later for a manager or years later at a tribunal, the decision can
           be replayed rather than reconstructed from memory.
         </p>
-        <p><a href="{base}/determination">How determination works</a></p>
+        <p><a href="{base}/determination">Determinations</a></p>
       </article>
     </div>
 
     <h2>Why the two dates matter so much</h2>
 
     <p>
-      The retroactive designation above is the gentle version, because the money is owed to the
-      client. The same machinery runs in the other direction, and there the stakes are higher.
+      In the retroactive designation above, the client spent four months short of what they were
+      owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the
+      other direction, and it lands on the same person.
     </p>
 
     <p>
       When someone is paid more than they were entitled to, the money is treated one of two ways.
       If the client's circumstances changed and they reported it late, it is a recoverable
-      overpayment and the ministry takes it back at $10 a month. If the ministry already held the
-      information and did not act on it, that is administrative error, and the position is
-      different.
+      overpayment, and the ministry takes it back at $10 a month out of a payment that was already
+      only just enough. If the ministry already held the information and did not act on it, that is
+      administrative error, and the client should not be the one carrying it.
     </p>
 
     <p>

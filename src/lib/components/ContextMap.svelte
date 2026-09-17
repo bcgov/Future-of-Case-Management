@@ -94,7 +94,7 @@
       id: 'overpayment',
       name: 'Overpayment & Recovery',
       group: 'money',
-      plain: 'Money owed back, and how it is recovered.',
+      plain: 'Money owed back, and what taking it back does to the client.',
       owns: 'Overpayment generation, notification, repayment agreements, deduction rates, write-off, collections referral.',
       not: '—',
       test: 'The rule classifying a recalculation as recoverable or as administrative error reads the evidence operation that produced it.'
