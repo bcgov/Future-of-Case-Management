@@ -35,6 +35,11 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: /${{ github.event.repository.name }}
+          # Sign-in curtain. Set these two as repository variables to switch it
+          # on; leave them unset and the site is open. See README.md.
+          PUBLIC_OIDC_ISSUER: ${{ vars.PUBLIC_OIDC_ISSUER }}
+          PUBLIC_OIDC_CLIENT_ID: ${{ vars.PUBLIC_OIDC_CLIENT_ID }}
+          PUBLIC_OIDC_IDP_HINT: ${{ vars.PUBLIC_OIDC_IDP_HINT }}
 
       # Fails the deploy if the wording changed without copy.lock.txt changing
       # with it. See "Editing copy" in README.md.

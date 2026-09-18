@@ -15,6 +15,55 @@ npm run build    # static output into build/
 npm run preview  # serve the built output
 ```
 
+## The sign-in curtain
+
+The site can ask for a government sign-in before it shows anything. Be clear
+about what this is: **a curtain, not access control.** The pages are
+prerendered and served by GitHub Pages, so the text is in the HTML before
+anyone signs in, and this repository is public. It states that the content is
+an internal draft and makes a reader sign in with IDIR to read it comfortably.
+It stops nobody who reads the page source. If the content ever needs real
+protection, it has to move off Pages, behind a server that checks the session —
+on the private cloud platform, with `bcgov/sso-gateway` or oauth2-proxy in
+front of it — and this repository has to become private.
+
+It is off unless configured. Two repository variables switch it on
+(Settings → Secrets and variables → Actions → Variables):
+
+| Variable | Value |
+| --- | --- |
+| `PUBLIC_OIDC_ISSUER` | `https://loginproxy.gov.bc.ca/auth/realms/standard` (`dev.` and `test.` prefixes for the other environments) |
+| `PUBLIC_OIDC_CLIENT_ID` | the client ID from your SSO integration request |
+| `PUBLIC_OIDC_IDP_HINT` | optional, defaults to `idir`; skips the identity-provider chooser |
+
+Get the client ID from the Common Hosted Single Sign-On self-service app at
+https://bcgov.github.io/sso-requests/. Two things matter when you request it:
+
+- Ask for a **public** client. A static site cannot keep a client secret, so
+  this uses authorization code flow with PKCE and no secret.
+- Register the **site root** as the valid redirect URI, with a trailing slash:
+  `https://bcgov.github.io/Future-of-Case-Management/`. Every sign-in returns
+  there and the app restores the page the reader asked for. Register the same
+  URL as the post-logout redirect URI, and `http://localhost:5173/` too if you
+  want to sign in while developing.
+
+To try it locally:
+
+```bash
+PUBLIC_OIDC_ISSUER=https://dev.loginproxy.gov.bc.ca/auth/realms/standard \
+PUBLIC_OIDC_CLIENT_ID=<your-client-id> \
+npm run dev
+```
+
+With the variables unset, `npm run dev` and `npm run build` behave as they
+always have: no curtain, no redirect.
+
+How it works: `src/lib/sso.js` holds the flow, `src/lib/components/SignIn.svelte`
+is the panel, and `+layout.svelte` decides after hydration whether to show the
+page or the panel. The session lives in `sessionStorage` and lasts as long as
+the tab. The inline script in `app.html` hides the prerendered content before
+first paint so it is not flashed on screen on the way to the sign-in panel.
+
 ## Editing copy
 
 The wording is locked. `copy.lock.txt` holds every piece of reader-facing text:

@@ -699,6 +699,7 @@ Nobody can explain the decision in words. It can perhaps be re-run, but it canno
 None of this can be added later. Events are immutable, so a field can be added with a default but cannot be populated retroactively. The axis has to exist before the first production event is written.
 None of this is anyone's poor practice. It is written down as the correct procedure, because given the systems that exist it is the correct procedure.
 Nothing external forces the replacement to finish at a particular time. This allows the project to take its time and conduct thorough discovery, research and analysis before committing to large scale development. The lack of specific urgency radically de-risks deployment.
+Nothing on this site is a government commitment, and none of it is a record of any real person.
 Notices & Correspondence
 Number of procedures by count of separate systems required, across
 Once something is recorded it is never edited in place. Four operations change what the system believes, and they differ in one respect: what each does to the period the claim covers.
@@ -745,6 +746,8 @@ Set at recording. Never changes.
 Set by whoever asserts it, from the source.
 Several decisions here are not what a team would reach for by default. Each is set out with what it buys and what it costs, so that a reader can disagree with it specifically.
 Shared spine
+Sign out
+Signed in as
 Skip to content
 So the unit of storage is an assertion:
 Social sector case management can be viewed as constructing a consistent timeline as information arrives. That information doesn't arrive consistently in order and past events can reframe current and futures ones. In the retroactive designation above, the client spent four months short of what they were owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the other direction, and it lands on the same person who must pay back the overage.
@@ -835,6 +838,7 @@ These pages set out the domain model and the reasoning behind the choices that a
 This architecture was based on exhaustive analysis of all documentation that could be recovered about ICM and the business processes it supports. Each claim is traceable to a primary source, internally confirmed, or derived by arithmetic. Unverified claims are marked as such, but were no simple guesses.
 This cannot be added later. Events are immutable: a field can be introduced with a default, but it cannot be filled in retroactively, because the source was either decoded at migration or it was not. The decision has to be made before the first production record is written.
 This design embraces reality. Five program families get five case models. The plumbing is written more than once, and that is cheaper than the alternative.
+This is an internal working draft. Sign in with your government account to read it.
 This is the part most likely to drift, because every new requirement produces a reason to add one more field to the person record. Once that starts, the shared model has been rebuilt in the one place the design most needs to stay thin.
 This is what a decision-maker reads out at a hearing.
 This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate. Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform. Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.

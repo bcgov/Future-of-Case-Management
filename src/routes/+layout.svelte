@@ -1,9 +1,52 @@
 <script>
   import '../app.css';
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
+  import { goto } from '$app/navigation';
+  import SignIn from '$lib/components/SignIn.svelte';
+  import { enabled as gateOn, session, signIn, signOut, complete } from '$lib/sso';
 
   let { children } = $props();
+
+  // The page is prerendered with its content in place, so `locked` starts
+  // false and the curtain is drawn after hydration. app.html hides the
+  // content before first paint so the copy is not flashed on the way.
+  let locked = $state(false);
+  let who = $state(null);
+  let busy = $state(false);
+  let gateError = $state('');
+
+  function settle() {
+    who = session();
+    locked = gateOn && !who;
+    // app.html hid the prerendered content before paint; hydration owns it now.
+    document.documentElement.removeAttribute('data-prelock');
+  }
+
+  onMount(async () => {
+    if (!gateOn) return;
+    settle();
+    try {
+      const returnTo = await complete();
+      settle();
+      if (returnTo) await goto(returnTo, { replaceState: true });
+    } catch (e) {
+      gateError = e instanceof Error ? e.message : String(e);
+      settle();
+    }
+  });
+
+  async function startSignIn() {
+    busy = true;
+    gateError = '';
+    try {
+      await signIn($page.url.pathname);
+    } catch (e) {
+      gateError = e instanceof Error ? e.message : String(e);
+      busy = false;
+    }
+  }
 
   const nav = [
     { href: '/', label: 'Overview' },
@@ -18,6 +61,10 @@
   let open = $state(false);
 </script>
 
+<svelte:head>
+  {#if gateOn}<meta name="sso-gate" content="on" />{/if}
+</svelte:head>
+
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="masthead">
@@ -30,6 +77,7 @@
       <span>The Future of Case Management IT</span>
     </a>
 
+    {#if !locked}
     <button
       class="toggle"
       aria-expanded={open}
@@ -38,7 +86,9 @@
     >
       {open ? 'Close' : 'Menu'}
     </button>
+    {/if}
 
+    {#if !locked}
     <nav id="nav" class:open aria-label="Sections">
       <ul>
         {#each nav as item}
@@ -52,11 +102,18 @@
         {/each}
       </ul>
     </nav>
+    {:else if who}
+      <p class="who">Signed in as {who.name} <button class="out" onclick={signOut}>Sign out</button></p>
+    {/if}
   </div>
 </header>
 
 <main id="main">
-  {@render children()}
+  {#if locked}
+    <SignIn onSignIn={startSignIn} {busy} error={gateError} />
+  {:else}
+    {@render children()}
+  {/if}
 </main>
 
 <footer class="foot">
@@ -74,6 +131,25 @@
 </footer>
 
 <style>
+  .who {
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+    color: var(--muted);
+    margin: 0;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .out {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    min-height: 24px;
+    padding: 0.15rem 0.5rem;
+    cursor: pointer;
+  }
   .masthead {
     border-bottom: 1px solid var(--rule);
     background: var(--paper);
