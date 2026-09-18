@@ -85,8 +85,7 @@ async function discover() {
 // The redirect URI has to match what is registered, exactly, so every sign-in
 // comes back to the site root and we restore the page they wanted afterwards.
 function redirectUri() {
-  const path = import.meta.env.BASE_URL.replace(/\/$/, '');
-  return `${location.origin}${path}/`;
+  return `${location.origin}${__BASE_PATH__}/`;
 }
 
 export function session() {

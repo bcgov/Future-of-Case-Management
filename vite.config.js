@@ -5,7 +5,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
 const define = {
   __OIDC_ISSUER__: JSON.stringify(process.env.PUBLIC_OIDC_ISSUER ?? ''),
   __OIDC_CLIENT_ID__: JSON.stringify(process.env.PUBLIC_OIDC_CLIENT_ID ?? ''),
-  __OIDC_IDP_HINT__: JSON.stringify(process.env.PUBLIC_OIDC_IDP_HINT ?? 'idir')
+  __OIDC_IDP_HINT__: JSON.stringify(process.env.PUBLIC_OIDC_IDP_HINT ?? 'idir'),
+  // The site's own base path. Asset URLs are emitted relative, which makes
+  // import.meta.env.BASE_URL "./" and useless for building an absolute
+  // redirect URI, so the deploy's BASE_PATH is carried through directly.
+  __BASE_PATH__: JSON.stringify((process.env.BASE_PATH ?? '').replace(/\/$/, ''))
 };
 
 export default {
