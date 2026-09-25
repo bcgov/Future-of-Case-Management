@@ -15,25 +15,30 @@
   <div class="prose">
     <h1>Evidence</h1>
     <p class="lede">
-      ICM tracks facts. Fields are overwritten, history is obscured. In the new system,
-      the unit of informationv is not a "fact" it is a timestamped, attributable <em>claim</em> linked to evidence. 
-      That claim can be falsified, validated, overturned or replaced - and no information is lost.
+      ICM tracks facts. Fields are overwritten and history is obscured. In the new system the unit of
+      information is a timestamped, attributable <em>claim</em> linked to evidence. That claim can be
+      disproved, confirmed, overturned or replaced, and no information is lost on the way.
     </p>
 
     <h2>Why not store facts?</h2>
 
     <p>
-      A system that stores just the current state, "Income: $900" has left unanswered some of the most important questions.
-      How do we know? What evidence is there? When did we know? Is this the corrected number or the number recorded at the time?
-
-      Frontline staff are adaptable, this information isn't truly <em>lost</em> it's just not modeled by the system. 
-      It goes in notes, forms, attachments and other ancillary documents, only the tiny slice of information is actually held as data.
+      A system that stores only the current state, "Income: $900", leaves the important questions
+      unanswered. How do we know? What evidence is there? When did we know? Is this the corrected
+      number, or the number recorded at the time?
     </p>
 
     <p>
-      This isn't simply an auditing nicety, it eliminates the cognitive drag; the mismatch between how the system handles data and how frontline staff operate.
-      Significant effort is spent substantiating evidence against claims, this is done manually and is not a properly modeled first class activity despite it being, numerically, the most common task workers perform.
-      Social workers must spend hours mapping their notes and activities to a different structure - serving the software, rather than their clients.
+      Front-line staff adapt, so the information is not <em>lost</em>. It is just not modelled. It
+      goes into notes, forms and attachments, and only a thin slice of it is ever held as data.
+    </p>
+
+    <p>
+      This is not an auditing nicety. It closes the gap between how the system holds data and how
+      front-line staff work. Substantiating evidence against claims is the most common task a worker
+      performs, and the system does not model it at all, so it is done by hand. Social workers spend
+      hours mapping their notes onto a structure that serves the software rather than their
+      clients.
     </p>
 
     <p>So the unit of storage is an assertion:</p>
@@ -226,8 +231,9 @@
       </p>
       <p>
         Retroactive recalculation runs off valid time, which a competent migration preserves, so
-        recalculation is unaffected. What breaks without the third axis is narrower: the question of
-        what the ministry knew and when, which is crucial for the integrity of our processes.
+        recalculation is unaffected. What breaks without the third axis is narrower: what the
+        ministry knew and when, which is the question separating a recoverable debt from the
+        ministry's own error.
       </p>
     </Technical>
 

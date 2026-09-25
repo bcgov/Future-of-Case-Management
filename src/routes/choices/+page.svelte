@@ -106,14 +106,15 @@
     <h2>How the design was arrived at</h2>
 
     <p>
-      This architecture was based on exhaustive analysis of all documentation that could be recovered about ICM and the business processes it supports.
-      Each claim is traceable to a primary source, internally confirmed, or derived by arithmetic.
-      Unverified claims are marked as such, but were no simple guesses.
+      This architecture rests on an analysis of every document that could be recovered about ICM and
+      the business processes it supports. Each claim is traceable to a primary source, confirmed
+      internally, or derived by arithmetic. Unverified claims are marked as such rather than
+      quietly asserted.
     </p>
 
     <p>
-      The initial design started with a set of assumptions that underpinned both the design of ICM and many of the approaches of MIS.
-      Eleven assumptions were tested, none survived completely intact. These include:
+      The design began with the assumptions that underpinned ICM and much of the approach to MIS.
+      Eleven were tested and none survived intact. Two of them:
     </p>
 
     <figure>
@@ -121,12 +122,12 @@
         <div>
           <h3>System residency is a legal requirement</h3>
           <p class="found">
-            Neither federal nor the provincial statute requires systems to be located in
-            Canada for government applications, and no published policy stipulating it yet exists.
+            Neither federal nor provincial statute requires government systems to be located in
+            Canada, and no published policy requires it either.
           </p>
           <p class="conseq">
-            Current concerns around data sovereignty and trade militate toward Canadian residency, and that was respected in the architecture.
-            Howeve, no official or formal guidance is available.
+            Concerns about data sovereignty and trade point toward Canadian residency, and the
+            architecture follows that. There is no formal guidance behind it.
           </p>
         </div>
         <div>
@@ -136,23 +137,22 @@
             a rolling ten-year basis.
           </p>
           <p class="conseq">
-            Nothing external forces the replacement to finish at a particular time. This allows the project to take its time and conduct 
-            thorough discovery, research and analysis before committing to large scale development. The lack of specific urgency radically de-risks deployment.
+            Nothing external forces the replacement to finish by a particular date. The programme can
+            run discovery, research and analysis properly before committing to large-scale
+            development, and an unforced timetable takes a great deal of risk out of deployment.
           </p>
         </div>
       </div>
-      <figcaption>
-        Two of eleven assumptions that did not survive testing. 
-      </figcaption>
+      <figcaption>Two of the eleven assumptions that did not survive testing.</figcaption>
     </figure>
 
     <h2>What the evidence base is</h2>
 
     <p>
-      Two bodies of source material sit behind this. The technical design documents for the current
-      release of the existing system, 57 of them, describing the application, its integrations,
-      its data conversion and its reporting. And the 326 service-delivery procedures describing how
-      the work is done.
+      Two bodies of source material sit behind this: the 57 technical design documents for the
+      current release of the existing system, covering the application, its integrations, its data
+      conversion and its reporting; and the 326 service-delivery procedures describing how the work
+      is done.
     </p>
 
     <p>

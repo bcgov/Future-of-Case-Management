@@ -15,31 +15,33 @@
   <div class="prose">
     <h1>Domains</h1>
     <p class="lede">
-      Perhaps the most consequential choice in this design is where to draw lines between parts of the
-      system. Twelve domain models, one of which is really five sub-domains, rendering sixteen.
+      Perhaps the most consequential choice in this design is where to draw the lines between parts
+      of the system. Twelve domain models, one of which is really five sub-domains, which makes
+      sixteen.
     </p>
 
     <h2>The problem of a single model</h2>
 
     <p>
       Programmes like this usually begin by building one model of a case that every program can
-      share, that is how MIS began, and it is how ICM began. 
-      It looks like the responsible choice: less duplication, one place to change things,
-      consistency across the ministry.
+      share. That is how MIS began, and how ICM began. It looks like the responsible choice: less
+      duplication, one place to change things, consistency across the ministry.
     </p>
 
     <p>
       What happens next is well documented. A child protection investigation and a child care
       subsidy renewal have almost nothing in common beyond involving a person. Making them share a
-      lifecycle means every change to one is negotiated with everyone else. Multiply that over dozens of programs and the model becomes
-      something nobody can change. So sub-entities get bolted on, and extended, and integration patterns proliferate. 
-      Soon the system is a plate of spaghetti, and the scope of change is restricted, the blast radius of problems is total.
-      This isn't hypothetical, ICM merged its final two phases and cut child protection scope for exactly this reason.
+      lifecycle means every change to one is negotiated with everyone else. Multiply that over dozens
+      of programs and the model becomes something nobody can change. So sub-entities get bolted on
+      and extended, and integration patterns multiply. The system becomes a plate of spaghetti:
+      nothing can be changed in one place, and any failure reaches everywhere. This is not
+      hypothetical. ICM merged its final two phases and cut child protection scope for exactly this
+      reason.
     </p>
 
     <p>
-      This design embraces reality. Five program families get five case models. The plumbing
-      is written more than once, and that is cheaper than the alternative.
+      This design takes the difference seriously. Five program families get five case models. The
+      plumbing is written more than once, and that is cheaper than the alternative.
     </p>
 
     <h2>What the parts are</h2>

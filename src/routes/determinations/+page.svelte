@@ -124,8 +124,8 @@
         </li>
       </ol>
       <figcaption>
-        The three stages are a real sequence, which is why they are numbered. The last is
-        defensible because it was declared in advance rather than discovered during a hearing.
+        The three stages run in order, which is why they are numbered. The last is defensible
+        because it was declared in advance rather than discovered during a hearing.
       </figcaption>
     </figure>
 

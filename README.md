@@ -1,8 +1,14 @@
 # The Future of Case Management IT — architecture site
 
-A six-page SvelteKit site explaining the proposed architecture for the successor
+A seven-page SvelteKit site explaining the proposed architecture for the successor
 to British Columbia's integrated case management systems. Plain English leads;
 technical statements sit behind disclosures.
+
+The site carries a fixed `DRAFT` ribbon in the bottom-right corner, rendered
+inside the footer landmark so it sits in the accessibility tree rather than
+outside it. It is inert (`pointer-events: none`) and creates no horizontal
+overflow. Drop `.draft` from `+layout.svelte` when the content stops being a
+draft.
 
 Built as a static site. No server, no runtime data, no analytics, no cookies.
 
@@ -112,6 +118,7 @@ src/
     contexts/                 domain boundaries
     determination/            decisions as a re-runnable function
     service/                  what the service looks like today
+    parameters/               the twenty-one rules, and the six that come first
     decisions/                the unconventional choices, and why
   lib/components/
     BitemporalPlane.svelte    the hero interactive
@@ -119,6 +126,7 @@ src/
     ContextMap.svelte         the sixteen domain models
     ReplayArtefacts.svelte    the five artefacts bound to a decision
     SystemsPerTask.svelte     measured cross-system working
+    ParameterSet.svelte       the twenty-one parameters, by axis
     Technical.svelte          plain English / technical disclosure
 ```
 
@@ -135,7 +143,7 @@ IBM Plex Mono confined to schema fragments.
 
 ## Accessibility
 
-Targeting WCAG 2.2 AA. Verified with axe-core 4.10 across all six pages in both
+Targeting WCAG 2.2 AA. Verified with axe-core 4.10 across all seven pages in both
 light and dark themes, with no violations.
 
 Specifics worth knowing if you edit it:
@@ -162,6 +170,12 @@ s.onload = async () => console.table((await axe.run()).violations);
 ```
 
 ## Sources
+
+The Parameters page restates `projects/000-global/ARC-000-PRIN-v4.2.md`, which
+refactors the architecture's twelve principles into twenty-one parameters across
+twelve axes. Parameter numbers on the page are that document's N-numbers, so a
+reader can go from the page to the full statement, necessity proof and
+validation gates.
 
 Content is drawn from the architecture document (`Prospective-Case-Mgmt-v2.md`),
 the Release 26.7 technical design documents, and 326 service-delivery

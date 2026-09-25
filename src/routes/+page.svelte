@@ -16,8 +16,10 @@
   <div class="shell">
     <h1>A PWD* designation granted in July.<br />It takes effect from March.</h1>
     <p class="lede">
-      Four months of payments were correct when they were made, and are now an underpayment: four months a client went without money they turn out to have been entitled to. Our current system keeps only the second, rewriting history rather than recording it.
-      What did we know, how can it be proven, and when? The future captures all of it, rather than ignoring it.
+      Four months of payments were correct when they were made, and are now an underpayment: four
+      months a client went without money they turn out to have been entitled to. The current system
+      keeps only today's answer, rewriting history rather than recording it. What did we know, when
+      did we know it, and how can that be proven? The design on these pages keeps all three.
     </p>
     <p class="gloss">* Persons With Disability</p>
 
@@ -38,15 +40,17 @@
     <h2>Current State</h2>
 
     <p>
-      Case management encompasses a vast array of services and processes across the Ministries of Children and Family Development and Social Development and Poverty Reduction.
-      The gamut of assistance payments, service requests, social work, loss-recovery, and client support all require rich contextual information for workers to respond with awareness, compassion, integrity, and efficiency.
-      This system is life critical - a wrong answer means someone might not eat this month, or a child misses a check-in.
+      Case management covers a wide range of services across the Ministries of Children and Family
+      Development and Social Development and Poverty Reduction. Assistance payments, service
+      requests, social work, loss recovery and client support all depend on a worker having the full
+      context in front of them. The work is life-critical: a wrong answer means someone might not eat
+      this month, or a child misses a check-in.
     </p>
 
     <p>
-      The systems doing the work are a pair, an Oracle Siebel Custom Relationship Management application adapted for use in government
-      and a mainframe system dating back to 1982. They run in parallel, and together administer the core programming. 
-      All attempts to phase out the mainframe aborted or failed.
+      Two systems do the work: an Oracle Siebel customer relationship management application adapted
+      for government, and a mainframe dating from 1982. They run in parallel and together administer
+      the core programs. Every attempt to retire the mainframe has been abandoned or has failed.
     </p>
 
     <h2>The New Design is Built on Three Pillars</h2>
@@ -58,7 +62,8 @@
           The system will not store "this person is an adult." It stores, "on 14 July, AI Agent ID-33422 read the uploaded 
           image of identification and determined the identity to match the case and the date of birth to be April 22, 1988. 
           Business rules determine they're an adult."
-          Who or what decided, when, and <em>on what basis</em> are part of the record rather than PDF forms attached to it or external to the system altogether.
+          Who or what decided, when, and <em>on what basis</em> are part of the record, rather than
+          sitting in an attached PDF or outside the system altogether.
         </p>
         <p><a href="{base}/evidence">Evidence</a></p>
       </article>
@@ -66,9 +71,9 @@
       <article>
         <h3>Apt boundaries</h3>
         <p>
-          Two ministries with broad mandates carry a very diverse portfolio. 
-          Yet our current system shoehorns this diversity into a fixed, rigid model. This is how designs drift and become brittle. 
-          Each of the program families gets its own model.
+          Two ministries with broad mandates carry a very diverse portfolio. The current system forces
+          all of it into one rigid model, which is how a design becomes brittle. Each program family
+          gets its own model instead.
         </p>
         <p><a href="{base}/domains">Domains</a></p>
       </article>
@@ -87,11 +92,11 @@
     <h2>Why do backdates matter?</h2>
 
     <p>
-      Social sector case management can be viewed as constructing a consistent timeline as information arrives.
-      That information doesn't arrive consistently in order and past events can reframe current and futures ones. 
-      In the retroactive designation above, the client spent four months short of what they were
-      owed. Someone on assistance has no reserve to absorb that. The same machinery runs in the
-      other direction, and it lands on the same person who must pay back the overage.
+      Case management is largely the work of building a consistent timeline as information arrives.
+      It does not arrive in order, and what turns up later can change what earlier events meant. In
+      the retroactive designation above, the client spent four months short of what they were owed,
+      and someone on assistance has no reserve to absorb that. The same machinery runs in the other
+      direction, and lands on the same person, who has to pay the overage back.
     </p>
 
     <p>
@@ -110,8 +115,9 @@
     </p>
 
     <p>
-      Mispayment is only one simple example. Nearly every claim a client makes must be corroborated by evidence. 
-      This cycle of claim, evidence and substantiation is the "core loop" of how social assistance is handled. 
+      Mispayment is one example of many. Nearly every claim a client makes has to be corroborated by
+      evidence, and that cycle of claim, evidence and substantiation is the core loop of how
+      assistance is administered.
     </p>
 
     <Technical summary="How this is modelled">
@@ -137,13 +143,15 @@
     <h2>What this site covers</h2>
 
     <p>
-      These pages set out the domain model and the reasoning behind the choices that are least conventional or intuitive.
-      They contain both a plain language explanation and a rigorous technical articulation of how these concepts work in practice.
+      These pages set out the domain model and the reasoning behind the least conventional choices.
+      Each carries a plain English explanation, with the technical statement behind a disclosure.
     </p>
 
     <p>
-      <a href="{base}/current-state">Current State</a> is worth reading if you're unfamiliar with ICM/MIS. 
-      The proposed architecture's merits are clearest when compared to the conventional methods.  
+      <a href="{base}/current-state">Current State</a> is worth reading first if you do not know ICM
+      and MIS, because the design makes most sense against what it replaces.
+      <a href="{base}/parameters">Parameters</a> lists the twenty-one rules the design has to hold
+      to, each with the check that catches a breach.
     </p>
   </div>
 </div>

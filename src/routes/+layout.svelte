@@ -54,6 +54,7 @@
     { href: '/evidence', label: 'Evidence' },
     { href: '/domains', label: 'Domains' },
     { href: '/determinations', label: 'Determinations' },  
+    { href: '/parameters', label: 'Parameters' },
     { href: '/choices', label: 'Choices' }
   ];
 
@@ -117,6 +118,7 @@
 </main>
 
 <footer class="foot">
+  <div class="draft" role="note">DRAFT</div>
   <div class="shell">
     <p>
       A design proposal for the successor to British Columbia's integrated case management systems,
@@ -131,6 +133,34 @@
 </footer>
 
 <style>
+  /* Corner ribbon. Fixed to the viewport so it stays legible while reading,
+     and inert so it never intercepts a click on the content beneath it. */
+  .draft {
+    position: fixed;
+    right: -2.9rem;
+    bottom: 3.1rem;
+    z-index: 40;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    margin: 0;
+    padding: 0.25rem 3.5rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-align: center;
+    pointer-events: none;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.25);
+  }
+  @media print {
+    .draft {
+      position: absolute;
+      top: 0;
+    }
+  }
+
   .who {
     font-family: var(--font-ui);
     font-size: var(--step--1);
@@ -235,9 +265,9 @@
     color: var(--muted);
   }
 
-  /* The wordmark plus six nav items stop fitting on one line just below
-     1020px, so the menu button takes over above that point. */
-  @media (max-width: 64rem) {
+  /* The wordmark plus seven nav items stop fitting on one line just below
+     1150px, so the menu button takes over above that point. */
+  @media (max-width: 72rem) {
     .toggle {
       display: inline-block;
     }

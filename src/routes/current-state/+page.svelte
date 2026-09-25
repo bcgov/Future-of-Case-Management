@@ -16,10 +16,10 @@
   <div class="prose">
     <h1>Current State</h1>
     <p class="lede">
-      The design is not a simple contradiction of the current system. It is the result of an interrogation as to why a large, 
-      expensive piece of software, laboured over by hundreds of intelligent, well-intended, capable people can fail to 
-      meet the needs of the organizations it is meant to serve.
-      The conclusion is that the mismatch is not about what is present in the current system, but what is absent, ignored, or externalized.  
+      This design is not a contradiction of the current system. It comes out of asking why a large,
+      expensive piece of software, laboured over by hundreds of intelligent, well-intentioned, capable
+      people, can still fail the organizations it is meant to serve. The answer lies in what the
+      system leaves out: what it ignores, and what it pushes outside itself.
     </p>
 
     <h2>What the SDPR procedures are</h2>
@@ -144,21 +144,22 @@
 
     <Technical summary="How these figures were produced">
       <p>
-        All counts and analysis were derived from a comprehensive examination of the Resource Finder and other document repositories.
-        This corpus was analyzed, pattern-matched and mapped. Named systems, capability areas and procedure backing were derived from the documents and the policy manual.
+        The counts come from reading the Resource Finder and the other document repositories in
+        full, then pattern-matching and mapping the text. Named systems, capability areas and the
+        policy behind each procedure come from the documents and the policy manual.
       </p>
       <p>
-        Volumetrics are not yet calculated. Caseload throughput, worker streams, 
-        transaction rates and queue depth can be measured, but in this analysis 
-        they were drawn from the technical design documents.  
+        Volumes are not yet measured. Caseload throughput, worker streams, transaction rates and
+        queue depth can all be counted directly; the figures here were taken from the technical
+        design documents instead.
       
       </p>
     </Technical>
 
     <p>
-      These design pages set out how the proposal resolves these conditions. The clearest place to see
-      the connection is <a href="{base}/evidence">evidence</a>, because the overpayment
-      journey above is a direct consequence of a record that cannot say what was known and when.
+      The rest of the site sets out how the design answers these conditions. The clearest place to
+      see the connection is <a href="{base}/evidence">evidence</a>, because the overpayment journey
+      above is a direct consequence of a record that cannot say what was known and when.
     </p>
   </div>
 </div>
