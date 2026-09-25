@@ -15,23 +15,23 @@
   <div class="prose">
     <h1>Determinations</h1>
     <p class="lede">
-      A decision about someone's entitlement may be challenged years after it was made. The design
-      treats every decision as something that can be re-run rather than remembered.
+      Someone can challenge a decision about their entitlement years after the ministry made it. So
+      the design treats every decision as something you re-run, not something you remember.
     </p>
 
     <h2>The problem with asking a system what it decided</h2>
 
     <p>
-      Ask a typical case management system why a person received a particular amount in March 2022
-      and it will recalculate. It will use today's rules, today's data and today's software, and
-      report the answer with confidence. That answer may be right. There is no way to tell, and no
-      way to show a tribunal the difference.
+      Ask a typical case management system why a person got a particular amount in March 2022 and
+      it will work the sum again. It uses today's rules, today's data and today's software, then
+      reports the answer with confidence. The answer may well be right. Nobody can tell, and nobody
+      can show a tribunal the difference.
     </p>
 
     <p>
-      Three things have moved underneath since March 2022. Policy changed. The person's recorded
-      circumstances changed, possibly several times. The software itself was upgraded, and a rules
-      engine upgrade can alter how the same rule evaluates without anyone noticing until someone
+      Three things have shifted underneath since March 2022. Policy changed. The person's recorded
+      circumstances changed, perhaps several times. And someone upgraded the software. A rules
+      engine upgrade can change how the same rule reads, and nobody notices until a client
       appeals.
     </p>
 
@@ -39,13 +39,13 @@
 
     <p>
       The design makes entitlement a calculation with no hidden inputs. It reads the rules, the
-      facts and the date it is deciding for. It does not read the clock, does not query a database,
-      and does not call another service while it runs. Everything it needs is handed to it.
+      facts and the date it is deciding for. While it runs it does not read the clock, query a
+      database, or call another service. It gets everything it needs up front.
     </p>
 
     <p>
-      That constraint sounds academic. It is what makes the next part possible: if nothing hidden
-      went in, then storing what went in is enough to reproduce what came out.
+      That rule sounds academic. It is what makes the next part work: if nothing hidden went in,
+      then storing what went in is enough to reproduce what came out.
     </p>
 
     <Technical summary="The function signature">
@@ -57,17 +57,17 @@
       </p>
       <p>
         Pure: no input or output, no clock reads, no database access, no service calls. No rules
-        engine provides this on its own; it is enforced by the shell around the engine. The engine
-        evaluates in-process against a snapshot passed by value, which is what makes byte-identical
-        replay achievable rather than aspirational.
+        engine gives you this on its own. The shell around the engine enforces it. The engine runs
+        in-process against a snapshot passed by value, and that is what puts byte-identical replay
+        within reach rather than in the brochure.
       </p>
     </Technical>
 
     <h2>Five things stored with every decision</h2>
 
     <p>
-      Storing the answer is not enough, and storing the answer plus the rules is still not enough.
-      Five artefacts are bound into the record at the moment the decision is made.
+      Storing the answer is not enough. Storing the answer and the rules is still not enough. The
+      system binds five artefacts into the record at the moment it makes the decision.
     </p>
 
     <figure class="wide">
@@ -79,23 +79,22 @@
     </figure>
 
     <p>
-      The fifth is the one most often left out. A determination that reproduces perfectly, paired
-      with a letter nobody can reconstruct, does not answer the question a tribunal actually put,
-      which is frequently about what the person was told rather than what the system computed.
+      Teams leave out the fifth one most often. A decision that reproduces perfectly, next to a
+      letter nobody can rebuild, still misses the question the tribunal asked. That question is
+      often about what the person was told, not about what the system worked out.
     </p>
 
     <h2>How long replay has to work</h2>
 
     <p>
-      Archiving the software guarantees you can identify it. It does not guarantee that anything in
-      twenty years can run it. The operating system, the processor architecture and the container
-      runtime all have shorter lives than a child protection record, which is retained for ninety
-      years.
+      Archiving the software tells you what it was. It does not promise that anything in twenty
+      years can still run it. The operating system, the processor and the container runtime all die
+      younger than a child protection record, which the ministry keeps for ninety years.
     </p>
 
     <p>
-      Rather than leave that unresolved, the design commits to a horizon in three stages and writes
-      it down in advance.
+      Rather than leave that hanging, the design commits to a horizon in three stages and writes it
+      down in advance.
     </p>
 
     <figure>
@@ -103,29 +102,31 @@
         <li>
           <span class="yr">Years 0&ndash;7</span>
           <p>
-            The software itself is archived and tested quarterly to confirm it still runs. Seven
-            years covers the appeal, reconsideration and audit paths that actually re-execute.
+            We archive the software itself and test it every quarter to confirm it still runs.
+            Seven years covers the appeal, reconsideration and audit paths that really do re-run a
+            decision.
           </p>
         </li>
         <li>
           <span class="yr">Years 7&ndash;20</span>
           <p>
-            The rules are maintained as a written specification, with a test suite that any
-            re-implementation must reproduce. The suite is kept independent of the engine from the
-            first day, so this transition costs nothing when it arrives.
+            The rules live on as a written specification, with a test suite that any rebuild has to
+            pass. The suite stays independent of the engine from day one, so this handover costs
+            nothing when it comes.
           </p>
         </li>
         <li>
           <span class="yr">Beyond 20 years</span>
           <p>
-            The stored reasoning, the letter and the facts are the record, and re-running is no
-            longer offered. This is what a paper file has always been.
+            The stored reasoning, the letter and the facts are the record. Re-running stops being
+            on offer. This is what a paper file has always been.
           </p>
         </li>
       </ol>
       <figcaption>
-        The three stages run in order, which is why they are numbered. The last is defensible
-        because it was declared in advance rather than discovered during a hearing.
+        The three stages run in order, which is why they are numbered. The last one holds up
+        because the ministry declared it in advance, rather than discovering it during a
+        hearing.
       </figcaption>
     </figure>
 
@@ -133,30 +134,30 @@
 
     <p>
       Storing the inputs makes replay reliable. It says nothing about whether the inputs were
-      gathered consistently, and that is where the remaining gap sits.
+      gathered consistently. That is where the remaining gap sits.
     </p>
 
     <p>
-      Assembling the facts means reading across several stores that update independently. Two
-      decisions issued seconds apart, where one store is briefly behind, can legitimately see
-      different worlds. Both replay perfectly. Both are reproducible. They disagree, and nothing
-      described so far detects it. The design pins each snapshot to a point in the sequence of
-      recorded events, so a later reader can tell which view of the world a decision was made
-      against.
+      Gathering the facts means reading across several stores that update on their own schedules.
+      Two decisions issued seconds apart, with one store briefly behind, can each see a different
+      world quite legitimately. Both replay perfectly. Both are reproducible. They disagree, and
+      nothing described so far catches it. So the design pins each snapshot to a point in the
+      sequence of recorded events. A later reader can then tell which view of the world a decision
+      was made against.
     </p>
 
     <h2>Decisions that affect people carry their own classification</h2>
 
     <p>
-      Every rule is labelled with what kind of decision it produces: an administrative decision
-      that requires reasons, a decision that a person must make before it takes effect, or an
-      intermediate calculation that affects nobody on its own.
+      Every rule carries a label saying what kind of decision it produces. Some produce an
+      administrative decision, which needs reasons. Some produce a decision a person has to make
+      before it takes effect. The rest are working sums that affect nobody on their own.
     </p>
 
     <p>
-      That label travels with the decision into the letter. An adverse determination emits its
-      reasons, its appeal period and the route to challenge it because the classification says it
-      must, not because somebody remembered.
+      That label travels with the decision into the letter. A decision that goes against someone
+      sends out its reasons, its appeal period and the route to challenge it, because the label
+      says it must. Not because somebody remembered.
     </p>
   </div>
 </div>

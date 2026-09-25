@@ -16,24 +16,24 @@
   <div class="prose">
     <h1>Current State</h1>
     <p class="lede">
-      This design is not a contradiction of the current system. It comes out of asking why a large,
-      expensive piece of software, laboured over by hundreds of intelligent, well-intentioned, capable
-      people, can still fail the organizations it is meant to serve. The answer lies in what the
+      This design does not set out to contradict the current system. It comes from one question.
+      Why does a large, expensive piece of software, laboured over by hundreds of capable and
+      well-meaning people, still fail the organizations it serves? The answer lies in what the
       system leaves out: what it ignores, and what it pushes outside itself.
     </p>
 
     <h2>What the SDPR procedures are</h2>
 
     <p>
-      Every recurring task a caseworker performs has a written procedure: what starts it, which
-      screens to open, which form to send, what to type in which field. Together they run to 8.2
-      million characters. They describe the service as it is actually delivered.
+      Every recurring task a caseworker does has a written procedure: what starts it, which screens
+      to open, which form to send, what to type in which field. Together they run to 8.2 million
+      characters. They describe the service as staff really deliver it.
     </p>
 
     <p>
-      Each one carries a header naming its purpose, the policy it implements, the legislation
-      behind it, and how the work is classified in the system. That makes the whole set readable as
-      a map of the services.
+      Each one carries a header naming its purpose, the policy it carries out, the law behind it,
+      and how the system classifies the work. That turns the whole set into a map of the
+      services.
     </p>
 
     <div class="stats">
@@ -59,8 +59,8 @@
     <h2>One journey, three systems, two re-keys</h2>
 
     <p>
-      Recovering an overpayment is the clearest example. A worker who has decided that someone was
-      paid too much must:
+      Recovering an overpayment is the clearest example. A worker who has decided someone was paid
+      too much has to:
     </p>
 
     <ol class="journey">
@@ -72,19 +72,19 @@
     </ol>
 
     <p>
-      For clients whose earnings are annualised there is a further step: a spreadsheet, with figures
-      read off one screen, typed into the spreadsheet, and the result typed back.
+      Clients whose earnings are annualised need one step more: a spreadsheet. The worker reads
+      figures off one screen, types them into the sheet, and types the result back.
     </p>
 
     <p>
-      None of this is anyone's poor practice. It is written down as the correct procedure, because
-      given the systems that exist it is the correct procedure.
+      None of this is anyone's poor practice. The procedure says to do it this way, because with
+      the systems that exist this is the right way.
     </p>
 
     <h2>Where the rules actually live</h2>
 
     <p>
-      A modernisation needs to know what it is replacing. The rules that decide entitlement are in
+      A modernisation has to know what it is replacing. The rules that decide entitlement sit in
       four separate places, and only one of them is a rules engine.
     </p>
 
@@ -115,51 +115,52 @@
       </table>
       <figcaption>
         Found by reading the technical design documents for the current release alongside the
-        procedures. No source control, promotion pipeline or version register is documented for the
-        29 rulebases.
+        procedures. Nothing on record gives the 29 rulebases source control, a promotion pipeline
+        or a version register.
       </figcaption>
     </figure>
 
     <h2>Routing runs on a spreadsheet</h2>
 
     <p>
-      Which queue a request joins, how urgent it is, how long it has, and where a scanned document
-      goes are all defined in an Excel workbook that 56 procedures refer to. One of its sheets maps
-      445 form numbers to their handling. Priority and service-level targets for the whole service
-      sit outside the platform, maintained by hand.
+      An Excel workbook decides which queue a request joins, how urgent it is, how long it has, and
+      where a scanned document goes. Fifty-six procedures point at it. One of its sheets maps 445
+      form numbers to their handling. So the priorities and service-level targets for the whole
+      service sit outside the platform, kept up by hand.
     </p>
 
     <h2>Accommodation and the signature problem</h2>
 
     <p>
       There is a path for applicants who need an interpreter, find reading difficult, or have
-      limited computer access: a worker reads the questions aloud and enters the answers for them.
+      little access to a computer. A worker reads the questions aloud and enters the answers for
+      them.
     </p>
 
     <p>
-      Because that path skips portal registration, no personal identification number is created for
-      the applicant. The electronic signature depends on that number. The people the accommodation
-      exists for are the people who cannot then sign electronically.
+      That path skips portal registration, so the applicant never gets a personal identification
+      number. The electronic signature depends on that number. So the people the accommodation
+      exists for are the people who then cannot sign electronically.
     </p>
 
     <Technical summary="How these figures were produced">
       <p>
-        The counts come from reading the Resource Finder and the other document repositories in
-        full, then pattern-matching and mapping the text. Named systems, capability areas and the
-        policy behind each procedure come from the documents and the policy manual.
+        The counts come from reading the Resource Finder and the other document stores in full,
+        then pattern-matching and mapping the text. Named systems, capability areas and the policy
+        behind each procedure come from the documents and the policy manual.
       </p>
       <p>
-        Volumes are not yet measured. Caseload throughput, worker streams, transaction rates and
-        queue depth can all be counted directly; the figures here were taken from the technical
-        design documents instead.
+        Nobody has measured the volumes yet. You can count caseload throughput, worker streams,
+        transaction rates and queue depth directly. The figures here come from the technical design
+        documents instead.
       
       </p>
     </Technical>
 
     <p>
-      The rest of the site sets out how the design answers these conditions. The clearest place to
-      see the connection is <a href="{base}/evidence">evidence</a>, because the overpayment journey
-      above is a direct consequence of a record that cannot say what was known and when.
+      The rest of the site sets out how the design answers these conditions. Start with
+      <a href="{base}/evidence">evidence</a>. The overpayment journey above follows directly from a
+      record that cannot say what the ministry knew, or when.
     </p>
   </div>
 </div>

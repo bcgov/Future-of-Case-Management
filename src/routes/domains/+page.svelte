@@ -15,26 +15,25 @@
   <div class="prose">
     <h1>Domains</h1>
     <p class="lede">
-      Perhaps the most consequential choice in this design is where to draw the lines between parts
-      of the system. Twelve domain models, one of which is really five sub-domains, which makes
-      sixteen.
+      Perhaps the biggest choice in this design is where to draw the lines between parts of the
+      system. Twelve domain models, one of which is really five sub-domains, which makes sixteen.
     </p>
 
     <h2>The problem of a single model</h2>
 
     <p>
-      Programmes like this usually begin by building one model of a case that every program can
+      Programmes like this usually start by building one model of a case that every program can
       share. That is how MIS began, and how ICM began. It looks like the responsible choice: less
-      duplication, one place to change things, consistency across the ministry.
+      duplication, one place to change things, one way of working across the ministry.
     </p>
 
     <p>
       What happens next is well documented. A child protection investigation and a child care
-      subsidy renewal have almost nothing in common beyond involving a person. Making them share a
-      lifecycle means every change to one is negotiated with everyone else. Multiply that over dozens
-      of programs and the model becomes something nobody can change. So sub-entities get bolted on
-      and extended, and integration patterns multiply. The system becomes a plate of spaghetti:
-      nothing can be changed in one place, and any failure reaches everywhere. This is not
+      subsidy renewal have almost nothing in common beyond involving a person. Make them share a
+      lifecycle and every change to one has to be negotiated with everyone else. Multiply that over
+      dozens of programs and nobody can change the model at all. So teams bolt on sub-entities,
+      extend them, and add more ways to integrate. The system turns into a plate of spaghetti. You
+      cannot change anything in one place, and any failure reaches everywhere. This is not
       hypothetical. ICM merged its final two phases and cut child protection scope for exactly this
       reason.
     </p>
@@ -58,37 +57,37 @@
     <h2>Four rules keep the lines in place</h2>
 
     <p>
-      A boundary that exists only in a diagram will not survive delivery pressure. These are written so
-      that a reviewer can point at something and say whether it complies.
+      A boundary that lives only in a diagram will not survive delivery pressure. These four are
+      written so a reviewer can point at something and say whether it complies.
     </p>
 
     <ol class="rules">
       <li>
         <h3>Each part can be released on its own</h3>
         <p>
-          It has its own storage and its own message topics. If two parts always have to ship
-          together, they are one part wearing two names.
+          It has its own storage and its own message topics. If two parts always ship together,
+          they are one part wearing two names.
         </p>
       </li>
       <li>
         <h3>No part reads another part's database</h3>
         <p>
           No shared tables. No joins across schemas. Not for a report, and not in a test
-          environment. This is the rule that erodes first and takes the longest to notice.
+          environment. This rule erodes first, and takes the longest to notice.
         </p>
       </li>
       <li>
         <h3>There are exactly two ways to talk</h3>
         <p>
-          A published interface for reads, and published events for notifications. There is no
-          third mechanism, and adding one is not a shortcut.
+          A published interface for reads, and published events for notices. There is no third
+          way, and adding one is not a shortcut.
         </p>
       </li>
       <li>
         <h3>Copies are owned by whoever holds them</h3>
         <p>
-          A part needing another's data keeps its own copy, built from that part's events, shaped
-          the way it needs. When the source corrects something, the copy has to follow.
+          A part that needs another's data keeps its own copy, built from that part's events and
+          shaped the way it needs. When the source corrects something, the copy has to follow.
         </p>
       </li>
     </ol>
@@ -96,30 +95,31 @@
     <h2>The thin identity model</h2>
 
     <p>
-      Participant Identity is deliberately small: identifiers, enough detail to tell two people
-      apart, and whether identity has been proven. Not addresses, not income, not relationships.
+      Participant Identity stays deliberately small. It holds identifiers, enough detail to tell
+      two people apart, and whether anyone has proven the identity. No addresses, no income, no
+      relationships.
     </p>
 
     <p>
-      This is the part most likely to drift, because every new requirement produces a reason to add
-      one more field to the person record. Once that starts, the shared model has been rebuilt in
-      the one place the design most needs to stay thin.
+      This part is the most likely to drift, because every new requirement brings a reason to add
+      one more field to the person record. Once that starts, the shared model is back, in the one
+      place the design most needs to stay thin.
     </p>
 
     <p>
-      Merge and split are built in from the first day rather than added later. The previous
-      system's audit found duplicate records at scale, with search described as ineffective and
-      exact-match only. Retrofitting merge into a system that assumed one person equals one row is
-      close to impossible, because by then every payment instruction and every stored decision has
-      keyed itself to an identifier the design promised would be stable.
+      Merge and split go in on day one rather than later. The audit of the previous system found
+      duplicate records at scale, and called its search ineffective and exact-match only. Adding
+      merge afterwards to a system that assumed one person equals one row is close to impossible. By
+      then every payment instruction and every stored decision has keyed itself to an identifier the
+      design promised would hold still.
     </p>
 
     <Technical summary="Published events and the boundary test">
       <p>
         Participant Identity publishes <code>PersonRegistered</code>, <code>IdentityMerged</code>,
         <code>IdentitySplit</code>, <code>IdentifierAdded</code> and
-        <code>IdentifierInvalidated</code>. Every other context maintains its own projection
-        (Payee, Applicant, Caregiver, Reporter, Appellant, Debtor) keyed by participant identifier.
+        <code>IdentifierInvalidated</code>. Every other context keeps its own projection (Payee,
+        Applicant, Caregiver, Reporter, Appellant, Debtor), keyed by participant identifier.
       </p>
       <p>
         Evidence &amp; Verification publishes <code>EvidenceRecorded</code>,
@@ -132,17 +132,16 @@
     <h2>Parts that are not domain models</h2>
 
     <p>
-      Some pieces are shared infrastructure rather than parts of the business. They are owned by
-      platform teams and used by everyone. The distinction matters because a platform part that
-      starts holding program state has quietly become a seventeenth domain model without anyone
-      chartering it.
+      Some pieces are shared infrastructure rather than parts of the business. Platform teams own
+      them and everyone uses them. The difference matters. A platform part that starts holding
+      program state has quietly become a seventeenth domain model, and nobody chartered it.
     </p>
 
     <p>
-      Two of them are worth naming, because their charters are deliberately opposite. The published
-      interface is permanent: it is the contract built to outlive the systems that implement it.
-      The translation layer over the existing Siebel system is temporary, and the team that builds
-      it is accountable for its own disbandment.
+      Two of them are worth naming, because their charters point in opposite directions on purpose.
+      The published interface is permanent: it is the contract built to outlive whatever implements
+      it. The translation layer over the existing Siebel system is temporary, and the team that
+      builds it answers for winding itself up.
     </p>
 
     <p class="pull">

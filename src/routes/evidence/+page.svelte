@@ -15,17 +15,18 @@
   <div class="prose">
     <h1>Evidence</h1>
     <p class="lede">
-      ICM tracks facts. Fields are overwritten and history is obscured. In the new system the unit of
-      information is a timestamped, attributable <em>claim</em> linked to evidence. That claim can be
-      disproved, confirmed, overturned or replaced, and no information is lost on the way.
+      ICM tracks facts. It overwrites fields and buries history. In the new system the unit of
+      information is a dated <em>claim</em>, tied to its evidence and to whoever made it. Later work
+      can disprove that claim, confirm it, overturn it or replace it, and nothing is lost on the
+      way.
     </p>
 
     <h2>Why not store facts?</h2>
 
     <p>
       A system that stores only the current state, "Income: $900", leaves the important questions
-      unanswered. How do we know? What evidence is there? When did we know? Is this the corrected
-      number, or the number recorded at the time?
+      open. How do we know? What evidence is there? When did we know? Is this the corrected number,
+      or the number we recorded at the time?
     </p>
 
     <p>
@@ -62,19 +63,18 @@
         <div class="row"><span class="f">verified</span><span class="v">tenancy agreement, 14 September</span></div>
       </div>
       <figcaption>
-        One evidence assertion, from a case where the dates are contested. The ministry now says
-        the household was a couple from January. It came to that view in September. Eight months of
-        payments were made at the single rate in between, and which of those two dates you read
-        decides what happens next.
+        One evidence assertion, from a case where the dates are in dispute. The ministry now says
+        the household was a couple from January. It reached that view in September. In between it
+        paid eight months at the single rate. Which of those two dates you read decides what
+        happens next.
       </figcaption>
     </figure>
 
     <h2>The four things that can happen to an assertion</h2>
 
     <p>
-      Once something is recorded it is never edited in place. Four operations change what the
-      system believes, and they differ in one respect: what each does to the period the claim
-      covers.
+      Once the system records something, nobody edits it in place. Four operations change what the
+      system believes. They differ in one respect: what each does to the period the claim covers.
     </p>
 
     <figure class="wide">
@@ -87,17 +87,16 @@
     </figure>
 
     <p>
-      That distinction is the reason the model exists. It is a policy rule expressed in the shape of
-      the data, and it can be applied consistently because the operation that produced a
-      recalculation is recorded on the record itself rather than inferred afterwards.
+      That distinction is why the model exists. It is a policy rule written into the shape of the
+      data. It applies consistently because the record itself names the operation that caused the
+      recalculation. Nobody has to guess at it afterwards.
     </p>
 
     <p>
-      The operation is an input to the classification rather than the whole of it. Who caused the
-      error matters too, and a client who concealed a relationship is not in the same position as a
-      worker who mis-keyed a figure. What the model guarantees is narrower and more useful: the
-      question is answerable at all, from the record, rather than reconstructed by whoever is
-      looking at the file today.
+      The operation feeds the classification without settling it. Who caused the error matters too.
+      A client who hid a relationship is not in the same position as a worker who mis-keyed a
+      figure. The model promises something narrower and more useful: the question has an answer at
+      all, and the answer comes from the record rather than from whoever opens the file today.
     </p>
 
     <h2>Where a conventional record gives up</h2>
@@ -115,10 +114,10 @@
     </ul>
 
     <p>
-      A conventional design holds one relationship start date and an audit entry recording that a
-      worker changed it on 12 September. That answers the third question, gestures at the second,
-      and cannot answer the first at all. The eight monthly payments are left looking like errors,
-      when at the time each was the correct application of what was then known.
+      A conventional design holds one relationship start date, plus an audit entry saying a worker
+      changed it on 12 September. That answers the third question, gestures at the second, and
+      cannot touch the first. It leaves the eight monthly payments looking like errors. Each one was
+      the right answer to what the ministry knew at the time.
     </p>
 
     <Technical summary="The operations, formally">
@@ -168,22 +167,21 @@
     <h2>The third date, and the history problem</h2>
 
     <p>
-      Two time axes are standard. This design carries a third, and it exists because the new system
-      inherits fifteen years of records from systems that are still running.
+      Two time axes are standard. This design carries a third, because the new system inherits
+      fifteen years of records from systems that are still running.
     </p>
 
     <p>
-      When old records are brought across, they all arrive on the same day. If that migration date
-      becomes the "when we learned it" date for every inherited record, then every historical fact
-      appears to have been learned simultaneously. Supersede and Correct become indistinguishable
-      across the whole pre-cutover record, and the overpayment classification rule cannot run
-      against the records where most overpayments actually sit.
+      Old records all arrive on the same day. Make that migration date the "when we learned it"
+      date and every historical fact looks as though it arrived at the same moment. Supersede and
+      Correct then look identical across the whole pre-cutover record. The overpayment rule stops
+      working on exactly the records where most overpayments sit.
     </p>
 
     <p>
-      The third axis holds the date the <em>predecessor</em> system asserted the fact, where that
-      can be read out of the old record. It is frequently unknowable, so it carries a confidence
-      marker, and where the answer is unknown the system says so rather than guessing.
+      The third axis holds the date the <em>old</em> system asserted the fact, where the old record
+      still shows it. Often it cannot be read at all, so the date carries a confidence marker. Where
+      the answer is unknown, the system says so rather than guessing.
     </p>
 
     <figure>
@@ -205,35 +203,35 @@
         </div>
       </div>
       <figcaption>
-        Three dates on every assertion. The third is nullable; the design treats an unknown value as
-        unknown rather than substituting the migration date.
+        Three dates on every assertion. The third can be empty, and the design treats an unknown
+        value as unknown rather than swapping in the migration date.
       </figcaption>
     </figure>
 
     <p>
-      This cannot be added later. Events are immutable: a field can be introduced with a default,
-      but it cannot be filled in retroactively, because the source was either decoded at migration
-      or it was not. The decision has to be made before the first production record is written.
+      Nobody can add this later. Events are immutable: you can introduce a field with a default,
+      but you cannot fill it in afterwards. Either the migration decoded the source or it did not.
+      So the decision has to come before the first production record.
     </p>
 
     <Technical summary="Confidence values and replay behaviour">
       <p>
-        <code>legacy_asserted_at</code> is accompanied by <code>legacy_assertion_confidence</code>,
-        which takes <code>DECODED</code> (read directly from the legacy record or audit trail),
-        <code>INFERRED</code> (derived from a related artefact by a documented rule) or
-        <code>UNKNOWN</code>.
+        <code>legacy_asserted_at</code> travels with
+        <code>legacy_assertion_confidence</code>, which takes <code>DECODED</code> (read straight
+        from the legacy record or audit trail), <code>INFERRED</code> (worked out from a related
+        artefact by a written rule) or <code>UNKNOWN</code>.
       </p>
       <p>
-        On <code>UNKNOWN</code>, any consumer computing a knowledge-state answer (the overpayment
-        classification rule, a tribunal reconstruction view, a disclosure history) must return
-        <code>INDETERMINATE</code>. Projections that answer only valid-time questions ignore the
+        On <code>UNKNOWN</code>, any consumer working out a knowledge-state answer must return
+        <code>INDETERMINATE</code>. That covers the overpayment rule, a tribunal reconstruction
+        view and a disclosure history. Projections that answer only valid-time questions ignore the
         field.
       </p>
       <p>
-        Retroactive recalculation runs off valid time, which a competent migration preserves, so
-        recalculation is unaffected. What breaks without the third axis is narrower: what the
-        ministry knew and when, which is the question separating a recoverable debt from the
-        ministry's own error.
+        Backdated recalculation runs off valid time, which any competent migration preserves, so
+        recalculation survives. Something narrower breaks without the third axis: what the ministry
+        knew and when. That is the question separating a recoverable debt from the ministry's own
+        error.
       </p>
     </Technical>
 

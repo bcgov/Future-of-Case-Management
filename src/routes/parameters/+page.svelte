@@ -61,33 +61,32 @@
   <div class="prose">
     <h1>Parameters</h1>
     <p class="lede">
-      Twenty-one rules the design has to hold to. Each is written so a reviewer can point at
-      something and say whether it complies, and six of them cannot be added once the work has
+      Twenty-one rules the design has to hold to. Each one is written so a reviewer can point at
+      something and say whether it complies. Six of them cannot be added once the work has
       started.
     </p>
 
     <h2>What a parameter is</h2>
 
     <p>
-      A parameter is a property a compliant system has, stated with the check that catches its
-      absence. It is not a commitment and not an aspiration. The difference shows up in the
-      wording: every entry below ends in a question a reviewer can put to a running system and get
-      a wrong answer to.
+      A parameter is something a compliant system does, stated with the check that catches its
+      absence. It is not a promise and not a hope. The wording shows the difference: every entry
+      below ends in a question you can put to a running system and get a wrong answer to.
     </p>
 
     <p>
-      The architecture states twelve. Testing them found three faults. Two said the same thing in
-      different words. Two carried two ideas each, either of which could be dropped without the
-      other. And one gap the architecture names in its own text was held by nothing. The set below
-      fixes each of those, and adds seven more rules on top.
+      The architecture states twelve. Testing them turned up three faults. Two said the same thing
+      in different words. Two carried two ideas each, and you could drop either idea without
+      touching the other. And one gap, which the architecture names in its own text, was nobody's
+      job. The set below fixes each of those and adds seven more rules on top.
     </p>
 
     <p>
-      Three claims are made for it. Each parameter is necessary: remove it and the design loses a
-      property nothing else supplies. No two overlap: no property is asserted twice. Together they
-      carry what the architecture is trying to achieve. The first two are demonstrated for each
-      entry. The third is argued against a list of intents, and it is the weakest of the three,
-      because a different architect would reasonably draw some of these lines elsewhere.
+      The set makes three claims. Every parameter is necessary: take one away and the design loses
+      something nothing else supplies. No two overlap: nothing is said twice. And together they
+      carry what the architecture is trying to do. Each entry below demonstrates the first two
+      claims. The third rests on an argument against a list of intents, and it is the weakest of
+      the three, because another architect could reasonably draw some of these lines elsewhere.
     </p>
 
     <h2>The set</h2>
@@ -95,17 +94,17 @@
     <figure class="wide">
       <ParameterSet />
       <figcaption>
-        Grouped by the axis each one occupies. Select any parameter for the check that catches a
-        breach. A heavy left edge marks the six that cannot be added later.
+        Grouped by the axis each one sits on. Select any parameter to see the check that catches a
+        breach. A heavy left edge marks the six you cannot add later.
       </figcaption>
     </figure>
 
     <h2>Six cannot be added later</h2>
 
     <p>
-      Most of these can be satisfied late, at a price. Six cannot. Each describes a property that
-      has to exist before a particular first event, and once that event has happened the fix is a
-      rebuild rather than a repair.
+      You can satisfy most of these late, at a price. Six you cannot. Each one has to be in place
+      before a particular first event. Once that event has happened, the fix is a rebuild rather
+      than a repair.
     </p>
 
     <figure class="wide">
@@ -120,8 +119,8 @@
         {/each}
       </ol>
       <figcaption>
-        The gates in the order delivery reaches them. This is a statement about the order the work
-        has to happen in, not about which rules matter most.
+        The gates in the order delivery reaches them. This says what order the work has to happen
+        in. It does not say which rules matter most.
       </figcaption>
     </figure>
 
@@ -130,10 +129,10 @@
     <h2>Where the twenty-one came from</h2>
 
     <p>
-      Every principle in the architecture is accounted for. Seven were carried across with their
-      wording narrowed or extended, three were split because they held two separable ideas, one
-      absorbed a clause from another, and one was generalised. Twelve principles became fourteen
-      parameters, and seven more were added.
+      Every principle in the architecture is accounted for. Seven carried across, with their
+      wording narrowed or widened. Three split, because each held two ideas that could stand apart.
+      One took in a clause from another, and one became more general. So twelve principles turned
+      into fourteen parameters, and seven more joined them.
     </p>
 
     <figure class="wide">
@@ -151,33 +150,33 @@
         <span class="codes">N09 · N15 · N16 · N17 · N19 · N20 · N21</span>
       </p>
       <figcaption>
-        N09 closes a gap the architecture identifies in its own text. N15 and N16 close two it had
-        already recorded against itself. The remaining four came out of the policy manual, which
-        turned out to state rules the architecture had not reached.
+        N09 closes a gap the architecture names in its own text. N15 and N16 close two more it had
+        already recorded against itself. The last four came out of the policy manual, which turned
+        out to state rules the architecture had never reached.
       </figcaption>
     </figure>
 
     <p>
       Those last four are the interesting ones, because nobody found them by thinking harder about
-      the architecture. They came out of reading what the ministry already tells its own staff to
-      do. Policy sets time limits whose breach changes what a client is owed, names which
-      entitlements can be appealed and to whom, separates the person who decides from the person
-      who reviews, and bars certain uses of information the ministry may lawfully hold. None of
-      that was expressible in the twelve.
+      the architecture. They came from reading what the ministry already tells its own staff to do.
+      Policy sets time limits, and missing one changes what a client is owed. It names which
+      entitlements a client can appeal, and to whom. It keeps the person who decides apart from the
+      person who reviews. And it bars certain uses of information the ministry may lawfully hold.
+      The twelve could not express any of that.
     </p>
 
     <h2>A rule nobody can check is not a rule</h2>
 
     <p>
-      One parameter is not about the system at all. N18 ranges over the other twenty and requires
-      each to name how its breach is caught, with anything expressible as a lint rule or a
-      compatibility check built as one.
+      One parameter is not about the system at all. N18 ranges over the other twenty. It makes each
+      of them name how you catch a breach, and it says that anything you could write as a lint rule
+      or a compatibility check has to be written as one.
     </p>
 
     <p>
-      It is stated separately rather than folded into the others, because a rule about enforcement
-      filed among rules about behaviour is how enforcement stops being anybody's job without
-      anyone deciding that it should.
+      It stands on its own rather than folded into the others. File a rule about enforcement among
+      the rules about behaviour, and enforcement stops being anybody's job without anyone deciding
+      that it should.
     </p>
 
     <h2>What the set does not settle</h2>
@@ -189,38 +188,38 @@
     <h3>Continuity has no footing in policy</h3>
 
     <p>
-      N16 asks for recovery targets per service, proven by exercise. Of 270 policy obligations
-      mapped, none exercises it. A benefits platform plainly needs recovery objectives, so that is
-      not evidence the rule is unnecessary. It is evidence that its authority sits somewhere other
-      than the policy manual, and until that source is named the rule stays proposed rather than
-      baselined.
+      N16 asks for recovery targets per service, proven by exercise. We mapped 270 policy
+      obligations, and not one of them exercises it. A benefits platform plainly needs recovery
+      targets, so that does not show the rule is unnecessary. It shows that its authority sits
+      somewhere other than the policy manual. Until someone names that source, the rule stays
+      proposed rather than baselined.
     </p>
 
     <h3>Whether to build this at all</h3>
 
     <p>
-      N11 says generic capability is bought and a decision to build is checked by someone other
-      than the builder. At component level the architecture answers the question, though the answer
-      is given by each component's own owner. At platform level it does not answer it: custom build
-      against a commercial case management product is examined nowhere in the source's 4,998 lines.
-      By the architecture's own rule that is a compliance failure rather than a matter of taste, and
-      it is the largest open question on this page.
+      N11 says you buy generic capability, and that someone other than the builder checks any
+      decision to build. At component level the architecture answers the question, though each
+      component's own owner gives the answer. At platform level it does not answer it at all.
+      Nowhere in the source's 4,998 lines does anyone weigh a custom build against a commercial case
+      management product. By the architecture's own rule that is a compliance failure rather than a
+      matter of taste, and it is the largest open question on this page.
     </p>
 
     <h3>The premise underneath the decision model</h3>
 
     <p>
-      Everything on the <a href="{base}/determinations">determinations</a> page rests on the premise
-      that entitlement decisions can be expressed as functions of recorded evidence. Review conceded
-      that the premise may be false for some decisions. It drives roughly 28% of programme cost and
-      appears in no assumption register. It belongs in one.
+      Everything on the <a href="{base}/determinations">determinations</a> page rests on one
+      premise: that you can express an entitlement decision as a function of recorded evidence.
+      Review conceded the premise may be false for some decisions. It drives roughly 28% of
+      programme cost, and it appears in no assumption register. It belongs in one.
     </p>
 
     <Technical summary="What the set is checked against">
       <p>
-        Sufficiency is argued against an enumerated register of what the architecture is trying to
-        achieve. An intent with no parameter is a sufficiency failure; a parameter carrying no
-        intent is a necessity failure.
+        The sufficiency argument runs against a numbered register of what the architecture is
+        trying to achieve. An intent with no parameter behind it means the set is not sufficient. A
+        parameter carrying no intent means it was not necessary.
       </p>
       <table>
         <thead>
@@ -308,34 +307,35 @@
 
     <Technical summary="Cuts a reviewer could reasonably reopen">
       <p>
-        Four places where the set could have been drawn differently, recorded so that reopening one
-        is a deliberate act rather than a rediscovery.
+        Four places where the set could have been drawn differently. They are recorded here so that
+        reopening one is a deliberate act rather than a rediscovery.
       </p>
       <ul>
         <li>
           <strong>N01 and N02.</strong> The architecture bundles these as one principle with one
-          test. A reviewer who holds that the rule on payloads follows from the model of a fact would
+          test. A reviewer who thinks the rule on payloads follows from the model of a fact would
           merge them, giving twenty.
         </li>
         <li>
           <strong>N12 and N13.</strong> The split turns on custodianship having a different
-          authority and a different rights holder from disposition. An architect treating Indigenous
-          jurisdiction as one input to a single records design would keep them together.
+          authority and a different rights holder from disposition. An architect who treats
+          Indigenous jurisdiction as one input to a single records design would keep them
+          together.
         </li>
         <li>
-          <strong>N09.</strong> Arguably a clause of N08 rather than a parameter of its own. It is
-          separate because N08's test cannot detect its breach, and a clause its parent's test
-          cannot see is not enforced.
+          <strong>N09.</strong> Arguably a clause of N08 rather than a parameter of its own. It
+          stands apart because N08's test cannot detect its breach, and nobody enforces a clause its
+          parent's test cannot see.
         </li>
         <li>
-          <strong>N15.</strong> Merges accessibility and digital exclusion on the grounds of a
-          shared failure mode. An architect who treats them as separate obligations would split it.
+          <strong>N15.</strong> Merges accessibility and digital exclusion, because they fail the
+          same way. An architect who treats them as separate obligations would split it.
         </li>
       </ul>
     </Technical>
 
     <p>
-      The parameters that do most of the work on the rest of this site are N01 on
+      Four parameters do most of the work on the rest of this site: N01 on
       <a href="{base}/evidence">evidence</a>, N03 on <a href="{base}/domains">domains</a>, and N07
       to N09 on <a href="{base}/determinations">determinations</a>. The
       <a href="{base}/choices">choices</a> page sets out what several of them cost.

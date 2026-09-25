@@ -7,52 +7,52 @@
       title: 'Store dated claims, not facts',
       unusual:
         'Most case systems store the current value of a field and log changes separately.',
-      why: 'Whether a person owes money back depends on whether the ministry knew something and failed to act. A current value with a change log beside it cannot answer that reliably, because the log is not part of the decision path.',
-      cost: 'Every read is more complex. Developers have to think in periods rather than values, and reporting has to specify which point in time it means.'
+      why: 'Whether a person owes money back turns on whether the ministry knew something and failed to act. A current value with a change log beside it cannot answer that. The log sits outside the decision path.',
+      cost: 'Every read gets harder. Developers have to think in periods rather than values, and every report has to say which point in time it means.'
     },
     {
       id: 'bitemporal',
       title: 'Track two kinds of time, and inherit a third',
-      unusual: 'Bitemporal modelling is well established in finance and rare in case management.',
-      why: 'The two questions a tribunal asks are what was true and what the ministry knew. They need separate axes. The third axis exists only because fifteen years of records arrive from a system that is still running, and collapsing their history into the migration date would make an entire class of question unanswerable.',
-      cost: 'More storage, and a real learning curve. The third axis will be unknown in most inherited records, and the system has to say so rather than guess.'
+      unusual: 'Finance has modelled two kinds of time for decades. Case management almost never does.',
+      why: 'A tribunal asks two questions: what was true, and what did the ministry know. Each needs its own axis. The third axis exists because fifteen years of records arrive from a system still in use. Flatten their history into the migration date and a whole class of question stops having an answer.',
+      cost: 'More storage, and a real learning curve. Most inherited records will not know their third date, and the system has to say so rather than guess.'
     },
     {
       id: 'split',
       title: 'Five case models rather than one',
       unusual: 'The conventional move is a single configurable case model shared across programs.',
-      why: 'A child protection investigation and a child care subsidy renewal share almost nothing. A shared model makes every change a negotiation, and the previous programme cut scope rather than change one.',
-      cost: 'Plumbing gets written five times. This is a real cost and it is accepted deliberately.'
+      why: 'A child protection investigation and a child care subsidy renewal share almost nothing. A shared model turns every change into a negotiation. The last programme cut scope rather than reopen one.',
+      cost: 'The plumbing gets written five times. That is a real cost, and the design accepts it on purpose.'
     },
     {
       id: 'pure',
       title: 'Decisions read no live data',
       unusual:
-        'Rules engines are usually called as a service that fetches what it needs while it runs.',
-      why: 'If a decision reads anything not stored with it, it cannot be reproduced. Reproduction is the difference between showing a tribunal what happened and reconstructing it from memory.',
-      cost: 'The facts have to be assembled before the decision runs, and assembling them consistently is its own problem.'
+        'Teams usually call the rules engine as a service, and it fetches what it needs while it runs.',
+      why: 'A decision that reads anything not stored with it cannot be re-run. Re-running is what lets you show a tribunal what happened, rather than piece it together from memory.',
+      cost: 'Someone has to gather the facts before the decision runs, and gathering them consistently is a problem of its own.'
     },
     {
       id: 'contract',
       title: 'The interface outlives its implementation',
       unusual:
-        'Translation layers over a legacy system are normally treated as the durable asset.',
-      why: 'Replacing a system in pieces only works if consumers are insulated from which piece is answering. The published interface is permanent; the translation layer behind it is temporary and its team is accountable for disbanding.',
-      cost: 'It requires refusing legacy vocabulary in the published interface even when exposing it would be faster.'
+        'Teams normally treat the translation layer over a legacy system as the lasting asset.',
+      why: 'Replacing a system in pieces only works if nobody calling it can tell which piece answered. The published interface is permanent. The translation layer behind it is temporary, and its team answers for winding itself up.',
+      cost: 'The published interface has to refuse old vocabulary, even on the days when exposing it would be faster.'
     },
     {
       id: 'notice',
       title: 'Store the letter, not just the decision',
-      unusual: 'Correspondence is usually treated as output rather than part of the record.',
-      why: 'A tribunal asks what the person was told as often as it asks what was computed. A determination that reproduces perfectly alongside an unreconstructable letter does not answer the question.',
-      cost: 'Template versions and content hashes have to be retained for as long as the decisions that reference them.'
+      unusual: 'Most systems treat letters as output rather than as part of the record.',
+      why: 'A tribunal asks what the person was told as often as it asks what the system worked out. A decision that re-runs perfectly, next to a letter nobody can rebuild, still misses the question.',
+      cost: 'Template versions and content hashes have to survive as long as the decisions that point at them.'
     },
     {
       id: 'disposition',
       title: 'Retention lives on the type, not the storage location',
-      unusual: 'Retention is commonly inferred from where something is stored.',
-      why: 'Inference from location fails the first time a fact appears in two places, which is the first day. Attaching classification and retention to the kind of evidence makes disposition tractable.',
-      cost: 'Every evidence type needs a records determination before it can be used, which puts the records office on the critical path.'
+      unusual: 'Most systems work out how long to keep something from where it sits.',
+      why: 'Guessing from location fails the first time a fact appears in two places, which is day one. Attach the classification and the retention rule to the kind of evidence instead. Then destroying records becomes a job you can actually do.',
+      cost: 'Every evidence type needs a records ruling before anyone can use it, which puts the records office on the critical path.'
     }
   ];
 
@@ -71,8 +71,9 @@
   <div class="prose">
     <h1>Choices</h1>
     <p class="lede">
-      Several decisions here are not what a team would reach for by default. Each is set out with
-      what it buys and what it costs, so that a reader can disagree with it specifically.
+      Several decisions here are not what a team would reach for by default. Each one below says
+      what it buys and what it costs, so you can disagree with it in particular rather than in
+      general.
     </p>
 
     <div class="choices">
@@ -106,15 +107,14 @@
     <h2>How the design was arrived at</h2>
 
     <p>
-      This architecture rests on an analysis of every document that could be recovered about ICM and
-      the business processes it supports. Each claim is traceable to a primary source, confirmed
-      internally, or derived by arithmetic. Unverified claims are marked as such rather than
-      quietly asserted.
+      This architecture rests on every document we could recover about ICM and the work it
+      supports. Each claim traces back to a primary source, or the documents confirm it between
+      themselves, or the arithmetic gives it. Claims we could not check say so on the page.
     </p>
 
     <p>
-      The design began with the assumptions that underpinned ICM and much of the approach to MIS.
-      Eleven were tested and none survived intact. Two of them:
+      The design began with the assumptions that ICM rested on, and much of the approach to MIS
+      with it. We tested eleven. None came through intact. Two of them:
     </p>
 
     <figure>
@@ -122,24 +122,24 @@
         <div>
           <h3>System residency is a legal requirement</h3>
           <p class="found">
-            Neither federal nor provincial statute requires government systems to be located in
-            Canada, and no published policy requires it either.
+            No federal or provincial statute says government systems have to sit in Canada. No
+            published policy says it either.
           </p>
           <p class="conseq">
-            Concerns about data sovereignty and trade point toward Canadian residency, and the
-            architecture follows that. There is no formal guidance behind it.
+            Worries about data sovereignty and trade still point to keeping the systems in Canada,
+            and the architecture does that. No formal guidance stands behind the choice.
           </p>
         </div>
         <div>
           <h3>Replacing the existing system has a deadline</h3>
           <p class="found">
-            Vendor support for the current platform is committed through at least December 2037, on
+            The vendor has committed to support the current platform to at least December 2037, on
             a rolling ten-year basis.
           </p>
           <p class="conseq">
-            Nothing external forces the replacement to finish by a particular date. The programme can
-            run discovery, research and analysis properly before committing to large-scale
-            development, and an unforced timetable takes a great deal of risk out of deployment.
+            Nothing outside the programme forces the replacement to finish by a set date. So it can
+            do discovery, research and analysis properly before it commits to building at scale. An
+            unforced timetable takes a great deal of risk out of the work.
           </p>
         </div>
       </div>
@@ -149,37 +149,36 @@
     <h2>What the evidence base is</h2>
 
     <p>
-      Two bodies of source material sit behind this: the 57 technical design documents for the
-      current release of the existing system, covering the application, its integrations, its data
-      conversion and its reporting; and the 326 service-delivery procedures describing how the work
-      is done.
+      Two bodies of source material sit behind this. The first is 57 technical design documents for
+      the current release. They cover the application, its integrations, its data conversion and its
+      reporting. The second is 326 service-delivery procedures, describing how the work gets done.
     </p>
 
     <p>
       Reading both matters, because they disagree about what the system is. The technical documents
-      describe 61 applications. The procedures reveal 28 further tools that a worker actually
-      touches and that appear in no technical document: a standalone calculator, a reporting tool,
-      credit and asset-check portals, a worker-safety device, a vital statistics service.
+      describe 61 applications. The procedures turn up 28 more tools that a worker touches and no
+      technical document mentions. Among them: a standalone calculator, a reporting tool, credit and
+      asset-check portals, a worker-safety device, a vital statistics service.
     </p>
 
     <Technical summary="What remains unresolved">
       <p>
-        The architecture carries 40 open verification items and 30 items that must be resolved
-        before the design is frozen. Three are worth naming here because they change the shape of
-        the work rather than its detail:
+        The architecture carries 40 open items to verify, and 30 more to settle before the design
+        freezes. Three are worth naming here, because they change the shape of the work rather than
+        its detail:
       </p>
       <ul>
         <li>
-          Whether the rules can be migrated independently of the mainframe, given that both
+          Whether the rules can move off the mainframe on their own, given that both of them
           calculate.
         </li>
         <li>
-          Whether the decision on what the third time axis holds can be made before the first
-          production record is written. It cannot be added afterwards.
+          Whether we can settle what the third time axis holds before the first production record
+          lands. Nobody can add it afterwards.
         </li>
         <li>
-          What service levels the analytical platform can commit to, which depends on a storage
-          benchmark that has not yet been run.
+          What service levels the analytical platform can promise. That waits on a storage
+          benchmark nobody has run yet.
         </li>
       </ul>
     </Technical>
