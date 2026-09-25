@@ -555,11 +555,14 @@ Determinations
 Parameters
 Choices
 Parameters
-Twenty-one rules the design has to hold to. Each one is written so a reviewer can point at something and say whether it complies. Six of them cannot be added once the work has started.
+The following parameters are the twenty-one proposed rules the design has to follow. Each one is written so a reviewer can point at something and judge whether it complies. Six of the parameters must be built in from the start; they cannot be added once the work has started.
 What a parameter is
-A parameter is something a compliant system does, stated with the check that catches its absence. It is not a promise and not a hope. The wording shows the difference: every entry below ends in a question you can put to a running system and get a wrong answer to.
-The architecture states twelve. Testing them turned up three faults. Two said the same thing in different words. Two carried two ideas each, and you could drop either idea without touching the other. And one gap, which the architecture names in its own text, was nobody's job. The set below fixes each of those and adds seven more rules on top.
-The set makes three claims. Every parameter is necessary: take one away and the design loses something nothing else supplies. No two overlap: nothing is said twice. And together they carry what the architecture is trying to do. Each entry below demonstrates the first two claims. The third rests on an argument against a list of intents, and it is the weakest of the three, because another architect could reasonably draw some of these lines elsewhere.
+A parameter is something a system must comply to. A parameter must be check-able; it must be possible to check whether the system complies to it. To make sure that these rules are parameters, every entry below ends in a question you can put to a running system and get a wrong answer to.
+The set makes three claims:
+Every parameter is necessary: take one away and the design loses something nothing else supplies.
+No two overlap: nothing is said twice.
+And together they carry what the architecture is trying to do.
+Each entry below demonstrates the first two claims. The third rests on an argument against a list of intents, and it is the weakest of the three, because another architect could reasonably draw some of these lines elsewhere.
 The set
 [aria-label] Which parameters to show
 All twenty-one
@@ -755,7 +758,7 @@ A document is what a verification policy accepts as satisfying an evidence type.
 A fact is a dated claim with a source
 A first assertion about a period nothing covered yet.
 A modernisation has to know what it is replacing. The rules that decide entitlement sit in four separate places, and only one of them is a rules engine.
-A parameter is something a compliant system does, stated with the check that catches its absence. It is not a promise and not a hope. The wording shows the difference: every entry below ends in a question you can put to a running system and get a wrong answer to.
+A parameter is something a system must comply to. A parameter must be check-able; it must be possible to check whether the system complies to it. To make sure that these rules are parameters, every entry below ends in a question you can put to a running system and get a wrong answer to.
 A part that copies evidence records where it came from. When the source corrects it, you can list everyone holding a copy, and each of them has to act. That holds even where a decision already went out on the old value.
 A part that needs another's data keeps its own copy, built from that part's events and shaped the way it needs. When the source corrects something, the copy has to follow.
 A partner moves in on 1 May, and the client reports it.
@@ -781,6 +784,7 @@ An Excel workbook decides which queue a request joins, how urgent it is, how lon
 An append-only store and a legal duty to destroy pull against each other. Settle that after the first event and you are rebuilding, not repairing. The timing is the rule: a correct design that arrives late has failed.
 An engine upgrade can change how the same rules evaluate.
 An entitlement determined twice must not be paid twice, and that guarantee lives here rather than in five case contexts.
+And together they carry what the architecture is trying to do.
 Appeals & Reconsideration
 Apt boundaries
 Archiving the software tells you what it was. It does not promise that anything in twenty years can still run it. The operating system, the processor and the container runtime all die younger than a child protection record, which the ministry keeps for ninety years.
@@ -849,6 +853,7 @@ Does the bar sit on the information rather than in a procedure? Does it survive 
 Does the design name the watermark, write it into the decision record, and hold it to a stated limit? Does a decision outside that limit fail rather than go ahead?
 Does the model hold each limit once, with its owner, its class, its start event, duration, extensions and authorisations? Does a breach show up without a person spotting it, and does its consequence apply automatically?
 Domains — The Future of Case Management IT
+Each entry below demonstrates the first two claims. The third rests on an argument against a list of intents, and it is the weakest of the three, because another architect could reasonably draw some of these lines elsewhere.
 Each one carries a header naming its purpose, the policy it carries out, the law behind it, and how the system classifies the work. That turns the whole set into a map of the services.
 Each parameter names how you catch a breach of it. Anything you could write as a lint rule, a fitness function or a compatibility check gets written as one.
 Each part can be released on its own
@@ -862,6 +867,7 @@ Every dated claim about the world, and how it was checked.
 Every entitlement decision stores the rules, the engine, the facts it saw, its own reasoning and what it decided. A manager four days later, or a tribunal years later, can re-run it instead of piecing it together from memory.
 Every evidence assertion carries three time dimensions:
 Every evidence type needs a records ruling before anyone can use it, which puts the records office on the critical path.
+Every parameter is necessary: take one away and the design loses something nothing else supplies.
 Every principle in the architecture is accounted for. Seven carried across, with their wording narrowed or widened. Three split, because each held two ideas that could stand apart. One took in a clause from another, and one became more general. So twelve principles turned into fourteen parameters, and seven more joined them.
 Every read gets harder. Developers have to think in periods rather than values, and every report has to say which point in time it means.
 Every recurring task a caseworker does has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as staff really deliver it.
@@ -999,6 +1005,7 @@ No part depends on a model it does not own
 No part reads another part's database
 No shared tables. No joins across schemas. Not for a report, and not in a test environment. This rule erodes first, and takes the longest to notice.
 No system named
+No two overlap: nothing is said twice.
 Nobody can add this later. Events are immutable: you can introduce a field with a default, but you cannot fill it in afterwards. Either the migration decoded the source or it did not. So the decision has to come before the first production record.
 Nobody can explain the decision in words. It can perhaps be re-run, but it cannot be accounted for.
 Nobody can reason about logic spread across layers, test it, or change it with confidence. You end up unable to say which copy is the authoritative one. Keeping it together also makes validation uniform: no integration or migration script can slip past a rule the data itself enforces.
@@ -1118,7 +1125,6 @@ The aggregate is the evidence succession set: the stream of versions of one logi
 The architecture bundles these as one principle with one test. A reviewer who thinks the rule on payloads follows from the model of a fact would merge them, giving twenty.
 The architecture carries 40 open items to verify, and 30 more to settle before the design freezes. Three are worth naming here, because they change the shape of the work rather than its detail:
 The architecture names the hole in its own text. Two decisions issued moments apart, with one store briefly behind, can each see a different world quite legitimately. Both replay. Both reproduce. They disagree, and nothing else notices.
-The architecture states twelve. Testing them turned up three faults. Two said the same thing in different words. Two carried two ideas each, and you could drop either idea without touching the other. And one gap, which the architecture names in its own text, was nobody's job. The set below fixes each of those and adds seven more rules on top.
 The assertion is withdrawn. It remains visible in the history as withdrawn.
 The assertion should never have existed
 The calculation reads nothing but its inputs
@@ -1145,6 +1151,7 @@ The evidence succession set, verification policy, the four operations, three tim
 The facts it saw
 The finding was filed against the wrong participant.
 The first two dates can be added later. The third cannot: it has to be in the record before the first production event.
+The following parameters are the twenty-one proposed rules the design has to follow. Each one is written so a reviewer can point at something and judge whether it complies. Six of the parameters must be built in from the start; they cannot be added once the work has started.
 The four things that can happen to an assertion
 The four values move independently, and you cannot work one out from another. Getting it wrong hurts the client either way: you offer a route that does not exist, or you withhold one that does.
 The function signature
@@ -1179,7 +1186,7 @@ The rules
 The rules live on as a written specification, with a test suite that any rebuild has to pass. The suite stays independent of the engine from day one, so this handover costs nothing when it comes.
 The service reaches the people it exists for
 The set
-The set makes three claims. Every parameter is necessary: take one away and the design loses something nothing else supplies. No two overlap: nothing is said twice. And together they carry what the architecture is trying to do. Each entry below demonstrates the first two claims. The third rests on an argument against a list of intents, and it is the weakest of the three, because another architect could reasonably draw some of these lines elsewhere.
+The set makes three claims:
 The shape of the payload is what carries provenance across the line. A row arrives with no sign of who claimed it. So the receiver cannot know what it may conclude, and a later correction has nothing to attach to.
 The smallest rule surface, which is why it is captured first.
 The snapshot names the moment it was read
@@ -1221,7 +1228,6 @@ Today the system reports
 Track two kinds of time, and inherit a third
 Transaction time
 Treating a decision as a function
-Twenty-one rules the design has to hold to. Each one is written so a reviewer can point at something and say whether it complies. Six of them cannot be added once the work has started.
 Two bodies of source material sit behind this. The first is 57 technical design documents for the current release. They cover the application, its integrations, its data conversion and its reporting. The second is 326 service-delivery procedures, describing how the work gets done.
 Two decisions made moments apart can disagree
 Two ministries run case management: Children and Family Development, and Social Development and Poverty Reduction. The work covers assistance payments, service requests, social work, loss recovery and client support. All of it depends on a worker seeing the full picture. The work is life-critical. A wrong answer means someone might not eat this month, or a child misses a check-in.

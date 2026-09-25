@@ -61,30 +61,30 @@
   <div class="prose">
     <h1>Parameters</h1>
     <p class="lede">
-      Twenty-one rules the design has to hold to. Each one is written so a reviewer can point at
-      something and say whether it complies. Six of them cannot be added once the work has
-      started.
+      The following parameters are the twenty-one proposed rules the design has to follow. 
+      Each one is written so a reviewer can point at something and judge whether it complies. 
+      Six of the parameters must be built in from the start; they cannot be added once the work has started.
     </p>
 
     <h2>What a parameter is</h2>
 
     <p>
-      A parameter is something a compliant system does, stated with the check that catches its
-      absence. It is not a promise and not a hope. The wording shows the difference: every entry
-      below ends in a question you can put to a running system and get a wrong answer to.
+      A parameter is something a system must comply to. 
+      A parameter must be check-able; it must be possible to check whether the system complies to it. 
+      To make sure that these rules are parameters, every entry below ends in a question you can put to a running system and get a wrong answer to.
     </p>
 
     <p>
-      The architecture states twelve. Testing them turned up three faults. Two said the same thing
-      in different words. Two carried two ideas each, and you could drop either idea without
-      touching the other. And one gap, which the architecture names in its own text, was nobody's
-      job. The set below fixes each of those and adds seven more rules on top.
+      The set makes three claims:
     </p>
-
-    <p>
-      The set makes three claims. Every parameter is necessary: take one away and the design loses
-      something nothing else supplies. No two overlap: nothing is said twice. And together they
-      carry what the architecture is trying to do. Each entry below demonstrates the first two
+      <ol>
+          <li>Every parameter is necessary: take one away and the design loses
+            something nothing else supplies. </li>
+          <li>No two overlap: nothing is said twice.</li>
+          <li>And together they carry what the architecture is trying to do. </li>
+      </ol>
+      <p>
+      Each entry below demonstrates the first two
       claims. The third rests on an argument against a list of intents, and it is the weakest of
       the three, because another architect could reasonably draw some of these lines elsewhere.
     </p>
