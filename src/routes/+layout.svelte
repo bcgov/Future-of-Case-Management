@@ -55,7 +55,8 @@
     { href: '/domains', label: 'Domains' },
     { href: '/determinations', label: 'Determinations' },  
     { href: '/parameters', label: 'Parameters' },
-    { href: '/choices', label: 'Choices' }
+    { href: '/choices', label: 'Choices' },
+    { href: '/glossary', label: 'Glossary' }
   ];
 
   const path = $derived($page.url.pathname.replace(base, '').replace(/\/$/, '') || '/');

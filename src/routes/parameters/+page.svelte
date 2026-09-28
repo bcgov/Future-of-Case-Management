@@ -93,8 +93,10 @@
     <figure class="wide">
       <ParameterSet />
       <figcaption>
-        Grouped by the axis each one sits on. Select any parameter to see the check that catches a
-        breach. A heavy left edge marks the six you cannot add later.
+        Grouped by the part of the design each one covers. Select any parameter to see how to check
+        it. A heavy left edge marks the six you cannot add later. Words with a special meaning are
+        explained in the <a href="{base}/glossary">glossary</a>, and each parameter links to the
+        ones it uses.
       </figcaption>
     </figure>
 

@@ -120,6 +120,7 @@ src/
     service/                  what the service looks like today
     parameters/               the twenty-one rules, and the six that come first
     decisions/                the unconventional choices, and why
+    glossary/                 plain explanations of the words the parameters use
   lib/components/
     BitemporalPlane.svelte    the hero interactive
     EvidenceOperations.svelte record, supersede, correct, invalidate
@@ -127,6 +128,7 @@ src/
     ReplayArtefacts.svelte    the five artefacts bound to a decision
     SystemsPerTask.svelte     measured cross-system working
     ParameterSet.svelte       the twenty-one parameters, by axis
+  lib/glossary.js             glossary entries; parameters link to them by slug
     Technical.svelte          plain English / technical disclosure
 ```
 

@@ -1,278 +1,305 @@
-<script>
+<script module>
   // The twenty-one parameters, grouped by the axis each one occupies. A chip
   // carries its code so the detail panel can be cited; the retrofit marker is
   // text as well as a border, because colour is never the only signal here.
-  const params = [
+  export const params = [
     {
       id: 'n01',
       code: 'N01',
       axis: 'record',
-      name: 'A fact is a dated claim with a source',
+      name: 'Every fact is dated and has a source',
       plain:
-        'Nothing is stored as a bare value. Every fact carries who claimed it, the period it covers, the date this system learned it, and the date the old system asserted it, or a marker saying that date cannot be read.',
-      why: 'Without it, nothing downstream can be rebuilt. You cannot replay a decision against evidence when nobody knows what period it covered. And you cannot tell a correction apart from a change in the world.',
-      test: 'Take any fact. Can you say when it was true, when this system learned it, what the old system said, and point at the source record?',
+        'The system never stores a fact on its own. With every fact it keeps four things: who reported it, the period of time it was true for, the date this system learned it, and the date the old system recorded it. If the old system’s date can’t be read, the record says so.',
+      why: 'Without these dates, nothing later can be rebuilt. You can’t re-check a decision if you don’t know what period its facts covered. And you can’t tell whether a value changed because the world changed, or because someone fixed a mistake.',
+      test: 'Pick any fact. Can you say when it was true, when this system learned it, and what the old system said? Can you point to the record it came from?',
       retro: '',
       partial:
-        'The first two dates can be added later. The third cannot: it has to be in the record before the first production event.',
-      source: 'From P1, split'
+        'The first two dates can be added later. The old system’s date cannot. It has to be in place before the new system records its first real event.',
+      source: 'Principle 1, split in two',
+      terms: ['fact', 'valid-time', 'transaction-time', 'old-system', 'correction', 'event']
     },
     {
       id: 'n02',
       code: 'N02',
       axis: 'record',
-      name: 'Only evidence and decisions cross a boundary',
+      name: 'Parts of the system share facts and decisions, not raw data',
       plain:
-        'Parts of the system exchange claims and decisions. They do not hand each other rows, internal identifiers or query results.',
-      why: 'The shape of the payload is what carries provenance across the line. A row arrives with no sign of who claimed it. So the receiver cannot know what it may conclude, and a later correction has nothing to attach to.',
-      test: 'Read every published message. Does any of it carry the sender’s storage shape, an identifier only the sender understands, or a result set rather than a claim?',
+        'When one part of the system sends something to another, it sends a fact with its source, or a decision. It doesn’t send rows copied out of its database, ID numbers only it understands, or the raw results of a search.',
+      why: 'A fact carries a note of where it came from. A database row doesn’t. The part that receives a bare row can’t tell who said it, so it can’t know what it is safe to conclude. And if the source later fixes the value, there is nothing to attach the fix to.',
+      test: 'Read every message one part sends to another. Does any of it copy the sender’s database layout, use an ID only the sender understands, or hand over search results instead of a fact?',
       retro: '',
-      source: 'From P1, split'
+      source: 'Principle 1, split in two',
+      terms: ['part', 'fact', 'provenance', 'schema', 'correction']
     },
     {
       id: 'n03',
       code: 'N03',
       axis: 'boundary',
-      name: 'No part depends on a model it does not own',
+      name: 'Each part keeps its own picture of the data',
       plain:
-        'Each part keeps its own picture of a person, a case, a payment. No canonical Person, no shared schema, no join across parts, no dependency on a type another part owns.',
-      why: 'A shared model decides whose release everyone else waits for. The previous programme merged its last two phases and cut child protection scope because of exactly this.',
-      test: 'Does any part read another part’s tables, or depend on a type it does not own? The second question catches the failure that really happens. Shared models come back as schemas, not as databases.',
+        'Each part of the system keeps its own description of a person, a case or a payment. There is no single shared “Person” record that every part must use. No part shares a database layout with another, reads another part’s tables, or relies on a data type that another part defines.',
+      why: 'When every part shares one model, any change to it has to wait for everyone who uses it. One team’s release holds up all the others. ICM ran into exactly this: it had to merge its last two phases and drop child protection from its scope.',
+      test: 'Does any part read another part’s tables, or rely on a data type another part owns? The second question matters more. A shared model rarely comes back as a shared database. It comes back as a shared layout that everyone copies.',
       retro: '',
-      source: 'From P4, absorbing part of P3'
+      source: 'Principle 4, plus a piece of Principle 3',
+      terms: ['part', 'data-model', 'schema', 'old-system']
     },
     {
       id: 'n04',
       code: 'N04',
       axis: 'boundary',
-      name: 'Behaviour lives with the data it governs',
+      name: 'Rules live with the data they control',
       plain:
-        'Whatever holds the data enforces its own rules. Logic is not split between the data, a configuration table and an unwritten process.',
-      why: 'Nobody can reason about logic spread across layers, test it, or change it with confidence. You end up unable to say which copy is the authoritative one. Keeping it together also makes validation uniform: no integration or migration script can slip past a rule the data itself enforces.',
-      test: 'To see how one business rule works, how many systems do you have to open? If more than one, say which is authoritative, why the others exist, and what generates them.',
+        'The part that holds the data also enforces the rules about that data. A rule is not split up between the database, a settings table and steps that staff just know to follow.',
+      why: 'If a rule is spread across several places, nobody can understand it, test it or change it safely. Soon nobody can say which version of the rule is the real one. Keeping a rule with its data also means everything that writes to the data is checked the same way. A data load or a link from another system can’t slip past a rule the data enforces itself.',
+      test: 'To see how one business rule works, how many systems do you have to open? If it’s more than one, say which is the real source, why the others exist, and how they are produced from it.',
       retro: '',
-      source: 'From P5, unchanged'
+      source: 'Principle 5, unchanged',
+      terms: ['business-rule', 'part', 'migration']
     },
     {
       id: 'n05',
       code: 'N05',
       axis: 'boundary',
-      name: 'One writer per record, at every moment',
+      name: 'Only one system can change a record at a time',
       plain:
-        'One system of record per record, per group of clients, transition included. Not both systems writing and a reconciliation afterwards. And nothing resolves a conflict automatically where the data decides what a person receives.',
-      why: 'Resolve a conflict automatically and a merge rule stands in for a policy or a person. Writing from both sides is also how a temporary overlap turns permanent.',
-      test: 'For every record in transition, name the one system of record and the group it covers. If the answer is “it depends on the field”, someone has split the work across fields instead of across groups of clients.',
+        'Every record has one system in charge of it: its system of record. That holds for each group of clients, and it still holds while clients move from the old system to the new one. The two systems never both make changes and sort out the differences afterwards. And where the data affects what a person receives, no automatic process decides which version wins.',
+      why: 'If software settles a conflict on its own, a merge rule ends up making a choice that belongs to policy or to a person. And letting both systems make changes is how a short overlap quietly becomes permanent.',
+      test: 'For every record being moved, name the one system of record and the group of clients it covers. If the answer is “it depends on the field”, someone has divided the work by field instead of by group of clients.',
       retro: '',
-      source: 'From P9, unchanged'
+      source: 'Principle 9, unchanged',
+      terms: ['system-of-record', 'client-group', 'transition']
     },
     {
       id: 'n06',
       code: 'N06',
       axis: 'propagation',
-      name: 'Every copy is traceable, and every correction reaches it',
+      name: 'Every copy can be traced, and every correction reaches it',
       plain:
-        'A part that copies evidence records where it came from. When the source corrects it, you can list everyone holding a copy, and each of them has to act. That holds even where a decision already went out on the old value.',
-      why: 'Copying creates this duty, and nothing else discharges it. A design that passes nothing on at all still passes every boundary rule perfectly. It also leaves people paid on a value we know to be wrong.',
-      test: 'Correct a fact at its source. Can you list every part holding a copy? Does each one have to act? And does anything raise an alarm when a correction goes unread?',
-      retro: 'Provenance has to be written as the copy is made',
-      source: 'From P3, the half the source calls load-bearing'
+        'When one part copies a fact from another, it records where the copy came from. If the source later corrects the fact, you can list everyone who holds a copy, and each of them has to deal with the change. That is true even when a decision has already gone out based on the old value.',
+      why: 'Making a copy creates this duty, and only this rule makes sure it is met. A design where parts share nothing at all would pass every other rule about how parts connect. It would also leave people being paid on a value we know is wrong.',
+      test: 'Correct a fact at its source. Can you list every part that holds a copy? Does each one have to act on the correction? And does something raise an alarm if a correction goes unread?',
+      retro: 'Where a copy came from has to be written down at the moment it is made',
+      source: 'Principle 3: the half the architecture says everything else rests on',
+      terms: ['copy', 'provenance', 'correction', 'part']
     },
     {
       id: 'n21',
       code: 'N21',
       axis: 'propagation',
-      name: 'Limits on use travel with the information',
+      name: 'Limits on how information may be used travel with it',
       plain:
-        'Sometimes the ministry may hold a fact but not use it for something. The bar rides on the fact itself and travels with every copy. The system enforces it where the use happens, rather than leaving it to procedure.',
-      why: 'Nothing else catches a lawfully held fact reaching a use it was barred from. Policy bars five different things: an attribute, a class of content, a counterparty, a subject matter, and an act of communication. Only the first has anything to do with a calculation.',
-      test: 'Does the bar sit on the information rather than in a procedure? Does it survive a copy into another part? Does a read that fails to state its purpose get refused? And does a blocked use leave an event behind?',
-      retro: 'A bar absent at capture is absent from every earlier copy',
-      source: 'New, from policy'
+        'Sometimes the ministry is allowed to hold a piece of information but not to use it for a certain purpose. That limit is attached to the information itself, and it goes with every copy. The system enforces the limit at the moment someone tries to use the information. It doesn’t rely on staff remembering a procedure.',
+      why: 'No other rule catches information the ministry holds lawfully being put to a use it is barred from. Policy limits five different kinds of things: a single detail in a record, a type of content, who the information goes to, a subject, and a way of communicating. Only the first has anything to do with a calculation.',
+      test: 'Is the limit attached to the information, not written in a procedure? Does it stay attached when the information is copied to another part? If someone asks for the information without saying why, are they refused? And when a use is blocked, is that recorded?',
+      retro: 'A limit missing when information is first collected is missing from every copy made before it was added',
+      source: 'New, from ministry policy',
+      terms: ['use-limit', 'copy', 'part', 'event']
     },
     {
       id: 'n07',
       code: 'N07',
       axis: 'determination',
-      name: 'The calculation reads nothing but its inputs',
+      name: 'The calculation uses only what it is given',
       plain:
-        'No clock, no database, no service calls inside the decision. It gets everything it needs up front. The record it writes comes out of the decision, and never feeds back into it.',
-      why: 'Purity is what makes an identical re-run possible in practice rather than on paper. A rules service that fetches what it needs ties every decision to a running system. That is the first thing a tribunal will probe.',
-      test: 'Feed it the same rules, the same engine version and the same inputs. Does it produce a byte-identical trace? Does it touch the clock, the environment or any service on the way?',
-      retro: 'The engine must be sealed before the first rule is written',
-      source: 'From P8, narrowed to the calculation'
+        'While the system works out a decision, it doesn’t check the clock, look anything up in a database or call any other service. Everything it needs is handed to it at the start. The decision record is written from the result, and never feeds back into the calculation.',
+      why: 'This is what makes it possible to re-run a decision and get exactly the same answer, in practice and not just in theory. A rules service that fetches its own information ties every decision to systems that must still be running. That is the first thing a tribunal will look at.',
+      test: 'Give it the same rules, the same version of the engine and the same inputs. Do you get exactly the same result, down to the last character? Does it read the clock, its settings or any other service along the way?',
+      retro: 'The rules engine has to be sealed off before anyone writes the first rule',
+      source: 'Principle 8, narrowed to the calculation',
+      terms: ['determination', 'rules-engine', 'replay', 'decision-record', 'tribunal']
     },
     {
       id: 'n08',
       code: 'N08',
       axis: 'determination',
-      name: 'The decision record stands on its own',
+      name: 'The decision record is complete on its own',
       plain:
-        'A decision stores which rules version ran against which evidence version. It stores the artefacts themselves rather than pointing at them. It also records what the client asked for, which criteria they met and which they did not, what the ministry assumed, what evidence was missing, and the date the client heard.',
-      why: 'A pointer to a running system is not evidence. Replay has to outlive everything that produced the decision, the engine included. The client is also owed the record itself, put together and severed under FOIPPA. Replay alone does not deliver that.',
-      test: 'Can you replay a decision made three years ago from storage alone, with nothing running? Can you put together the appeal record and sever it on demand?',
+        'Each decision stores which version of the rules was used and which version of the facts. It stores full copies of them, not links to them. It also records what the client asked for, which requirements they met and which they didn’t, what the ministry assumed, what evidence was missing, and the date the client was told.',
+      why: 'A link to a system that is still running is not proof. You have to be able to replay a decision long after the systems that made it are gone, the rules engine included. The client also has a right to the record itself, gathered together, with protected details removed as FOIPPA requires. Being able to replay a decision doesn’t give them that.',
+      test: 'Can you replay a decision made three years ago using only what is stored, with no systems running? Can you put together the appeal record, and remove the protected details, whenever someone asks?',
       retro: '',
-      source: 'From P2, narrowed to the record'
+      source: 'Principle 2, narrowed to the record',
+      terms: ['decision-record', 'fact', 'replay', 'rules-engine', 'appeal-record', 'severing', 'foippa']
     },
     {
       id: 'n09',
       code: 'N09',
       axis: 'determination',
-      name: 'The snapshot names the moment it was read',
+      name: 'A decision records the moment its facts were read',
       plain:
-        'Gathering the facts means reading stores that update on their own schedules. So the decision records the point in the event sequence it read from. It sets a limit on how far behind a store may be, and refuses to issue outside that limit.',
-      why: 'The architecture names the hole in its own text. Two decisions issued moments apart, with one store briefly behind, can each see a different world quite legitimately. Both replay. Both reproduce. They disagree, and nothing else notices.',
-      test: 'Does the design name the watermark, write it into the decision record, and hold it to a stated limit? Does a decision outside that limit fail rather than go ahead?',
-      retro: 'In practice: the watermark must be in the first decision record',
-      source: 'New, and required'
+        'To gather the facts for a decision, the system reads from several stores. Each store updates on its own schedule, so some may be a little behind. The decision records the exact point it read up to. There is a limit on how far behind a store may be, and if one is further behind than that, the system won’t issue the decision.',
+      why: 'The architecture points out this gap itself. Two decisions made moments apart can each see a different set of facts if one store is briefly behind. Both can be replayed. Both give the same answer every time. But they disagree with each other, and no other rule would notice.',
+      test: 'Does the design name the point each decision read up to (the watermark), write it into the decision record, and set a limit on how far behind a store can be? If a store is past that limit, does the decision stop instead of going ahead?',
+      retro: 'In practice: the watermark has to be in the very first decision record',
+      source: 'New: the architecture named the gap but had no rule for it',
+      terms: ['store', 'watermark', 'event', 'decision-record', 'replay']
     },
     {
       id: 'n10',
       code: 'N10',
       axis: 'interface',
-      name: 'The contract outlives what implements it',
+      name: 'The interface outlasts the system behind it',
       plain:
-        'Published interfaces use policy and domain words, not the vocabulary of whatever product sits behind them. The interface is the permanent artefact; the translation layer over the existing system is temporary, and its team is chartered to disband.',
-      why: 'This is what makes replacement in pieces possible at all. The interface published today over the old platform is the one published tomorrow over the new services. Confuse the contract with the layer and you bind old vocabulary to the new architecture. That is the failure the programme exists to reverse.',
-      test: 'Can a reviewer tell from the schema which product implements it? Then remove the product and count the changes to the contract.',
+        'Published interfaces use the words of policy and of the ministry’s work, not the terms of whatever product sits behind them. The interface is meant to last. The translation layer that connects it to the old system is temporary, and the team that runs it is set up to wind down.',
+      why: 'This is what makes it possible to replace the old system one piece at a time. The interface published today in front of the old system is the same one published later in front of the new services. Mix up the interface with the translation layer and you tie the old system’s words to the new design. That is the very problem the programme exists to fix.',
+      test: 'Could a reviewer tell from the interface’s definition which product is behind it? Now take the product away. How many changes does the interface need?',
       retro: '',
-      source: 'From P7, unchanged'
+      source: 'Principle 7, unchanged',
+      terms: ['interface', 'translation-layer', 'old-system', 'schema']
     },
     {
       id: 'n11',
       code: 'N11',
       axis: 'interface',
-      name: 'Generic capability is bought, and a decision to build is checked by someone else',
+      name: 'Buy common tools, and have someone else check any choice to build',
       plain:
-        'Buy, adopt or reuse the common parts: workflow, notification, identity, secrets, policy evaluation, scheduling, document storage, search, print and mail. To build one instead, name a legal, policy or programme need that no off-the-shelf option meets. Someone other than the component’s owner has to agree. Wanting it faster does not count.',
-      why: 'Time spent building common capability is time not spent on decisions that reproduce, and that is where the programme will be judged. Without an outside check the test marks its own homework, which is how it fails today.',
-      test: 'For every custom-built component, name the legal, policy or programme need that no off-the-shelf option meets. Then name who agreed, other than the builder.',
+        'For common tools, buy one, adopt one or reuse one. That covers workflow, notifications, sign-in, storing passwords and keys, policy checks, scheduling, document storage, search, and print and mail. To build one instead, name a legal, policy or programme need that no ready-made product meets. Someone other than the team that would own it has to agree. Wanting it sooner is not a reason.',
+      why: 'Time spent building tools that already exist is time not spent on getting decisions right, and that is what the programme will be judged on. Without someone else checking, the team marks its own homework. That is how this goes wrong today.',
+      test: 'For every tool built in-house, name the legal, policy or programme need that no ready-made product meets. Then name who agreed to it, other than the people who built it.',
       retro: '',
-      source: 'From P6, with the independent check added'
+      source: 'Principle 6, with the outside check added',
+      terms: ['common-tools', 'replay']
     },
     {
       id: 'n12',
       code: 'N12',
       axis: 'obligation',
-      name: 'Disposition is designed before the first event',
+      name: 'How records are destroyed is decided before anything is stored',
       plain:
-        'Decide how records end, per class of fact, before anything is written. A schedule, an indirection, or destroying one person’s key. Publish what survives a destruction, design who holds the keys, and say what a replay does when it meets an event it cannot read.',
-      why: 'An append-only store and a legal duty to destroy pull against each other. Settle that after the first event and you are rebuilding, not repairing. The timing is the rule: a correct design that arrives late has failed.',
-      test: 'Before the first event, has someone chosen the mechanism for each class of fact and published what survives?',
-      retro: 'A store with no disposition design cannot acquire one afterwards',
-      source: 'From P11, split'
+        'Before the system stores anything, decide how each kind of fact will be destroyed when its time comes. There are three ways: delete a whole kind of record on a set schedule, keep personal details in a separate place that can be deleted, or lock one person’s records with a key and then destroy the key. Publish what is left after a record is destroyed. Plan who holds the keys. And say what a replay does when it reaches a record it can no longer read.',
+      why: 'The system keeps a permanent history that is never changed. The law sometimes requires records to be destroyed. Those two pull against each other. Settle it after the first record is stored and you are rebuilding, not repairing. Timing is the whole point: a correct plan that arrives late has still failed.',
+      test: 'Before the first real event, has someone chosen how each kind of fact will be destroyed, and published what survives?',
+      retro: 'A store built without a plan for destroying records can’t get one later',
+      source: 'Principle 11, split in two',
+      terms: ['disposition', 'permanent-history', 'retention-schedule', 'separate-storage', 'key-destruction', 'replay', 'event']
     },
     {
       id: 'n13',
       code: 'N13',
       axis: 'obligation',
-      name: 'Custodianship is modelled, not assumed',
+      name: 'The system knows whose record it is',
       plain:
-        'Whose record it is is an attribute the system reads. The model covers the non-Crown participant class properly rather than approximating it. Handing a record to another sovereign is one of the ways it can end. And sharing agreements are machine-readable artefacts that grant the access rights themselves.',
-      why: 'The Declaration on the Rights of Indigenous Peoples Act commits the Province to alignment. A Nation’s governance over its own data will not fit into a retention rule or an access list. A PDF agreement cannot grant an access right, and nobody can audit a right that came from somewhere else.',
-      test: 'For any evidence type, can you name its custodian? Does the system read that, or do people just follow a convention? And does every access decision trace back to the agreement registry, and to nothing else?',
+        'Who is responsible for a record, its custodian, is something the system stores and reads, not something people just know. The system properly handles records that belong to someone other than the provincial government, such as an Indigenous Nation, instead of forcing them into the wrong shape. Handing a record over to another government is one of the ways a record can leave the system. And data-sharing agreements are written so the system can read them, and they are what grant access.',
+      why: 'Under the Declaration on the Rights of Indigenous Peoples Act, the Province has committed to bringing its laws in line with the UN Declaration. A Nation’s control over its own data can’t be squeezed into a retention rule or a list of who has access. A PDF agreement can’t grant anyone access. And if access comes from anywhere other than the agreement, nobody can check it.',
+      test: 'For any kind of fact, can you name its custodian? Does the system read that, or do people just follow a habit? And can every decision about access be traced to the register of agreements, and to nothing else?',
       retro: '',
-      partial: 'Partly. The architecture records the qualification without saying which half.',
-      source: 'From P11, split'
+      partial: 'Partly. The architecture says part of it can be added later, but not which part.',
+      source: 'Principle 11, split in two',
+      terms: ['custodian', 'dripa', 'sharing-agreement', 'disposition']
     },
     {
       id: 'n14',
       code: 'N14',
       axis: 'reversibility',
-      name: 'Every step back is possible, and its losses are published',
+      name: 'Every move can be undone, and what is lost is written down',
       plain:
-        'You can move any group of clients back without a data project, and an approved statement says what the return trip loses. Reversibility covers both the mechanism and how much survives.',
-      why: 'Other rules bound how long a coexistence runs. Nothing else bounds how much it loses on the way back. A rollback plan that does not say what it loses has not been tested.',
-      test: 'Can this group return to the old system today, without a data project, and can you name every class of fact that would not survive the trip? Correction-versus-supersession has no destination in the old system: if that is not on the list, the list is incomplete.',
-      retro: 'Reversibility claimed but never proven is discovered when it is needed',
-      source: 'From P12, unchanged'
+        'Any group of clients moved to the new system can be moved back to the old one without a separate data project. An approved statement says what information would be lost on the way back. Being able to undo a move means both having a way to do it and knowing how much survives.',
+      why: 'Other rules limit how long the old and new systems run side by side. Only this one limits how much is lost when moving back. A plan to move back that doesn’t say what it loses hasn’t really been tested.',
+      test: 'Can this group go back to the old system today, without a data project? Can you name every kind of fact that wouldn’t survive the trip? The old system has no way to tell a correction from a later update. If that isn’t on the list, the list isn’t complete.',
+      retro: 'If nobody proves a move can be undone, you find out it can’t only when you need to',
+      source: 'Principle 12, unchanged',
+      terms: ['client-group', 'rollback', 'correction', 'old-system']
     },
     {
       id: 'n15',
       code: 'N15',
       axis: 'reach',
-      name: 'Reach does not depend on the client’s capability or channel',
+      name: 'Everyone can use the service, whatever their ability or way in',
       plain:
-        'A person can reach the same outcome whatever their disability and whichever route they take. Interfaces meet the Province’s accessibility standard at first release, and every journey has a supported route that is not digital.',
-      why: 'Nothing else in the set catches a system that is correct, reproducible, well-bounded, and out of reach of the people it exists for. Usage totals hide that failure completely, and it falls on clients and front-line staff.',
-      test: 'For each journey, can a person finish it on every supported channel? Does the outcome change with the route? For each interface, has someone tested it with assistive technology, and not just run a scan? A scan catches around 30% of issues.',
+        'A person can get the same result whatever their disability and whichever way they contact the ministry. Screens and forms meet the Province’s accessibility standard from the first release. And every service has a supported way to use it that isn’t online.',
+      why: 'No other rule catches a system that works correctly and reliably but that the people it serves can’t reach. Counts of how many people used a service hide this completely. The cost falls on clients and on front-line staff.',
+      test: 'For each service, can a person finish it through every supported channel? Does the result change depending on the route? For each screen, has a person tested it with assistive technology, and not just run an automated scan? A scan catches only about 30% of problems.',
       retro: '',
-      source: 'New, from the gaps the architecture records'
+      source: 'New: fills a gap the architecture had already noted',
+      terms: ['channel', 'accessibility-standard', 'assistive-technology']
     },
     {
       id: 'n16',
       code: 'N16',
       axis: 'continuity',
-      name: 'Recovery targets are stated per service and proven by exercise',
+      name: 'Each service has recovery targets, proven in practice runs',
       plain:
-        'Every service carries an availability target and stated recovery times, set against what its failure does to a client. An exercise has to demonstrate them. Shared infrastructure takes the strictest target of anything that depends on it.',
-      why: 'Nothing else catches a missing recovery duty. Every recovery figure in the architecture covers the analytics platform. None covers the published interface, the translation layer, the decision service or the case stores. Bringing the system back does not put a missed payment run right.',
-      test: 'Name the availability tier and the recovery targets for each service. Then show the exercise result behind them. A figure nobody has measured is not a target.',
+        'Every service has a target for how much of the time it must be working, and limits on how long it can be down and how much recent data it can lose. These targets depend on how much harm an outage does to a client. A practice run has to show the targets can be met. Anything shared by several services must meet the strictest target of any of them.',
+      why: 'No other rule makes sure recovery is planned. Every recovery figure in the architecture covers the reporting and analytics platform. None covers the published interface, the translation layer, the decision service or the case records. And getting the system running again doesn’t fix a payment run that was missed.',
+      test: 'Name the availability level and the recovery targets for each service. Then show the practice-run results that back them up. A number nobody has measured is not a target.',
       retro: '',
-      source: 'New, from the gaps the architecture records; still proposed'
+      source: 'New: fills a gap the architecture had already noted. Still a proposal.',
+      terms: ['availability-target', 'recovery-targets', 'practice-run', 'interface', 'translation-layer']
     },
     {
       id: 'n17',
       code: 'N17',
       axis: 'continuity',
-      name: 'Deciding, reviewing and paying are held apart',
+      name: 'Different people decide, review and pay',
       plain:
-        'One party cannot decide, then review its own decision, then represent the ministry at the appeal against it. A decision-maker may seek advice but may not let advice stand in for their own reasoning. Payment runs through one chokepoint, with determination, authorisation and release in different hands.',
-      why: 'Nothing else says who may exercise an authority. The decision record names what was decided and by whom. It does nothing to stop one person deciding, reviewing and releasing the money. Policy states all three limbs directly.',
-      test: 'For every entitlement, name who decides and who reviews, and say what the ministry keeps for itself. Does every decision trace back to the person who reasoned it, as opposed to anyone who advised?',
+        'The person who makes a decision can’t also review it, or speak for the ministry when it is appealed. Someone making a decision can ask for advice, but can’t let that advice replace their own thinking. All payments go through one checkpoint, where working out the amount, approving it and releasing it are done by different people.',
+      why: 'No other rule says who is allowed to use which power. The decision record shows what was decided and by whom. But it does nothing to stop one person deciding, reviewing and releasing the money. Policy sets out all three of these separations directly.',
+      test: 'For every entitlement, name who decides and who reviews, and say which powers the ministry keeps for itself. Can every decision be traced to the person who actually reasoned it through, rather than someone who only gave advice?',
       retro: '',
-      source: 'New, from policy'
+      source: 'New, from ministry policy',
+      terms: ['separation-of-duties', 'reconsideration', 'appeal', 'entitlement', 'decision-record']
     },
     {
       id: 'n19',
       code: 'N19',
       axis: 'clocks',
-      name: 'Statutory clocks run in the system',
+      name: 'The system tracks legal time limits',
       plain:
-        'The model holds every time limit once: what starts it, how long it runs, which extensions it allows, and who has to authorise each. A breach becomes a recorded event. Where policy attaches a consequence, the system applies it without being asked.',
-      why: 'Decide outside the legislated time and eligibility runs from the date the decision was due, not the date it came. So a missed deadline changes what the client is owed. An unmodelled clock is a source of wrong entitlement, not a service-level gap.',
-      test: 'Does the model hold each limit once, with its owner, its class, its start event, duration, extensions and authorisations? Does a breach show up without a person spotting it, and does its consequence apply automatically?',
+        'The system holds every legal time limit in one place: what starts the clock, how long it runs, what extensions are allowed, and who must approve each one. Missing a deadline is recorded as an event. Where policy says missing it has a consequence, the system applies it without anyone having to ask.',
+      why: 'If the ministry decides after the legal deadline, the client’s eligibility counts from the date the decision was due, not the date it was made. So a missed deadline changes what the client is owed. A time limit the system doesn’t track leads to wrong payments, not just slow service.',
+      test: 'Does the system hold each limit once, with who owns it, what kind it is, what starts it, how long it runs, and its extensions and approvals? Does a missed deadline show up without a person having to spot it? Does its consequence apply automatically?',
       retro: '',
-      source: 'New, from policy'
+      source: 'New, from ministry policy',
+      terms: ['legal-time-limit', 'entitlement', 'event']
     },
     {
       id: 'n20',
       code: 'N20',
       axis: 'adjudicability',
-      name: 'Whether a decision can be challenged is recorded per entitlement',
+      name: 'Each benefit records whether and how a decision can be challenged',
       plain:
-        'For each entitlement the system records four things: the law it rests on, whether a decision can go to reconsideration, whether it can go to appeal, and to which body. It records them per entitlement and per variant. It never takes them from the parent programme.',
-      why: 'The four values move independently, and you cannot work one out from another. Getting it wrong hurts the client either way: you offer a route that does not exist, or you withhold one that does.',
-      test: 'For every entitlement and every variant, can the system state the law it rests on, whether it goes to reconsideration, whether it goes to appeal, and to which forum? And can it do that without borrowing any of it from the parent?',
+        'For each entitlement, the system records four things: the law it is based on, whether a decision can be reconsidered, whether it can be appealed, and who hears the appeal. It records these for each entitlement and each variant of it. It never assumes they are the same as for the wider programme the entitlement belongs to.',
+      why: 'The four answers can each be different, and you can’t work one out from another. Getting them wrong hurts the client either way: you offer a way to challenge a decision that doesn’t exist, or you hide one that does.',
+      test: 'For every entitlement and every variant, can the system state the law it is based on, whether it can be reconsidered, whether it can be appealed, and who hears the appeal? Can it do that without borrowing any of it from the wider programme?',
       retro: '',
-      source: 'New, from policy'
+      source: 'New, from ministry policy',
+      terms: ['entitlement', 'variant', 'reconsideration', 'appeal', 'tribunal']
     },
     {
       id: 'n18',
       code: 'N18',
       axis: 'detect',
-      name: 'Every rule carries a way of catching a breach',
+      name: 'Every rule comes with a way to catch it being broken',
       plain:
-        'Each parameter names how you catch a breach of it. Anything you could write as a lint rule, a fitness function or a compatibility check gets written as one.',
-      why: 'Otherwise the set is just a statement of intent. You have to be able to see a breach first; automating the check comes after. A rule whose breach nobody can see gets abandoned, and nobody ever decides to abandon it.',
-      test: 'For each parameter, name the check and say whether it runs automatically. Where a person checks something a machine could check, say which one, and why nobody has automated it.',
+        'Each parameter says how you would find out it has been broken. Where software could do that check automatically, it has to be built as an automated check.',
+      why: 'Without this, the list is just good intentions. First you need to be able to see when a rule is broken; automating the check comes after. A rule that nobody can see being broken slowly stops being followed, without anyone ever choosing to drop it.',
+      test: 'For each parameter, name the check and say whether it runs automatically. Where a person checks something a computer could, say which one, and why nobody has automated it.',
       retro: '',
-      source: 'From P10, generalised'
+      source: 'Principle 10, made to apply to every rule',
+      terms: ['automated-check', 'parameter']
     }
   ];
+</script>
+
+<script>
+  import { onMount } from 'svelte';
+  import { base } from '$app/paths';
+  import { terms } from '$lib/glossary.js';
 
   const axes = [
     { id: 'record', label: 'The record' },
-    { id: 'boundary', label: 'Boundaries and authority' },
-    { id: 'propagation', label: 'Propagation' },
-    { id: 'determination', label: 'Determination' },
-    { id: 'interface', label: 'Interface and sourcing' },
-    { id: 'obligation', label: 'Obligation and jurisdiction' },
-    { id: 'reversibility', label: 'Reversibility' },
-    { id: 'reach', label: 'Reach of service' },
-    { id: 'continuity', label: 'Continuity and control' },
-    { id: 'clocks', label: 'Statutory time' },
-    { id: 'adjudicability', label: 'Adjudicability' },
-    { id: 'detect', label: 'Detectability' }
+    { id: 'boundary', label: 'Boundaries between parts' },
+    { id: 'propagation', label: 'Copies and corrections' },
+    { id: 'determination', label: 'Making a decision' },
+    { id: 'interface', label: 'Interfaces and buying' },
+    { id: 'obligation', label: 'Keeping and destroying records' },
+    { id: 'reversibility', label: 'Moving back' },
+    { id: 'reach', label: 'Access for everyone' },
+    { id: 'continuity', label: 'Recovery and separate duties' },
+    { id: 'clocks', label: 'Legal time limits' },
+    { id: 'adjudicability', label: 'Challenging a decision' },
+    { id: 'detect', label: 'Catching a breach' }
   ];
 
   const filters = [
@@ -290,6 +317,21 @@
     )
   );
   const p = $derived(params.find((x) => x.id === selected));
+
+  // The glossary links back here as #n06, so open that parameter on arrival.
+  function fromHash() {
+    const id = location.hash.slice(1);
+    if (params.some((x) => x.id === id)) {
+      filter = 'all';
+      selected = id;
+      document.getElementById('parameter-detail')?.scrollIntoView({ block: 'start' });
+    }
+  }
+  onMount(() => {
+    fromHash();
+    addEventListener('hashchange', fromHash);
+    return () => removeEventListener('hashchange', fromHash);
+  });
 </script>
 
 <div class="set">
@@ -328,14 +370,14 @@
     {/each}
   </div>
 
-  <aside class="detail" aria-live="polite">
+  <aside class="detail" id="parameter-detail" aria-live="polite">
     <p class="code-lg">{p.code}</p>
     <h3>{p.name}</h3>
     <p class="plain">{p.plain}</p>
     <dl>
-      <dt>Why it cannot be dropped</dt>
+      <dt>Why it is needed</dt>
       <dd>{p.why}</dd>
-      <dt>The test that fails</dt>
+      <dt>How to check it</dt>
       <dd>{p.test}</dd>
       <dt>Where it came from</dt>
       <dd>{p.source}</dd>
@@ -343,9 +385,17 @@
         <dt>Cannot be added later</dt>
         <dd>{p.retro}</dd>
       {:else if p.partial}
-        <dt>Only partly addable later</dt>
+        <dt>Can only partly be added later</dt>
         <dd>{p.partial}</dd>
       {/if}
+      <dt>Words explained in the glossary</dt>
+      <dd>
+        <ul class="terms">
+          {#each p.terms as t}
+            <li><a href="{base}/glossary#{t}">{terms[t].term}</a></li>
+          {/each}
+        </ul>
+      </dd>
     </dl>
   </aside>
 </div>
@@ -449,6 +499,7 @@
   .detail {
     border-top: 2px solid var(--ink);
     padding-top: 0.9rem;
+    scroll-margin-top: 5rem;
   }
   @media (min-width: 52rem) {
     .detail {
@@ -487,5 +538,18 @@
   .detail dd {
     margin: 0.2rem 0 0;
     line-height: 1.6;
+  }
+  .terms {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.9rem;
+  }
+  .terms a {
+    display: inline-block;
+    min-height: 24px;
+    line-height: 24px;
   }
 </style>

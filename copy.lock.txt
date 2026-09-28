@@ -17,6 +17,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 Choices
 Several decisions here are not what a team would reach for by default. Each one below says what it buys and what it costs, so you can disagree with it in particular rather than in general.
 01 Store dated claims, not facts –
@@ -105,6 +106,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 Current State
 This design does not set out to contradict the current system. It comes from one question. Why does a large, expensive piece of software, laboured over by hundreds of capable and well-meaning people, still fail the organizations it serves? The answer lies in what the system leaves out: what it ignores, and what it pushes outside itself.
 What the SDPR procedures are
@@ -185,6 +187,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 Determinations
 Someone can challenge a decision about their entitlement years after the ministry made it. So the design treats every decision as something you re-run, not something you remember.
 The problem with asking a system what it decided
@@ -242,6 +245,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 Domains
 Perhaps the biggest choice in this design is where to draw the lines between parts of the system. Twelve domain models, one of which is really five sub-domains, which makes sixteen.
 The problem of a single model
@@ -318,6 +322,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 Evidence
 ICM tracks facts. It overwrites fields and buries history. In the new system the unit of information is a dated claim, tied to its evidence and to whoever made it. Later work can disprove that claim, confirm it, overturn it or replace it, and nothing is lost on the way.
 Why not store facts?
@@ -401,6 +406,456 @@ DRAFT
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
+=== page: glossary/index.html
+title: Glossary — The Future of Case Management IT
+description: Plain explanations of the words used to describe the twenty-one parameters, with links back to each parameter that uses them.
+Skip to content
+[aria-label] The Future of Case Management IT — overview
+The Future of Case Management IT
+Menu
+[aria-label] Sections
+Overview
+Current State
+Evidence
+Domains
+Determinations
+Parameters
+Choices
+Glossary
+Glossary
+The parameters use some words that have a particular meaning in this work. This page explains each one in plain terms. Where architects have their own name for an idea, it is given in brackets, so you can recognise it in other documents.
+[aria-label] Jump to a letter
+A
+B
+C
+D
+E
+F
+G
+I
+K
+L
+M
+P
+R
+S
+T
+V
+W
+Accessibility standard
+The rules a screen or form must follow so that people with disabilities can use it.
+The Province sets a standard for how accessible its online services must be. It is based on the Web Content Accessibility Guidelines (WCAG), an international set of rules. They cover things like text a screen reader can read aloud, colours with enough contrast, and forms you can fill in with a keyboard alone.
+N15 asks for this from the first release, not as a fix added later.
+Used in:
+[aria-label] N15: Everyone can use the service, whatever their ability or way in
+N15
+Appeal
+Asking an independent body outside the ministry to look at a decision again.
+If a client still disagrees after a reconsideration, they can often appeal. An appeal goes to a body outside the ministry, usually a tribunal. Not every decision can be appealed, and not every appeal goes to the same body. That is why N20 records this for each entitlement.
+Used in:
+[aria-label] N17: Different people decide, review and pay
+N17 ·
+[aria-label] N20: Each benefit records whether and how a decision can be challenged
+N20
+Appeal record
+Everything the ministry had in front of it when it made a decision, gathered for the client.
+When a client challenges a decision, policy says the ministry must give them the appeal record. It holds all the submissions, information and records the ministry had when it made the decision. Before the client gets it, some protected details may have to be removed. That step is called severing.
+N08 asks that the system can put this record together on demand, rather than staff searching for the pieces by hand.
+Used in:
+[aria-label] N08: The decision record is complete on its own
+N08
+Assistive technology
+Tools people with disabilities use to work a computer or phone, such as screen readers.
+Examples are screen readers that read the page aloud, software that magnifies the screen, voice control, and switches used instead of a mouse. Automated scans find only about 30% of accessibility problems. The rest show up only when a person tries the service with these tools, which is why N15 asks for real testing.
+Used in:
+[aria-label] N15: Everyone can use the service, whatever their ability or way in
+N15
+Automated check
+A test that software runs by itself to catch a rule being broken.
+Technical teams use several kinds. A lint rule reads the code and flags patterns that break a rule, such as one part reaching into another part’s tables. A fitness function is a test of the whole design, run again and again, that fails if the design drifts away from a goal. A compatibility check compares a new version of an interface with the old one and fails if the change would break anyone who uses it.
+N18 says that wherever a rule can be checked this way, it must be. A person then only has to check what a machine cannot.
+Used in:
+[aria-label] N18: Every rule comes with a way to catch it being broken
+N18
+Availability target
+How much of the time a service must be up and working.
+It is usually given as a percentage over a month or a year. A service that must be available 99.9% of the time can be down for about 45 minutes a month. N16 asks that each service’s target be set by how much harm an outage does to a client, not picked the same for everything.
+Used in:
+[aria-label] N16: Each service has recovery targets, proven in practice runs
+N16
+Business rule
+A rule about how the ministry’s work is done, such as who qualifies for a benefit.
+Business rules come from law, policy and practice. “A client must report income by the fifth of the month” is one. N04 asks that each rule lives in one place, with the data it controls, so there is never a question about which copy of the rule is the real one.
+Used in:
+[aria-label] N04: Rules live with the data they control
+N04
+Channel
+A way a person reaches the ministry: online, by phone, in person or by mail.
+N15 asks that a person can finish the same task through every supported channel and get the same result. It also asks that every service has a supported way in that is not online.
+Used in:
+[aria-label] N15: Everyone can use the service, whatever their ability or way in
+N15
+Common tools
+Tools almost every organisation needs, like sign-in and document storage, that can be bought rather than built.
+N11 lists them: workflow (moving work between people), notifications, identity and sign-in, storing passwords and encryption keys safely, policy checks (software that decides whether an action is allowed), scheduling, document storage, search, and print and mail.
+Good products for all of these already exist. Building one in-house is allowed only for a need no product meets, and someone outside the team has to agree.
+Used in:
+[aria-label] N11: Buy common tools, and have someone else check any choice to build
+N11
+Copy
+A fact one part of the system holds that it took from another part.
+Parts of the system often keep their own copy of a fact so they can work quickly without asking the source every time. That is normal. The risk is that the source corrects the fact and the copy stays wrong. N06 asks that every copy records where it came from, so a correction can always find it.
+Used in:
+[aria-label] N06: Every copy can be traced, and every correction reaches it
+N06 ·
+[aria-label] N21: Limits on how information may be used travel with it
+N21
+Correction
+Fixing a fact that was recorded wrongly, as opposed to a fact that changed.
+These two are easy to confuse, and they mean different things. A correction says the record was wrong all along: the income was never $900, it was $1,100. An update, sometimes called a supersession, says the world changed: the income was $900 until March and $1,100 after.
+The difference matters for money. A correction can mean a client was underpaid or overpaid in the past. An update does not. The old system cannot tell the two apart, which is why N14 says that difference is lost if a group moves back.
+See it at work: Evidence Used in:
+[aria-label] N01: Every fact is dated and has a source
+N01 ·
+[aria-label] N02: Parts of the system share facts and decisions, not raw data
+N02 ·
+[aria-label] N06: Every copy can be traced, and every correction reaches it
+N06 ·
+[aria-label] N14: Every move can be undone, and what is lost is written down
+N14
+Custodian
+The organisation responsible for a record and entitled to decide how it is used.
+Most records the ministry holds are the provincial government’s. Some are not. A record may belong to an Indigenous Nation or another organisation and be held by the ministry under an agreement. N13 asks that the system stores who the custodian is and acts on it, rather than relying on staff to know.
+Used in:
+[aria-label] N13: The system knows whose record it is
+N13
+Data load (migration)
+Moving existing records from the old system into the new one.
+Migration scripts copy large amounts of data in bulk. If a rule is enforced only by the screens staff use, a bulk load can skip right past it. N04 asks that the data enforce its own rules, so every route in is checked.
+Used in:
+[aria-label] N04: Rules live with the data they control
+N04
+Data model
+A part’s own description of the things it works with, such as a person or a payment.
+Different parts of the ministry’s work need to know different things about the same person. Payments needs a bank account. Intake needs contact details. A single shared model tries to hold all of it, and every change then needs everyone to agree.
+N03 asks each part to keep its own model instead. The Domains page shows the sixteen parts and what each one owns.
+See it at work: Domains Used in:
+[aria-label] N03: Each part keeps its own picture of the data
+N03
+Data-sharing agreement
+A formal agreement setting out what information one organisation may share with another, and why.
+Today these agreements are usually signed documents. Staff read them and then set up access by hand. N13 asks that each agreement is also written in a form the system can read, and that the system grants access from the agreement itself. That way every access can be traced to an agreement and checked.
+Used in:
+[aria-label] N13: The system knows whose record it is
+N13
+Database layout (schema)
+The structure of a database: its tables, its columns, and what each one holds.
+Technical teams call this a schema. When one part sends another a copy of its database rows, or relies on its layout, the two become tied together. Neither can change its layout without breaking the other. N02, N03 and N10 all guard against this.
+Used in:
+[aria-label] N02: Parts of the system share facts and decisions, not raw data
+N02 ·
+[aria-label] N03: Each part keeps its own picture of the data
+N03 ·
+[aria-label] N10: The interface outlasts the system behind it
+N10
+Decision (determination)
+The system working out what a client is entitled to under the rules.
+Architects call this a determination. The system takes the facts about a client and the rules for a benefit, and works out the result: eligible or not, and how much. N07, N08 and N09 are all about making that calculation something you can repeat and explain.
+See it at work: Determinations Used in:
+[aria-label] N07: The calculation uses only what it is given
+N07
+Decision record
+The stored account of a decision: what was decided, on what facts, under which rules.
+Every decision the system makes is saved with everything needed to explain it later. That includes the version of the rules, the facts it used, what the client asked for, which requirements were and were not met, and when the client was told.
+N08 asks that the record holds full copies of all of this, not links to other systems. That way it still makes sense years later, after those systems have changed or gone.
+See it at work: Determinations Used in:
+[aria-label] N07: The calculation uses only what it is given
+N07 ·
+[aria-label] N08: The decision record is complete on its own
+N08 ·
+[aria-label] N09: A decision records the moment its facts were read
+N09 ·
+[aria-label] N17: Different people decide, review and pay
+N17
+Declaration on the Rights of Indigenous Peoples Act
+The B.C. law that commits the Province to bring its laws in line with the UN Declaration on the Rights of Indigenous Peoples.
+Passed in 2019, often shortened to DRIPA or the Declaration Act. The UN Declaration recognises Indigenous peoples’ right to govern their own affairs, and that includes information about their own people. A ministry system that treats every record as the Province’s cannot honour that. This is the reason for N13.
+Used in:
+[aria-label] N13: The system knows whose record it is
+N13
+Destroying records (disposition)
+What happens to a record at the end of its life: destroyed, archived or handed over.
+Records cannot be kept forever. The law sets how long each kind must be kept and what happens after. Architects call this disposition. A record may be destroyed, moved to the archives, or handed to another government that is its rightful custodian.
+N12 asks that the way each kind of record ends is decided before the system stores anything, because the method shapes how the records are stored.
+Used in:
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12 ·
+[aria-label] N13: The system knows whose record it is
+N13
+Destroying the key (crypto-shredding)
+Locking one person’s records with their own key, then destroying the key to make the records unreadable.
+Each person’s records are scrambled (encrypted) with a key that belongs to them alone. When the records must be destroyed, the system destroys the key. The scrambled data can stay in place, but nobody can read it ever again. This lets a permanent history meet a legal duty to destroy.
+It is one of three ways N12 lists. It needs careful planning about who holds the keys and how destruction is proven.
+Used in:
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12
+Entitlement
+A specific benefit or payment a client may qualify for.
+A programme such as income assistance contains many separate entitlements: a monthly support amount, a shelter amount, and dozens of supplements for things like transportation, dental care or a special diet. Each can have its own rules, its own law behind it, and its own route to challenge a decision. Eligibility is whether a client qualifies for an entitlement, and from what date.
+Used in:
+[aria-label] N17: Different people decide, review and pay
+N17 ·
+[aria-label] N19: The system tracks legal time limits
+N19 ·
+[aria-label] N20: Each benefit records whether and how a decision can be challenged
+N20
+Event
+A single thing the system records as having happened, such as a fact recorded or a decision issued.
+The new system keeps its history as a long list of events, each added to the end and never changed. “The first event” means the first real record the new system stores. Several parameters must be in place before that moment, because once events exist in one shape they cannot be reshaped.
+Used in:
+[aria-label] N01: Every fact is dated and has a source
+N01 ·
+[aria-label] N21: Limits on how information may be used travel with it
+N21 ·
+[aria-label] N09: A decision records the moment its facts were read
+N09 ·
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12 ·
+[aria-label] N19: The system tracks legal time limits
+N19
+Fact (evidence)
+A piece of information about a client that someone has claimed is true, such as their income.
+In the new system a fact is never just a value like “$1,100”. It is a claim: who said it, what period it covers, and when the system learned it. The site also calls facts evidence, because they are what a decision rests on.
+The Evidence page shows how this works, with a worked example.
+See it at work: Evidence Used in:
+[aria-label] N01: Every fact is dated and has a source
+N01 ·
+[aria-label] N02: Parts of the system share facts and decisions, not raw data
+N02 ·
+[aria-label] N08: The decision record is complete on its own
+N08
+FOIPPA
+The Freedom of Information and Protection of Privacy Act, B.C.’s main privacy and access law.
+It gives people the right to see records the government holds, including records about themselves. It also protects other people’s personal information. When the ministry releases a record, FOIPPA decides which details must be removed first.
+Used in:
+[aria-label] N08: The decision record is complete on its own
+N08
+Group of clients
+A set of clients moved from the old system to the new one together.
+The new system will not replace the old one in a single day. Clients move across in groups, for example by programme or by region. Architects often call a group like this a cohort. Rules N05 and N14 are written per group, because for each group exactly one system must be in charge, and the group must be able to move back.
+Used in:
+[aria-label] N05: Only one system can change a record at a time
+N05 ·
+[aria-label] N14: Every move can be undone, and what is lost is written down
+N14
+Interface
+The agreed way one system asks another for information or asks it to do something.
+An interface is like a published contract. It says what you can ask for, in what form, and what you get back. Other systems are built to rely on it, so it has to stay stable for a long time.
+N10 asks that interfaces use the ministry’s own words, so that the product behind one can be swapped out without anyone who uses it noticing.
+Used in:
+[aria-label] N10: The interface outlasts the system behind it
+N10 ·
+[aria-label] N16: Each service has recovery targets, proven in practice runs
+N16
+Keeping personal details separately
+Storing the details that identify a person in one place, and only a reference to them everywhere else.
+Instead of writing a person’s name and details into every record, the history holds a reference number. The details live in one separate store. Deleting them there makes every record that points to them anonymous. Architects call this indirection. It is one of three methods in N12.
+Used in:
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12
+Legal time limit
+A deadline set in law or policy, such as the time the ministry has to decide.
+Many steps in the ministry’s work have a deadline. A client has 20 business days to ask for a reconsideration. The ministry then has 10 business days to decide, or 20 with an approved extension. Some limits count business days and some count calendar days.
+Missing some limits changes what the client is owed. That makes them part of the entitlement, not just a service standard, which is why N19 asks the system to track them.
+Used in:
+[aria-label] N19: The system tracks legal time limits
+N19
+Limit on use
+A rule that the ministry may hold a piece of information but not use it for a particular purpose.
+Holding information lawfully is not the same as being allowed to use it for anything. Policy sometimes bars a use: a detail that must not count in a calculation, content that must not be shared with a certain party, a subject that must not be raised. N21 asks that the limit stays attached to the information, so it goes with every copy and the system can enforce it.
+Used in:
+[aria-label] N21: Limits on how information may be used travel with it
+N21
+Moving back (rollback)
+Returning a group of clients from the new system to the old one if something goes wrong.
+Any large change needs a way back. N14 asks that moving a group back needs no special data project, and that an approved statement lists what information would not survive the trip. The old system cannot hold some of what the new one records, so something is always lost. The question is whether everyone knows what.
+Used in:
+[aria-label] N14: Every move can be undone, and what is lost is written down
+N14
+Parameter
+A rule the design must follow, written so a reviewer can check whether it does.
+Each parameter comes with a question you can ask of the running system. If the answer is wrong, the design has broken the rule. There are twenty-one. Each has a code from N01 to N21, which matches the full statement in the architecture documents.
+See it at work: Parameters Used in:
+[aria-label] N18: Every rule comes with a way to catch it being broken
+N18
+Part of the system (domain)
+One area of the ministry’s work, with its own data and its own rules, such as Payments or Intake.
+The new system is built as separate parts, each responsible for one area of the work. Architects call these domains. Each part owns its own data. Parts talk to each other only by sending facts and decisions, never by reaching into each other’s databases.
+See it at work: Domains Used in:
+[aria-label] N02: Parts of the system share facts and decisions, not raw data
+N02 ·
+[aria-label] N03: Each part keeps its own picture of the data
+N03 ·
+[aria-label] N04: Rules live with the data they control
+N04 ·
+[aria-label] N06: Every copy can be traced, and every correction reaches it
+N06 ·
+[aria-label] N21: Limits on how information may be used travel with it
+N21
+Permanent history (append-only store)
+A store where new records are only ever added to the end, and nothing is overwritten.
+Instead of changing a record in place, the system adds a new entry saying what changed. That keeps a full history, which is what lets a decision be replayed. But it clashes with the legal duty to destroy some records, and N12 exists to settle that clash before the first record is stored.
+Used in:
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12
+Practice run (recovery exercise)
+Deliberately taking a service down to prove it can be brought back within its targets.
+A recovery plan that has never been tried is a guess. In a practice run the team simulates a failure, restores the service, and measures how long it took and how much data was lost. N16 counts a recovery target as real only once a practice run has met it.
+Used in:
+[aria-label] N16: Each service has recovery targets, proven in practice runs
+N16
+Reconsideration
+A client’s first step to challenge a decision: asking the ministry to look at it again.
+A reconsideration is done inside the ministry, by staff who had no part in the original decision. A client usually has 20 business days to ask for one. Some decisions cannot be reconsidered, and N20 asks the system to record which.
+Used in:
+[aria-label] N17: Different people decide, review and pay
+N17 ·
+[aria-label] N20: Each benefit records whether and how a decision can be challenged
+N20
+Recovery targets
+How quickly a service must be back after a failure, and how much recent data it may lose.
+There are two. The recovery time is how long the service may be down before it must be working again. The recovery point is how much recent work may be lost: a recovery point of one hour means at most the last hour of changes. Technical teams call these the RTO and the RPO.
+For payments the architecture sets the recovery point at zero: no payment data may be lost at all.
+Used in:
+[aria-label] N16: Each service has recovery targets, proven in practice runs
+N16
+Replay
+Running a past decision again, from its stored inputs, to show exactly how it was reached.
+If a client appeals a decision made years ago, the ministry has to show what it decided and why. Replay means feeding the same rules and the same facts back through the same calculation, and getting exactly the same answer.
+That only works if the calculation used nothing but its inputs (N07), and if every input was saved (N08).
+See it at work: Determinations Used in:
+[aria-label] N07: The calculation uses only what it is given
+N07 ·
+[aria-label] N08: The decision record is complete on its own
+N08 ·
+[aria-label] N09: A decision records the moment its facts were read
+N09 ·
+[aria-label] N11: Buy common tools, and have someone else check any choice to build
+N11 ·
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12
+Retention schedule
+The official list of how long each kind of government record must be kept.
+Government records are kept for set periods and then destroyed or archived. A schedule might say case files are kept for a set number of years after the case closes. Deleting a whole kind of record when its time comes is the simplest of the three methods in N12.
+Used in:
+[aria-label] N12: How records are destroyed is decided before anything is stored
+N12
+Rules engine
+The software that applies the entitlement rules to a client’s facts to reach a decision.
+The rules for each benefit are written down in a form a computer can follow. The rules engine takes those rules and a client’s facts, and works out the result. Each version of the rules, and each version of the engine, is kept, so an old decision can be replayed exactly as it was made.
+N07 asks that the engine is sealed off: it may use only what it is handed, never the clock, a database or another service.
+Used in:
+[aria-label] N07: The calculation uses only what it is given
+N07 ·
+[aria-label] N08: The decision record is complete on its own
+N08
+Separation of duties
+Making sure no one person controls every step, so each step checks the one before.
+Policy sets three separations. The person who reviews a decision cannot be the one who made it. The person who speaks for the ministry at an appeal cannot be either of them. And working out a payment, approving it and releasing it are done by different people. N17 asks the system to enforce these, rather than leaving it to rosters.
+Used in:
+[aria-label] N17: Different people decide, review and pay
+N17
+Severing
+Removing protected details from a record before it is released.
+A record given to a client can contain information they are not entitled to see, such as details about another person. FOIPPA says which details must be removed first. Doing this by hand on a large record is slow and easy to get wrong. N08 asks that the decision record can be severed on demand.
+Used in:
+[aria-label] N08: The decision record is complete on its own
+N08
+Source (provenance)
+Where a fact came from: who said it, and which record it was taken from.
+Architects call this provenance. It is what lets you judge how far to trust a fact, and what lets a correction find every copy that needs fixing. Once a fact is passed on without it, it cannot be added back later.
+Used in:
+[aria-label] N02: Parts of the system share facts and decisions, not raw data
+N02 ·
+[aria-label] N06: Every copy can be traced, and every correction reaches it
+N06
+Store
+A place where data is kept, such as a database.
+The new system has many stores. Some are built to answer questions quickly and are refreshed from the main history a moment after it changes. That short delay is normal, but it means a store can be briefly behind. N09 is about what a decision must do about that.
+Used in:
+[aria-label] N09: A decision records the moment its facts were read
+N09
+System of record
+The one system in charge of a record, whose version counts when there is a disagreement.
+While the old and new systems run side by side, the same record may exist in both. N05 says only one of them may change it at a time, for each group of clients. The other system can read it, but cannot write to it.
+Used in:
+[aria-label] N05: Only one system can change a record at a time
+N05
+The old system (ICM and MIS)
+The two systems that do the ministry’s case work today, and that the new system will replace.
+ICM, short for Integrated Case Management, is a customer relationship management product adapted for government. MIS is a mainframe built in 1982. The two run side by side and share the core programs between them, so the site calls them together “the old system”.
+For years the old and new systems will run side by side while groups of clients move across. The Current State page explains how the work is done today.
+See it at work: Current State Used in:
+[aria-label] N01: Every fact is dated and has a source
+N01 ·
+[aria-label] N03: Each part keeps its own picture of the data
+N03 ·
+[aria-label] N10: The interface outlasts the system behind it
+N10 ·
+[aria-label] N14: Every move can be undone, and what is lost is written down
+N14
+Transaction time
+When the system learned a fact.
+This is the date the fact was recorded, which is often later than when it became true. Together with valid time, it lets the ministry answer two separate questions a tribunal will ask: what was true, and what did the ministry know at the time?
+See it at work: Evidence Used in:
+[aria-label] N01: Every fact is dated and has a source
+N01
+Transition
+The years when the old and new systems run side by side while clients move across.
+Replacing a system this size is done in stages. During the transition, some clients are in the new system and some are still in the old one. Most of the risk in a replacement sits here, and several parameters are written for it.
+Used in:
+[aria-label] N05: Only one system can change a record at a time
+N05
+Translation layer
+Temporary software that lets the new interfaces talk to the old system.
+The new interfaces use the ministry’s words. The old system uses its own. The translation layer sits between them and converts one into the other. Architects call it an anti-corruption layer, because it stops the old system’s way of doing things leaking into the new design.
+It is meant to be thrown away once the old system is gone. N10 asks that nobody mistakes it for something permanent.
+See it at work: Choices Used in:
+[aria-label] N10: The interface outlasts the system behind it
+N10 ·
+[aria-label] N16: Each service has recovery targets, proven in practice runs
+N16
+Tribunal
+An independent body that hears appeals against ministry decisions.
+For most income and disability assistance decisions, this is the Employment and Assistance Appeal Tribunal. Some entitlements go to a different body, which is why N20 records the body for each one.
+A tribunal will ask how a decision was reached and what the ministry knew at the time. Several parameters exist so the ministry can answer from the record rather than from memory.
+Used in:
+[aria-label] N07: The calculation uses only what it is given
+N07 ·
+[aria-label] N20: Each benefit records whether and how a decision can be challenged
+N20
+Valid time
+The period during which a fact was true in the world.
+A client’s income of $1,100 might be true from March to June. That period is its valid time. It is separate from when the ministry found out, which is transaction time. Keeping both lets the ministry recalculate the past correctly when it learns something late.
+See it at work: Evidence Used in:
+[aria-label] N01: Every fact is dated and has a source
+N01
+Variant
+A version of an entitlement with its own conditions, such as a supplement for one group of clients.
+Some entitlements come in several forms. A variant can differ from its parent in who hears an appeal, or even in whether it can be reconsidered at all. N20 records these details for each variant, and never copies them from the parent.
+Used in:
+[aria-label] N20: Each benefit records whether and how a decision can be challenged
+N20
+Watermark
+A marker recording exactly how far through the system’s history a decision read.
+The system’s history is a numbered list of events. The watermark is the number of the last event a decision saw. Writing it into the decision record shows exactly which version of the facts the decision was based on. Setting a limit on how far behind a store may be stops a decision being made from an out-of-date view.
+Used in:
+[aria-label] N09: A decision records the moment its facts were read
+N09
+DRAFT
+A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
+Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
+
 === page: index.html
 title: The Future of Case Management IT
 description: A design proposal for the successor to British Columbia's integrated case management systems, explained in plain English.
@@ -416,6 +871,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 A PWD* designation granted in July.
 It takes effect from March.
 Four months of payments were right when the ministry made them. They are now an underpayment: four months a client went without money they turn out to have been owed. The current system keeps only today's answer. It rewrites history instead of recording it. What did we know, when did we know it, and how do we prove it? This design keeps all three.
@@ -554,6 +1010,7 @@ Domains
 Determinations
 Parameters
 Choices
+Glossary
 Parameters
 The following parameters are the twenty-one proposed rules the design has to follow. Each one is written so a reviewer can point at something and judge whether it complies. Six of the parameters must be built in from the start; they cannot be added once the work has started.
 What a parameter is
@@ -569,50 +1026,56 @@ All twenty-one
 Must be right first
 Added since the source
 The record
-N01 A fact is a dated claim with a source
-N02 Only evidence and decisions cross a boundary
-Boundaries and authority
-N03 No part depends on a model it does not own
-N04 Behaviour lives with the data it governs
-N05 One writer per record, at every moment
-Propagation
-N06 Every copy is traceable, and every correction reaches it must be right first
-N21 Limits on use travel with the information must be right first
-Determination
-N07 The calculation reads nothing but its inputs must be right first
-N08 The decision record stands on its own
-N09 The snapshot names the moment it was read must be right first
-Interface and sourcing
-N10 The contract outlives what implements it
-N11 Generic capability is bought, and a decision to build is checked by someone else
-Obligation and jurisdiction
-N12 Disposition is designed before the first event must be right first
-N13 Custodianship is modelled, not assumed
-Reversibility
-N14 Every step back is possible, and its losses are published must be right first
-Reach of service
-N15 Reach does not depend on the client’s capability or channel
-Continuity and control
-N16 Recovery targets are stated per service and proven by exercise
-N17 Deciding, reviewing and paying are held apart
-Statutory time
-N19 Statutory clocks run in the system
-Adjudicability
-N20 Whether a decision can be challenged is recorded per entitlement
-Detectability
-N18 Every rule carries a way of catching a breach
+N01 Every fact is dated and has a source
+N02 Parts of the system share facts and decisions, not raw data
+Boundaries between parts
+N03 Each part keeps its own picture of the data
+N04 Rules live with the data they control
+N05 Only one system can change a record at a time
+Copies and corrections
+N06 Every copy can be traced, and every correction reaches it must be right first
+N21 Limits on how information may be used travel with it must be right first
+Making a decision
+N07 The calculation uses only what it is given must be right first
+N08 The decision record is complete on its own
+N09 A decision records the moment its facts were read must be right first
+Interfaces and buying
+N10 The interface outlasts the system behind it
+N11 Buy common tools, and have someone else check any choice to build
+Keeping and destroying records
+N12 How records are destroyed is decided before anything is stored must be right first
+N13 The system knows whose record it is
+Moving back
+N14 Every move can be undone, and what is lost is written down must be right first
+Access for everyone
+N15 Everyone can use the service, whatever their ability or way in
+Recovery and separate duties
+N16 Each service has recovery targets, proven in practice runs
+N17 Different people decide, review and pay
+Legal time limits
+N19 The system tracks legal time limits
+Challenging a decision
+N20 Each benefit records whether and how a decision can be challenged
+Catching a breach
+N18 Every rule comes with a way to catch it being broken
 N07
-The calculation reads nothing but its inputs
-No clock, no database, no service calls inside the decision. It gets everything it needs up front. The record it writes comes out of the decision, and never feeds back into it.
-Why it cannot be dropped
-Purity is what makes an identical re-run possible in practice rather than on paper. A rules service that fetches what it needs ties every decision to a running system. That is the first thing a tribunal will probe.
-The test that fails
-Feed it the same rules, the same engine version and the same inputs. Does it produce a byte-identical trace? Does it touch the clock, the environment or any service on the way?
+The calculation uses only what it is given
+While the system works out a decision, it doesn’t check the clock, look anything up in a database or call any other service. Everything it needs is handed to it at the start. The decision record is written from the result, and never feeds back into the calculation.
+Why it is needed
+This is what makes it possible to re-run a decision and get exactly the same answer, in practice and not just in theory. A rules service that fetches its own information ties every decision to systems that must still be running. That is the first thing a tribunal will look at.
+How to check it
+Give it the same rules, the same version of the engine and the same inputs. Do you get exactly the same result, down to the last character? Does it read the clock, its settings or any other service along the way?
 Where it came from
-From P8, narrowed to the calculation
+Principle 8, narrowed to the calculation
 Cannot be added later
-The engine must be sealed before the first rule is written
-Grouped by the axis each one sits on. Select any parameter to see the check that catches a breach. A heavy left edge marks the six you cannot add later.
+The rules engine has to be sealed off before anyone writes the first rule
+Words explained in the glossary
+Decision (determination)
+Rules engine
+Replay
+Decision record
+Tribunal
+Grouped by the part of the design each one covers. Select any parameter to see how to check it. A heavy left edge marks the six you cannot add later. Words with a special meaning are explained in the glossary, and each parameter links to the ones it uses.
 Six cannot be added later
 You can satisfy most of these late, at a price. Six you cannot. Each one has to be in place before a particular first event. Once that event has happened, the fix is a rebuild rather than a repair.
 Before the first rule is written N07
@@ -665,6 +1128,7 @@ Figures on this site are drawn from the architecture document and from 326 servi
 (when this system learned it), and
 (worked out from a related artefact by a written rule) or
 * Persons With Disability
+, and each parameter links to the ones it uses.
 , any consumer working out a knowledge-state answer must return
 , the system reports a monthly entitlement of
 , tied to its evidence and to whoever made it. Later work can disprove that claim, confirm it, overturn it or replace it, and nothing is lost on the way.
@@ -682,48 +1146,47 @@ Figures on this site are drawn from the architecture document and from 326 servi
 12 September
 29 separate rulebases covering eligibility, validation, debt and payment calculation
 A PWD* designation granted in July.
-A bar absent at capture is absent from every earlier copy
 A boundary that lives only in a diagram will not survive delivery pressure. These four are written so a reviewer can point at something and say whether it complies.
 A child protection investigation and a child care subsidy renewal share almost nothing. A shared model turns every change into a negotiation. The last programme cut scope rather than reopen one.
 A conventional design holds one relationship start date, plus an audit entry saying a worker changed it on 12 September. That answers the third question, gestures at the second, and cannot touch the first. It leaves the eight monthly payments looking like errors. Each one was the right answer to what the ministry knew at the time.
 A database table
-A decision stores which rules version ran against which evidence version. It stores the artefacts themselves rather than pointing at them. It also records what the client asked for, which criteria they met and which they did not, what the ministry assumed, what evidence was missing, and the date the client heard.
+A decision records the moment its facts were read
 A decision that reads anything not stored with it cannot be re-run. Re-running is what lets you show a tribunal what happened, rather than piece it together from memory.
 A decision you can re-run
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 A design proposal for the successor to British Columbia's integrated case management systems, explained in plain English.
 A document is not evidence.
 A document is what a verification policy accepts as satisfying an evidence type. Losing that distinction turns the file store into a second system of record.
-A fact is a dated claim with a source
+A fact carries a note of where it came from. A database row doesn’t. The part that receives a bare row can’t tell who said it, so it can’t know what it is safe to conclude. And if the source later fixes the value, there is nothing to attach the fix to.
 A first assertion about a period nothing covered yet.
+A limit missing when information is first collected is missing from every copy made before it was added
+A link to a system that is still running is not proof. You have to be able to replay a decision long after the systems that made it are gone, the rules engine included. The client also has a right to the record itself, gathered together, with protected details removed as FOIPPA requires. Being able to replay a decision doesn’t give them that.
 A modernisation has to know what it is replacing. The rules that decide entitlement sit in four separate places, and only one of them is a rules engine.
 A parameter is something a system must comply with. A parameter must be check-able; it must be possible to check whether the system complies to it. To make sure that these rules are parameters, every entry below ends in a question you can put to a running system and get a wrong answer to.
-A part that copies evidence records where it came from. When the source corrects it, you can list everyone holding a copy, and each of them has to act. That holds even where a decision already went out on the old value.
 A part that needs another's data keeps its own copy, built from that part's events and shaped the way it needs. When the source corrects something, the copy has to follow.
 A partner moves in on 1 May, and the client reports it.
-A person can reach the same outcome whatever their disability and whichever route they take. Interfaces meet the Province’s accessibility standard at first release, and every journey has a supported route that is not digital.
+A person can get the same result whatever their disability and whichever way they contact the ministry. Screens and forms meet the Province’s accessibility standard from the first release. And every service has a supported way to use it that isn’t online.
 A pointer resolves to whatever the database says today. Replay returns today’s answer to a four-year-old question.
-A pointer to a running system is not evidence. Replay has to outlive everything that produced the decision, the engine included. The client is also owed the record itself, put together and severed under FOIPPA. Replay alone does not deliver that.
 A published interface for reads, and published events for notices. There is no third way, and adding one is not a shortcut.
 A review establishes the household was a couple from January, not a single person.
 A rule nobody can check is not a rule
 A rules engine
-A shared model decides whose release everyone else waits for. The previous programme merged its last two phases and cut child protection scope because of exactly this.
-A store with no disposition design cannot acquire one afterwards
+A store built without a plan for destroying records can’t get one later
 A system that stores only the current state, "Income: $900", leaves the important questions open. How do we know? What evidence is there? When did we know? Is this the corrected number, or the number we recorded at the time?
 A team accountable for a thing will grow and protect it. A team measured on its own dissolution will not.
 A tribunal asks equally what the client was told.
 A tribunal asks two questions: what was true, and what did the ministry know. Each needs its own axis. The third axis exists because fifteen years of records arrive from a system still in use. Flatten their history into the migration date and a whole class of question stops having an answer.
 A tribunal asks what the person was told as often as it asks what the system worked out. A decision that re-runs perfectly, next to a letter nobody can rebuild, still misses the question.
+Access for everyone
 Accommodation and the signature problem
 Accounts, accruals, schedules, double-entry postings.
 Added since the source
 All twenty-one
 An Excel workbook decides which queue a request joins, how urgent it is, how long it has, and where a scanned document goes. Fifty-six procedures point at it. One of its sheets maps 445 form numbers to their handling. So the priorities and service-level targets for the whole service sit outside the platform, kept up by hand.
-An append-only store and a legal duty to destroy pull against each other. Settle that after the first event and you are rebuilding, not repairing. The timing is the rule: a correct design that arrives late has failed.
 An engine upgrade can change how the same rules evaluate.
 An entitlement determined twice must not be paid twice, and that guarantee lives here rather than in five case contexts.
 And together they carry what the architecture is trying to do.
+Any group of clients moved to the new system can be moved back to the old one without a separate data project. An approved statement says what information would be lost on the way back. Being able to undo a move means both having a way to do it and knowing how much survives.
 Appeals & Reconsideration
 Apt boundaries
 Archiving the software tells you what it was. It does not promise that anything in twenty years can still run it. The operating system, the processor and the container runtime all die younger than a child protection record, which the ministry keeps for ninety years.
@@ -735,21 +1198,23 @@ At application in March, no disability designation is in place.
 At application, the client declares they live alone.
 Backdated recalculation runs off valid time, which any competent migration preserves, so recalculation survives. Something narrower breaks without the third axis: what the ministry knew and when. That is the question separating a recoverable debt from the ministry's own error.
 Before the first event is written
-Before the first event, has someone chosen the mechanism for each class of fact and published what survives?
 Before the first group of clients moves
+Before the first real event, has someone chosen how each kind of fact will be destroyed, and published what survives?
 Before the first rule is written
-Behaviour lives with the data it governs
+Before the system stores anything, decide how each kind of fact will be destroyed when its time comes. There are three ways: delete a whole kind of record on a set schedule, keep personal details in a separate place that can be deleted, or lock one person’s records with a key and then destroy the key. Publish what is left after a record is destroyed. Plan who holds the keys. And say what a replay does when it reaches a record it can no longer read.
 Benefit calculation, rate recalculation, time limits, sanction end dates
 Beyond 20 years
-Boundaries and authority
+Boundaries between parts
 Boundary test
 Business rules by location
-Buy, adopt or reuse the common parts: workflow, notification, identity, secrets, policy evaluation, scheduling, document storage, search, print and mail. To build one instead, name a legal, policy or programme need that no off-the-shelf option meets. Someone other than the component’s owner has to agree. Wanting it faster does not count.
-Can a reviewer tell from the schema which product implements it? Then remove the product and count the changes to the contract.
-Can this group return to the old system today, without a data project, and can you name every class of fact that would not survive the trip? Correction-versus-supersession has no destination in the old system: if that is not on the list, the list is incomplete.
-Can you replay a decision made three years ago from storage alone, with nothing running? Can you put together the appeal record and sever it on demand?
+Buy common tools, and have someone else check any choice to build
+Can only partly be added later
+Can this group go back to the old system today, without a data project? Can you name every kind of fact that wouldn’t survive the trip? The old system has no way to tell a correction from a later update. If that isn’t on the list, the list isn’t complete.
+Can you replay a decision made three years ago using only what is stored, with no systems running? Can you put together the appeal record, and remove the protected details, whenever someone asks?
 Cannot be added later
 Capture, attachment lifecycle, extraction, e-signature, and the link between a document and the claim it supports.
+Catching a breach
+Challenging a decision
 Challenging a decision.
 Child care subsidy
 Child protection
@@ -758,75 +1223,77 @@ Clients whose earnings are annualised need one step more: a spreadsheet. The wor
 Confidence values and replay behaviour
 Content digest, tagged and immutable once released
 Content-hashed template, resolved at decision time
-Continuity and control
 Copied in full into the record, never referenced
+Copies and corrections
 Copies are owned by whoever holds them
-Copying creates this duty, and nothing else discharges it. A design that passes nothing on at all still passes every boundary rule perfectly. It also leaves people paid on a value we know to be wrong.
-Correct a fact at its source. Can you list every part holding a copy? Does each one have to act? And does anything raise an alarm when a correction goes unread?
+Correct a fact at its source. Can you list every part that holds a copy? Does each one have to act on the correction? And does something raise an alarm if a correction goes unread?
+Could a reviewer tell from the interface’s definition which product is behind it? Now take the product away. How many changes does the interface need?
 Counted by naming every system referenced in each procedure. The most common pairing is the Siebel case system with the client portal, then the case system with Service Canada, then the case system with the mainframe.
 Current State
 Current State — The Future of Case Management IT
 Current version of the record:
-Custodianship is modelled, not assumed
-Decide how records end, per class of fact, before anything is written. A schedule, an indirection, or destroying one person’s key. Publish what survives a destruction, design who holds the keys, and say what a replay does when it meets an event it cannot read.
-Decide outside the legislated time and eligibility runs from the date the decision was due, not the date it came. So a missed deadline changes what the client is owed. An unmodelled clock is a source of wrong entitlement, not a service-level gap.
-Deciding, reviewing and paying are held apart
 Decisions read no live data
 Decisions that affect people carry their own classification
 Designated in July as a person with a disability, effective from the March application date.
 Designation, prescribed classes, review cycles.
 Determinations — The Future of Case Management IT
 Determine(rulesArtefactVersion, evidenceSnapshot, referenceDate) → DeterminationResult
-Disposition is designed before the first event
+Different people decide, review and pay
 Do first only what cannot be done later.
 Documents & Capture
-Does any part read another part’s tables, or depend on a type it does not own? The second question catches the failure that really happens. Shared models come back as schemas, not as databases.
+Does any part read another part’s tables, or rely on a data type another part owns? The second question matters more. A shared model rarely comes back as a shared database. It comes back as a shared layout that everyone copies.
 Does not own
-Does the bar sit on the information rather than in a procedure? Does it survive a copy into another part? Does a read that fails to state its purpose get refused? And does a blocked use leave an event behind?
-Does the design name the watermark, write it into the decision record, and hold it to a stated limit? Does a decision outside that limit fail rather than go ahead?
-Does the model hold each limit once, with its owner, its class, its start event, duration, extensions and authorisations? Does a breach show up without a person spotting it, and does its consequence apply automatically?
+Does the design name the point each decision read up to (the watermark), write it into the decision record, and set a limit on how far behind a store can be? If a store is past that limit, does the decision stop instead of going ahead?
+Does the system hold each limit once, with who owns it, what kind it is, what starts it, how long it runs, and its extensions and approvals? Does a missed deadline show up without a person having to spot it? Does its consequence apply automatically?
 Domains — The Future of Case Management IT
+Each benefit records whether and how a decision can be challenged
+Each decision stores which version of the rules was used and which version of the facts. It stores full copies of them, not links to them. It also records what the client asked for, which requirements they met and which they didn’t, what the ministry assumed, what evidence was missing, and the date the client was told.
 Each entry below demonstrates the first two claims. The third rests on an argument against a list of intents, and it is the weakest of the three, because another architect could reasonably draw some of these lines elsewhere.
 Each one carries a header naming its purpose, the policy it carries out, the law behind it, and how the system classifies the work. That turns the whole set into a map of the services.
-Each parameter names how you catch a breach of it. Anything you could write as a lint rule, a fitness function or a compatibility check gets written as one.
+Each parameter says how you would find out it has been broken. Where software could do that check automatically, it has to be built as an automated check.
 Each part can be released on its own
-Each part keeps its own picture of a person, a case, a payment. No canonical Person, no shared schema, no join across parts, no dependency on a type another part owns.
+Each part keeps its own picture of the data
+Each part of the system keeps its own description of a person, a case or a payment. There is no single shared “Person” record that every part must use. No part shares a database layout with another, reads another part’s tables, or relies on a data type that another part defines.
+Each service has recovery targets, proven in practice runs
 Eligibility & Entitlement
 Employment assistance
 Employment services
-Every copy is traceable, and every correction reaches it
+Every copy can be traced, and every correction reaches it
 Every dated claim about the world, and how it was checked.
 Every entitlement decision stores the rules, the engine, the facts it saw, its own reasoning and what it decided. A manager four days later, or a tribunal years later, can re-run it instead of piecing it together from memory.
 Every evidence assertion carries three time dimensions:
 Every evidence type needs a records ruling before anyone can use it, which puts the records office on the critical path.
+Every fact is dated and has a source
+Every move can be undone, and what is lost is written down
 Every parameter is necessary: take one away and the design loses something nothing else supplies.
 Every principle in the architecture is accounted for. Seven carried across, with their wording narrowed or widened. Three split, because each held two ideas that could stand apart. One took in a clause from another, and one became more general. So twelve principles turned into fourteen parameters, and seven more joined them.
 Every read gets harder. Developers have to think in periods rather than values, and every report has to say which point in time it means.
+Every record has one system in charge of it: its system of record. That holds for each group of clients, and it still holds while clients move from the old system to the new one. The two systems never both make changes and sort out the differences afterwards. And where the data affects what a person receives, no automatic process decides which version wins.
 Every recurring task a caseworker does has a written procedure: what starts it, which screens to open, which form to send, what to type in which field. Together they run to 8.2 million characters. They describe the service as staff really deliver it.
 Every rule carries a label saying what kind of decision it produces. Some produce an administrative decision, which needs reasons. Some produce a decision a person has to make before it takes effect. The rest are working sums that affect nobody on their own.
-Every rule carries a way of catching a breach
-Every service carries an availability target and stated recovery times, set against what its failure does to a client. An exercise has to demonstrate them. Shared infrastructure takes the strictest target of anything that depends on it.
-Every step back is possible, and its losses are published
+Every rule comes with a way to catch it being broken
+Every service has a target for how much of the time it must be working, and limits on how long it can be down and how much recent data it can lose. These targets depend on how much harm an outage does to a client. A practice run has to show the targets can be met. Anything shared by several services must meet the strictest target of any of them.
+Everyone can use the service, whatever their ability or way in
 Evidence & Verification
 Evidence & Verification publishes
 Evidence operations
 Evidence — The Future of Case Management IT
 Evidence, not 'facts'
 Facilities, placements, authorisations, agreements, outcome measures.
-Feed it the same rules, the same engine version and the same inputs. Does it produce a byte-identical trace? Does it touch the clock, the environment or any service on the way?
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 Finance has modelled two kinds of time for decades. Case management almost never does.
 Financial Components
 Five case models rather than one
 Five things stored with every decision
-For any evidence type, can you name its custodian? Does the system read that, or do people just follow a convention? And does every access decision trace back to the agreement registry, and to nothing else?
-For each entitlement the system records four things: the law it rests on, whether a decision can go to reconsideration, whether it can go to appeal, and to which body. It records them per entitlement and per variant. It never takes them from the parent programme.
-For each journey, can a person finish it on every supported channel? Does the outcome change with the route? For each interface, has someone tested it with assistive technology, and not just run a scan? A scan catches around 30% of issues.
-For each parameter, name the check and say whether it runs automatically. Where a person checks something a machine could check, say which one, and why nobody has automated it.
-For every custom-built component, name the legal, policy or programme need that no off-the-shelf option meets. Then name who agreed, other than the builder.
-For every entitlement and every variant, can the system state the law it rests on, whether it goes to reconsideration, whether it goes to appeal, and to which forum? And can it do that without borrowing any of it from the parent?
-For every entitlement, name who decides and who reviews, and say what the ministry keeps for itself. Does every decision trace back to the person who reasoned it, as opposed to anyone who advised?
-For every record in transition, name the one system of record and the group it covers. If the answer is “it depends on the field”, someone has split the work across fields instead of across groups of clients.
+For any kind of fact, can you name its custodian? Does the system read that, or do people just follow a habit? And can every decision about access be traced to the register of agreements, and to nothing else?
+For common tools, buy one, adopt one or reuse one. That covers workflow, notifications, sign-in, storing passwords and keys, policy checks, scheduling, document storage, search, and print and mail. To build one instead, name a legal, policy or programme need that no ready-made product meets. Someone other than the team that would own it has to agree. Wanting it sooner is not a reason.
+For each entitlement, the system records four things: the law it is based on, whether a decision can be reconsidered, whether it can be appealed, and who hears the appeal. It records these for each entitlement and each variant of it. It never assumes they are the same as for the wider programme the entitlement belongs to.
+For each parameter, name the check and say whether it runs automatically. Where a person checks something a computer could, say which one, and why nobody has automated it.
+For each service, can a person finish it through every supported channel? Does the result change depending on the route? For each screen, has a person tested it with assistive technology, and not just run an automated scan? A scan catches only about 30% of problems.
+For every entitlement and every variant, can the system state the law it is based on, whether it can be reconsidered, whether it can be appealed, and who hears the appeal? Can it do that without borrowing any of it from the wider programme?
+For every entitlement, name who decides and who reviews, and say which powers the ministry keeps for itself. Can every decision be traced to the person who actually reasoned it through, rather than someone who only gave advice?
+For every record being moved, name the one system of record and the group of clients it covers. If the answer is “it depends on the field”, someone has divided the work by field instead of by group of clients.
+For every tool built in-house, name the legal, policy or programme need that no ready-made product meets. Then name who agreed to it, other than the people who built it.
 For example
 Formulas inside the case system
 Found by reading the technical design documents for the current release alongside the procedures. Nothing on record gives the 29 rulebases source control, a promotion pipeline or a version register.
@@ -834,38 +1301,33 @@ Four months of payments were right when the ministry made them. They are now an 
 Four or more
 Four rules keep the lines in place
 Four years on, the same inputs produce the same answer, the reasoning can be read aloud, and the letter the client received can be reproduced.
-From P1, split
-From P10, generalised
-From P11, split
-From P12, unchanged
-From P2, narrowed to the record
-From P3, the half the source calls load-bearing
-From P4, absorbing part of P3
-From P5, unchanged
-From P6, with the independent check added
-From P7, unchanged
-From P8, narrowed to the calculation
-From P9, unchanged
 From the first decision
 Front-line staff adapt, so the information is not
 Gathering the facts means reading across several stores that update on their own schedules. Two decisions issued seconds apart, with one store briefly behind, can each see a different world quite legitimately. Both replay perfectly. Both are reproducible. They disagree, and nothing described so far catches it. So the design pins each snapshot to a point in the sequence of recorded events. A later reader can then tell which view of the world a decision was made against.
-Gathering the facts means reading stores that update on their own schedules. So the decision records the point in the event sequence it read from. It sets a limit on how far behind a store may be, and refuses to issue outside that limit.
-Generic capability is bought, and a decision to build is checked by someone else
-Grouped by the axis each one sits on. Select any parameter to see the check that catches a breach. A heavy left edge marks the six you cannot add later.
+Give it the same rules, the same version of the engine and the same inputs. Do you get exactly the same result, down to the last character? Does it read the clock, its settings or any other service along the way?
+Glossary — The Future of Case Management IT
+Grouped by the part of the design each one covers. Select any parameter to see how to check it. A heavy left edge marks the six you cannot add later. Words with a special meaning are explained in the
 Guessing from location fails the first time a fact appears in two places, which is day one. Attach the classification and the retention rule to the kind of evidence instead. Then destroying records becomes a job you can actually do.
 Highlighted rows are the
 How long replay has to work
+How records are destroyed is decided before anything is stored
 How records are destroyed is decided per class of fact. Events are immutable, so a date can be added with a default but never filled in afterwards.
 How the design was arrived at
 How these figures were produced
 How this is modelled
+How to check it
 ICM tracks facts. It overwrites fields and buries history. In the new system the unit of information is a dated
 Identifiers, enough demographics to match candidates, identity-proofing status, merge and split.
+If a rule is spread across several places, nobody can understand it, test it or change it safely. Soon nobody can say which version of the rule is the real one. Keeping a rule with its data also means everything that writes to the data is checked the same way. A data load or a link from another system can’t slip past a rule the data enforces itself.
 If it gains a column outside this definition, the shared model has been rebuilt. Treat that as a defect, not as debt.
+If nobody proves a move can be undone, you find out it can’t only when you need to
+If software settles a conflict on its own, a merge rule ends up making a choice that belongs to policy or to a person. And letting both systems make changes is how a short overlap quietly becomes permanent.
+If the ministry decides after the legal deadline, the client’s eligibility counts from the date the decision was due, not the date it was made. So a missed deadline changes what the client is owed. A time limit the system doesn’t track leads to wrong payments, not just slow service.
 If this produced an overpayment, the classification rule reads the operation as
-In practice: the watermark must be in the first decision record
-Interface and sourcing
+In practice: the watermark has to be in the very first decision record
+Interfaces and buying
 Investigations, safety, placements, court-ordered records, decades-long retention.
+Is the limit attached to the information, not written in a procedure? Does it stay attached when the information is copied to another part? If someone asks for the information without saying why, are they refused? And when a use is blocked, is that recorded?
 Issuance runs, payment instructions, method routing, stop payment, reissue, returned items, month-end cutoff.
 It does not bend to fit a subsidy renewal.
 It does not calculate entitlement.
@@ -881,7 +1343,12 @@ It takes effect from March.
 Its events are the trigger fabric for everything else.
 Its own case lifecycle, its own language.
 Its own renewal cycle and authorisation model.
-Limits on use travel with the information
+Jump to a letter
+Keeping and destroying records
+Legal time limits
+Limits on how information may be used travel with it
+Making a copy creates this duty, and only this rule makes sure it is met. A design where parts share nothing at all would pass every other rule about how parts connect. It would also leave people being paid on a value we know is wrong.
+Making a decision
 Merge and split go in on day one rather than later. The audit of the previous system found duplicate records at scale, and called its search ineffective and exact-match only. Adding merge afterwards to a system that assumed one person equals one row is close to impossible. By then every payment instruction and every stored decision has keyed itself to an identifier the design promised would hold still.
 Mispayment is one example of many. Evidence has to back nearly every claim a client makes. That cycle of claim, evidence and proof is the core loop of the whole service.
 Modelled once, not per program family. An allowed appeal is a retroactive determination, not a manual adjustment.
@@ -894,6 +1361,7 @@ Most systems work out how long to keep something from where it sits.
 Move either slider. The left one changes the month you ask
 Move the case file back to where it came from.
 Move the case file to their own office in the mainframe so they have permission to act on it.
+Moving back
 Moving them back is proven rather than claimed, and what the return trip loses is written down and approved.
 Much of case management is building one clear timeline as information arrives. It does not arrive in order, and what turns up later can change what earlier events meant. In the backdated designation above, the client spent four months short of what they were owed. Someone on assistance has no savings to absorb that. The same machinery runs the other way too. It lands on the same person, who then has to pay the money back.
 Must be right first
@@ -904,90 +1372,90 @@ N09 closes a gap the architecture names in its own text. N15 and N16 close two m
 N09 · N15 · N16 · N17 · N19 · N20 · N21
 N12 · N13
 N12, and the third date in N01
-Name the availability tier and the recovery targets for each service. Then show the exercise result behind them. A figure nobody has measured is not a target.
+Name the availability level and the recovery targets for each service. Then show the practice-run results that back them up. A number nobody has measured is not a target.
 Named once so that "overdue" does not acquire five different definitions.
 Names the policy that was applied.
-New, and required
-New, from policy
-New, from the gaps the architecture records
-New, from the gaps the architecture records; still proposed
+New, from ministry policy
+New: fills a gap the architecture had already noted
+New: fills a gap the architecture had already noted. Still a proposal.
+New: the architecture named the gap but had no rule for it
 No addresses, no payment details, no employment records, no relationships. Those are evidence, owned elsewhere.
-No clock, no database, no service calls inside the decision. It gets everything it needs up front. The record it writes comes out of the decision, and never feeds back into it.
 No federal or provincial statute says government systems have to sit in Canada. No published policy says it either.
-No part depends on a model it does not own
+No other rule catches a system that works correctly and reliably but that the people it serves can’t reach. Counts of how many people used a service hide this completely. The cost falls on clients and on front-line staff.
+No other rule catches information the ministry holds lawfully being put to a use it is barred from. Policy limits five different kinds of things: a single detail in a record, a type of content, who the information goes to, a subject, and a way of communicating. Only the first has anything to do with a calculation.
+No other rule makes sure recovery is planned. Every recovery figure in the architecture covers the reporting and analytics platform. None covers the published interface, the translation layer, the decision service or the case records. And getting the system running again doesn’t fix a payment run that was missed.
+No other rule says who is allowed to use which power. The decision record shows what was decided and by whom. But it does nothing to stop one person deciding, reviewing and releasing the money. Policy sets out all three of these separations directly.
 No part reads another part's database
 No shared tables. No joins across schemas. Not for a report, and not in a test environment. This rule erodes first, and takes the longest to notice.
 No system named
 No two overlap: nothing is said twice.
 Nobody can add this later. Events are immutable: you can introduce a field with a default, but you cannot fill it in afterwards. Either the migration decoded the source or it did not. So the decision has to come before the first production record.
 Nobody can explain the decision in words. It can perhaps be re-run, but it cannot be accounted for.
-Nobody can reason about logic spread across layers, test it, or change it with confidence. You end up unable to say which copy is the authoritative one. Keeping it together also makes validation uniform: no integration or migration script can slip past a rule the data itself enforces.
 Nobody has measured the volumes yet. You can count caseload throughput, worker streams, transaction rates and queue depth directly. The figures here come from the technical design documents instead.
 None of this can be added later. Events are immutable: you can add a field with a default, but you cannot fill it in afterwards. The axis has to exist before the first production event.
 None of this is anyone's poor practice. The procedure says to do it this way, because with the systems that exist this is the right way.
-Nothing else catches a lawfully held fact reaching a use it was barred from. Policy bars five different things: an attribute, a class of content, a counterparty, a subject matter, and an act of communication. Only the first has anything to do with a calculation.
-Nothing else catches a missing recovery duty. Every recovery figure in the architecture covers the analytics platform. None covers the published interface, the translation layer, the decision service or the case stores. Bringing the system back does not put a missed payment run right.
-Nothing else in the set catches a system that is correct, reproducible, well-bounded, and out of reach of the people it exists for. Usage totals hide that failure completely, and it falls on clients and front-line staff.
-Nothing else says who may exercise an authority. The decision record names what was decided and by whom. It does nothing to stop one person deciding, reviewing and releasing the money. Policy states all three limbs directly.
-Nothing is stored as a bare value. Every fact carries who claimed it, the period it covers, the date this system learned it, and the date the old system asserted it, or a marker saying that date cannot be read.
 Nothing on this site is a government commitment, and none of it is a record of any real person.
 Nothing outside the programme forces the replacement to finish by a set date. So it can do discovery, research and analysis properly before it commits to building at scale. An unforced timetable takes a great deal of risk out of the work.
 Notices & Correspondence
 Number of procedures by count of separate systems required, across
-Obligation and jurisdiction
 Old records all arrive on the same day. Make that migration date the "when we learned it" date and every historical fact looks as though it arrived at the same moment. Supersede and Correct then look identical across the whole pre-cutover record. The overpayment rule stops working on exactly the records where most overpayments sit.
 Once the system records something, nobody edits it in place. Four operations change what the system believes. They differ in one respect: what each does to the period the claim covers.
 One evidence assertion, from a case where the dates are in dispute. The ministry now says the household was a couple from January. It reached that view in September. In between it paid eight months at the single rate. Which of those two dates you read decides what happens next.
 One journey, three systems, two re-keys
 One parameter is not about the system at all. N18 ranges over the other twenty. It makes each of them name how you catch a breach, and it says that anything you could write as a lint rule or a compatibility check has to be written as one.
-One party cannot decide, then review its own decision, then represent the ministry at the appeal against it. A decision-maker may seek advice but may not let advice stand in for their own reasoning. Payment runs through one chokepoint, with determination, authorisation and release in different hands.
 One per program family
 One system
-One system of record per record, per group of clients, transition included. Not both systems writing and a reconciliation afterwards. And nothing resolves a conflict automatically where the data decides what a person receives.
-One writer per record, at every moment
-Only evidence and decisions cross a boundary
-Only partly addable later
+Only one system can change a record at a time
 Open a separate web application to calculate the amount. It does not connect to either system of record.
-Other rules bound how long a coexistence runs. Nothing else bounds how much it loses on the way back. A rollback plan that does not say what it loses has not been tested.
-Otherwise the set is just a statement of intent. You have to be able to see a breach first; automating the check comes after. A rule whose breach nobody can see gets abandoned, and nobody ever decides to abandon it.
+Other rules limit how long the old and new systems run side by side. Only this one limits how much is lost when moving back. A plan to move back that doesn’t say what it loses hasn’t really been tested.
 Overpayment & Recovery
 Overpayment generation, notification, repayment agreements, deduction rates, write-off, collections referral.
 Parameters — The Future of Case Management IT
 Participant Identity
 Participant Identity publishes
 Participant Identity stays deliberately small. It holds identifiers, enough detail to tell two people apart, and whether anyone has proven the identity. No addresses, no income, no relationships.
-Partly. The architecture records the qualification without saying which half.
-Parts of the system exchange claims and decisions. They do not hand each other rows, internal identifiers or query results.
+Partly. The architecture says part of it can be added later, but not which part.
+Parts of the system share facts and decisions, not raw data
 Parts that are not domain models
 Payments & Issuance
 Perhaps the biggest choice in this design is where to draw the lines between parts of the system. Twelve domain models, one of which is really five sub-domains, which makes sixteen.
 Persons with disabilities
+Pick any fact. Can you say when it was true, when this system learned it, and what the old system said? Can you point to the record it came from?
+Plain explanations of the words used to describe the twenty-one parameters, with links back to each parameter that uses them.
 Plans, referrals, provider interaction.
+Principle 1, split in two
+Principle 10, made to apply to every rule
+Principle 11, split in two
+Principle 12, unchanged
+Principle 2, narrowed to the record
+Principle 3: the half the architecture says everything else rests on
+Principle 4, plus a piece of Principle 3
+Principle 5, unchanged
+Principle 6, with the outside check added
+Principle 7, unchanged
+Principle 8, narrowed to the calculation
+Principle 9, unchanged
 Print the result, scan it, and attach it back to the case.
 Programmes like this usually start by building one model of a case that every program can share. That is how MIS began, and how ICM began. It looks like the responsible choice: less duplication, one place to change things, one way of working across the ministry.
 Protocols are shared; the case model is not.
-Provenance has to be written as the copy is made
 Provider & Outcome
 Published events and the boundary test
-Published interfaces use policy and domain words, not the vocabulary of whatever product sits behind them. The interface is the permanent artefact; the translation layer over the existing system is temporary, and its team is chartered to disband.
+Published interfaces use the words of policy and of the ministry’s work, not the terms of whatever product sits behind them. The interface is meant to last. The translation layer that connects it to the old system is temporary, and the team that runs it is set up to wind down.
 Pure: no clock, no database, no service calls.
 Pure: no input or output, no clock reads, no database access, no service calls. No rules engine gives you this on its own. The shell around the engine enforces it. The engine runs in-process against a snapshot passed by value, and that is what puts byte-identical replay within reach rather than in the brochure.
-Purity is what makes an identical re-run possible in practice rather than on paper. A rules service that fetches what it needs ties every decision to a running system. That is the first thing a tribunal will probe.
 Rather than leave that hanging, the design commits to a horizon in three stages and writes it down in advance.
-Reach does not depend on the client’s capability or channel
-Reach of service
-Read every published message. Does any of it carry the sender’s storage shape, an identifier only the sender understands, or a result set rather than a claim?
+Read every message one part sends to another. Does any of it copy the sender’s database layout, use an ID only the sender understands, or hand over search results instead of a fact?
 Reading both matters, because they disagree about what the system is. The technical documents describe 61 applications. The procedures turn up 28 more tools that a worker touches and no technical document mentions. Among them: a standalone calculator, a reporting tool, credit and asset-check portals, a worker-safety device, a vital statistics service.
 Recovering an overpayment is the clearest example. A worker who has decided someone was paid too much has to:
-Recovery targets are stated per service and proven by exercise
+Recovery and separate duties
 Replacing a system in pieces only works if nobody calling it can tell which piece answered. The published interface is permanent. The translation layer behind it is temporary, and its team answers for winding itself up.
 Replacing the existing system has a deadline
-Resolve a conflict automatically and a merge rule stands in for a policy or a person. Writing from both sides is also how a temporary overlap turns permanent.
 Retention lives on the type, not the storage location
 Retention periods, access levels, privacy calculations
-Reversibility claimed but never proven is discovered when it is needed
 Routing runs on a spreadsheet
+Rules live with the data they control
 Scans, uploads, attachments, signatures.
+See it at work:
 Select an operation. Supersede and Correct both replace an earlier claim, but only Correct says the earlier claim was wrong about its own period. That is what separates a recoverable debt from the ministry's own error.
 Select any part to see what it owns, what it deliberately does not own, and the test that tells you when the boundary has been breached. The five case models share protocols, not a case model.
 Separate from issuance because ledger correctness and disbursement mechanics fail differently and are audited differently.
@@ -1004,17 +1472,14 @@ So the unit of storage is an assertion:
 Some pieces are shared infrastructure rather than parts of the business. Platform teams own them and everyone uses them. The difference matters. A platform part that starts holding program state has quietly become a seventeenth domain model, and nobody chartered it.
 Someone can challenge a decision about their entitlement years after the ministry made it. So the design treats every decision as something you re-run, not something you remember.
 Someone has to gather the facts before the decision runs, and gathering them consistently is a problem of its own.
-Sometimes the ministry may hold a fact but not use it for something. The bar rides on the fact itself and travels with every copy. The system enforces it where the use happens, rather than leaving it to procedure.
-Statutory clocks run in the system
+Sometimes the ministry is allowed to hold a piece of information but not to use it for a certain purpose. That limit is attached to the information itself, and it goes with every copy. The system enforces the limit at the moment someone tries to use the information. It doesn’t rely on staff remembering a procedure.
 Statutory clocks, reconsideration packages, the tribunal as an external party, interim assistance.
-Statutory time
 Store dated claims, not facts
 Store the letter, not just the decision
 Storing the answer is not enough. Storing the answer and the rules is still not enough. The system binds five artefacts into the record at the moment it makes the decision.
 Storing the inputs makes replay reliable. It says nothing about whether the inputs were gathered consistently. That is where the remaining gap sits.
 Switch any artefact off to see which question stops being answerable. Each one covers a failure the other four do not.
 System residency is a legal requirement
-Take any fact. Can you say when it was true, when this system learned it, what the old system said, and point at the source record?
 Take the assertion above to a tribunal. The client accepts a relationship exists but disputes that it began in January. Three separate things are now in question, and they are easy to confuse:
 Tasks, assignment, caseload balancing, supervisory queues, overdue surfacing, escalation.
 Teams leave out the fifth one most often. A decision that reproduces perfectly, next to a letter nobody can rebuild, still misses the question the tribunal asked. That question is often about what the person was told, not about what the system worked out.
@@ -1027,26 +1492,24 @@ That distinction is why the model exists. It is a policy rule written into the s
 That label travels with the decision into the letter. A decision that goes against someone sends out its reasons, its appeal period and the route to challenge it, because the label says it must. Not because somebody remembered.
 That path skips portal registration, so the applicant never gets a personal identification number. The electronic signature depends on that number. So the people the accommodation exists for are the people who then cannot sign electronically.
 That rule sounds academic. It is what makes the next part work: if nothing hidden went in, then storing what went in is enough to reproduce what came out.
-The Declaration on the Rights of Indigenous Peoples Act commits the Province to alignment. A Nation’s governance over its own data will not fit into a retention rule or an access list. A PDF agreement cannot grant an access right, and nobody can audit a right that came from somewhere else.
 The Future of Case Management IT
 The Future of Case Management IT — overview
 The New Design is Built on Three Pillars
 The aggregate is the evidence succession set: the stream of versions of one logical fact about one subject. Commands append events; current state is a projection. Verification status transitions are themselves events.
 The architecture carries 40 open items to verify, and 30 more to settle before the design freezes. Three are worth naming here, because they change the shape of the work rather than its detail:
-The architecture names the hole in its own text. Two decisions issued moments apart, with one store briefly behind, can each see a different world quite legitimately. Both replay. Both reproduce. They disagree, and nothing else notices.
+The architecture points out this gap itself. Two decisions made moments apart can each see a different set of facts if one store is briefly behind. Both can be replayed. Both give the same answer every time. But they disagree with each other, and no other rule would notice.
 The assertion is withdrawn. It remains visible in the history as withdrawn.
 The assertion should never have existed
-The calculation reads nothing but its inputs
+The calculation uses only what it is given
 The case model for child care subsidy.
 The case model for child protection.
 The case model for disability assistance and designation.
 The case model for employment assistance.
 The case model for employment services.
-The contract outlives what implements it
 The conventional move is a single configurable case model shared across programs.
 The counts come from reading the Resource Finder and the other document stores in full, then pattern-matching and mapping the text. Named systems, capability areas and the policy behind each procedure come from the documents and the policy manual.
 The decision can be replayed.
-The decision record stands on its own
+The decision record is complete on its own
 The design began with the assumptions that ICM rested on, and much of the approach to MIS with it. We tested eleven. None came through intact. Two of them:
 The design makes entitlement a calculation with no hidden inputs. It reads the rules, the facts and the date it is deciding for. While it runs it does not read the clock, query a database, or call another service. It gets everything it needs up front.
 The determination function, the decision record, the bound artefacts.
@@ -1055,28 +1518,30 @@ The earlier assertion stays true for its own period. The new one takes over from
 The earlier assertion was never right. The replacement covers exactly the same period.
 The engine
 The engine is sealed off from live data. A rule authored against a service it can call has already fixed the shape of every rule after it.
-The engine must be sealed before the first rule is written
 The evidence succession set, verification policy, the four operations, three time axes.
 The facts it saw
 The finding was filed against the wrong participant.
-The first two dates can be added later. The third cannot: it has to be in the record before the first production event.
+The first two dates can be added later. The old system’s date cannot. It has to be in place before the new system records its first real event.
 The following parameters are the twenty-one proposed rules the design has to follow. Each one is written so a reviewer can point at something and judge whether it complies. Six of the parameters must be built in from the start; they cannot be added once the work has started.
+The four answers can each be different, and you can’t work one out from another. Getting them wrong hurts the client either way: you offer a way to challenge a decision that doesn’t exist, or you hide one that does.
 The four things that can happen to an assertion
-The four values move independently, and you cannot work one out from another. Getting it wrong hurts the client either way: you offer a route that does not exist, or you withhold one that does.
 The function signature
 The gates in the order delivery reaches them. This says what order the work has to happen in. It does not say which rules matter most.
+The interface outlasts the system behind it
 The interface outlives its implementation
 The least conventional decisions in the design, what each is for, and what it costs.
 The ledger.
 The letter
 The mainframe
-The model holds every time limit once: what starts it, how long it runs, which extensions it allows, and who has to authorise each. A breach becomes a recorded event. Where policy attaches a consequence, the system applies it without being asked.
 The month being asked about
 The one place money leaves the ministry.
 The operation feeds the classification without settling it. Who caused the error matters too. A client who hid a relationship is not in the same position as a worker who mis-keyed a figure. The model promises something narrower and more useful: the question has an answer at all, and the answer comes from the record rather than from whoever opens the file today.
 The operations, formally
 The organisations that deliver services.
+The parameters use some words that have a particular meaning in this work. This page explains each one in plain terms. Where architects have their own name for an idea, it is given in brackets, so you can recognise it in other documents.
+The part that holds the data also enforces the rules about that data. A rule is not split up between the database, a settings table and steps that staff just know to follow.
 The period in the world for which the fact holds.
+The person who makes a decision can’t also review it, or speak for the ministry when it is appealed. Someone making a decision can ask for advice, but can’t let that advice replace their own thinking. All payments go through one checkpoint, where working out the amount, approving it and releasing it are done by different people.
 The plumbing gets written five times. That is a real cost, and the design accepts it on purpose.
 The point in the event sequence a decision read from goes into its record. Earlier decisions cannot be tied to a consistent view of the world.
 The previous programme cut scope here specifically because a shared model made the work harder.
@@ -1090,16 +1555,19 @@ The record has to hold the world as it was, not a pointer to the world as it is.
 The rest of the site sets out how the design answers these conditions. Start with
 The rule classifying a recalculation as recoverable or as administrative error reads the evidence operation that produced it.
 The rules
+The rules engine has to be sealed off before anyone writes the first rule
 The rules live on as a written specification, with a test suite that any rebuild has to pass. The suite stays independent of the engine from day one, so this handover costs nothing when it comes.
 The set
 The set makes three claims:
-The shape of the payload is what carries provenance across the line. A row arrives with no sign of who claimed it. So the receiver cannot know what it may conclude, and a later correction has nothing to attach to.
 The smallest rule surface, which is why it is captured first.
-The snapshot names the moment it was read
 The stored reasoning, the letter and the facts are the record. Re-running stops being on offer. This is what a paper file has always been.
+The system holds every legal time limit in one place: what starts the clock, how long it runs, what extensions are allowed, and who must approve each one. Missing a deadline is recorded as an event. Where policy says missing it has a consequence, the system applies it without anyone having to ask.
+The system keeps a permanent history that is never changed. The law sometimes requires records to be destroyed. Those two pull against each other. Settle it after the first record is stored and you are rebuilding, not repairing. Timing is the whole point: a correct plan that arrives late has still failed.
+The system knows whose record it is
+The system never stores a fact on its own. With every fact it keeps four things: who reported it, the period of time it was true for, the date this system learned it, and the date the old system recorded it. If the old system’s date can’t be read, the record says so.
+The system tracks legal time limits
 The system will not store "this person is an adult." It stores this: on 14 July, AI agent ID-33422 read the uploaded image of identification, matched it to the case, and read the date of birth as 22 April 1988. Business rules then decide the person is an adult. Who or what decided, when, and
 The technical statement
-The test that fails
 The thin identity model
 The third axis holds the date the
 The third axis is nullable. It carries a confidence value of
@@ -1119,14 +1587,16 @@ This design takes the difference seriously. Five program families get five case 
 This is an internal working draft. Sign in with your government account to read it.
 This is not an auditing nicety. It closes the gap between how the system holds data and how front-line staff work. Substantiating evidence against claims is the most common task a worker performs, and the system does not model it at all, so it is done by hand. Social workers spend hours mapping their notes onto a structure that serves the software rather than their clients.
 This is what a decision-maker reads out at a hearing.
-This is what makes replacement in pieces possible at all. The interface published today over the old platform is the one published tomorrow over the new services. Confuse the contract with the layer and you bind old vocabulary to the new architecture. That is the failure the programme exists to reverse.
+This is what makes it possible to re-run a decision and get exactly the same answer, in practice and not just in theory. A rules service that fetches its own information ties every decision to systems that must still be running. That is the first thing a tribunal will look at.
+This is what makes it possible to replace the old system one piece at a time. The interface published today in front of the old system is the same one published later in front of the new services. Mix up the interface with the translation layer and you tie the old system’s words to the new design. That is the very problem the programme exists to fix.
 This part is the most likely to drift, because every new requirement brings a reason to add one more field to the person record. Once that starts, the shared model is back, in the one place the design most needs to stay thin.
 Those last four are the interesting ones, because nobody found them by thinking harder about the architecture. They came from reading what the ministry already tells its own staff to do. Policy sets time limits, and missing one changes what a client is owed. It names which entitlements a client can appeal, and to whom. It keeps the person who decides apart from the person who reviews. And it bars certain uses of information the ministry may lawfully hold. The twelve could not express any of that.
 Three dates on every assertion. The third can be empty, and the design treats an unknown value as unknown rather than swapping in the migration date.
 Three systems
 Three things have shifted underneath since March 2022. Policy changed. The person's recorded circumstances changed, perhaps several times. And someone upgraded the software. A rules engine upgrade can change how the same rule reads, and nobody notices until a client appeals.
-Time spent building common capability is time not spent on decisions that reproduce, and that is where the programme will be judged. Without an outside check the test marks its own homework, which is how it fails today.
-To see how one business rule works, how many systems do you have to open? If more than one, say which is authoritative, why the others exist, and what generates them.
+Time spent building tools that already exist is time not spent on getting decisions right, and that is what the programme will be judged on. Without someone else checking, the team marks its own homework. That is how this goes wrong today.
+To gather the facts for a decision, the system reads from several stores. Each store updates on its own schedule, so some may be a little behind. The decision records the exact point it read up to. There is a limit on how far behind a store may be, and if one is further behind than that, the system won’t issue the decision.
+To see how one business rule works, how many systems do you have to open? If it’s more than one, say which is the real source, why the others exist, and how they are produced from it.
 Today the system reports
 Track two kinds of time, and inherit a third
 Transaction time
@@ -1141,6 +1611,8 @@ Two systems
 Two systems do the work. One is an Oracle Siebel customer relationship management product, adapted for government. The other is a mainframe built in 1982. They run side by side and share the core programs between them. Every attempt to retire the mainframe has stalled or failed.
 Two time axes are standard. This design carries a third, because the new system inherits fifteen years of records from systems that are still running.
 Type the amount into the mainframe by hand.
+Under the Declaration on the Rights of Indigenous Peoples Act, the Province has committed to bringing its laws in line with the UN Declaration. A Nation’s control over its own data can’t be squeezed into a retention rule or a list of who has access. A PDF agreement can’t grant anyone access. And if access comes from anywhere other than the agreement, nobody can check it.
+Used in:
 Valid time
 Version number and the archived binary
 We archive the software itself and test it every quarter to confirm it still runs. Seven years covers the appeal, reconsideration and audit paths that really do re-run a decision.
@@ -1163,18 +1635,20 @@ What the evidence base is
 What the ministry believed about the household in each of those eight months.
 What the parts are
 What this site covers
-Whatever holds the data enforces its own rules. Logic is not split between the data, a configuration table and an unwritten process.
+When every part shares one model, any change to it has to wait for everyone who uses it. One team’s release holds up all the others. ICM ran into exactly this: it had to merge its last two phases and drop child protection from its scope.
+When one part copies a fact from another, it records where the copy came from. If the source later corrects the fact, you can list everyone who holds a copy, and each of them has to deal with the change. That is true even when a decision has already gone out based on the old value.
+When one part of the system sends something to another, it sends a fact with its source, or a decision. It doesn’t send rows copied out of its database, ID numbers only it understands, or the raw results of a search.
 When someone is paid too much, the money falls into one of two classes. If the client's circumstances changed and they told the ministry late, it is a recoverable overpayment. The ministry takes it back at $10 a month, out of a payment that was already only just enough. If the ministry held the information all along and did not act on it, that is administrative error, and the client should not carry it.
 When the ministry changed its mind, and on what evidence.
 When the ministry knew
 When the previous system asserted it, if that can be decoded.
 When this system learned it.
 Where a conventional record gives up
+Where a copy came from has to be written down at the moment it is made
 Where a copy came from, and what its source bars it from, are written at the moment of copying. Neither can be reconstructed later.
 Where it came from
 Where the rules actually live
 Where the twenty-one came from
-Whether a decision can be challenged is recorded per entitlement
 Whether a person owes money back turns on whether the ministry knew something and failed to act. A current value with a change log beside it cannot answer that. The log sits outside the decision path.
 Whether someone qualifies, and for how much.
 Whether the rules can move off the mainframe on their own, given that both of them calculate.
@@ -1182,24 +1656,26 @@ Whether we can settle what the third time axis holds before the first production
 Which parameters to show
 Which rules fired and which branches were taken, in a ministry-owned format
 Which rules were in force becomes a reconstruction from release notes, argued rather than shown.
+While the system works out a decision, it doesn’t check the clock, look anything up in a database or call any other service. Everything it needs is handed to it at the start. The decision record is written from the result, and never feeds back into the calculation.
 Who does what, and by when.
+Who is responsible for a record, its custodian, is something the system stores and reads, not something people just know. The system properly handles records that belong to someone other than the provincial government, such as an Indigenous Nation, instead of forcing them into the wrong shape. Handing a record over to another government is one of the ways a record can leave the system. And data-sharing agreements are written so the system can read them, and they are what grant access.
 Who someone is, and nothing else about them.
-Whose record it is is an attribute the system reads. The model covers the non-Crown participant class properly rather than approximating it. Handing a record to another sovereign is one of the ways it can end. And sharing agreements are machine-readable artefacts that grant the access rights themselves.
 Why an entitlement decision is treated as a function that can be re-run years later.
 Why do backdates matter?
-Why it cannot be dropped
+Why it is needed
 Why it is unusual
 Why not store facts?
 Why the design uses sixteen separate models rather than one, and the rules that keep them separate.
 Why the system records dated claims rather than facts, and why it tracks two kinds of time.
-Without it, nothing downstream can be rebuilt. You cannot replay a decision against evidence when nobody knows what period it covered. And you cannot tell a correction apart from a change in the world.
+Without these dates, nothing later can be rebuilt. You can’t re-check a decision if you don’t know what period its facts covered. And you can’t tell whether a value changed because the world changed, or because someone fixed a mistake.
+Without this, the list is just good intentions. First you need to be able to see when a rule is broken; automating the check comes after. A rule that nobody can see being broken slowly stops being followed, without anyone ever choosing to drop it.
+Words explained in the glossary
 Work Management
 Work crosses system boundaries constantly
 Work items reference identifiers. They never carry copies of evidence.
 Worries about data sovereignty and trade still point to keeping the systems in Canada, and the architecture does that. No formal guidance stands behind the choice.
 Years 0–7
 Years 7–20
-You can move any group of clients back without a data project, and an approved statement says what the return trip loses. Reversibility covers both the mechanism and how much survives.
 You can satisfy most of these late, at a price. Six you cannot. Each one has to be in place before a particular first event. Once that event has happened, the fix is a rebuild rather than a repair.
 a new period
 about whom
