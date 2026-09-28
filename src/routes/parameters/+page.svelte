@@ -65,11 +65,10 @@
       Each one is written so a reviewer can point at something and judge whether it complies. 
       Six of the parameters must be built in from the start; they cannot be added once the work has started.
     </p>
-
     <h2>What a parameter is</h2>
 
     <p>
-      A parameter is something a system must comply to. 
+      A parameter is something a system must comply with. 
       A parameter must be check-able; it must be possible to check whether the system complies to it. 
       To make sure that these rules are parameters, every entry below ends in a question you can put to a running system and get a wrong answer to.
     </p>
@@ -178,169 +177,7 @@
       the rules about behaviour, and enforcement stops being anybody's job without anyone deciding
       that it should.
     </p>
-
-    <h2>What the set does not settle</h2>
-
-    <p>
-      Three things are open, and they are recorded rather than smoothed over.
-    </p>
-
-    <h3>Continuity has no footing in policy</h3>
-
-    <p>
-      N16 asks for recovery targets per service, proven by exercise. We mapped 270 policy
-      obligations, and not one of them exercises it. A benefits platform plainly needs recovery
-      targets, so that does not show the rule is unnecessary. It shows that its authority sits
-      somewhere other than the policy manual. Until someone names that source, the rule stays
-      proposed rather than baselined.
-    </p>
-
-    <h3>Whether to build this at all</h3>
-
-    <p>
-      N11 says you buy generic capability, and that someone other than the builder checks any
-      decision to build. At component level the architecture answers the question, though each
-      component's own owner gives the answer. At platform level it does not answer it at all.
-      Nowhere in the source's 4,998 lines does anyone weigh a custom build against a commercial case
-      management product. By the architecture's own rule that is a compliance failure rather than a
-      matter of taste, and it is the largest open question on this page.
-    </p>
-
-    <h3>The premise underneath the decision model</h3>
-
-    <p>
-      Everything on the <a href="{base}/determinations">determinations</a> page rests on one
-      premise: that you can express an entitlement decision as a function of recorded evidence.
-      Review conceded the premise may be false for some decisions. It drives roughly 28% of
-      programme cost, and it appears in no assumption register. It belongs in one.
-    </p>
-
-    <Technical summary="What the set is checked against">
-      <p>
-        The sufficiency argument runs against a numbered register of what the architecture is
-        trying to achieve. An intent with no parameter behind it means the set is not sufficient. A
-        parameter carrying no intent means it was not necessary.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Intent</th>
-            <th scope="col">Carried by</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>A decision is defensible at tribunal four years later</td>
-            <td>N01, N07, N08, N09</td>
-          </tr>
-          <tr>
-            <td>Facts are reconstructable as they stood, including across the legacy boundary</td>
-            <td>N01</td>
-          </tr>
-          <tr>
-            <td>Parts evolve independently; no program family waits on another's release train</td>
-            <td>N02, N03, N10</td>
-          </tr>
-          <tr>
-            <td>Correction reaches everyone who relied on the wrong value</td>
-            <td>N06</td>
-          </tr>
-          <tr>
-            <td>One authoritative implementation per rule</td>
-            <td>N04</td>
-          </tr>
-          <tr>
-            <td>Client-affecting data is never merged by machine</td>
-            <td>N05</td>
-          </tr>
-          <tr>
-            <td>Incremental replacement is possible, and completes</td>
-            <td>N05, N10, N14</td>
-          </tr>
-          <tr>
-            <td>Effort concentrates on what is distinctive to the ministry</td>
-            <td>N11</td>
-          </tr>
-          <tr>
-            <td>Privacy and records duties are satisfiable in an append-only store</td>
-            <td>N12</td>
-          </tr>
-          <tr>
-            <td>Indigenous jurisdiction is represented, not approximated</td>
-            <td>N13</td>
-          </tr>
-          <tr>
-            <td>Every step is reversible at known cost</td>
-            <td>N14</td>
-          </tr>
-          <tr>
-            <td>The service reaches the people it exists for</td>
-            <td>N15</td>
-          </tr>
-          <tr>
-            <td>Failure does not become client harm</td>
-            <td>N16, proposed</td>
-          </tr>
-          <tr>
-            <td>Money moves under control, and nobody reviews their own decision</td>
-            <td>N17</td>
-          </tr>
-          <tr>
-            <td>The ministry's own lateness does not fall on the client</td>
-            <td>N19</td>
-          </tr>
-          <tr>
-            <td>A client is told the truth about what they may challenge</td>
-            <td>N20</td>
-          </tr>
-          <tr>
-            <td>Information lawfully held is not used where it is barred</td>
-            <td>N21</td>
-          </tr>
-          <tr>
-            <td>A breach is visible rather than professed</td>
-            <td>N18</td>
-          </tr>
-        </tbody>
-      </table>
-    </Technical>
-
-    <Technical summary="Cuts a reviewer could reasonably reopen">
-      <p>
-        Four places where the set could have been drawn differently. They are recorded here so that
-        reopening one is a deliberate act rather than a rediscovery.
-      </p>
-      <ul>
-        <li>
-          <strong>N01 and N02.</strong> The architecture bundles these as one principle with one
-          test. A reviewer who thinks the rule on payloads follows from the model of a fact would
-          merge them, giving twenty.
-        </li>
-        <li>
-          <strong>N12 and N13.</strong> The split turns on custodianship having a different
-          authority and a different rights holder from disposition. An architect who treats
-          Indigenous jurisdiction as one input to a single records design would keep them
-          together.
-        </li>
-        <li>
-          <strong>N09.</strong> Arguably a clause of N08 rather than a parameter of its own. It
-          stands apart because N08's test cannot detect its breach, and nobody enforces a clause its
-          parent's test cannot see.
-        </li>
-        <li>
-          <strong>N15.</strong> Merges accessibility and digital exclusion, because they fail the
-          same way. An architect who treats them as separate obligations would split it.
-        </li>
-      </ul>
-    </Technical>
-
-    <p>
-      Four parameters do most of the work on the rest of this site: N01 on
-      <a href="{base}/evidence">evidence</a>, N03 on <a href="{base}/domains">domains</a>, and N07
-      to N09 on <a href="{base}/determinations">determinations</a>. The
-      <a href="{base}/choices">choices</a> page sets out what several of them cost.
-    </p>
-  </div>
+</div>
 </div>
 
 <style>
