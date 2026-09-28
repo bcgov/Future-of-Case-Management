@@ -112,7 +112,7 @@ disk.
 src/
   app.css                     design tokens and base styles
   routes/
-    +layout.svelte            masthead, navigation, footer
+    +layout.svelte            masthead, grouped navigation drawer, footer
     +page.svelte              overview, with the bitemporal hero
     evidence/                 evidence and the three time axes
     contexts/                 domain boundaries

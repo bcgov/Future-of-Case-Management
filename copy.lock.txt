@@ -9,14 +9,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Choices
 Several decisions here are not what a team would reach for by default. Each one below says what it buys and what it costs, so you can disagree with it in particular rather than in general.
@@ -98,14 +104,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Current State
 This design does not set out to contradict the current system. It comes from one question. Why does a large, expensive piece of software, laboured over by hundreds of capable and well-meaning people, still fail the organizations it serves? The answer lies in what the system leaves out: what it ignores, and what it pushes outside itself.
@@ -179,14 +191,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Determinations
 Someone can challenge a decision about their entitlement years after the ministry made it. So the design treats every decision as something you re-run, not something you remember.
@@ -237,14 +255,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Domains
 Perhaps the biggest choice in this design is where to draw the lines between parts of the system. Twelve domain models, one of which is really five sub-domains, which makes sixteen.
@@ -314,14 +338,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Evidence
 ICM tracks facts. It overwrites fields and buries history. In the new system the unit of information is a dated claim, tied to its evidence and to whoever made it. Later work can disprove that claim, confirm it, overturn it or replace it, and nothing is lost on the way.
@@ -413,14 +443,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Glossary
 The parameters use some words that have a particular meaning in this work. This page explains each one in plain terms. Where architects have their own name for an idea, it is given in brackets, so you can recognise it in other documents.
@@ -863,14 +899,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 A PWD* designation granted in July.
 It takes effect from March.
@@ -1002,14 +1044,20 @@ Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
 Menu
+Contents
+Close
 [aria-label] Sections
 Overview
+Where we are
 Current State
+The design
 Evidence
 Domains
 Determinations
+The rules
 Parameters
 Choices
+Reference
 Glossary
 Parameters
 The following parameters are the twenty-one proposed rules the design has to follow. Each one is written so a reviewer can point at something and judge whether it complies. Six of the parameters must be built in from the start; they cannot be added once the work has started.
@@ -1116,8 +1164,6 @@ Figures on this site are drawn from the architecture document and from 326 servi
 
 === source strings (sorted)
 (filter = f.id)} >
-(open = !open)} >
-(open = false)}>
 (open = open === c.id ? '' : c.id)} >
 (read straight from the legacy record or audit trail),
 (selected = c.id)}>
@@ -1510,6 +1556,7 @@ The conventional move is a single configurable case model shared across programs
 The counts come from reading the Resource Finder and the other document stores in full, then pattern-matching and mapping the text. Named systems, capability areas and the policy behind each procedure come from the documents and the policy manual.
 The decision can be replayed.
 The decision record is complete on its own
+The design
 The design began with the assumptions that ICM rested on, and much of the approach to MIS with it. We tested eleven. None came through intact. Two of them:
 The design makes entitlement a calculation with no hidden inputs. It reads the rules, the facts and the date it is deciding for. While it runs it does not read the clock, query a database, or call another service. It gets everything it needs up front.
 The determination function, the decision record, the bound artefacts.
@@ -1649,6 +1696,7 @@ Where a copy came from, and what its source bars it from, are written at the mom
 Where it came from
 Where the rules actually live
 Where the twenty-one came from
+Where we are
 Whether a person owes money back turns on whether the ministry knew something and failed to act. A current value with a change log beside it cannot answer that. The log sits outside the decision path.
 Whether someone qualifies, and for how much.
 Whether the rules can move off the mainframe on their own, given that both of them calculate.

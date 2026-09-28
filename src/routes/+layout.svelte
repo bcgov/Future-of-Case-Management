@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
-  import { goto } from '$app/navigation';
+  import { goto, afterNavigate } from '$app/navigation';
   import SignIn from '$lib/components/SignIn.svelte';
   import { enabled as gateOn, session, signIn, signOut, complete } from '$lib/sso';
 
@@ -48,19 +48,54 @@
     }
   }
 
+  // Groups follow the order a newcomer reads in. An item may carry its own
+  // `children` when a page grows sub-pages; the drawer nests them.
   const nav = [
-    { href: '/', label: 'Overview' },
-    { href: '/current-state', label: 'Current State' },
-    { href: '/evidence', label: 'Evidence' },
-    { href: '/domains', label: 'Domains' },
-    { href: '/determinations', label: 'Determinations' },  
-    { href: '/parameters', label: 'Parameters' },
-    { href: '/choices', label: 'Choices' },
-    { href: '/glossary', label: 'Glossary' }
+    { items: [{ href: '/', label: 'Overview' }] },
+    { label: 'Where we are', items: [{ href: '/current-state', label: 'Current State' }] },
+    {
+      label: 'The design',
+      items: [
+        { href: '/evidence', label: 'Evidence' },
+        { href: '/domains', label: 'Domains' },
+        { href: '/determinations', label: 'Determinations' }
+      ]
+    },
+    {
+      label: 'The rules',
+      items: [
+        { href: '/parameters', label: 'Parameters' },
+        { href: '/choices', label: 'Choices' }
+      ]
+    },
+    { label: 'Reference', items: [{ href: '/glossary', label: 'Glossary' }] }
   ];
 
   const path = $derived($page.url.pathname.replace(base, '').replace(/\/$/, '') || '/');
+
+  // A modal <dialog> gives the drawer focus containment, Escape to close and
+  // an inert page behind it without any hand-rolled trapping.
+  let drawer = $state();
   let open = $state(false);
+  function openDrawer() {
+    drawer.showModal();
+  }
+  // Track the `open` attribute rather than the close event, so the button's
+  // state follows every way the dialog can close: Escape, backdrop, a link.
+  $effect(() => {
+    if (!drawer) return;
+    const watch = new MutationObserver(() => (open = drawer.open));
+    watch.observe(drawer, { attributes: true, attributeFilter: ['open'] });
+    return () => watch.disconnect();
+  });
+  function closeDrawer() {
+    drawer?.close();
+  }
+  // A click on the backdrop lands on the dialog element itself.
+  function onBackdrop(e) {
+    if (e.target === drawer) closeDrawer();
+  }
+  afterNavigate(closeDrawer);
 </script>
 
 <svelte:head>
@@ -82,33 +117,56 @@
     {#if !locked}
     <button
       class="toggle"
+      aria-haspopup="dialog"
       aria-expanded={open}
-      aria-controls="nav"
-      onclick={() => (open = !open)}
+      aria-controls="drawer"
+      onclick={openDrawer}
     >
-      {open ? 'Close' : 'Menu'}
+      Menu
     </button>
-    {/if}
-
-    {#if !locked}
-    <nav id="nav" class:open aria-label="Sections">
-      <ul>
-        {#each nav as item}
-          <li>
-            <a
-              href="{base}{item.href === '/' ? '/' : item.href}"
-              aria-current={path === item.href ? 'page' : undefined}
-              onclick={() => (open = false)}>{item.label}</a
-            >
-          </li>
-        {/each}
-      </ul>
-    </nav>
     {:else if who}
       <p class="who">Signed in as {who.name} <button class="out" onclick={signOut}>Sign out</button></p>
     {/if}
   </div>
 </header>
+
+{#snippet links(items)}
+  <ul>
+    {#each items as item}
+      <li>
+        <a
+          href="{base}{item.href === '/' ? '/' : item.href}"
+          aria-current={path === item.href ? 'page' : undefined}
+          onclick={closeDrawer}>{item.label}</a
+        >
+        {#if item.children}{@render links(item.children)}{/if}
+      </li>
+    {/each}
+  </ul>
+{/snippet}
+
+{#if !locked}
+<dialog
+  id="drawer"
+  class="drawer"
+  bind:this={drawer}
+  aria-labelledby="drawer-title"
+  onclick={onBackdrop}
+>
+  <div class="drawer-head">
+    <h2 id="drawer-title">Contents</h2>
+    <button class="toggle" onclick={closeDrawer}>Close</button>
+  </div>
+  <nav aria-label="Sections">
+    {#each nav as group, i}
+      <section class="group" aria-labelledby={group.label ? `nav-group-${i}` : undefined}>
+        {#if group.label}<h3 id="nav-group-{i}">{group.label}</h3>{/if}
+        {@render links(group.items)}
+      </section>
+    {/each}
+  </nav>
+</dialog>
+{/if}
 
 <main id="main">
   {#if locked}
@@ -211,44 +269,110 @@
     text-underline-offset: 0.2em;
   }
 
-  nav ul {
-    display: flex;
-    gap: 1.15rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
-  }
-  nav a {
-    font-family: var(--font-ui);
-    font-size: 0.88rem;
-    color: var(--muted);
-    text-decoration: none;
-    /* WCAG 2.2 target size (2.5.8): at least 24px in each dimension. */
-    min-height: 28px;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.3rem 0;
-    border-bottom: 2px solid transparent;
-  }
-  nav a:hover {
-    color: var(--ink);
-    border-bottom-color: var(--rule-strong);
-  }
-  nav a[aria-current='page'] {
-    color: var(--ink);
-    font-weight: 600;
-    border-bottom-color: var(--ink);
-  }
-
   .toggle {
-    display: none;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--ink);
     background: none;
     border: 1px solid var(--rule-strong);
     border-radius: var(--radius);
-    padding: 0.35rem 0.7rem;
-    font-size: 0.85rem;
+    min-height: 32px;
+    padding: 0.35rem 0.8rem;
     cursor: pointer;
+  }
+  .toggle:hover {
+    border-color: var(--ink);
+  }
+
+  /* The drawer slides in from the right, over the page. */
+  .drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    margin: 0;
+    width: min(22rem, 88vw);
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    padding: 0 1.5rem 2rem;
+    overflow-y: auto;
+    border: 0;
+    border-left: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: -8px 0 24px rgb(0 0 0 / 0.18);
+  }
+  .drawer[open] {
+    animation: slide-in 180ms ease-out;
+  }
+  .drawer::backdrop {
+    background: rgb(0 0 0 / 0.35);
+  }
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  .drawer-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.75rem;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1rem;
+  }
+  .drawer-head h2 {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .group + .group {
+    margin-top: 1.25rem;
+  }
+  .group h3 {
+    margin: 0 0 0.3rem;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .drawer ul ul {
+    margin-left: 0.9rem;
+    border-left: 1px solid var(--rule);
+    padding-left: 0.6rem;
+  }
+  .drawer a {
+    display: flex;
+    align-items: center;
+    /* WCAG 2.2 target size (2.5.8): at least 24px in each dimension. */
+    min-height: 36px;
+    padding: 0.3rem 0.6rem;
+    margin-left: -0.6rem;
+    border-left: 3px solid transparent;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .drawer a:hover {
+    background: var(--paper-raised);
+    border-left-color: var(--rule-strong);
+  }
+  .drawer a[aria-current='page'] {
+    font-weight: 600;
+    border-left-color: var(--ink);
+    background: var(--paper-raised);
   }
 
   .foot {
@@ -266,28 +390,4 @@
     color: var(--muted);
   }
 
-  /* The wordmark plus seven nav items stop fitting on one line just below
-     1150px, so the menu button takes over above that point. */
-  @media (max-width: 72rem) {
-    .toggle {
-      display: inline-block;
-    }
-    nav {
-      display: none;
-      width: 100%;
-      padding-bottom: 0.9rem;
-    }
-    nav.open {
-      display: block;
-    }
-    nav ul {
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-    nav a {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--rule);
-      width: 100%;
-    }
-  }
 </style>
