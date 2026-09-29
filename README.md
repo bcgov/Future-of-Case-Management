@@ -120,7 +120,8 @@ src/
     service/                  what the service looks like today
     parameters/               the twenty-one rules, and the six that come first
     decisions/                the unconventional choices, and why
-    glossary/                 plain explanations of the words the parameters use
+    glossary/                 plain explanations of the words the parameters and requirements use
+    requirements/             the 213 requirements: overview, five categories, and trade-offs
   lib/components/
     BitemporalPlane.svelte    the hero interactive
     EvidenceOperations.svelte record, supersede, correct, invalidate
@@ -129,6 +130,7 @@ src/
     SystemsPerTask.svelte     measured cross-system working
     ParameterSet.svelte       the twenty-one parameters, by axis
   lib/glossary.js             glossary entries; parameters link to them by slug
+  lib/requirements/           generated from the requirements specification; do not edit by hand
     Technical.svelte          plain English / technical disclosure
 ```
 
@@ -170,6 +172,22 @@ s.src = 'https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.2/axe.min.js';
 document.head.appendChild(s);
 s.onload = async () => console.table((await axe.run()).violations);
 ```
+
+## Requirements
+
+The requirements pages are generated from the requirements specification
+(`projects/001-icm-modernization/ARC-001-REQ-v*.md` in the parent repository).
+The specification is the source of truth. After it changes:
+
+```bash
+python3 scripts/build-requirements.py ../projects/001-icm-modernization/ARC-001-REQ-v1.1.md
+npm run copy:update   # the wording changed, so the lock changes with it
+```
+
+Commit the regenerated `src/lib/requirements/` and `copy.lock.txt` together.
+The generator links requirement IDs to their cards, parameter IDs to the
+Parameters page, and glossary terms to the site glossary, pointing terms the
+site already explains at the existing entry.
 
 ## Sources
 

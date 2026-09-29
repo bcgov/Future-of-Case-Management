@@ -68,6 +68,18 @@
         { href: '/choices', label: 'Choices' }
       ]
     },
+    {
+      label: 'Requirements',
+      items: [
+        { href: '/requirements', label: 'Overview' },
+        { href: '/requirements/business', label: 'Business' },
+        { href: '/requirements/functional', label: 'Functional' },
+        { href: '/requirements/quality', label: 'Quality' },
+        { href: '/requirements/integrations', label: 'Integrations' },
+        { href: '/requirements/data', label: 'Data' },
+        { href: '/requirements/trade-offs', label: 'Trade-offs' }
+      ]
+    },
     { label: 'Reference', items: [{ href: '/glossary', label: 'Glossary' }] }
   ];
 

@@ -2,13 +2,21 @@
   import { base } from '$app/paths';
   import { terms } from '$lib/glossary.js';
   import { params } from '$lib/components/ParameterSet.svelte';
+  import reqGlossary from '$lib/requirements/glossary.js';
+
+  // The site's own terms, plus the terms the requirements introduce. Where a
+  // requirement term means the same as a site term, the generator points it at
+  // the site entry, so each idea is explained once.
+  const all = { ...reqGlossary.terms, ...terms };
+  const SHOW = 8;
 
   // Alphabetical by the word a reader sees, not by slug.
-  const entries = Object.entries(terms)
+  const entries = Object.entries(all)
     .map(([slug, t]) => ({
       slug,
       ...t,
-      used: params.filter((p) => p.terms.includes(slug))
+      used: params.filter((p) => p.terms.includes(slug)),
+      reqs: reqGlossary.usage[slug] ?? []
     }))
     .sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base' }));
 
@@ -19,7 +27,7 @@
   <title>Glossary — The Future of Case Management IT</title>
   <meta
     name="description"
-    content="Plain explanations of the words used to describe the twenty-one parameters, with links back to each parameter that uses them."
+    content="Plain explanations of the words used in the parameters and requirements, with links back to each parameter and requirement that uses them."
   />
 </svelte:head>
 
@@ -27,9 +35,9 @@
   <div class="prose">
     <h1>Glossary</h1>
     <p class="lede">
-      The parameters use some words that have a particular meaning in this work. This page explains
-      each one in plain terms. Where architects have their own name for an idea, it is given in
-      brackets, so you can recognise it in other documents.
+      The parameters and requirements use some words that have a particular meaning in this work.
+      This page explains each one in plain terms. Where architects have their own name for an idea,
+      it is given in brackets, so you can recognise it in other documents.
     </p>
 
     <nav class="letters" aria-label="Jump to a letter">
@@ -52,7 +60,7 @@
             {#each e.body as para}
               <p>{para}</p>
             {/each}
-            {#if e.page || e.used.length}
+            {#if e.page || e.used.length || e.reqs.length}
               <p class="links">
                 {#if e.page}
                   <span>See it at work: <a href="{base}{e.page.href}">{e.page.label}</a></span>
@@ -63,6 +71,15 @@
                     {#each e.used as p, j}<a href="{base}/parameters#{p.id}" aria-label="{p.code}: {p.name}"
                         >{p.code}</a
                       >{j < e.used.length - 1 ? ' · ' : ''}{/each}</span
+                  >
+                {/if}
+                {#if e.reqs.length}
+                  <span
+                    >In requirements:
+                    {#each e.reqs.slice(0, SHOW) as r, j}<a
+                        href="{base}/requirements/{r.page}#{r.id.toLowerCase()}">{r.id}</a
+                      >{j < Math.min(e.reqs.length, SHOW) - 1 ? ' · ' : ''}{/each}{#if e.reqs.length > SHOW}
+                      and {e.reqs.length - SHOW} more{/if}</span
                   >
                 {/if}
               </p>
