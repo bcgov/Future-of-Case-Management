@@ -427,6 +427,39 @@ export default {
        "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>, <a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a> [PROPOSED]</p>"
       }
      ]
+    },
+    {
+     "id": "NFR-A-009",
+     "anchor": "nfr-a-009",
+     "title": "An on-premise continuity copy for any software-as-a-service product at the core",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "The ministry must be able to keep its mission-critical services running if the supplier of any core software-as-a-service (SaaS) product cuts off access to it, or the product is lost for a long time for any other reason.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>The ministry must be able to keep its mission-critical services running if the supplier of any core software-as-a-service (SaaS) product cuts off access to it, or the product is lost for a long time for any other reason. Any recovery that depends on reaching the SaaS product at that point, such as a batch data export, fails in this case. The fallback must not need it.</p><ul><li><strong>Core product.</strong> A SaaS product is core if losing it would stop determinations, payment issuance, or caseworkers' access to case records.</li><li><strong>Continuity copy.</strong> For each core SaaS product, the ministry holds on-premise, on infrastructure it controls, a copy of a defined core subset of the product's data. The copy is kept current while the service is available, either continuously or on a stated cycle.</li><li><strong>What the copy is for.</strong> The copy supports the mission-critical services only, not every service. The ministry defines and owns the list of mission-critical services and the data each one needs.</li><li><strong>Payments come first.</strong> The first mission-critical service is monthly payment issuance: determining, issuing and reconciling the monthly payment run. Its fallback is designed, built and rehearsed before any other.</li><li><strong>Plan details for each product.</strong> The continuity plan (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-006\">NFR-A-006</a>) states:</li><li>the maximum age of the continuity copy;</li><li>when a loss of service counts as protracted;</li><li>who decides to switch to the fallback, and who decides to switch back.</li><li><strong>Payments in fallback mode.</strong> Payments made in fallback mode go through the same controls as normal payments (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-042\">FR-042</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-046\">FR-046</a>). They are reconciled if and when service is restored or replaced.</li><li><strong>Products that cannot be core.</strong> A SaaS product cannot be a core element if the core subset of its data cannot be retrieved continuously or on a cycle while the service is running.</li></ul>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>A rehearsal is recorded for each core SaaS product, as for <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-008\">NFR-A-008</a>. In the rehearsal, access to the product is cut off without warning, and the mission-critical services run from the continuity copy alone. The monthly payment run is rehearsed first, at production volume, before that SaaS product goes live.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>If a supplier withdraws access, the source system is offline by construction, so nothing can be exported from it at that point. A client's monthly payment is still due on a set date. Programme direction, 2026-09-29.</p>"
+      },
+      {
+       "label": "Relates To",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/business#br-004\">BR-004</a>, <a class=\"rid\" href=\"%BASE%/requirements/business#br-013\">BR-013</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-043\">FR-043</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-047\">FR-047</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-005\">NFR-A-005</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-006\">NFR-A-006</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-008\">NFR-A-008</a></p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a> [PROPOSED]</p>"
+      }
+     ]
     }
    ]
   },

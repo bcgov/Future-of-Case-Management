@@ -532,7 +532,7 @@ export default {
       },
       {
        "label": "Delivered by",
-       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-001\">NFR-A-001</a> to <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-007\">NFR-A-007</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-047\">FR-047</a></p>"
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-001\">NFR-A-001</a> to <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-007\">NFR-A-007</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-009\">NFR-A-009</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-047\">FR-047</a></p>"
       },
       {
        "label": "Stakeholder",

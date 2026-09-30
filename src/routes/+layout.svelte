@@ -58,7 +58,8 @@
       items: [
         { href: '/evidence', label: 'Evidence' },
         { href: '/domains', label: 'Domains' },
-        { href: '/determinations', label: 'Determinations' }
+        { href: '/determinations', label: 'Determinations' },
+        { href: '/components', label: 'Components' }
       ]
     },
     {

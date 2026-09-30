@@ -19,6 +19,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -105,6 +106,224 @@ DRAFT
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 
+=== page: components/index.html
+title: Components — The Future of Case Management IT
+description: The parts that make up the future case management system: what each is for, how it fits the whole, what any product must do, and who offers products for it.
+Skip to content
+[aria-label] The Future of Case Management IT — overview
+The Future of Case Management IT
+Menu
+Contents
+Close
+[aria-label] Sections
+Overview
+Where we are
+Current State
+The design
+Evidence
+Domains
+Determinations
+Components
+The rules
+Parameters
+Choices
+Requirements
+Overview
+Business
+Functional
+Quality
+Integrations
+Data
+Trade-offs
+Reference
+Glossary
+Components
+The future system is made of a small number of parts. Each has one job, and the parts talk to each other only through published contracts. This page describes each part, how it fits the whole, what any product would have to do to fill it, and who offers products for it.
+This page describes the market. It does not assess, rank or recommend any product or supplier. Products are listed alphabetically, inclusion is not an endorsement, and leaving a product out is not a judgement. Any choice of product is made through the ministry’s procurement process.
+How the parts fit
+Where work happens Case management platform with workflow moving the work and correspondence sending notices and taking in documents
+What the work relies on Rules engine decides eligibility and entitlement Client identity resolution keeps one index of clients
+What carries it all Event backbone and event store carries every fact and decision between the parts, and keeps the record
+Facts enter as evidence and are kept on the event backbone. The rules engine turns them into determinations. Workflow and the case platform act on those determinations, and correspondence tells the client. No part reaches into another part’s data.
+What every part must do
+Whatever fills a part, these requirements apply.
+Protected data is kept in Canada, and the most sensitive data is stored on-premise. NFR-C-004
+If a product is a cloud service at the core of the solution, the ministry keeps an on-premise copy of its core data, kept current while the service runs. Mission-critical services, monthly payments first, can then carry on if the supplier cuts off access. NFR-A-009
+Staff sign in through the provincial single sign-on service. NFR-SEC-001
+The ministry’s records stay in formats it owns and can move, and open standards are preferred. NFR-I-005NFR-I-006
+Every action is audit logged, and records are kept and destroyed on schedule. NFR-C-002NFR-C-003
+Screens and documents meet accessibility standards. NFR-U-002
+[aria-label] Components on this page
+Case management platform
+Rules engine and decision authoring
+Workflow and durable execution
+Event backbone, schema registry and event store
+Client identity resolution
+Correspondence, document capture and e-signature
+1
+Case management platform
+The case record and the everyday work on it
+What it is for
+The software caseworkers use every day. It holds the case record and supports intake, supplements, payments, overpayments, reconsideration and the records behind them.
+How it fits the whole
+One product could supply this and several of the other parts at once. Otherwise the ministry assembles it from the parts below and its own code. Parameter N11 sets the rule: buy, adopt or reuse common tools, and build only where no ready-made product meets a legal, policy or programme need.
+What any product must do
+Takes applications in stages and keeps a complete case record, so work can carry on when a case changes hands. FR-025FR-032
+Issues every payment through one controlled path, with a benefit ledger that reconciles three ways. FR-042FR-045
+Generates access rights from information-sharing agreements, rather than granting them by hand. FR-085NFR-SEC-003
+Records consents with their scope, time limit and withdrawal. FR-075
+Builds the record for reconsideration and appeal from the decision record. FR-058
+Does not make workers’ tasks slower than they are today. NFR-U-001
+Who offers products
+Commercial products
+Appian Platform Appian Low-code platform for building case and process applications. Cloud service or self-hosted
+Cúram Merative Social program management software for benefits, eligibility and case management. Self-hosted or hybrid
+Dynamics 365 Customer Service Microsoft Case management on the Dataverse platform. Cloud service; a separate on-premises edition exists
+Pega Government Platform Pegasystems Case management and workflow for government services. Cloud service or self-hosted
+Public Sector Solutions Salesforce Case, benefits and licensing applications on the Salesforce platform. Cloud service
+Public Sector Digital Services ServiceNow Service requests and case workflows on the ServiceNow platform. Cloud service or customer-operated
+Open-source projects
+ArkCase Community Edition ArkCase Case management platform with document handling. Self-hosted
+OSCaR Children in Families Case management and record keeping for family-care services. Cloud service or self-hosted
+2
+Rules engine and decision authoring
+Works out eligibility and entitlement
+What it is for
+Works out eligibility and entitlement from the facts, using the rules in force on the relevant dates. It also lets policy staff write, test and release those rules.
+How it fits the whole
+It reads facts from the evidence store and returns determinations with their reasons. The case platform and workflow ask it for decisions, and hold no eligibility rules of their own. Architecture decision D3 covers whether to build or buy the authoring and release tooling.
+What any product must do
+Policy staff write rules as versioned artefacts with effective dates. FR-090
+Works out effective dates by rule, for each part of a benefit. FR-005
+Runs several generations of rules side by side. FR-010
+Gives reasons that name the rule applied and the fact behind it. FR-002
+Replays any past decision from stored records. FR-008
+Blocks a release when rules have conflicting dates. FR-091
+Keeps each rule in one authoritative place. NFR-M-005
+Who offers products
+Commercial products
+GoRules BRMS GoRules Rules authoring, testing and release management. Cloud service or self-hosted
+Operational Decision Manager IBM Business rules management and decision services. Self-hosted or cloud
+InRule Decision Platform InRule Technology Decision authoring and execution. Cloud service or self-hosted
+Intelligent Advisor Oracle Policy modelling and determinations, with rules written in Word and Excel. Cloud service; a self-managed edition exists
+Open-source projects
+Drools Apache Software Foundation Rules engine with DMN decision tables, part of Apache KIE. Self-hosted
+ZEN Engine GoRules Embeddable decision engine that runs JSON decision models. Self-hosted
+Catala Inria Programming language for turning legislation into code, developed as a research project. Self-hosted
+OpenFisca Core OpenFisca Rules-as-code engine for tax and benefit legislation. Self-hosted
+3
+Workflow and durable execution
+Moves work between people and systems
+What it is for
+Moves work between people and systems: work items, queues, due dates set by legal time limits, and escalation. It also runs long processes, such as payment runs, that must survive failures and pick up where they stopped.
+How it fits the whole
+It drives the work in the case platform and calls the rules engine, but makes no decisions itself. Its due dates come from the register of legal time limits.
+What any product must do
+Takes its due dates from one register of legal time limits. FR-061
+Manages work items and queues, with due dates. FR-067
+Supports supervision, escalation and overdue work. FR-068
+Balances caseloads, with a supervisor deciding. FR-069
+Schedules reviews, recertifications and follow-up of missed appointments. FR-024
+Retries safely, and every dependency has a timeout and a fallback. NFR-I-004NFR-A-003
+Who offers products
+Commercial products
+Camunda 8 Camunda BPMN process orchestration. Cloud service or self-hosted
+Flowable Enterprise Flowable AG Process, case and decision automation (BPMN, CMMN and DMN). Cloud service
+Orkes Conductor Orkes Workflow orchestration built on Conductor. Cloud service or self-hosted
+Temporal Cloud Temporal Technologies Durable execution for long-running processes. Cloud service
+Open-source projects
+jBPM Apache Software Foundation Business process management, part of Apache KIE. Self-hosted
+Conductor Conductor OSS Workflow orchestration engine, originally from Netflix. Self-hosted
+Flowable (open source) Flowable AG BPMN, CMMN and DMN engines. Self-hosted
+Operaton Operaton community BPMN and DMN engine, a fork of Camunda 7 Community Edition. Self-hosted
+Temporal Temporal Technologies Durable execution service. Self-hosted
+4
+Event backbone, schema registry and event store
+Carries facts and decisions between the parts
+What it is for
+Carries facts and decisions between the parts of the system as events. It checks their shape against published schemas, and keeps an append-only record of every fact with its dates.
+How it fits the whole
+This is the spine the other parts hang from. Only evidence and determinations cross from one part to another, and they cross here. Architecture decision D9 sets the direction for the event broker and its support model.
+What any product must do
+Records the four states of a fact, and corrections, without overwriting. FR-011FR-012
+Fixes three dates on every fact before the first event. DR-001
+Lets only evidence and determinations cross between parts. NFR-I-002
+Checks schema compatibility, and tests contracts. NFR-I-003
+Shows if any record has been tampered with. NFR-SEC-009
+Holds decades of data within stated limits on consumer lag. NFR-S-002NFR-P-005
+Who offers products
+Commercial products
+Axon Server AxonIQ Event store and message routing for event-sourced systems. Self-hosted
+Confluent Platform and Confluent Cloud Confluent Kafka distribution and managed Kafka service. Cloud service or self-hosted
+KurrentDB Kurrent Event store database. Cloud service or self-hosted
+Streams for Apache Kafka Red Hat Supported Kafka on OpenShift and Red Hat Enterprise Linux. Self-hosted
+Redpanda Redpanda Data Kafka-compatible streaming platform. Cloud service or self-hosted
+Open-source projects
+Karapace Aiven Schema registry and Kafka REST proxy. Self-hosted
+Apache Kafka Apache Software Foundation Event streaming platform. Self-hosted
+Apicurio Registry Apicurio Schema and API registry with compatibility rules. Self-hosted
+Strimzi Strimzi Operator for running Kafka on Kubernetes and OpenShift. Self-hosted
+5
+Client identity resolution
+Keeps one index of clients
+What it is for
+Keeps one index of clients by finding records that refer to the same person. Uncertain matches go to a person to decide.
+How it fits the whole
+Every other part refers to clients through this index. Proof of identity comes from the provincial identity services, not from this component.
+What any product must do
+Keeps one client index, with people deciding uncertain matches. FR-028
+Supports establishing and proving identity. FR-027INT-005
+Reads identity data when it is needed, rather than storing copies. DR-019
+Who offers products
+Commercial products
+MDM Customer 360 Informatica Master data management for customer and citizen records. Cloud service
+Reltio Multidomain MDM Reltio Master data management. Cloud service
+Semarchy Data Platform Semarchy Master data management with governance workflows. Cloud service or self-hosted
+Senzing SDK Senzing Entity resolution library. Self-hosted
+Tamr Tamr Master data management using machine learning. Cloud service or self-hosted
+Open-source projects
+dedupe Dedupe.io Python library for deduplication and record linkage. Self-hosted
+Splink UK Ministry of Justice Probabilistic record linkage library. Self-hosted
+Zingg Zingg Labs Entity resolution using machine learning. Self-hosted
+6
+Correspondence, document capture and e-signature
+Notices out, documents in, signatures
+What it is for
+Builds notices from the decision record, delivers them and records proof of service. It also captures documents from every channel and handles signatures and attestations.
+How it fits the whole
+Notices take their content from determinations and the rules that produced them, so a notice always matches its decision. Captured documents become evidence, never decisions.
+What any product must do
+Builds notices from the decision record, with the required rights wording. FR-062FR-063
+Records delivery, proof of service and deemed receipt. FR-064
+Produces notices in other languages, in plain language and in accessible formats. FR-065
+Captures documents from every channel, classifies them and scans them for malware. FR-071FR-072
+Treats values read by machine as unverified evidence. FR-073
+Handles signatures and attestations, and severs information within sentences. FR-074FR-078
+Hands mail to the provincial print-and-mail service. INT-003
+Who offers products
+Commercial products
+ABBYY Vantage ABBYY Document capture, classification and data extraction. Cloud service or self-hosted
+Carbone Carbone Document generation from templates. Cloud service or self-hosted
+Docmosis Docmosis Document generation from templates. Cloud service or self-hosted
+Documenso Cloud Documenso Electronic signature. Cloud service
+Docusign eSignature Docusign Electronic signature. Cloud service
+OneSpan Sign OneSpan Electronic signature. Cloud service
+OpenText Communications (Exstream) OpenText Customer communications management for print, email, SMS and web. Cloud service or self-hosted
+Quadient Inspire Quadient Customer communications management. Cloud service
+SmartCOMM Smart Communications Customer communications management. Cloud service
+Open-source projects
+Documenso Documenso Electronic signature. Self-hosted
+DocuSeal DocuSeal Electronic signature and document forms. Self-hosted
+Paperless-ngx Paperless-ngx Scanning, indexing and archiving of documents. Self-hosted
+Government services
+GC Notify Government of Canada Email and text message notifications for federal services. Government service
+Common Document Generation Service (CDOGS) Province of British Columbia Document generation from templates for BC government teams. Government service
+Common Hosted Email Service (CHES) Province of British Columbia Email delivery for BC government applications. Government service
+The requirements are in the requirements specification. The list of products is the set looked at in the project’s market research, not the whole market.
+DRAFT
+A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
+Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
+
 === page: current-state/index.html
 title: Current State — The Future of Case Management IT
 description: What 326 service-delivery procedures show about how the work is actually done.
@@ -122,6 +341,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -217,6 +437,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -289,6 +510,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -380,6 +602,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -493,6 +716,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -1283,6 +1507,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -1436,6 +1661,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -1569,6 +1795,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -1583,10 +1810,10 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
@@ -1840,7 +2067,7 @@ DRV-07, DRV-10, DRV-11 (aim 13)
 Parameters
 N16 [PROPOSED]
 Delivered by
-NFR-A-001 to NFR-A-007, FR-047
+NFR-A-001 to NFR-A-007, NFR-A-009, FR-047
 Stakeholder
 Ministry Chief Information Officer, with the Head of Service Delivery Operations
 BR-014 Must
@@ -1882,6 +2109,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -1896,10 +2124,10 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
@@ -2571,6 +2799,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -2585,10 +2814,10 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
@@ -4755,7 +4984,7 @@ Figures on this site are drawn from the architecture document and from 326 servi
 
 === page: requirements/index.html
 title: Requirements — The Future of Case Management IT
-description: The 213 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are.
+description: The 214 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are.
 Skip to content
 [aria-label] The Future of Case Management IT — overview
 The Future of Case Management IT
@@ -4770,6 +4999,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -4784,17 +5014,17 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
 Requirements
 These are the requirements for the system that replaces ICM and MIS. Each one says what the system must do, how to check it, and which law, policy or design parameter it comes from.
 [aria-label] The requirements in numbers
-213 requirements across five categories
+214 requirements across five categories
 270/270 policy obligations traced to a requirement
 21/21 design parameters carried by at least one requirement
 8 trade-offs set out, 2 still waiting on a ministry ruling
@@ -4807,7 +5037,7 @@ What they cover
 Each category has its own page. Every requirement opens to show its description, the checks that prove it is met, and the reasons it exists.
 14 Business What the ministry needs the new system to achieve, and how success is measured. 14 must
 99 Functional What the system must do, from a first application to an appeal, grouped by capability. 91 must · 5 should · 3 won't
-56 Quality How well it must do it: availability, recovery, security, privacy, accessibility and more. 53 must · 3 should
+57 Quality How well it must do it: availability, recovery, security, privacy, accessibility and more. 54 must · 3 should
 25 Integrations Every outside system it must exchange information with, and on what terms. 19 must · 6 should
 19 Data How facts are recorded, kept, destroyed and moved from the legacy systems. 17 must · 2 should
 When they are needed
@@ -4830,7 +5060,7 @@ It holds no dollar amounts or day counts. Those change, so they live once in the
 It does not copy today's system. Where the current system calculates something other than what policy states, the requirement follows policy.
 What is still open
 Some requirements depend on decisions nobody has made yet: rulings on conflicts inside policy, the records schedules, and several architecture decisions. The trade-offs page sets out each conflict, how it was resolved or who must resolve it, and the dependencies and risks that go with them.
-Source: requirements specification, version 1.1, a draft. Words with a special meaning link to the glossary.
+Source: requirements specification, version 1.3, a draft. Words with a special meaning link to the glossary.
 DRAFT
 A design proposal for the successor to British Columbia's integrated case management systems, covering employment assistance, disability assistance, child care subsidy, employment services and child protection.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
@@ -4852,6 +5082,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -4866,10 +5097,10 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
@@ -5503,6 +5734,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -5517,10 +5749,10 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
@@ -5533,12 +5765,12 @@ Search requirements
 Priority
 Must
 Should
-Showing 56 of 56
+Showing 57 of 57
 Expand all
 Collapse all
 [aria-label] Categories on this page
 Performance 6
-Availability and Resilience 8
+Availability and Resilience 9
 Scalability 3
 Security 12
 Compliance and Regulatory 8
@@ -5625,7 +5857,7 @@ Rationale
 The object store's documented profile is response times over 100 ms and 1,000 active connections per node. Partition pruning is the first lever, and local disk caching is forbidden for Protected C (TA §A.5, §C.14).
 Parameters
 N12
-Availability and Resilience 8
+Availability and Resilience 9
 NFR-A-001 Must
 Availability targets and combined availability
 Each component on the caseworker's interactive path is available 99.9% of the time. Show detail
@@ -5737,6 +5969,30 @@ Rationale
 A fallback mode first discovered during an incident is an outage (TA §E.8.3).
 Parameters
 N05, N16 [PROPOSED]
+NFR-A-009 Must
+An on-premise continuity copy for any software-as-a-service product at the core
+The ministry must be able to keep its mission-critical services running if the supplier of any core software-as-a-service (SaaS) product cuts off access to it, or the product is lost for a long time for any other reason. Show detail
+Priority: MUST_HAVE ---
+Requirement
+The ministry must be able to keep its mission-critical services running if the supplier of any core software-as-a-service (SaaS) product cuts off access to it, or the product is lost for a long time for any other reason. Any recovery that depends on reaching the SaaS product at that point, such as a batch data export, fails in this case. The fallback must not need it.
+Core product. A SaaS product is core if losing it would stop determinations, payment issuance, or caseworkers' access to case records.
+Continuity copy. For each core SaaS product, the ministry holds on-premise, on infrastructure it controls, a copy of a defined core subset of the product's data. The copy is kept current while the service is available, either continuously or on a stated cycle.
+What the copy is for. The copy supports the mission-critical services only, not every service. The ministry defines and owns the list of mission-critical services and the data each one needs.
+Payments come first. The first mission-critical service is monthly payment issuance: determining, issuing and reconciling the monthly payment run. Its fallback is designed, built and rehearsed before any other.
+Plan details for each product. The continuity plan (NFR-A-006) states:
+the maximum age of the continuity copy;
+when a loss of service counts as protracted;
+who decides to switch to the fallback, and who decides to switch back.
+Payments in fallback mode. Payments made in fallback mode go through the same controls as normal payments (FR-042, FR-046). They are reconciled if and when service is restored or replaced.
+Products that cannot be core. A SaaS product cannot be a core element if the core subset of its data cannot be retrieved continuously or on a cycle while the service is running.
+Measurement Method
+A rehearsal is recorded for each core SaaS product, as for NFR-A-008. In the rehearsal, access to the product is cut off without warning, and the mission-critical services run from the continuity copy alone. The monthly payment run is rehearsed first, at production volume, before that SaaS product goes live.
+Rationale
+If a supplier withdraws access, the source system is offline by construction, so nothing can be exported from it at that point. A client's monthly payment is still due on a set date. Programme direction, 2026-09-29.
+Relates To
+BR-004, BR-013, FR-043, FR-047, NFR-A-005, NFR-A-006, NFR-A-008
+Parameters
+N16 [PROPOSED]
 Scalability 3
 NFR-S-001 Must
 Scale to caseload and payment-run peaks
@@ -6273,6 +6529,7 @@ The design
 Evidence
 Domains
 Determinations
+Components
 The rules
 Parameters
 Choices
@@ -6287,10 +6544,10 @@ Trade-offs
 Reference
 Glossary
 [aria-label] Requirement categories
-Overview 213
+Overview 214
 Business 14
 Functional 99
-Quality 56
+Quality 57
 Integrations 25
 Data 19
 Trade-offs 8
@@ -6855,6 +7112,7 @@ Figures on this site are drawn from the architecture document and from 326 servi
 . That covers the overpayment rule, a tribunal reconstruction view and a disclosure history. Projections that answer only valid-time questions ignore the field.
 . That is a transaction-time question. A system that records only when a fact was true cannot answer it. Nor can one that stamps every moved record with the date it moved. Almost the whole overpayment backlog sits in records from before any cutover.
 . The hard edge across the grid is the July decision reaching back over every earlier month. That is what a backdated decision looks like when the system keeps both axes.
+. The list of products is the set looked at in the project’s market research, not the whole market.
 . The overpayment journey above follows directly from a record that cannot say what the ministry knew, or when.
 . The payment actually made that month was correct when it was issued, and is now an underpayment of
 . The right one changes the month you ask
@@ -6931,6 +7189,7 @@ Can this group go back to the old system today, without a data project? Can you 
 Can you replay a decision made three years ago using only what is stored, with no systems running? Can you put together the appeal record, and remove the protected details, whenever someone asks?
 Cannot be added later
 Capture, attachment lifecycle, extraction, e-signature, and the link between a document and the claim it supports.
+Case management platform
 Catching a breach
 Categories on this page
 Challenging a decision
@@ -6939,7 +7198,11 @@ Child care subsidy
 Child protection
 Choices — The Future of Case Management IT
 Clear filters
+Client identity resolution
 Clients whose earnings are annualised need one step more: a spreadsheet. The worker reads figures off one screen, types them into the sheet, and types the result back.
+Commercial products
+Components on this page
+Components — The Future of Case Management IT
 Confidence values and replay behaviour
 Conflict status
 Content digest, tagged and immutable once released
@@ -6988,6 +7251,7 @@ Eligibility & Entitlement
 Employment and disability assistance
 Employment assistance
 Employment services
+Event backbone and event store
 Every copy can be traced, and every correction reaches it
 Every dated claim about the world, and how it was checked.
 Every entitlement decision stores the rules, the engine, the facts it saw, its own reasoning and what it decided. A manager four days later, or a tribunal years later, can re-run it instead of piecing it together from memory.
@@ -7014,6 +7278,7 @@ Evidence operations
 Evidence — The Future of Case Management IT
 Evidence, not 'facts'
 Facilities, placements, authorisations, agreements, outcome measures.
+Facts enter as evidence and are kept on the event backbone. The rules engine turns them into determinations. Workflow and the case platform act on those determinations, and correspondence tells the client. No part reaches into another part’s data.
 Figures on this site are drawn from the architecture document and from 326 service-delivery procedures. Nothing here is a government commitment.
 Filter by priority
 Filter by the module in which it is first needed
@@ -7048,15 +7313,18 @@ Functional requirements — The Future of Case Management IT
 Gathering the facts means reading across several stores that update on their own schedules. Two decisions issued seconds apart, with one store briefly behind, can each see a different world quite legitimately. Both replay perfectly. Both are reproducible. They disagree, and nothing described so far catches it. So the design pins each snapshot to a point in the sequence of recorded events. A later reader can then tell which view of the world a decision was made against.
 Give it the same rules, the same version of the engine and the same inputs. Do you get exactly the same result, down to the last character? Does it read the clock, its settings or any other service along the way?
 Glossary — The Future of Case Management IT
+Government services
 Grouped by the part of the design each one covers. Select any parameter to see how to check it. A heavy left edge marks the six you cannot add later. Words with a special meaning are explained in the
 Guessing from location fails the first time a fact appears in two places, which is day one. Attach the classification and the retention rule to the kind of evidence instead. Then destroying records becomes a job you can actually do.
 Highlighted rows are the
 How each requirement is written
 How facts are recorded, kept, destroyed and moved from the legacy systems.
+How it fits the whole
 How long replay has to work
 How records are destroyed is decided before anything is stored
 How records are destroyed is decided per class of fact. Events are immutable, so a date can be added with a default but never filled in afterwards.
 How the design was arrived at
+How the parts fit
 How the system records facts, keeps them, destroys them on schedule, and moves them from the legacy systems without losing what the ministry knew and when.
 How these figures were produced
 How this is modelled
@@ -7162,6 +7430,7 @@ One per program family
 One system
 Only one system can change a record at a time
 Open a separate web application to calculate the amount. It does not connect to either system of record.
+Open-source projects
 Other rules limit how long the old and new systems run side by side. Only this one limits how much is lost when moving back. A plan to move back that doesn’t say what it loses hasn’t really been tested.
 Overpayment & Recovery
 Overpayment generation, notification, repayment agreements, deduction rates, write-off, collections referral.
@@ -7219,6 +7488,7 @@ Retention lives on the type, not the storage location
 Retention periods, access levels, privacy calculations
 Risks to the requirements
 Routing runs on a spreadsheet
+Rules engine
 Rules live with the data they control
 Scans, uploads, attachments, signatures.
 Search by word or ID
@@ -7264,7 +7534,7 @@ That distinction is why the model exists. It is a policy rule written into the s
 That label travels with the decision into the letter. A decision that goes against someone sends out its reasons, its appeal period and the route to challenge it, because the label says it must. Not because somebody remembered.
 That path skips portal registration, so the applicant never gets a personal identification number. The electronic signature depends on that number. So the people the accommodation exists for are the people who then cannot sign electronically.
 That rule sounds academic. It is what makes the next part work: if nothing hidden went in, then storing what went in is enough to reproduce what came out.
-The 213 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are.
+The 214 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are.
 The BCEA Policy and Procedure Manual: 126 pages, 270 obligations, 297 rules, 138 time limits.
 The Employment and Assistance Acts and their regulations, privacy, records and human rights law.
 The Future of Case Management IT
@@ -7306,6 +7576,7 @@ The four answers can each be different, and you can’t work one out from anothe
 The four things that can happen to an assertion
 The fourteen outcomes the new system must deliver for the ministry, with how success is measured and what delivers each one.
 The function signature
+The future system is made of a small number of parts. Each has one job, and the parts talk to each other only through published contracts. This page describes each part, how it fits the whole, what any product would have to do to fill it, and who offers products for it.
 The gates in the order delivery reaches them. This says what order the work has to happen in. It does not say which rules matter most.
 The interface outlasts the system behind it
 The interface outlives its implementation
@@ -7323,6 +7594,7 @@ The operations, formally
 The organisations that deliver services.
 The parameters and requirements use some words that have a particular meaning in this work. This page explains each one in plain terms. Where architects have their own name for an idea, it is given in brackets, so you can recognise it in other documents.
 The part that holds the data also enforces the rules about that data. A rule is not split up between the database, a settings table and steps that staff just know to follow.
+The parts that make up the future case management system: what each is for, how it fits the whole, what any product must do, and who offers products for it.
 The period in the world for which the fact holds.
 The person who makes a decision can’t also review it, or speak for the ministry when it is appealed. Someone making a decision can ask for advice, but can’t let that advice replace their own thinking. All payments go through one checkpoint, where working out the amount, approving it and releasing it are done by different people.
 The plumbing gets written five times. That is a real cost, and the design accepts it on purpose.
@@ -7335,6 +7607,7 @@ The rates the public-facing eligibility estimator uses
 The reasoning
 The record
 The record has to hold the world as it was, not a pointer to the world as it is.
+The requirements are in the
 The requirements in numbers
 The rest of the site sets out how the design answers these conditions. Start with
 The rule classifying a recalculation as recoverable or as administrative error reads the evidence operation that produced it.
@@ -7375,6 +7648,7 @@ This is not an auditing nicety. It closes the gap between how the system holds d
 This is what a decision-maker reads out at a hearing.
 This is what makes it possible to re-run a decision and get exactly the same answer, in practice and not just in theory. A rules service that fetches its own information ties every decision to systems that must still be running. That is the first thing a tribunal will look at.
 This is what makes it possible to replace the old system one piece at a time. The interface published today in front of the old system is the same one published later in front of the new services. Mix up the interface with the translation layer and you tie the old system’s words to the new design. That is the very problem the programme exists to fix.
+This page describes the market. It does not assess, rank or recommend any product or supplier. Products are listed alphabetically, inclusion is not an endorsement, and leaving a product out is not a judgement. Any choice of product is made through the ministry’s procurement process.
 This part is the most likely to drift, because every new requirement brings a reason to add one more field to the person record. Once that starts, the shared model is back, in the one place the design most needs to stay thin.
 Those change, so they live once in the rules register with their policy source and effective date. A requirement names the rule; the register holds the value.
 Those last four are the interesting ones, because nobody found them by thinking harder about the architecture. They came from reading what the ministry already tells its own staff to do. Policy sets time limits, and missing one changes what a client is owed. It names which entitlements a client can appeal, and to whom. It keeps the person who decides apart from the person who reviews. And it bars certain uses of information the ministry may lawfully hold. The twelve could not express any of that.
@@ -7411,6 +7685,9 @@ We were wrong about the world
 We were wrong about the world.
 What 326 service-delivery procedures show about how the work is actually done.
 What a parameter is
+What any product must do
+What carries it all
+What every part must do
 What happens next is well documented. A child protection investigation and a child care subsidy renewal have almost nothing in common beyond involving a person. Make them share a lifecycle and every change to one has to be negotiated with everyone else. Multiply that over dozens of programs and nobody can change the model at all. So teams bolt on sub-entities, extend them, and add more ways to integrate. The system turns into a plate of spaghetti. You cannot change anything in one place, and any failure reaches everywhere. This is not hypothetical. ICM merged its final two phases and cut child protection scope for exactly this reason.
 What is still open
 What it costs
@@ -7427,8 +7704,10 @@ What the ministry needs the new system to achieve, and how success is measured.
 What the parts are
 What the system must do, from a first application to an appeal, grouped by capability.
 What the system must do, in sixteen groups that follow a client's matter through the ministry. Each requirement lists the policy obligations it meets and the checks that prove it.
+What the work relies on
 What they cover
 What this site covers
+Whatever fills a part, these requirements apply.
 When every part shares one model, any change to it has to wait for everyone who uses it. One team’s release holds up all the others. ICM ran into exactly this: it had to merge its last two phases and drop child protection from its scope.
 When one part copies a fact from another, it records where the copy came from. If the source later corrects the fact, you can list everyone who holds a copy, and each of them has to deal with the change. That is true even when a decision has already gone out based on the old value.
 When one part of the system sends something to another, it sends a fact with its source, or a decision. It doesn’t send rows copied out of its database, ID numbers only it understands, or the raw results of a search.
@@ -7447,6 +7726,7 @@ Where the requirements come from
 Where the rules actually live
 Where the twenty-one came from
 Where we are
+Where work happens
 Whether a person owes money back turns on whether the ministry knew something and failed to act. A current value with a change log beside it cannot answer that. The log sits outside the decision path.
 Whether someone qualifies, and for how much.
 Whether the rules can move off the mainframe on their own, given that both of them calculate.
@@ -7458,6 +7738,7 @@ While the system works out a decision, it doesn’t check the clock, look anythi
 Who decides:
 Who does what, and by when.
 Who is responsible for a record, its custodian, is something the system stores and reads, not something people just know. The system properly handles records that belong to someone other than the provincial government, such as an Indigenous Nation, instead of forcing them into the wrong shape. Handing a record over to another government is one of the ways a record can leave the system. And data-sharing agreements are written so the system can read them, and they are what grant access.
+Who offers products
 Who someone is, and nothing else about them.
 Why an entitlement decision is treated as a function that can be re-run years later.
 Why do backdates matter?
@@ -7483,17 +7764,21 @@ absorbs P3(a)
 all sit in the record. They do not sit in an attached PDF, or outside the system altogether.
 asserted period
 capability areas
+carries every fact and decision between the parts, and keeps the record
 conflicts set out
+decides eligibility and entitlement
 design parameters carried by at least one requirement
 distinct forms
 eligibility review finding
 first if you do not know ICM and MIS. The design makes most sense against what it replaces.
 from 1 January, open-ended
 household composition: couple
+keeps one index of clients
 kinds of work request
 learned on
 legacy assertion time
 lists the twenty-one rules the design has to hold to, each with the check that catches a breach.
+moving the work and
 must be right first
 new period
 of documented procedures need two or more systems to finish one task.
@@ -7503,8 +7788,10 @@ policy obligations traced to a requirement
 procedures that cross a system boundary. Four procedures require seven.
 requirements across five categories
 requirements overview
+requirements specification
 resolved by the source hierarchy or the architecture
 same period
+sending notices and taking in documents
 setAll(false)}>Collapse all
 setAll(true)}>Expand all
 sets out each conflict, how it was resolved or who must resolve it, and the dependencies and risks that go with them.

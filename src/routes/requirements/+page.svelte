@@ -48,7 +48,7 @@
   <title>Requirements — The Future of Case Management IT</title>
   <meta
     name="description"
-    content="The 213 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are."
+    content="The 214 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are."
   />
 </svelte:head>
 
