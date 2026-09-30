@@ -1,13 +1,14 @@
 <script>
   import EvidenceOperations from '$lib/components/EvidenceOperations.svelte';
   import Technical from '$lib/components/Technical.svelte';
+  import { base } from '$app/paths';
 </script>
 
 <svelte:head>
   <title>Evidence — The Future of Case Management IT</title>
   <meta
     name="description"
-    content="Why the system records dated claims rather than facts, and why it tracks two kinds of time."
+    content="Why the system records dated claims rather than facts, and why it tracks three kinds of time."
   />
 </svelte:head>
 
@@ -42,7 +43,7 @@
       clients.
     </p>
 
-    <p>So the unit of storage is an assertion:</p>
+    <p>So the unit the system records, and the unit its parts exchange, is an assertion:</p>
 
     <figure>
       <div class="assertion">
@@ -224,8 +225,11 @@
       <p>
         On <code>UNKNOWN</code>, any consumer working out a knowledge-state answer must return
         <code>INDETERMINATE</code>. That covers the overpayment rule, a tribunal reconstruction
-        view and a disclosure history. Projections that answer only valid-time questions ignore the
-        field.
+        view and a disclosure history. An overpayment whose classification is
+        <code>INDETERMINATE</code> is treated as administrative error unless a person reclassifies
+        it on recorded evidence. Valid-time questions, such as recalculating an amount, go ahead
+        and are marked <code>TEMPORALLY_UNVERIFIED</code>. For a migrated fact,
+        <code>recorded_at</code> is always the import time.
       </p>
       <p>
         Backdated recalculation runs off valid time, which any competent migration preserves, so
@@ -235,6 +239,68 @@
       </p>
     </Technical>
 
+    <h2>Every kind of evidence is registered, including judgement</h2>
+
+    <p>
+      Each kind of evidence, such as income or household composition, is registered before anyone
+      can use it. The registration sets its shape, what counts as verifying it, how sensitive it
+      is, how long it is kept and how it ends, and whose record it is. None of that is guessed
+      later from where the data happens to sit.
+    </p>
+
+    <p>
+      One registered kind matters more than it looks: a worker’s judgement. Much of the work is a
+      worker using a discretion the law gives them. The system records that as evidence too, as a
+      discretionary determination. It names the law that gives the discretion, the authority the
+      worker acted under, who decided, the evidence they weighed, and their reasons in their own
+      words. A decision that rests on judgement can then be re-run like one that rests on
+      arithmetic. Without it, the judgement ends up in case notes, and the decision rests on
+      something nobody can find.
+    </p>
+
+    <h2>When a fact is corrected, every copy has to act</h2>
+
+    <p>
+      Other parts of the system keep their own copies of evidence (see
+      <a href="{base}/domains">Domains</a>). When the source corrects a fact, every part holding a
+      copy must be told, and must act. This is enforced. A part that holds a copy without
+      listening for corrections fails its own release checks.
+    </p>
+
+    <p>
+      What happens to decisions already made from the old copy is a policy choice. Each program
+      family sets it, and keeps it as a versioned rule. There are three answers. Re-open: make a
+      fresh decision on the corrected facts. Annotate only: the outcome does not change, so the
+      decision record notes the correction and why nothing followed. Flag for review: nobody can
+      tell mechanically whether it matters, often because a worker’s judgement was one of the
+      inputs, so a person decides.
+    </p>
+
+    <Technical summary="Registered types, discretion and correction, formally">
+      <p>
+        Evidence types live in a schema registry with versioned definitions. Each carries its
+        schema, verification policy, security classification, retention and disposition class,
+        custodianship and provenance requirements.
+      </p>
+      <p>
+        <code>DiscretionaryDetermination</code> is a registered type with a mandatory schema:
+        <code>discretion_head</code>, <code>authority_relied_on</code>,
+        <code>decision_maker</code>, <code>rationale</code>, <code>factors_considered</code> and
+        <code>outcome</code>, with <code>supervisory_endorsement</code> where the discretion class
+        requires it. It is carried by value in the input snapshot like any other evidence. Whether
+        reconsideration is available is one such determination, recorded by the Reconsideration
+        and Administrative Fairness Unit.
+      </p>
+      <p>
+        <code>EvidenceCorrectionRecorded</code> is a mandatory subscription for every context that
+        holds a copy, checked at release by a fitness function. Every copy carries five stamps:
+        <code>source_context</code>, <code>source_evidence_id</code>,
+        <code>source_evidence_version</code>, <code>source_transaction_time</code> and
+        <code>copied_at</code>. Each program family publishes its mapping from evidence type to
+        Re-open, Annotate-only or Flag-for-review as a versioned policy artefact, and the mapping in
+        force is recorded on the correction annotation.
+      </p>
+    </Technical>
   </div>
 </div>
 

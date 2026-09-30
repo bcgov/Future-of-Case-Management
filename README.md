@@ -121,11 +121,11 @@ src/
     parameters/               the twenty-one rules, and the six that come first
     decisions/                the unconventional choices, and why
     glossary/                 plain explanations of the words the parameters and requirements use
-    requirements/             the 213 requirements: overview, five categories, and trade-offs
+    requirements/             the 217 requirements: overview, five categories, and trade-offs
   lib/components/
     BitemporalPlane.svelte    the hero interactive
     EvidenceOperations.svelte record, supersede, correct, invalidate
-    ContextMap.svelte         the sixteen domain models
+    ContextMap.svelte         the nineteen domain models
     ReplayArtefacts.svelte    the five artefacts bound to a decision
     SystemsPerTask.svelte     measured cross-system working
     ParameterSet.svelte       the twenty-one parameters, by axis

@@ -14,7 +14,7 @@
       name: 'Evidence & Verification',
       group: 'core',
       plain: 'Every dated claim about the world, and how it was checked.',
-      owns: 'The evidence succession set, verification policy, the four operations, three time axes.',
+      owns: 'The evidence succession set, the registered evidence types (including a worker’s recorded judgement), verification policy, the operations, three time axes.',
       not: 'It does not decide anything. It records what was claimed and what was verified.',
       test: 'Its events are the trigger fabric for everything else.'
     },
@@ -23,7 +23,7 @@
       name: 'Eligibility & Entitlement',
       group: 'core',
       plain: 'Whether someone qualifies, and for how much.',
-      owns: 'The determination function, the decision record, the bound artefacts.',
+      owns: 'The determination function, the decision record, the bound artefacts, the pre-decision letter, and the register of bodies that decide each entitlement.',
       not: 'It holds no state of its own between decisions and reads no live data at decision time.',
       test: 'Pure: no clock, no database, no service calls.'
     },
@@ -74,11 +74,11 @@
     },
     {
       id: 'payments',
-      name: 'Payments & Issuance',
+      name: 'Payments & Benefit Issuance',
       group: 'money',
       plain: 'The one place money leaves the ministry.',
-      owns: 'Issuance runs, payment instructions, method routing, stop payment, reissue, returned items, month-end cutoff.',
-      not: 'It does not calculate entitlement.',
+      owns: 'Disbursements: accepting payment instructions, issuance runs, method routing, stop payment, reissue, returned items, month-end cutoff.',
+      not: 'It does not calculate entitlement, and it does not create payment instructions. Financial Components does.',
       test: 'An entitlement determined twice must not be paid twice, and that guarantee lives here rather than in five case contexts.'
     },
     {
@@ -86,8 +86,8 @@
       name: 'Financial Components',
       group: 'money',
       plain: 'The ledger.',
-      owns: 'Accounts, accruals, schedules, double-entry postings.',
-      not: 'It does not disburse.',
+      owns: 'Accounts, accruals, schedules, double-entry postings, payment instructions, and money paid out now that may have to be repaid.',
+      not: 'It does not disburse, and it decides no entitlement.',
       test: 'Separate from issuance because ledger correctness and disbursement mechanics fail differently and are audited differently.'
     },
     {
@@ -95,7 +95,7 @@
       name: 'Overpayment & Recovery',
       group: 'money',
       plain: 'Money owed back, and what taking it back does to the client.',
-      owns: 'Overpayment generation, notification, repayment agreements, deduction rates, write-off, collections referral.',
+      owns: 'Overpayment generation, notification, repayment agreements, deduction rates, set-off, write-off, collections referral.',
       not: '—',
       test: 'The rule classifying a recalculation as recoverable or as administrative error reads the evidence operation that produced it.'
     },
@@ -104,8 +104,8 @@
       name: 'Appeals & Reconsideration',
       group: 'support',
       plain: 'Challenging a decision.',
-      owns: 'Statutory clocks, reconsideration packages, the tribunal as an external party, interim assistance.',
-      not: '—',
+      owns: 'Statutory clocks, every reconsideration request, reconsideration packages, the tribunal as an external party. It instructs interim assistance, which Financial Components holds.',
+      not: 'Whether reconsideration is available. The independent reconsideration unit decides that, and it is recorded as evidence, which this context reads but never writes.',
       test: 'Modelled once, not per program family. An allowed appeal is a retroactive determination, not a manual adjustment.'
     },
     {
@@ -137,20 +137,48 @@
     },
     {
       id: 'provider',
-      name: 'Provider & Outcome',
+      name: 'Provider & Outcome Management',
       group: 'support',
       plain: 'The organisations that deliver services.',
       owns: 'Facilities, placements, authorisations, agreements, outcome measures.',
       not: '—',
       test: '—'
+    },
+    {
+      id: 'consent',
+      name: 'Consent & Disclosure',
+      group: 'governance',
+      plain: 'What a client agreed to share, and what was shared.',
+      owns: 'Consent with its scope, time limit and withdrawal; the record of every disclosure; a person’s request to correct their information, with its time limit.',
+      not: 'Agreements between organisations, which sit with Secure Data Exchange. The correction itself, which the context that owns the fact makes.',
+      test: 'The one master of client consent. If another context keeps its own consent flag, the boundary has gone.'
+    },
+    {
+      id: 'investigation',
+      name: 'Investigation & Loss Management',
+      group: 'governance',
+      plain: 'Investigations, and what the ministry may have lost.',
+      owns: 'Investigations, with their own lifecycle, forms and roles, and obligations that outlive the case.',
+      not: '—',
+      test: '—'
+    },
+    {
+      id: 'channel',
+      name: 'Channel Entitlement & Service Restriction',
+      group: 'governance',
+      plain: 'How a client may be served, and any limits on it.',
+      owns: 'Channel entitlements and service restrictions, each of which can be withdrawn on its own.',
+      not: '—',
+      test: 'One master in place of the five places such an entitlement is held today. Refusing one can be challenged, so it is a decision, not a setting.'
     }
   ];
 
   const groups = [
-    { id: 'core', label: 'Shared spine' },
+    { id: 'core', label: 'Identity, evidence and decisions' },
     { id: 'case', label: 'One per program family' },
     { id: 'money', label: 'Money' },
-    { id: 'support', label: 'Delivery' }
+    { id: 'support', label: 'Delivery' },
+    { id: 'governance', label: 'Information governance' }
   ];
 
   let selected = $state('evidence');

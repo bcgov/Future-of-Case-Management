@@ -138,7 +138,7 @@ export default {
       },
       {
        "label": "Integration Pattern",
-       "html": "<p>Notices go through Notices and Correspondence. Cheques go through the Issuance Service.</p>"
+       "html": "<p>Notices go through Notices &amp; Correspondence. Cheques go through the Issuance Service.</p>"
       },
       {
        "label": "Authentication",
@@ -986,7 +986,7 @@ export default {
       },
       {
        "label": "Integration Pattern",
-       "html": "<p>Overpayment and Recovery keeps ownership of the debt. A referral is an event, not a data export, and can be <strong>recalled in one operation</strong> (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-053\">FR-053</a>).</p>"
+       "html": "<p>Overpayment &amp; Recovery keeps ownership of the debt. A referral is an event, not a data export, and can be <strong>recalled in one operation</strong> (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-053\">FR-053</a>).</p>"
       },
       {
        "label": "Authentication",
@@ -1002,7 +1002,7 @@ export default {
       },
       {
        "label": "Owner",
-       "html": "<p>The collections service or agent; the ministry's Overpayment and Recovery business owner.</p>"
+       "html": "<p>The collections service or agent; the ministry's Overpayment &amp; Recovery business owner.</p>"
       },
       {
        "label": "Classification",
@@ -1063,7 +1063,7 @@ export default {
       },
       {
        "label": "Rationale",
-       "html": "<p>Provider and Outcome Management already has a system in place (APP §12).</p>"
+       "html": "<p>Provider &amp; Outcome Management already has a system in place (APP §12).</p>"
       }
      ]
     },

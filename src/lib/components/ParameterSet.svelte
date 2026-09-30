@@ -11,12 +11,12 @@
       plain:
         'The system never stores a fact on its own. With every fact it keeps four things: who reported it, the period of time it was true for, the date this system learned it, and the date the old system recorded it. If the old system’s date can’t be read, the record says so.',
       why: 'Without these dates, nothing later can be rebuilt. You can’t re-check a decision if you don’t know what period its facts covered. And you can’t tell whether a value changed because the world changed, or because someone fixed a mistake.',
-      test: 'Pick any fact. Can you say when it was true, when this system learned it, and what the old system said? Can you point to the record it came from?',
+      test: 'Pick any fact. Can you say when it was true, when this system learned it, and when the old system recorded it, or that this can’t be known? Can you point to the record it came from?',
       retro: '',
       partial:
         'The first two dates can be added later. The old system’s date cannot. It has to be in place before the new system records its first real event.',
       source: 'Principle 1, split in two',
-      terms: ['fact', 'valid-time', 'transaction-time', 'old-system', 'correction', 'event']
+      terms: ['fact', 'valid-time', 'transaction-time', 'legacy-assertion-time', 'old-system', 'correction', 'event']
     },
     {
       id: 'n02',
@@ -63,7 +63,7 @@
       axis: 'boundary',
       name: 'Only one system can change a record at a time',
       plain:
-        'Every record has one system in charge of it: its system of record. That holds for each group of clients, and it still holds while clients move from the old system to the new one. The two systems never both make changes and sort out the differences afterwards. And where the data affects what a person receives, no automatic process decides which version wins.',
+        'Every record has one system in charge of it: its system of record. That holds for each group of clients, and it still holds while clients move from the old system to the new one. The two systems never both make changes and sort out the differences afterwards. And where the data affects what a person receives, no automatic process decides which version wins. Some things that look like one record are two, each with its own writer: Financial Components writes the payment instruction, and Payments writes the payment actually sent. If the ministry has to switch to its own copy because a supplier cuts off a cloud service, it hands over which system writes, and adds the records made during the switch back in order afterwards. It never merges them.',
       why: 'If software settles a conflict on its own, a merge rule ends up making a choice that belongs to policy or to a person. And letting both systems make changes is how a short overlap quietly becomes permanent.',
       test: 'For every record being moved, name the one system of record and the group of clients it covers. If the answer is “it depends on the field”, someone has divided the work by field instead of by group of clients.',
       retro: '',
@@ -76,7 +76,7 @@
       axis: 'propagation',
       name: 'Every copy can be traced, and every correction reaches it',
       plain:
-        'When one part copies a fact from another, it records where the copy came from. If the source later corrects the fact, you can list everyone who holds a copy, and each of them has to deal with the change. That is true even when a decision has already gone out based on the old value.',
+        'When one part copies a fact from another, it records where the copy came from. If the source later corrects the fact, you can list everyone who holds a copy, and each of them has to deal with the change. That is true even when a decision has already gone out based on the old value. What each program does about such a decision is set by policy for that program: decide again, note the correction on the record, or send it to a person to judge.',
       why: 'Making a copy creates this duty, and only this rule makes sure it is met. A design where parts share nothing at all would pass every other rule about how parts connect. It would also leave people being paid on a value we know is wrong.',
       test: 'Correct a fact at its source. Can you list every part that holds a copy? Does each one have to act on the correction? And does something raise an alarm if a correction goes unread?',
       retro: 'Where a copy came from has to be written down at the moment it is made',
@@ -115,7 +115,7 @@
       axis: 'determination',
       name: 'The decision record is complete on its own',
       plain:
-        'Each decision stores which version of the rules was used and which version of the facts. It stores full copies of them, not links to them. It also records what the client asked for, which requirements they met and which they didn’t, what the ministry assumed, what evidence was missing, and the date the client was told.',
+        'Each decision stores which version of the rules was used and which version of the facts. It stores full copies of them, not links to them. It also records what the client asked for, which requirements they met and which they didn’t, what the ministry assumed, what evidence was missing, and the date the client was told. When a tribunal rescinds a decision, the original record stays exactly as it was, marked with the rescission, and the ministry makes a new decision alongside it.',
       why: 'A link to a system that is still running is not proof. You have to be able to replay a decision long after the systems that made it are gone, the rules engine included. The client also has a right to the record itself, gathered together, with protected details removed as FOIPPA requires. Being able to replay a decision doesn’t give them that.',
       test: 'Can you replay a decision made three years ago using only what is stored, with no systems running? Can you put together the appeal record, and remove the protected details, whenever someone asks?',
       retro: '',
@@ -132,7 +132,7 @@
       why: 'The architecture points out this gap itself. Two decisions made moments apart can each see a different set of facts if one store is briefly behind. Both can be replayed. Both give the same answer every time. But they disagree with each other, and no other rule would notice.',
       test: 'Does the design name the point each decision read up to (the watermark), write it into the decision record, and set a limit on how far behind a store can be? If a store is past that limit, does the decision stop instead of going ahead?',
       retro: 'In practice: the watermark has to be in the very first decision record',
-      source: 'New: the architecture named the gap but had no rule for it',
+      source: 'New: makes a rule of the fix the architecture describes, now accepted into it',
       terms: ['store', 'watermark', 'event', 'decision-record', 'replay']
     },
     {
@@ -167,7 +167,7 @@
       axis: 'obligation',
       name: 'How records are destroyed is decided before anything is stored',
       plain:
-        'Before the system stores anything, decide how each kind of fact will be destroyed when its time comes. There are three ways: delete a whole kind of record on a set schedule, keep personal details in a separate place that can be deleted, or lock one person’s records with a key and then destroy the key. Publish what is left after a record is destroyed. Plan who holds the keys. And say what a replay does when it reaches a record it can no longer read.',
+        'Before the system stores anything, decide how each kind of fact will be destroyed when its time comes. The default is to delete a whole kind of record on a set schedule. For some kinds of fact another method is chosen instead: keep personal details in a separate place that can be deleted, or, for a few kinds named one by one, lock one person’s records with a key and then destroy the key. Publish what is left after a record is destroyed. Plan who holds the keys. And say what a replay does when it reaches a record it can no longer read.',
       why: 'The system keeps a permanent history that is never changed. The law sometimes requires records to be destroyed. Those two pull against each other. Settle it after the first record is stored and you are rebuilding, not repairing. Timing is the whole point: a correct plan that arrives late has still failed.',
       test: 'Before the first real event, has someone chosen how each kind of fact will be destroyed, and published what survives?',
       retro: 'A store built without a plan for destroying records can’t get one later',
@@ -196,7 +196,7 @@
       plain:
         'Any group of clients moved to the new system can be moved back to the old one without a separate data project. An approved statement says what information would be lost on the way back. Being able to undo a move means both having a way to do it and knowing how much survives.',
       why: 'Other rules limit how long the old and new systems run side by side. Only this one limits how much is lost when moving back. A plan to move back that doesn’t say what it loses hasn’t really been tested.',
-      test: 'Can this group go back to the old system today, without a data project? Can you name every kind of fact that wouldn’t survive the trip? The old system has no way to tell a correction from a later update. If that isn’t on the list, the list isn’t complete.',
+      test: 'Can this group go back to the old system today, without a data project? Can you name every kind of fact that wouldn’t survive the trip? The old system has no way to tell a correction from a supersession. If that isn’t on the list, the list isn’t complete.',
       retro: 'If nobody proves a move can be undone, you find out it can’t only when you need to',
       source: 'Principle 12, unchanged',
       terms: ['client-group', 'rollback', 'correction', 'old-system']
@@ -220,7 +220,7 @@
       axis: 'continuity',
       name: 'Each service has recovery targets, proven in practice runs',
       plain:
-        'Every service has a target for how much of the time it must be working, and limits on how long it can be down and how much recent data it can lose. These targets depend on how much harm an outage does to a client. A practice run has to show the targets can be met. Anything shared by several services must meet the strictest target of any of them.',
+        'Every service has a target for how much of the time it must be working, and limits on how long it can be down and how much recent data it can lose. These targets depend on how much harm an outage does to a client. A practice run has to show the targets can be met. Anything shared by several services must meet the strictest target of any of them. The requirement for an on-premise copy of any core cloud service, monthly payments first, is one place this is already tested.',
       why: 'No other rule makes sure recovery is planned. Every recovery figure in the architecture covers the reporting and analytics platform. None covers the published interface, the translation layer, the decision service or the case records. And getting the system running again doesn’t fix a payment run that was missed.',
       test: 'Name the availability level and the recovery targets for each service. Then show the practice-run results that back them up. A number nobody has measured is not a target.',
       retro: '',
@@ -233,7 +233,7 @@
       axis: 'continuity',
       name: 'Different people decide, review and pay',
       plain:
-        'The person who makes a decision can’t also review it, or speak for the ministry when it is appealed. Someone making a decision can ask for advice, but can’t let that advice replace their own thinking. All payments go through one checkpoint, where working out the amount, approving it and releasing it are done by different people.',
+        'The person who makes a decision can’t also review it, or speak for the ministry when it is appealed. Someone making a decision can ask for advice, but can’t let that advice replace their own thinking. Whether a reconsideration is available at all is decided by the independent reconsideration unit, not by the part of the system that receives the request. All payments go through one checkpoint, where working out the amount, approving it and releasing it are done by different people.',
       why: 'No other rule says who is allowed to use which power. The decision record shows what was decided and by whom. But it does nothing to stop one person deciding, reviewing and releasing the money. Policy sets out all three of these separations directly.',
       test: 'For every entitlement, name who decides and who reviews, and say which powers the ministry keeps for itself. Can every decision be traced to the person who actually reasoned it through, rather than someone who only gave advice?',
       retro: '',
@@ -246,7 +246,7 @@
       axis: 'clocks',
       name: 'The system tracks legal time limits',
       plain:
-        'The system holds every legal time limit in one place: what starts the clock, how long it runs, what extensions are allowed, and who must approve each one. Missing a deadline is recorded as an event. Where policy says missing it has a consequence, the system applies it without anyone having to ask.',
+        'The system holds every legal time limit in one place: the appeals and reconsideration model releases them, and every other part uses them rather than building its own. Each limit records what starts the clock, how long it runs, what extensions are allowed, and who must approve each one. Missing a deadline is recorded as an event. Where policy says missing it has a consequence, the system applies it without anyone having to ask.',
       why: 'If the ministry decides after the legal deadline, the client’s eligibility counts from the date the decision was due, not the date it was made. So a missed deadline changes what the client is owed. A time limit the system doesn’t track leads to wrong payments, not just slow service.',
       test: 'Does the system hold each limit once, with who owns it, what kind it is, what starts it, how long it runs, and its extensions and approvals? Does a missed deadline show up without a person having to spot it? Does its consequence apply automatically?',
       retro: '',
@@ -259,7 +259,7 @@
       axis: 'adjudicability',
       name: 'Each benefit records whether and how a decision can be challenged',
       plain:
-        'For each entitlement, the system records four things: the law it is based on, whether a decision can be reconsidered, whether it can be appealed, and who hears the appeal. It records these for each entitlement and each variant of it. It never assumes they are the same as for the wider programme the entitlement belongs to.',
+        'For each entitlement, the system records four things: the law it is based on, whether a decision can be reconsidered, whether it can be appealed, and who hears the appeal. It records these for each entitlement and each variant of it. It never assumes they are the same as for the wider programme the entitlement belongs to. The list has one keeper, the decisions model, which publishes it for every other part to read.',
       why: 'The four answers can each be different, and you can’t work one out from another. Getting them wrong hurts the client either way: you offer a way to challenge a decision that doesn’t exist, or you hide one that does.',
       test: 'For every entitlement and every variant, can the system state the law it is based on, whether it can be reconsidered, whether it can be appealed, and who hears the appeal? Can it do that without borrowing any of it from the wider programme?',
       retro: '',

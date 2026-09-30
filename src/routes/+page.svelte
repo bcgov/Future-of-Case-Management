@@ -83,7 +83,8 @@
         <h3>A decision you can re-run</h3>
         <p>
           Every entitlement decision stores the rules, the engine, the facts it saw, its own
-          reasoning and what it decided. A manager four days later, or a tribunal years later, can
+          reasoning, the template of the letter the client was sent, how up to date its facts were, and what
+          kind of decision it was. A manager four days later, or a tribunal years later, can
           re-run it instead of piecing it together from memory.
         </p>
         <p><a href="{base}/determinations">Determinations</a></p>
@@ -148,8 +149,9 @@
     </p>
 
     <p>
-      Read <a href="{base}/current-state">Current State</a> first if you do not know ICM and MIS.
-      The design makes most sense against what it replaces.
+      The design comes from the law, from policy and from the nature of the work, not from the
+      old system. <a href="{base}/current-state">Current State</a> gives the context: how the work
+      is done today, and what the design must not repeat.
       <a href="{base}/parameters">Parameters</a> lists the twenty-one rules the design has to hold
       to, each with the check that catches a breach.
     </p>

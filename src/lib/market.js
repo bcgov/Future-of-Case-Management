@@ -13,8 +13,19 @@ export const common = [
     req: [['quality', 'NFR-C-004']]
   },
   {
-    text: 'If a product is a cloud service at the core of the solution, the ministry keeps an on-premise copy of its core data, kept current while the service runs. Mission-critical services, monthly payments first, can then carry on if the supplier cuts off access.',
+    text: 'A product sits inside one context, behind that context’s published contract, and exchanges only evidence and decisions with other contexts.',
+    req: [['quality', 'NFR-I-002']]
+  },
+  {
+    text: 'If a product is a cloud service at the core of the solution, the ministry keeps an on-premise copy of its records: the context’s events, its decision records and its rules, kept current while the service runs. Mission-critical services, monthly payments first, can then carry on if the supplier cuts off access.',
     req: [['quality', 'NFR-A-009']]
+  },
+  {
+    text: 'Access rights are generated from information-sharing agreements, never granted by hand.',
+    req: [
+      ['functional', 'FR-085'],
+      ['quality', 'NFR-SEC-003']
+    ]
   },
   {
     text: 'Staff sign in through the provincial single sign-on service.',
@@ -42,19 +53,17 @@ export const common = [
 
 export const parts = [
   {
-    id: 'case-platform',
-    name: 'Case management platform',
-    short: 'The case record and the everyday work on it',
+    id: 'case',
+    name: 'Case work, one context per program family',
+    short: 'Five case contexts, each with its own case model',
     purpose:
-      'The software caseworkers use every day. It holds the case record and supports intake, supplements, payments, overpayments, reconsideration and the records behind them.',
+      'The software caseworkers use every day. There are five case contexts, one for each program family: employment assistance, persons with disabilities, child care subsidy, employment services and child protection. Each keeps its own case record and its own lifecycle, from taking an application to scheduling reviews.',
     whole:
-      'One product could supply this and several of the other parts at once. Otherwise the ministry assembles it from the parts below and its own code. Parameter N11 sets the rule: buy, adopt or reuse common tools, and build only where no ready-made product meets a legal, policy or programme need.',
+      'The five share ways of working, not a case model. Each records evidence through Evidence & Verification, asks Eligibility & Entitlement for decisions, raises work in Work Management and instructs payments through Financial Components. None of them holds payments, overpayments or reconsideration. Those are contexts of their own, described below. A case management product fills one case context. The same product can be used for more than one, but each use keeps its own data. Parameter N11 sets the rule for the rest: buy, adopt or reuse common tools, and build only where no ready-made product meets a legal, policy or programme need.',
     needs: [
       { text: 'Takes applications in stages and keeps a complete case record, so work can carry on when a case changes hands.', req: [['functional', 'FR-025'], ['functional', 'FR-032']] },
-      { text: 'Issues every payment through one controlled path, with a benefit ledger that reconciles three ways.', req: [['functional', 'FR-042'], ['functional', 'FR-045']] },
-      { text: 'Generates access rights from information-sharing agreements, rather than granting them by hand.', req: [['functional', 'FR-085'], ['quality', 'NFR-SEC-003']] },
-      { text: 'Records consents with their scope, time limit and withdrawal.', req: [['functional', 'FR-075']] },
-      { text: 'Builds the record for reconsideration and appeal from the decision record.', req: [['functional', 'FR-058']] },
+      { text: 'Schedules reviews, recertifications and follow-up of missed appointments.', req: [['functional', 'FR-024']] },
+      { text: 'Five case contexts share protocols, not a case model.', req: [['quality', 'NFR-I-008']] },
       { text: 'Does not make workers’ tasks slower than they are today.', req: [['quality', 'NFR-U-001']] }
     ],
     offers: [
@@ -69,15 +78,94 @@ export const parts = [
     ]
   },
   {
+    id: 'payments',
+    name: 'Payments & Benefit Issuance',
+    short: 'The one controlled path money leaves by',
+    purpose:
+      'Issues every payment through one controlled path: issuance runs, direct deposit, cheque and electronic transfer, stop payment, reissue, returned items and the month-end cutoff. It reconciles with the corporate financial system.',
+    whole:
+      'It takes payment instructions from Financial Components and turns them into disbursements. It decides no entitlement. An entitlement decided twice must not be paid twice, and that guarantee lives here, once, rather than in five case contexts.',
+    needs: [
+      { text: 'Issues every payment through one issuance service.', req: [['functional', 'FR-042']] },
+      { text: 'Runs issuance, with stop, recall, reissue and returns as separate operations.', req: [['functional', 'FR-043'], ['functional', 'FR-044']] },
+      { text: 'Works with the corporate accounting system and the banks.', req: [['integrations', 'INT-001'], ['integrations', 'INT-002']] }
+    ],
+    offers: []
+  },
+  {
+    id: 'financial',
+    name: 'Financial Components',
+    short: 'The benefit ledger',
+    purpose:
+      'Keeps the benefit ledger: accounts, accruals, payment schedules and double-entry postings. It creates, cancels and replaces payment instructions. It also holds money paid out now that may have to be repaid, such as interim assistance while a decision is being challenged.',
+    whole:
+      'It turns financial decisions into the postings that Payments & Benefit Issuance carries out. It is kept apart from issuance because a ledger and a payment run fail in different ways and are audited in different ways. It decides no entitlement.',
+    needs: [
+      { text: 'Keeps a benefit ledger that reconciles three ways.', req: [['functional', 'FR-045']] },
+      { text: 'Holds money paid out now that may have to be repaid, until the awaited decision settles it.', req: [['functional', 'FR-041']] },
+      { text: 'Applies deductions and set-off, and protects the minimum a client must keep.', req: [['functional', 'FR-048']] },
+      { text: 'Separates working out, approving and releasing a payment, in code.', req: [['functional', 'FR-046']] }
+    ],
+    offers: []
+  },
+  {
+    id: 'overpayment',
+    name: 'Overpayment & Recovery',
+    short: 'Money owed back',
+    purpose:
+      'Raises overpayments, tells the client, and manages repayment agreements, deductions, set-off, write-off and referral to collections.',
+    whole:
+      'An overpayment always comes from recalculating a past period, and it always carries a classification. The rule that classifies it reads the evidence operation behind the recalculation. A supersession reported late gives a recoverable overpayment. A correction is classified by whose error it was. That rule is a versioned policy artefact, not code inside a case context.',
+    needs: [
+      { text: 'Calculates and classifies overpayments from the evidence that changed.', req: [['functional', 'FR-051']] },
+      { text: 'A person decides every debt.', req: [['functional', 'FR-052']] },
+      { text: 'Handles repayment, write-off, collections and disputes.', req: [['functional', 'FR-053'], ['integrations', 'INT-019']] }
+    ],
+    offers: []
+  },
+  {
+    id: 'appeals',
+    name: 'Appeals & Reconsideration',
+    short: 'Challenging a decision',
+    purpose:
+      'Records every reconsideration request, runs the legal time limits, builds the record for reconsideration and appeal, and deals with the tribunal as an outside party.',
+    whole:
+      'It is built once, not once per program. Whether reconsideration is available is decided by the independent reconsideration unit and recorded as evidence, which this context reads but never writes. A decision put right on appeal becomes a new decision, never a manual adjustment. Interim assistance is instructed from here and held in Financial Components.',
+    needs: [
+      { text: 'Accepts and records every reconsideration request.', req: [['functional', 'FR-055']] },
+      { text: 'Reads, and never makes, the decision on whether reconsideration is available.', req: [['functional', 'FR-056']] },
+      { text: 'Builds the record for reconsideration and appeal from the decision record.', req: [['functional', 'FR-058']] },
+      { text: 'Treats the tribunal as an outside party, and puts decisions right without manual steps.', req: [['functional', 'FR-059'], ['functional', 'FR-060']] }
+    ],
+    offers: []
+  },
+  {
+    id: 'consent',
+    name: 'Consent & Disclosure',
+    short: 'Consent, disclosure and requests for correction',
+    purpose:
+      'The one place client consent is kept: what was consented to, for how long, and when it was withdrawn. It records every disclosure, and a person’s request to correct their information, with its time limit.',
+    whole:
+      'Other contexts check consent here rather than keeping their own. The correction itself is made by the context that owns the fact. Agreements between organisations are a different thing: they sit in the agreement registry in Secure Data Exchange.',
+    needs: [
+      { text: 'Records consents with their scope, time limit and withdrawal.', req: [['functional', 'FR-075']] },
+      { text: 'Discloses only with a recorded legal basis.', req: [['functional', 'FR-077']] },
+      { text: 'Handles requests for correction, and the annotations that follow.', req: [['functional', 'FR-079']] }
+    ],
+    offers: []
+  },
+  {
     id: 'rules',
     name: 'Rules engine and decision authoring',
     short: 'Works out eligibility and entitlement',
     purpose:
       'Works out eligibility and entitlement from the facts, using the rules in force on the relevant dates. It also lets policy staff write, test and release those rules.',
     whole:
-      'It reads facts from the evidence store and returns determinations with their reasons. The case platform and workflow ask it for decisions, and hold no eligibility rules of their own. Architecture decision D3 covers whether to build or buy the authoring and release tooling.',
+      'It sits inside Eligibility & Entitlement. The decision service around it gathers the facts first and passes the engine a snapshot of them. The engine reads nothing else while it runs, and returns determinations with their reasons. The case contexts and workflow ask for decisions, and hold no eligibility rules of their own. Architecture decision D3 covers whether to build or buy the authoring and release tooling.',
     needs: [
       { text: 'Policy staff write rules as versioned artefacts with effective dates.', req: [['functional', 'FR-090']] },
+      { text: 'Runs inside the decision service, against a snapshot of the facts passed to it, and reads nothing else while it runs.', req: [['functional', 'FR-001']] },
+      { text: 'Each rule carries the policy it comes from and the date that policy took effect.', req: [['functional', 'FR-090']] },
       { text: 'Works out effective dates by rule, for each part of a benefit.', req: [['functional', 'FR-005']] },
       { text: 'Runs several generations of rules side by side.', req: [['functional', 'FR-010']] },
       { text: 'Gives reasons that name the rule applied and the fact behind it.', req: [['functional', 'FR-002']] },
@@ -103,7 +191,7 @@ export const parts = [
     purpose:
       'Moves work between people and systems: work items, queues, due dates set by legal time limits, and escalation. It also runs long processes, such as payment runs, that must survive failures and pick up where they stopped.',
     whole:
-      'It drives the work in the case platform and calls the rules engine, but makes no decisions itself. Its due dates come from the register of legal time limits.',
+      'It serves Work Management, one context that all five case contexts use. It moves the work and asks for decisions, but makes no decisions itself. Its due dates come from the register of legal time limits.',
     needs: [
       { text: 'Takes its due dates from one register of legal time limits.', req: [['functional', 'FR-061']] },
       { text: 'Manages work items and queues, with due dates.', req: [['functional', 'FR-067']] },
@@ -126,16 +214,17 @@ export const parts = [
   },
   {
     id: 'events',
-    name: 'Event backbone, schema registry and event store',
-    short: 'Carries facts and decisions between the parts',
+    name: 'Event store, event backbone and schema registry',
+    short: 'Holds the evidence, and carries events between contexts',
     purpose:
-      'Carries facts and decisions between the parts of the system as events. It checks their shape against published schemas, and keeps an append-only record of every fact with its dates.',
+      'Evidence & Verification keeps every fact as an append-only stream of events, with its three dates. The backbone carries events between contexts, and the schema registry checks each one against its registered schema.',
     whole:
-      'This is the spine the other parts hang from. Only evidence and determinations cross from one part to another, and they cross here. Architecture decision D9 sets the direction for the event broker and its support model.',
+      'The backbone carries events. It is not where facts are kept. Facts are held by Evidence & Verification in its own event store, and other contexts read them through its published interface or keep copies built from its events. Four habits make this an architecture rather than a message bus. Every kind of event has a registered schema and one owning context. Each service saves its change and its event together, in one step. Work that crosses contexts is undone step by step if it fails, rather than locked across systems. And tampering shows, so the streams can serve as the audit trail. Architecture decision D9 sets the direction for the event broker and its support model.',
     needs: [
+      { text: 'Keeps each fact as a stream of versions, and works out its current state from them.', req: [['data', 'DR-020']] },
       { text: 'Records the four states of a fact, and corrections, without overwriting.', req: [['functional', 'FR-011'], ['functional', 'FR-012']] },
       { text: 'Fixes three dates on every fact before the first event.', req: [['data', 'DR-001']] },
-      { text: 'Lets only evidence and determinations cross between parts.', req: [['quality', 'NFR-I-002']] },
+      { text: 'Lets only evidence and determinations cross between contexts.', req: [['quality', 'NFR-I-002']] },
       { text: 'Checks schema compatibility, and tests contracts.', req: [['quality', 'NFR-I-003']] },
       { text: 'Shows if any record has been tampered with.', req: [['quality', 'NFR-SEC-009']] },
       { text: 'Holds decades of data within stated limits on consumer lag.', req: [['quality', 'NFR-S-002'], ['quality', 'NFR-P-005']] }
@@ -155,13 +244,13 @@ export const parts = [
   {
     id: 'identity',
     name: 'Client identity resolution',
-    short: 'Keeps one index of clients',
+    short: 'Finds the records that belong to the same person',
     purpose:
-      'Keeps one index of clients by finding records that refer to the same person. Uncertain matches go to a person to decide.',
+      'Finds records that refer to the same person, so Participant Identity can join them. Uncertain matches go to a person to decide. Joining two records, or separating two that were wrongly joined, is recorded as an event that every other context follows.',
     whole:
-      'Every other part refers to clients through this index. Proof of identity comes from the provincial identity services, not from this component.',
+      'It sits inside Participant Identity, which the ministry builds and keeps small: identifiers, enough detail to match on, and proof-of-identity status. Addresses, income and relationships are evidence, held elsewhere. Every other context refers to a client by the participant identifier. Proof of identity comes from the provincial identity services, not from this component. A matching library does the matching; it does not keep a master copy of each person.',
     needs: [
-      { text: 'Keeps one client index, with people deciding uncertain matches.', req: [['functional', 'FR-028']] },
+      { text: 'Joins and separates client records, with people deciding uncertain matches, and records each join or separation as an event.', req: [['functional', 'FR-028']] },
       { text: 'Supports establishing and proving identity.', req: [['functional', 'FR-027'], ['integrations', 'INT-005']] },
       { text: 'Reads identity data when it is needed, rather than storing copies.', req: [['data', 'DR-019']] }
     ],
@@ -183,7 +272,7 @@ export const parts = [
     purpose:
       'Builds notices from the decision record, delivers them and records proof of service. It also captures documents from every channel and handles signatures and attestations.',
     whole:
-      'Notices take their content from determinations and the rules that produced them, so a notice always matches its decision. Captured documents become evidence, never decisions.',
+      'It serves two contexts, Documents & Capture and Notices & Correspondence. Notices take their content from determinations and the rules that produced them, so a notice always matches its decision. A captured document supports evidence. It is never a decision.',
     needs: [
       { text: 'Builds notices from the decision record, with the required rights wording.', req: [['functional', 'FR-062'], ['functional', 'FR-063']] },
       { text: 'Records delivery, proof of service and deemed receipt.', req: [['functional', 'FR-064']] },

@@ -26,9 +26,11 @@
   <div class="prose">
     <h1>Components</h1>
     <p class="lede">
-      The future system is made of a small number of parts. Each has one job, and the parts talk
-      to each other only through published contracts. This page describes each part, how it fits
-      the whole, what any product would have to do to fill it, and who offers products for it.
+      The future system is divided into nineteen domain contexts, each owning one area of the
+      work, and a set of platform services they all use. Contexts talk to each other only through
+      published contracts. A product fills a part of one context. It never joins several contexts
+      together behind the scenes. This page describes the parts a product could fill, which context
+      each serves, what any product would have to do to fill it, and who offers products for it.
     </p>
     <p class="notice">
       This page describes the market. It does not assess, rank or recommend any product or
@@ -43,10 +45,29 @@
     <ol class="stack">
       <li class="layer">
         <span class="role">Where work happens</span>
-        <a href="#case-platform">Case management platform</a>
+        <a href="#case">Five case contexts, one per program family</a>
         <span class="with">
           with <a href="#workflow">workflow</a> moving the work and
           <a href="#documents">correspondence</a> sending notices and taking in documents
+        </span>
+      </li>
+      <li class="layer split">
+        <span class="role">Money and challenges</span>
+        <span class="pair">
+          <a href="#payments">Payments &amp; Benefit Issuance</a>
+          <span class="with">the one controlled path money leaves by</span>
+        </span>
+        <span class="pair">
+          <a href="#financial">Financial Components</a>
+          <span class="with">the benefit ledger</span>
+        </span>
+        <span class="pair">
+          <a href="#overpayment">Overpayment &amp; Recovery</a>
+          <span class="with">money owed back</span>
+        </span>
+        <span class="pair">
+          <a href="#appeals">Appeals &amp; Reconsideration</a>
+          <span class="with">challenging a decision</span>
         </span>
       </li>
       <li class="layer split">
@@ -59,17 +80,31 @@
           <a href="#identity">Client identity resolution</a>
           <span class="with">keeps one index of clients</span>
         </span>
+        <span class="pair">
+          <a href="#consent">Consent &amp; Disclosure</a>
+          <span class="with">keeps client consent in one place</span>
+        </span>
+        <span class="pair">
+          <a href="#events">Evidence store</a>
+          <span class="with">holds every fact, in Evidence &amp; Verification</span>
+        </span>
       </li>
       <li class="layer spine">
         <span class="role">What carries it all</span>
-        <a href="#events">Event backbone and event store</a>
-        <span class="with">carries every fact and decision between the parts, and keeps the record</span>
+        <a href="#events">Event backbone</a>
+        <span class="with">carries events between contexts, checked against registered schemas</span>
       </li>
     </ol>
     <p class="note">
-      Facts enter as evidence and are kept on the event backbone. The rules engine turns them
-      into determinations. Workflow and the case platform act on those determinations, and
-      correspondence tells the client. No part reaches into another part’s data.
+      Facts enter as evidence and are held by Evidence &amp; Verification. The decision service
+      passes the rules engine a snapshot of them, and the engine turns it into a determination.
+      The case contexts act on it, Financial Components and Payments &amp; Benefit Issuance pay
+      it, and correspondence tells the client. Events carry each step between contexts. No context
+      reaches into another context’s data.
+    </p>
+    <p class="note">
+      This is not the whole map. The <a href="{base}/domains">Domains</a> page shows all nineteen
+      contexts, including those no product category here fills.
     </p>
   </section>
 
@@ -129,6 +164,9 @@
       </div>
 
       <h3>Who offers products</h3>
+      {#if !p.offers.length}
+        <p class="note">The project’s market research did not look at products for this part.</p>
+      {/if}
       <div class="market">
         {#each kinds as k}
           {@const list = of(p, k.key)}

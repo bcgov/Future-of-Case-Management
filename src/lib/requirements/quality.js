@@ -433,7 +433,7 @@ export default {
      "anchor": "nfr-a-009",
      "title": "An on-premise continuity copy for any software-as-a-service product at the core",
      "priority": "Must",
-     "priorityNote": "MUST_HAVE ---",
+     "priorityNote": "",
      "module": null,
      "moduleText": "",
      "complexity": null,
@@ -441,23 +441,27 @@ export default {
      "fields": [
       {
        "label": "Requirement",
-       "html": "<p>The ministry must be able to keep its mission-critical services running if the supplier of any core software-as-a-service (SaaS) product cuts off access to it, or the product is lost for a long time for any other reason. Any recovery that depends on reaching the SaaS product at that point, such as a batch data export, fails in this case. The fallback must not need it.</p><ul><li><strong>Core product.</strong> A SaaS product is core if losing it would stop determinations, payment issuance, or caseworkers' access to case records.</li><li><strong>Continuity copy.</strong> For each core SaaS product, the ministry holds on-premise, on infrastructure it controls, a copy of a defined core subset of the product's data. The copy is kept current while the service is available, either continuously or on a stated cycle.</li><li><strong>What the copy is for.</strong> The copy supports the mission-critical services only, not every service. The ministry defines and owns the list of mission-critical services and the data each one needs.</li><li><strong>Payments come first.</strong> The first mission-critical service is monthly payment issuance: determining, issuing and reconciling the monthly payment run. Its fallback is designed, built and rehearsed before any other.</li><li><strong>Plan details for each product.</strong> The continuity plan (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-006\">NFR-A-006</a>) states:</li><li>the maximum age of the continuity copy;</li><li>when a loss of service counts as protracted;</li><li>who decides to switch to the fallback, and who decides to switch back.</li><li><strong>Payments in fallback mode.</strong> Payments made in fallback mode go through the same controls as normal payments (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-042\">FR-042</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-046\">FR-046</a>). They are reconciled if and when service is restored or replaced.</li><li><strong>Products that cannot be core.</strong> A SaaS product cannot be a core element if the core subset of its data cannot be retrieved continuously or on a cycle while the service is running.</li></ul>"
+       "html": "<p>The ministry must be able to keep its mission-critical services running if the supplier of any core software-as-a-service (SaaS) product cuts off access to it, or the product is lost for a long time for any other reason. Any recovery that depends on reaching the SaaS product at that point, such as a batch data export, fails in this case. The fallback must not need it.</p><p><em>Restated 2026-09-30 under ADR-009 Part A (ACCEPTED). The programme direction of 2026-09-29 is unchanged: supplier cut-off is the contingency; the copy is retrieved continuously or on a cycle while the service is live; it serves mission-critical services only; monthly payment issuance comes first; the cut-off is rehearsed without warning. What changed is that the copy now preserves the architecture's evidence model (drift Δ2.4, Δ3.1–Δ3.7).</em></p><ul><li><strong>Scope by context, not by product.</strong> A SaaS product sits wholly inside one <a class=\"g\" href=\"%BASE%/glossary#part\">bounded context</a>, behind that context's published contract, and exchanges only evidence and determinations with other contexts (<a class=\"rid\" href=\"%BASE%/parameters#n02\">N02</a>, <a class=\"rid\" href=\"%BASE%/parameters#n03\">N03</a>, <a class=\"rid\" href=\"%BASE%/parameters#n10\">N10</a>). A product is <strong>core</strong> if losing it would stop a mission-critical service of the context it sits in. <em>(v1.3 read: \"if losing it would stop determinations, payment issuance, or caseworkers' access to case records\". That wording presumed a SaaS product could hold the system of record or host determination; see Part B below.)</em></li><li><strong>What the continuity copy is.</strong> For each core SaaS product, the ministry holds on-premise, on infrastructure it controls, a replica of <strong>records, not of state</strong>:</li><li>the owning context's covered <strong>event streams</strong>, with their <a class=\"g\" href=\"%BASE%/glossary#succession-set\">evidence succession sets</a>, all three time axes and the operation (Record, Supersede, Correct, Verify, Invalidate) preserved, verified against the hash chain and signed heads (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-sec-009\">NFR-SEC-009</a>);</li><li>the <strong>decision-record store</strong>;</li><li>the <strong>rules artefacts</strong> and <strong>engine images</strong>;</li><li>projections <strong>rebuilt</strong> from those.</li></ul><p>A vendor table snapshot, a CRUD change-data-capture feed or a CSV extract does not conform unless it is transformed, at capture, into the owning context's registered events with all three time axes and the operation preserved. <em>(v1.3 read: \"a copy of a defined core subset of the product's data\".)</em></p><ul><li><strong>Kept current while the service is live.</strong> The copy is retrieved continuously or on a stated cycle while the service is available. Its maximum age may not exceed the batch watermark bound (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-009\">FR-009</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-p-004\">NFR-P-004</a>); otherwise a separate fallback bound is recorded and stamped on every determination made in fallback.</li><li><strong>What the copy is for.</strong> The copy supports the mission-critical services only, not every service. The ministry defines and owns the list of mission-critical services and the records each one needs.</li><li><strong>Payments come first.</strong> The first mission-critical service is monthly payment issuance: determining, issuing and reconciling the monthly payment run. Its fallback is designed, built and rehearsed before any other.</li><li><strong>Fallback runs the same function.</strong> Determinations made in fallback run the same <code>Determine()</code>, with the five bound artefacts and the watermark (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-001\">FR-001</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-008\">FR-008</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-009\">FR-009</a>). Payments made in fallback go through the same controls as normal payments (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-042\">FR-042</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-046\">FR-046</a>).</li><li><strong>One writer at every moment.</strong> Switching to fallback is a recorded single-writer handover per context and per cohort (<a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>). Events written in fallback are <strong>appended</strong> to the authoritative streams when service returns, never merged (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-098\">FR-098</a>). Payment instruction identifiers keep their <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-042\">FR-042</a> derivation, so an entitlement cannot be paid twice across the switch. <em>(v1.3 read: \"reconciled if and when service is restored or replaced\", which is the both-write-then-reconcile pattern <a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a> forbids.)</em></li><li><strong>The copy is a registered derivative.</strong> It is subject to correction propagation, use constraints, disposition and cryptographic erasure like any other copy (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-004\">DR-004</a>, <a class=\"rid\" href=\"%BASE%/requirements/data#dr-006\">DR-006</a>, <a class=\"rid\" href=\"%BASE%/requirements/data#dr-007\">DR-007</a>).</li><li><strong>Plan details for each product.</strong> The continuity plan (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-006\">NFR-A-006</a>) states the copy's maximum age, when a loss of service counts as protracted, who decides to switch to the fallback, and who decides to switch back.</li><li><strong>Products that cannot be core.</strong> A SaaS product cannot be a core element if the records above cannot be retrieved continuously or on a cycle while the service is running, <strong>or if its function cannot run outside the supplier's service</strong>. <em>(Function portability restored from v1.2; v1.3 removed it without a changelog entry, drift Δ3.4.)</em></li></ul><p><strong>What this requirement does not authorise</strong> (ADR-009 Part B, <strong>PROPOSED</strong>). <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-009\">NFR-A-009</a> is a continuity requirement. It does not by itself authorise any SaaS product to store <a class=\"g\" href=\"%BASE%/glossary#protected-abc\">Protected C</a> data, to hold the <a class=\"g\" href=\"%BASE%/glossary#system-of-record\">system of record</a>, or to host determination. Each of those needs a recorded relaxation by its named authority: storing Protected C data or holding the system of record needs A.3 commitment 5, agreed jointly by the Ministry Privacy Officer, the provincial CISO and the Ministry Records Officer (a reclassification question under D12; TC-1, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-c-004\">NFR-C-004</a>); hosting determination needs A.3 commitment 2, agreed jointly by the Chief Architect and the ADM Policy and Program Design (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-090\">FR-090</a>; <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-i-006\">NFR-I-006</a>). Until such a relaxation is recorded, a SaaS product may be core only where its data stays below Protected C, or it holds a projection whose system of record is on-premise, and it does not host determination.</p>"
       },
       {
        "label": "Measurement Method",
-       "html": "<p>A rehearsal is recorded for each core SaaS product, as for <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-008\">NFR-A-008</a>. In the rehearsal, access to the product is cut off without warning, and the mission-critical services run from the continuity copy alone. The monthly payment run is rehearsed first, at production volume, before that SaaS product goes live.</p>"
+       "html": "<p>A rehearsal is recorded for each core SaaS product, as for <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-008\">NFR-A-008</a>. In the rehearsal, access to the product is cut off without warning, and the mission-critical services run from the continuity copy alone. The rehearsal verifies the copy against the hash chain, runs fallback determinations through the same <code>Determine()</code>, and on return appends the fallback events without a merge. The monthly payment run is rehearsed first, at production volume, before that SaaS product goes live.</p>"
       },
       {
        "label": "Rationale",
-       "html": "<p>If a supplier withdraws access, the source system is offline by construction, so nothing can be exported from it at that point. A client's monthly payment is still due on a set date. Programme direction, 2026-09-29.</p>"
+       "html": "<p>If a supplier withdraws access, the source system is offline by construction, so nothing can be exported from it at that point. A client's monthly payment is still due on a set date. Programme direction, 2026-09-29, recorded as ADR-009 Part A. The copy must preserve the evidence model, because a state replica loses succession sets, the three time axes, the difference between Supersede and Correct, registered schemas and hash-chain continuity, and a fallback built on it could not produce a defensible determination.</p>"
       },
       {
        "label": "Relates To",
-       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/business#br-004\">BR-004</a>, <a class=\"rid\" href=\"%BASE%/requirements/business#br-013\">BR-013</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-043\">FR-043</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-047\">FR-047</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-005\">NFR-A-005</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-006\">NFR-A-006</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-008\">NFR-A-008</a></p>"
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/business#br-004\">BR-004</a>, <a class=\"rid\" href=\"%BASE%/requirements/business#br-013\">BR-013</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-001\">FR-001</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-008\">FR-008</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-009\">FR-009</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-042\">FR-042</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-043\">FR-043</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-046\">FR-046</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-047\">FR-047</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-098\">FR-098</a>, <a class=\"rid\" href=\"%BASE%/requirements/data#dr-004\">DR-004</a>, <a class=\"rid\" href=\"%BASE%/requirements/data#dr-006\">DR-006</a>, <a class=\"rid\" href=\"%BASE%/requirements/data#dr-007\">DR-007</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-005\">NFR-A-005</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-006\">NFR-A-006</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-008\">NFR-A-008</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-c-004\">NFR-C-004</a>, TC-1, TC-11</p>"
       },
       {
        "label": "Parameters",
-       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a> [PROPOSED]</p>"
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a> [PROPOSED], <a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>, <a class=\"rid\" href=\"%BASE%/parameters#n03\">N03</a>, <a class=\"rid\" href=\"%BASE%/parameters#n01\">N01</a>, <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a></p>"
+      },
+      {
+       "label": "Decision",
+       "html": "<p>ADR-009 (Part A ACCEPTED; Part B PROPOSED)</p>"
       }
      ]
     }
@@ -906,7 +910,7 @@ export default {
       },
       {
        "label": "Rationale",
-       "html": "<p>Comparison records must not become an uncontrolled second store of client data (TA §C.2.7, §E.7.2).</p>"
+       "html": "<p>Comparison records must not become an uncontrolled second store of client-affecting evidence (TA §C.2.7, §E.7.2).</p>"
       },
       {
        "label": "Parameters",
@@ -1029,7 +1033,7 @@ export default {
       },
       {
        "label": "Rationale",
-       "html": "<p>Legacy data counts as Protected C by inheritance until it is reclassified (commitment 5).</p>"
+       "html": "<p>Legacy data counts as Protected C by inheritance until it is reclassified (commitment 5). A core software-as-a-service product is bound by this requirement; <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-009\">NFR-A-009</a> does not relax it (ADR-009 Part B).</p>"
       },
       {
        "label": "Parameters",
@@ -1569,15 +1573,19 @@ export default {
      "fields": [
       {
        "label": "Requirement",
-       "html": "<p>Event and <a class=\"g\" href=\"%BASE%/glossary#api\">API</a> schemas follow a published compatibility policy for each surface, enforced by the <a class=\"g\" href=\"%BASE%/glossary#schema\">schema registry</a>. Consumer-driven contract tests run in CI. Versions, deprecations and retirement dates are published.</p>"
+       "html": "<p>Event and <a class=\"g\" href=\"%BASE%/glossary#api\">API</a> schemas follow a published compatibility policy for each surface, enforced by the <a class=\"g\" href=\"%BASE%/glossary#schema\">schema registry</a>. Consumer-driven contract tests run in CI. Versions, deprecations and retirement dates are published.</p><p><em>Amended 2026-09-30 (drift B10; TA §B.5.4):</em> the policy has three compatibility classes, enforced at publish:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Class</th><th scope=\"col\">Applies to</th><th scope=\"col\">Policy</th></tr></thead><tbody><tr><td><strong>Domain events</strong></td><td>Evidence, determination, case, payment, overpayment, appeal and identity events</td><td><strong>Full transitive compatibility</strong>: backward and forward compatible against every prior version</td></tr><tr><td><strong>Reference-data events</strong></td><td>Rate tables, program codes, value lists, reason codes</td><td>Backward compatibility, plus a stability contract: a published code is never reused for a different meaning, and retirement is a state transition, not a deletion</td></tr><tr><td><strong>Integration and telemetry events</strong></td><td>Anti-corruption layer signals, observability, the platform capabilities' events</td><td>Backward compatibility, no replay guarantee; no projection may be built on them</td></tr></tbody></table></div><p><strong>Coded values.</strong> A coded-value field in an event schema is either a string validated at the edge against its reference-data master, or an enumeration with a mandatory default symbol (<code>UNKNOWN</code>) to which unrecognised values resolve. A schema registering a closed enumeration without a default is rejected at publish. The closed-enumeration rule binds API contracts and command validation, not event wire schemas. A consumer that resolves a value to <code>UNKNOWN</code> preserves the raw value and routes the record to its exception path where the field is material.</p><p><strong>Upcasters</strong> are complementary, not an alternative: every upcaster is a versioned artefact exercised by a replay test against archived events in the owning context's pipeline.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>The registry rejects a domain-event schema that is not fully transitively compatible, and a closed enumeration without a default. A replay test from origin runs in each owning context's pipeline.</p>"
       },
       {
        "label": "Rationale",
-       "html": "<p>Breaking <a class=\"g\" href=\"%BASE%/glossary#replay\">replay</a> of an old event is a data-loss incident (TA §B.5.4, §D.1).</p>"
+       "html": "<p>Breaking <a class=\"g\" href=\"%BASE%/glossary#replay\">replay</a> of an old event is a data-loss incident (TA §B.5.4, §D.1). A \"backward compatible\" change that breaks replay of a five-year-old event is exactly that, which is why domain events carry the stricter class.</p>"
       },
       {
        "label": "Parameters",
-       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n10\">N10</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a></p>"
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n10\">N10</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a>, <a class=\"rid\" href=\"%BASE%/parameters#n01\">N01</a></p>"
       }
      ]
     },
@@ -1594,15 +1602,19 @@ export default {
      "fields": [
       {
        "label": "Requirement",
-       "html": "<p>Events are delivered at least once through a transactional <a class=\"g\" href=\"%BASE%/glossary#event\">outbox</a>. Every consumer is <a class=\"g\" href=\"%BASE%/glossary#idempotent\">idempotent</a>, so a repeated message has no extra effect. Ordering guarantees are stated for each stream.</p>"
+       "html": "<p>Events are delivered at least once through a transactional <a class=\"g\" href=\"%BASE%/glossary#event\">outbox</a>. Every consumer is <a class=\"g\" href=\"%BASE%/glossary#idempotent\">idempotent</a>, so a repeated message has no extra effect. Ordering guarantees are stated for each stream.</p><p><em>Amended 2026-09-30 (drift B10; TA §B.5.2, §B.5.3):</em> every consumer of a domain event meets this contract, checked at release:</p><ul><li><strong>The partition key is <code>aggregate_id</code>.</strong> The broker orders only within a partition, so per-aggregate ordering needs per-aggregate partitioning. Repartitioning is a breaking change, governed like a schema break: announced, versioned, with a migration path and a sunset period.</li><li><strong><code>event_id</code> governs deduplication; <code>aggregate_version</code> governs ordering.</strong> Apply is idempotent on <code>event_id</code>, through a naturally idempotent write or a processed-id store whose time-to-live is no shorter than the maximum replay window.</li><li><strong><code>aggregate_version</code> is used for gap detection and bounded buffering, never for rejection.</strong> A consumer that sees a version higher than expected buffers up to a bound and waits for the gap to fill. On timeout it escalates to a named recovery path (replay from offset, or a monitored reconciliation queue with a named owner), never to a dead-letter queue.</li><li><strong>Replay epoch.</strong> A replay from origin is published under an incremented <code>replay_epoch</code>. A consumer that sees a new epoch rebuilds its projection from empty instead of applying incrementally.</li><li><strong>The relay reads the outbox in commit order</strong> (log-based capture, or a sequence assigned at commit). A polling relay over an identity column is not acceptable where events affect entitlement, payment or debt.</li></ul>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>Conformance tests at release: duplicate, reordered and gapped deliveries per aggregate; a full replay under a new epoch; concurrent-commit tests of the relay.</p>"
       },
       {
        "label": "Rationale",
-       "html": "<p>At-least-once delivery on a payment path is safe only if idempotency is designed in (TA §C.6.8).</p>"
+       "html": "<p>At-least-once delivery on a payment path is safe only if idempotency is designed in (TA §C.6.8). Rejecting an out-of-order event discards data the broker will not re-deliver and turns a normal reordering into permanent divergence (TA §B.5.2).</p>"
       },
       {
        "label": "Parameters",
-       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a>, <a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a></p>"
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a>, <a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a></p>"
       }
      ]
     },
@@ -1682,6 +1694,43 @@ export default {
       {
        "label": "Parameters",
        "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n10\">N10</a>, <a class=\"rid\" href=\"%BASE%/parameters#n02\">N02</a></p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-I-008",
+     "anchor": "nfr-i-008",
+     "title": "Five program-family case contexts that share protocols, not a case model",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Added 2026-09-30 (drift B8;",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p><em>Added 2026-09-30 (drift B8; ADR-001).</em></p>"
+      },
+      {
+       "label": "Requirement",
+       "html": "<p>Case delivery is five domain contexts, one per program family: Case: employment assistance · Case: persons with disabilities · Case: child care subsidy · Case: employment services · Case: child protection. Each has its own persistence, topics, published language, lifecycle and owning team. They share <strong>protocols, not a case model</strong>: each consumes identity events, records evidence through Evidence &amp; Verification, requests determinations from Eligibility &amp; Entitlement (Determination), requests services, instructs Financial Components, raises work in Work Management, and emits correspondence triggers to Notices &amp; Correspondence. No type, table or lifecycle is shared between them. \"Case &amp; Service Delivery\" names the family only; it is never the owner of a requirement, obligation, aggregate or event. The owner is always one case context, or \"all case contexts (shared protocol)\" where an obligation is common to all five.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>Dependency analysis in CI shows no case context depending on another's types or store. The traceability file names a specific case context, or the shared protocol, on every case-delivery row. Each case context can be released on its own.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>A child protection investigation and a child care subsidy renewal share no meaningful state model. A shared case model is the meta-model the predecessor programme could not change; some duplicated case plumbing is far cheaper (TA §B.2.1). Employment assistance and persons-with-disabilities assistance are governed by one policy manual, but they are still two contexts.</p>"
+      },
+      {
+       "label": "Relates To",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-i-002\">NFR-I-002</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-032\">FR-032</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-067\">FR-067</a></p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n03\">N03</a>, <a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a></p>"
       }
      ]
     }

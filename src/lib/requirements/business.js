@@ -208,7 +208,7 @@ export default {
       },
       {
        "label": "Stakeholder",
-       "html": "<p>Executive Financial Officer, with the Overpayment and Recovery business owner</p>"
+       "html": "<p>Executive Financial Officer, with the Overpayment &amp; Recovery business owner</p>"
       }
      ]
     },
@@ -430,7 +430,7 @@ export default {
      "fields": [
       {
        "label": "Description",
-       "html": "<p>Work moves from the <a class=\"g\" href=\"%BASE%/glossary#old-system\">legacy systems</a> to the new system one part and one group of clients at a time. Only one system can change a record at any moment. A published statement says what moving back would lose. The published interface outlives the legacy system behind it. Each legacy capability is shut down as its replacement goes live.</p>"
+       "html": "<p>Work moves from the <a class=\"g\" href=\"%BASE%/glossary#old-system\">legacy systems</a> to the new system one part and one group of clients at a time. There is exactly one writer per <a class=\"g\" href=\"%BASE%/glossary#aggregate\">aggregate</a> at every moment, per context and per <a class=\"g\" href=\"%BASE%/glossary#client-group\">cohort</a> (<a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>). A published statement says what moving back would lose. The published interface outlives the legacy system behind it. Each legacy capability is shut down as its replacement goes live.</p>"
       },
       {
        "label": "Rationale",

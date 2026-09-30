@@ -53,6 +53,13 @@
       unusual: 'Most systems work out how long to keep something from where it sits.',
       why: 'Guessing from location fails the first time a fact appears in two places, which is day one. Attach the classification and the retention rule to the kind of evidence instead. Then destroying records becomes a job you can actually do.',
       cost: 'Every evidence type needs a records ruling before anyone can use it, which puts the records office on the critical path.'
+    },
+    {
+      id: 'continuity',
+      title: 'Keep a copy of the records, not the screens',
+      unusual: 'A cloud contract usually treats a data export as the exit plan.',
+      why: 'If a supplier cuts off access, their system is offline and nothing can be exported from it. A client’s monthly payment is still due on a set date. So any cloud service at the core keeps an on-premise copy, kept current while it runs: the events, the decision records and the rules, not a snapshot of its tables. Payments come first. This does not, on its own, let a cloud service store the most sensitive data or make decisions. That still needs the people the architecture names to agree.',
+      cost: 'Every core cloud product has to publish its records continuously in the ministry’s own shape, and the switch to the copy has to be rehearsed without warning.'
     }
   ];
 
@@ -107,8 +114,10 @@
     <h2>How the design was arrived at</h2>
 
     <p>
-      This architecture rests on every document we could recover about ICM and the work it
-      supports. Each claim traces back to a primary source, or the documents confirm it between
+      This architecture rests first on the law, then on ministry policy, and on the nature of the
+      work itself. Where the three disagree, the law wins over policy, and policy wins over
+      practice. The documents about ICM come after them: they give context and a check, not the
+      design. Each claim traces back to a primary source, or the documents confirm it between
       themselves, or the arithmetic gives it. Claims we could not check say so on the page.
     </p>
 
@@ -149,9 +158,18 @@
     <h2>What the evidence base is</h2>
 
     <p>
-      Two bodies of source material sit behind this. The first is 57 technical design documents for
-      the current release. They cover the application, its integrations, its data conversion and its
-      reporting. The second is 326 service-delivery procedures, describing how the work gets done.
+      The design is built on the law and the ministry’s policy. The law comes first: the
+      Employment and Assistance Act and the Employment and Assistance for Persons with Disabilities
+      Act with their regulations, the child protection law, and the privacy, records and
+      Indigenous rights laws that apply to every record. Policy comes next: 270 obligations the
+      policy manual places on the ministry, each traced to a requirement.
+    </p>
+
+    <p>
+      Two further bodies of material describe the current system. They give context and a check.
+      The first is 57 technical design documents for the current release. They cover the
+      application, its integrations, its data conversion and its reporting. The second is 326
+      service-delivery procedures, describing how the work gets done.
     </p>
 
     <p>

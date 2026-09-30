@@ -130,6 +130,25 @@
       </figcaption>
     </figure>
 
+    <p>
+      Re-running a decision proves what the rules worked out. It does not prove the rules matched
+      the policy in force at the time. So every rule carries the policy it comes from and the date
+      that policy took effect. The ministry does not publish old versions of its policy manual, and
+      its archive of old rate tables has gaps. So for each family of rules the horizon also records
+      how far back the policy itself can still be produced. Before that date, the stored reasoning,
+      the letter and the facts are the record, and the ministry says so in advance.
+    </p>
+
+    <Technical summary="Where the policy version is kept">
+      <p>
+        The policy citation and its effective-date marker sit inside the rules artefact, which the
+        decision record binds by its content digest. There is no sixth artefact. The horizon
+        statement records, per rule family, the earliest effective date for which the governing
+        policy text or rate can be produced from a retained source. Historical rates are harvested
+        once, at ingest, rather than fetched later from an archive with no retention commitment.
+      </p>
+    </Technical>
+
     <h2>Two decisions made moments apart can disagree</h2>
 
     <p>
@@ -145,6 +164,62 @@
       sequence of recorded events. A later reader can then tell which view of the world a decision
       was made against.
     </p>
+
+    <h2>Before a decision: a letter that is not one</h2>
+
+    <p>
+      Sometimes the ministry writes to a client before it decides: this is what we found, this is
+      what it may mean, reply by this date. That letter is not a decision, and the system keeps it
+      separate from one. It carries its reasons, its reply-by date and a plain statement that no
+      decision has been made. Whatever the client sends back is recorded as evidence for the
+      decision that follows.
+    </p>
+
+    <p>
+      A client can still ask for a reconsideration at that point. The request is always recorded,
+      and nobody turns it away at the counter. Whether a reconsideration is available is decided by
+      the independent reconsideration unit, not by the worker who sent the letter.
+    </p>
+
+    <h2>When a decision is challenged</h2>
+
+    <p>
+      A decision that is overturned is never edited. The original stays in the record as what was
+      decided, with everything it was based on. The new decision sits beside it, with its own
+      record, and says what caused it. The client's history shows both, in order, with reasons.
+      The money owed either way is worked out from the difference between the two.
+    </p>
+
+    <p>
+      The appeal tribunal can confirm the ministry's decision or rescind it. It cannot change it
+      part way, and it cannot send it back. An appeal can also end without the tribunal deciding,
+      because the client withdrew it or abandoned it. The system records how the appeal ended and,
+      only if the tribunal decided, what it decided. A rescinded decision is marked, never erased,
+      and the ministry then decides again.
+    </p>
+
+    <p>
+      A client waiting for a reconsideration or an appeal may keep receiving assistance at the old
+      level. That money is paid on a promise to repay whatever the final decision does not support.
+      The system holds it as repayable from the day it is paid, linked to the decision it is waiting
+      for, and settles it automatically when that decision is made.
+    </p>
+
+    <Technical summary="How challenges are modelled">
+      <p>
+        <code>PreDecisionCommunication</code> belongs to Eligibility &amp; Entitlement, in the shell
+        around <code>Determine</code>, never inside it. Its amount is a class (iii) output, it
+        carries a <code>no_decision_made</code> marker, and its reply window is a statutory clock
+        artefact. Reconsideration availability is a <code>DiscretionaryDetermination</code> recorded
+        in Evidence &amp; Verification by the Reconsideration and Administrative Fairness Unit;
+        Appeals &amp; Reconsideration reads it and never writes it. Appeal outcome is two attributes:
+        disposition (<code>decided</code>, <code>withdrawn</code>, <code>abandoned</code>) and panel
+        determination (<code>confirmed</code>, <code>rescinded</code>). Interim assistance is a
+        <code>RepayableIssuance</code> in Financial Components, resolved on the awaited
+        <code>DeterminationIssued</code>; on denial it becomes an overpayment component classified by
+        policy.
+      </p>
+    </Technical>
 
     <h2>Decisions that affect people carry their own classification</h2>
 

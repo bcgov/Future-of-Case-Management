@@ -88,8 +88,8 @@ export const terms = {
     term: 'Correction',
     short: 'Fixing a fact that was recorded wrongly, as opposed to a fact that changed.',
     body: [
-      'These two are easy to confuse, and they mean different things. A correction says the record was wrong all along: the income was never $900, it was $1,100. An update, sometimes called a supersession, says the world changed: the income was $900 until March and $1,100 after.',
-      'The difference matters for money. A correction can mean a client was underpaid or overpaid in the past. An update does not. The old system cannot tell the two apart, which is why N14 says that difference is lost if a group moves back.'
+      'These two are easy to confuse, and they mean different things. A correction says the record was wrong all along: the income was never $900, it was $1,100. A supersession says the world changed: the income was $900 until March and $1,100 after.',
+      'Both can leave a client underpaid or overpaid in the past. The difference is who bears it. A supersession the client reported late gives an overpayment the ministry can recover. A correction is judged by whose error it was: a client who hid something is in a different position from a worker who mis-keyed a figure. The old system cannot tell the two apart, which is why N14 says that difference is lost if a group moves back.'
     ],
     page: { href: '/evidence', label: 'Evidence' }
   },
@@ -104,8 +104,8 @@ export const terms = {
     term: 'Data model',
     short: 'A part’s own description of the things it works with, such as a person or a payment.',
     body: [
-      'Different parts of the ministry’s work need to know different things about the same person. Payments needs a bank account. Intake needs contact details. A single shared model tries to hold all of it, and every change then needs everyone to agree.',
-      'N03 asks each part to keep its own model instead. The Domains page shows the sixteen parts and what each one owns.'
+      'Different parts of the ministry’s work need to know different things about the same person. Payments needs a bank account. A case worker needs contact details. A single shared model tries to hold all of it, and every change then needs everyone to agree.',
+      'N03 asks each part to keep its own model instead. The Domains page shows the nineteen parts and what each one owns.'
     ],
     page: { href: '/domains', label: 'Domains' }
   },
@@ -113,7 +113,7 @@ export const terms = {
     term: 'Decision record',
     short: 'The stored account of a decision: what was decided, on what facts, under which rules.',
     body: [
-      'Every decision the system makes is saved with everything needed to explain it later. That includes the version of the rules, the facts it used, what the client asked for, which requirements were and were not met, and when the client was told.',
+      'Every decision the system makes is saved with everything needed to explain it later. That includes the version of the rules and of the engine that ran them, a full copy of the facts it used, its reasoning, and the version of the letter template the client was sent. It also records how far through the record of events the decision read (the watermark) and what kind of decision it was, so that a decision needing reasons, or a person’s sign-off, can be told apart from a working sum.',
       'N08 asks that the record holds full copies of all of this, not links to other systems. That way it still makes sense years later, after those systems have changed or gone.'
     ],
     page: { href: '/determinations', label: 'Determinations' }
@@ -159,7 +159,7 @@ export const terms = {
     term: 'Fact (evidence)',
     short: 'A piece of information about a client that someone has claimed is true, such as their income.',
     body: [
-      'In the new system a fact is never just a value like “$1,100”. It is a claim: who said it, what period it covers, and when the system learned it. The site also calls facts evidence, because they are what a decision rests on.',
+      'In the new system a fact is never just a value like “$1,100”. It is a claim: who said it, what period it covers, and when the system learned it. The site mostly calls these claims evidence, because they are what a decision rests on. Where it says “fact”, it means a claim of this kind, never a bare value.',
       'The Evidence page shows how this works, with a worked example.'
     ],
     page: { href: '/evidence', label: 'Evidence' }
@@ -184,8 +184,17 @@ export const terms = {
     short: 'Locking one person’s records with their own key, then destroying the key to make the records unreadable.',
     body: [
       'Each person’s records are scrambled (encrypted) with a key that belongs to them alone. When the records must be destroyed, the system destroys the key. The scrambled data can stay in place, but nobody can read it ever again. This lets a permanent history meet a legal duty to destroy.',
-      'It is one of three ways N12 lists. It needs careful planning about who holds the keys and how destruction is proven.'
+      'N12 allows it for a small number of kinds of fact, each named, where a duty to destroy one person’s records can be foreseen. It is never the default. It needs careful planning about who holds the keys and how destruction is proven.'
     ]
+  },
+  'legacy-assertion-time': {
+    term: 'Legacy assertion time',
+    short: 'When the old system recorded a fact, for records moved from it.',
+    body: [
+      'Records moved from the old system all arrive in the new one on the same day. If that day were used as the date the ministry learned each fact, fifteen years of history would look as though it arrived at once. So each moved fact keeps a third date: when the old system recorded it. It carries a confidence marker, because the old record often cannot show it. Where the date is unknown, the system says so rather than guessing.',
+      'N01 asks for all three dates on every fact: valid time, transaction time and this one.'
+    ],
+    page: { href: '/evidence', label: 'Evidence' }
   },
   'legal-time-limit': {
     term: 'Legal time limit',
@@ -221,7 +230,7 @@ export const terms = {
   },
   part: {
     term: 'Part of the system (domain)',
-    short: 'One area of the ministry’s work, with its own data and its own rules, such as Payments or Intake.',
+    short: 'One area of the ministry’s work, with its own data and its own rules, such as Payments or Overpayments.',
     body: [
       'The new system is built as separate parts, each responsible for one area of the work. Architects call these domains. Each part owns its own data. Parts talk to each other only by sending facts and decisions, never by reaching into each other’s databases.'
     ],
@@ -276,7 +285,7 @@ export const terms = {
     term: 'Retention schedule',
     short: 'The official list of how long each kind of government record must be kept.',
     body: [
-      'Government records are kept for set periods and then destroyed or archived. A schedule might say case files are kept for a set number of years after the case closes. Deleting a whole kind of record when its time comes is the simplest of the three methods in N12.'
+      'Government records are kept for set periods and then destroyed or archived. A schedule might say case files are kept for a set number of years after the case closes. Deleting a whole kind of record when its time comes is the default method in N12, and most kinds of record end this way.'
     ]
   },
   rollback: {
@@ -305,7 +314,7 @@ export const terms = {
     term: 'Keeping personal details separately',
     short: 'Storing the details that identify a person in one place, and only a reference to them everywhere else.',
     body: [
-      'Instead of writing a person’s name and details into every record, the history holds a reference number. The details live in one separate store. Deleting them there makes every record that points to them anonymous. Architects call this indirection. It is one of three methods in N12.'
+      'Instead of writing a person’s name and details into every record, the history holds a reference number. The details live in one separate store. Deleting them there makes every record that points to them anonymous. Architects call this indirection. It is one of the methods N12 allows, chosen for each kind of fact.'
     ]
   },
   'separation-of-duties': {
@@ -363,7 +372,7 @@ export const terms = {
     term: 'Transaction time',
     short: 'When the system learned a fact.',
     body: [
-      'This is the date the fact was recorded, which is often later than when it became true. Together with valid time, it lets the ministry answer two separate questions a tribunal will ask: what was true, and what did the ministry know at the time?'
+      'This is the date the fact was recorded, which is often later than when it became true. Together with valid time, it lets the ministry answer two separate questions a tribunal will ask: what was true, and what did the ministry know at the time? For records moved from the old system, this is the date they were moved. A third date, legacy assertion time, holds when the old system recorded them.'
     ],
     page: { href: '/evidence', label: 'Evidence' }
   },
@@ -386,7 +395,7 @@ export const terms = {
     term: 'Valid time',
     short: 'The period during which a fact was true in the world.',
     body: [
-      'A client’s income of $1,100 might be true from March to June. That period is its valid time. It is separate from when the ministry found out, which is transaction time. Keeping both lets the ministry recalculate the past correctly when it learns something late.'
+      'A client’s income of $1,100 might be true from March to June. That period is its valid time. It is separate from when the ministry found out, which is transaction time, and from when the old system recorded it, which is legacy assertion time. Keeping all three lets the ministry recalculate the past correctly when it learns something late.'
     ],
     page: { href: '/evidence', label: 'Evidence' }
   },
@@ -401,7 +410,8 @@ export const terms = {
     term: 'Watermark',
     short: 'A marker recording exactly how far through the system’s history a decision read.',
     body: [
-      'The system’s history is a numbered list of events. The watermark is the number of the last event a decision saw. Writing it into the decision record shows exactly which version of the facts the decision was based on. Setting a limit on how far behind a store may be stops a decision being made from an out-of-date view.'
+      'A decision reads its facts from a store that is filled from several streams of events, each updating on its own schedule. The watermark is the point in time up to which that store has applied every event from every one of those streams. It is set by the stream furthest behind. It is not the last event the decision happened to see, because a later event can arrive while an earlier one is still missing.',
+      'Writing the watermark into the decision record shows exactly which version of the facts the decision was based on. Setting a limit on how far behind a store may be stops a decision being made from an out-of-date view.'
     ]
   }
 };

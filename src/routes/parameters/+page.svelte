@@ -166,6 +166,12 @@
       The twelve could not express any of that.
     </p>
 
+    <p>
+      Where a parameter restates one of the architecture’s twelve principles, the architecture’s
+      own wording wins if the two ever differ. The seven new ones are recorded as amendments to the
+      architecture, each with a decision record. N16 is still a proposal.
+    </p>
+
     <h2>A rule nobody can check is not a rule</h2>
 
     <p>

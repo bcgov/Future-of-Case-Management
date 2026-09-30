@@ -23,7 +23,7 @@ export default {
   },
   "aggregate": {
    "term": "Aggregate",
-   "short": "A cluster of data the system treats as one unit for changes, with its own rules that must always hold.",
+   "short": "A cluster of data the system treats as one unit for changes, with its own rules that must always hold. Each aggregate has exactly one writer at any moment, per cohort (N05). Examples: an evidence succession set, a payment instruction, a disbursement, a repayable issuance.",
    "body": []
   },
   "api": {
@@ -104,6 +104,11 @@ export default {
   "client-index": {
    "term": "Client index",
    "short": "A single index for finding people and spotting duplicate records, with uncertain matches sent to a person to decide.",
+   "body": []
+  },
+  "case-context": {
+   "term": "Case context",
+   "short": "One of the five program-family domain contexts (employment assistance, persons with disabilities, child care subsidy, employment services, child protection) that together form the Case & Service Delivery family. They share protocols, not a case model; the family name is never an owner (NFR-I-008; ADR-001).",
    "body": []
   },
   "cohort-review": {
@@ -221,6 +226,11 @@ export default {
    "short": "Who caused a recorded mistake: the client, the ministry, a third party, or unknown. It must be recorded with every correction.",
    "body": []
   },
+  "succession-set": {
+   "term": "Evidence succession set",
+   "short": "The stream of versions of one logical fact about one subject: the aggregate of the event-sourced Evidence & Verification context. Record, Correct, Supersede, Verify and Invalidate commands append to it; current state is a projection (DR-020).",
+   "body": []
+  },
   "evidence-programme": {
    "term": "Evidence programme",
    "short": "The first 90 days of the programme, used to test assumptions and settle early decisions. \"Day 45\" and \"Day 90\" count from its start.",
@@ -273,7 +283,7 @@ export default {
   },
   "invalidation": {
    "term": "Invalidation, rescission",
-   "short": "Invalidation cancels a decision without replacing it, as when the tribunal rescinds one. A new decision then follows separately.",
+   "short": "Invalidation marks an evidence assertion that should never have existed. A tribunal rescission is different: the panel's rescinded determination is recorded as evidence, the original determination stands, annotated with the rescission, and the ministry makes a new retroactive determination (ADR-004). (v1.3 read \"Invalidation cancels a decision without replacing it, as when the tribunal rescinds one\".)",
    "body": []
   },
   "issuance-run": {
@@ -378,7 +388,7 @@ export default {
   },
   "pre-decision": {
    "term": "Pre-decision communication",
-   "short": "A message giving reasons and a response deadline, stating that no decision has been made yet.",
+   "short": "A message giving reasons and a response deadline, stating that no decision has been made yet. An aggregate of Eligibility & Entitlement, outside the pure function, carrying a no_decision_made marker (FR-006; ADR-004).",
    "body": []
   },
   "prescribed-class": {
@@ -428,7 +438,7 @@ export default {
   },
   "repayable": {
    "term": "Repayable issuance",
-   "short": "Money paid now against a signed promise to repay, which becomes a debt only if a later decision goes against the client.",
+   "short": "Money paid now against a signed promise to repay, which becomes a debt only if a later decision goes against the client. An aggregate of Financial Components, which decides nothing; interim assistance pending reconsideration or appeal is its principal instance (FR-041; ADR-005).",
    "body": []
   },
   "replay-horizon": {
@@ -522,8 +532,8 @@ export default {
    "body": []
   },
   "temporally-unverified": {
-   "term": "TEMPORALLY_UNVERIFIED",
-   "short": "A mark on a decision re-run from migrated facts whose recording dates are unknown. It can show an amount but not what the ministry knew at the time.",
+   "term": "TEMPORALLY_UNVERIFIED, INDETERMINATE",
+   "short": "TEMPORALLY_UNVERIFIED marks a determination answering a valid-time question from migrated facts whose old-system dates are unknown: it can show an amount but not what the ministry knew at the time. INDETERMINATE is what a knowledge-state question (what did the ministry know, and when?) returns on such a fact; it never substitutes the import date (DR-013; ADR-002).",
    "body": []
   },
   "threat-model": {
@@ -973,6 +983,46 @@ export default {
     "page": "functional"
    }
   ],
+  "aggregate": [
+   {
+    "id": "BR-011",
+    "page": "business"
+   },
+   {
+    "id": "FR-006",
+    "page": "functional"
+   },
+   {
+    "id": "FR-041",
+    "page": "functional"
+   },
+   {
+    "id": "NFR-SEC-011",
+    "page": "quality"
+   },
+   {
+    "id": "DR-020",
+    "page": "data"
+   }
+  ],
+  "client-group": [
+   {
+    "id": "BR-011",
+    "page": "business"
+   },
+   {
+    "id": "NFR-P-005",
+    "page": "quality"
+   },
+   {
+    "id": "NFR-A-008",
+    "page": "quality"
+   },
+   {
+    "id": "INT-023",
+    "page": "integrations"
+   }
+  ],
   "design-freeze": [
    {
     "id": "BR-013",
@@ -1137,10 +1187,6 @@ export default {
    {
     "id": "INT-001",
     "page": "integrations"
-   },
-   {
-    "id": "DR-002",
-    "page": "data"
    }
   ],
   "rules-engine": [
@@ -1358,6 +1404,20 @@ export default {
    },
    {
     "id": "DR-015",
+    "page": "data"
+   }
+  ],
+  "succession-set": [
+   {
+    "id": "FR-012",
+    "page": "functional"
+   },
+   {
+    "id": "NFR-A-009",
+    "page": "quality"
+   },
+   {
+    "id": "DR-020",
     "page": "data"
    }
   ],
@@ -1579,6 +1639,10 @@ export default {
    {
     "id": "FR-047",
     "page": "functional"
+   },
+   {
+    "id": "NFR-A-009",
+    "page": "quality"
    },
    {
     "id": "NFR-SEC-003",
@@ -1847,20 +1911,6 @@ export default {
     "page": "quality"
    }
   ],
-  "client-group": [
-   {
-    "id": "NFR-P-005",
-    "page": "quality"
-   },
-   {
-    "id": "NFR-A-008",
-    "page": "quality"
-   },
-   {
-    "id": "INT-023",
-    "page": "integrations"
-   }
-  ],
   "partition": [
    {
     "id": "NFR-P-006",
@@ -1870,6 +1920,10 @@ export default {
   "protected-abc": [
    {
     "id": "NFR-P-006",
+    "page": "quality"
+   },
+   {
+    "id": "NFR-A-009",
     "page": "quality"
    },
    {
@@ -1905,6 +1959,10 @@ export default {
    {
     "id": "NFR-M-004",
     "page": "quality"
+   },
+   {
+    "id": "DR-007",
+    "page": "data"
    }
   ],
   "degraded-mode": [
@@ -1943,6 +2001,16 @@ export default {
    {
     "id": "INT-005",
     "page": "integrations"
+   }
+  ],
+  "part": [
+   {
+    "id": "NFR-A-009",
+    "page": "quality"
+   },
+   {
+    "id": "NFR-SEC-008",
+    "page": "quality"
    }
   ],
   "key-destruction": [
@@ -2067,12 +2135,6 @@ export default {
     "page": "quality"
    }
   ],
-  "part": [
-   {
-    "id": "NFR-SEC-008",
-    "page": "quality"
-   }
-  ],
   "threat-model": [
    {
     "id": "NFR-SEC-008",
@@ -2109,12 +2171,6 @@ export default {
    {
     "id": "INT-022",
     "page": "integrations"
-   }
-  ],
-  "aggregate": [
-   {
-    "id": "NFR-SEC-011",
-    "page": "quality"
    }
   ],
   "write-back": [

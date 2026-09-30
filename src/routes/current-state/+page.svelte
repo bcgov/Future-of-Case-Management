@@ -16,10 +16,12 @@
   <div class="prose">
     <h1>Current State</h1>
     <p class="lede">
-      This design does not set out to contradict the current system. It comes from one question.
-      Why does a large, expensive piece of software, laboured over by hundreds of capable and
-      well-meaning people, still fail the organizations it serves? The answer lies in what the
-      system leaves out: what it ignores, and what it pushes outside itself.
+      This page describes how the work is done today. It is context, not the source of the design.
+      The design comes from the law, from policy and from the nature of the work. What is here
+      serves as a check on it. A large, expensive piece of software, laboured over by hundreds of
+      capable and well-meaning people, can still fail the organizations it serves, and the reason
+      usually lies in what it leaves out: what it ignores, and what it pushes outside itself. A
+      replacement must not do the same.
     </p>
 
     <h2>What the SDPR procedures are</h2>
@@ -85,7 +87,8 @@
 
     <p>
       A modernisation has to know what it is replacing. The rules that decide entitlement sit in
-      four separate places, and only one of them is a rules engine.
+      six separate places. Only one of them is a rules engine, and the one that carries authority,
+      the policy manual, can only be read by a person.
     </p>
 
     <figure>
@@ -111,11 +114,19 @@
             <th scope="row">A database table</th>
             <td>The rates the public-facing eligibility estimator uses</td>
           </tr>
+          <tr>
+            <th scope="row">Spreadsheets on SharePoint</th>
+            <td>Eighteen workbooks with no version control or audit trail. Five of them decide entitlement</td>
+          </tr>
+          <tr>
+            <th scope="row">The policy manual</th>
+            <td>The authoritative rules, dated in prose, with only a partial archive</td>
+          </tr>
         </tbody>
       </table>
       <figcaption>
         Found by reading the technical design documents for the current release alongside the
-        procedures. Nothing on record gives the 29 rulebases source control, a promotion pipeline
+        procedures and the policy manual. Nothing on record gives the 29 rulebases source control, a promotion pipeline
         or a version register.
       </figcaption>
     </figure>
@@ -158,9 +169,10 @@
     </Technical>
 
     <p>
-      The rest of the site sets out how the design answers these conditions. Start with
-      <a href="{base}/evidence">evidence</a>. The overpayment journey above follows directly from a
-      record that cannot say what the ministry knew, or when.
+      The rest of the site sets out the design. It is worked out from the law, policy and the
+      nature of the work, and the conditions on this page check it rather than shape it. Start
+      with <a href="{base}/evidence">evidence</a>. The overpayment journey above is what happens
+      when a record cannot say what the ministry knew, or when.
     </p>
   </div>
 </div>

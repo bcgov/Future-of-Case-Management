@@ -7,7 +7,7 @@
   <title>Domains — The Future of Case Management IT</title>
   <meta
     name="description"
-    content="Why the design uses sixteen separate models rather than one, and the rules that keep them separate."
+    content="Why the design uses nineteen separate models rather than one, and the rules that keep them separate."
   />
 </svelte:head>
 
@@ -16,7 +16,8 @@
     <h1>Domains</h1>
     <p class="lede">
       Perhaps the biggest choice in this design is where to draw the lines between parts of the
-      system. Twelve domain models, one of which is really five sub-domains, which makes sixteen.
+      system. Fifteen families of domain model. One family is really five case models, one per
+      program, which makes nineteen models in all.
     </p>
 
     <h2>The problem of a single model</h2>
@@ -54,10 +55,18 @@
       </figcaption>
     </figure>
 
-    <h2>Four rules keep the lines in place</h2>
+    <p>
+      Twelve families were drawn when the architecture was first issued, which made sixteen
+      models. Three more were added later, because nothing in the map modelled how the ministry
+      holds what it knows: Consent &amp; Disclosure, Investigation &amp; Loss Management, and
+      Channel Entitlement &amp; Service Restriction. The family name “Case &amp; Service Delivery”
+      never owns anything. The owner is always one of the five case models.
+    </p>
+
+    <h2>Six rules keep the lines in place</h2>
 
     <p>
-      A boundary that lives only in a diagram will not survive delivery pressure. These four are
+      A boundary that lives only in a diagram will not survive delivery pressure. These six are
       written so a reviewer can point at something and say whether it complies.
     </p>
 
@@ -88,6 +97,23 @@
         <p>
           A part that needs another's data keeps its own copy, built from that part's events and
           shaped the way it needs. When the source corrects something, the copy has to follow.
+        </p>
+      </li>
+      <li>
+        <h3>Reference data has one master</h3>
+        <p>
+          Rate tables, program codes, value lists and reason codes are each kept in one place and
+          published as events. Nobody maintains a second copy by hand. They change when policy
+          changes, not when the software does.
+        </p>
+      </li>
+      <li>
+        <h3>Every copy is stamped</h3>
+        <p>
+          When a part copies evidence, it records where the copy came from: which part, which
+          piece of evidence, which version, when the source learned it, and when the copy was
+          taken. That is what makes rule four checkable. A correction can find every copy by
+          looking it up, not by asking every team.
         </p>
       </li>
     </ol>
@@ -134,7 +160,17 @@
     <p>
       Some pieces are shared infrastructure rather than parts of the business. Platform teams own
       them and everyone uses them. The difference matters. A platform part that starts holding
-      program state has quietly become a seventeenth domain model, and nobody chartered it.
+      program state has quietly become a twentieth domain model, and nobody chartered it.
+    </p>
+
+    <p>
+      The platform parts are the published interface (the Open Host Service), the translation
+      layer over the old system (the Legacy Anti-Corruption Layer), Secure Data Exchange for
+      sharing with other organisations, Rules Authoring &amp; Release, the Component Library,
+      the Analytical Platform, and Correlation &amp; Migration State, which keeps track of which
+      old record matches which new one. Three more services hold no program state of their own:
+      severing, routing a correction to the parts that own the fact, and carrying out retention
+      and disposal.
     </p>
 
     <p>
