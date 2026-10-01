@@ -365,8 +365,7 @@ export const terms = {
     body: [
       'The new interfaces use the ministry’s words. The old system uses its own. The translation layer sits between them and converts one into the other. Architects call it an anti-corruption layer, because it stops the old system’s way of doing things leaking into the new design.',
       'It is meant to be thrown away once the old system is gone. N10 asks that nobody mistakes it for something permanent.'
-    ],
-    page: { href: '/choices', label: 'Choices' }
+    ]
   },
   'transaction-time': {
     term: 'Transaction time',

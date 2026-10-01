@@ -119,7 +119,6 @@ src/
     determination/            decisions as a re-runnable function
     service/                  what the service looks like today
     parameters/               the twenty-one rules, and the six that come first
-    decisions/                the unconventional choices, and why
     glossary/                 plain explanations of the words the parameters and requirements use
     requirements/             the 217 requirements: overview, five categories, and trade-offs
   lib/components/

@@ -64,10 +64,7 @@
     },
     {
       label: 'The rules',
-      items: [
-        { href: '/parameters', label: 'Parameters' },
-        { href: '/choices', label: 'Choices' }
-      ]
+      items: [{ href: '/parameters', label: 'Parameters' }]
     },
     {
       label: 'Requirements',
