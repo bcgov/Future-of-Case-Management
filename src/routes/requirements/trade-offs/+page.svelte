@@ -11,7 +11,7 @@
   <title>Trade-offs — The Future of Case Management IT</title>
   <meta
     name="description"
-    content="The eight conflicts between requirements, how each was resolved or who must resolve it, and the dependencies and risks the requirements carry."
+    content="The conflicts between requirements, how each was resolved or who must resolve it, and the dependencies and risks the requirements carry."
   />
 </svelte:head>
 

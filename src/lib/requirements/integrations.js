@@ -1331,6 +1331,907 @@ export default {
        "html": "<p>This keeps the platform out of <a class=\"g\" href=\"%BASE%/glossary#pci\">PCI-DSS</a> scope (TA §C.6.7).</p>"
       }
      ]
+    },
+    {
+     "id": "INT-026",
+     "anchor": "int-026",
+     "title": "Provincial Court and Supreme Court registries (child protection and adoption proceedings)",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Learn of, and act on, every court event that the children and family services requirements turn on.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Learn of, and act on, every court event that the children and family services requirements turn on. The director files presentation forms, reports to court, applications, plans of care, written consents and proof of service. The court fixes hearing dates and issues orders. Appeals from Provincial Court orders, adoption applications and applications in a voluntary adoption go to the Supreme Court. A director may also file a maintenance agreement and apply for a maintenance order.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Not stated. No source held says a registry offers an electronic exchange. The requirements assume a worker enters each event from the document as filed or as issued.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: presentation forms; the reports to court the Regulation prescribes; applications for orders, for a permanent transfer of custody, for adoption orders and to dispense with notice or consent; plans of care; written consents; proof of service; an application to move a court file to the receiving area on a file transfer; maintenance agreements filed in court.</li><li><strong>Inbound</strong>: court file numbers (each application has its own); hearing dates and adjournments; orders with their terms and dates; directions on service; notices of appeal, extensions, suspensions and outcomes; the certified adoption order and the copy the court registrar sends the director who filed the post-placement report.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each filing and each order is kept unaltered as presented or as issued, apart from the working record it was built from. The date of an order starts the time limits that depend on it (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-061\">FR-061</a>). A registry check for applications closes the application period where an <a class=\"g\" href=\"%BASE%/glossary#indigenous-authority\">Indigenous authority</a> will provide services (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-132\">FR-132</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. Until an order or filing is entered, the time limits that depend on it cannot run, so a late entry carries the date the court act took place.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. The hearing and filing time limits are those the Act sets (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-187\">FR-187</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-192\">FR-192</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>The Provincial Court and the Supreme Court of British Columbia, through their registries. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Whether an agreement may be made, when a time limit starts and who holds custody all turn on court events (CL-D1-137, CL-D1-141, CL-D8-190, CL-D1-172, CL-D7-035, CK-LG1-41, CL-D2-153, CL-D1-213, R-LG1-130). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-132\">FR-132</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-134\">FR-134</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-162\">FR-162</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-167\">FR-167</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-177\">FR-177</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-183\">FR-183</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-185\">FR-185</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-187\">FR-187</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-195\">FR-195</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-207\">FR-207</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-208\">FR-208</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-258\">FR-258</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-269\">FR-269</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-273\">FR-273</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-274\">FR-274</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-302\">FR-302</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-312\">FR-312</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-330\">FR-330</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-332\">FR-332</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-027",
+     "anchor": "int-027",
+     "title": "Indigenous authorities",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Exchange confirmations, referrals, notices and information with each Indigenous authority that provides, or will provide, Indigenous child and family services under an Indigenous law.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Exchange confirmations, referrals, notices and information with each <a class=\"g\" href=\"%BASE%/glossary#indigenous-authority\">Indigenous authority</a> that provides, or will provide, Indigenous child and family services under an <a class=\"g\" href=\"%BASE%/glossary#indigenous-law\">Indigenous law</a>. This differs from <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-012\">INT-012</a>, which covers assistance on reserve, and from <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a>, which covers <a class=\"g\" href=\"%BASE%/glossary#delegated-agency\">delegated agencies</a> acting under a director's delegation. An Indigenous authority acts under its own law. It is a participant outside the Crown (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-084\">FR-084</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-085\">FR-085</a>, <a class=\"rid\" href=\"%BASE%/requirements/data#dr-005\">DR-005</a>).</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Request and response, mostly manual today. Policy describes telephone, email and other means, and has a referred report sent by the method the authority asks for.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: a request to confirm whether an Indigenous law or agreement applies to a child and whether the authority is or will be providing services; the referred protection report with safety information, copies of safety plan agreements and orders; notice that the director cannot act consistently with the law, with written reasons on request; the outcome of an assessment or investigation; the director's written notice of the outcome of the notice period; notice of hearings; copies of protective intervention and restraining orders; responses to the authority's requests for information; a question about a person's time under an arrangement made under Indigenous law.</li><li><strong>Inbound</strong>: the authority's confirmation, verbal and then written, in the prescribed form or a form the authority determines; its confirmation of receipt of a referral; its notice that it is or will be providing services or will have custody; its written confirmation of the date and time of transition; its requests for information under the <a class=\"g\" href=\"%BASE%/glossary#cfcsa\">CFCSA</a>; its answer before a permanent transfer of custody is sought.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each exchange is recorded as evidence with the authority as its source and its <a class=\"g\" href=\"%BASE%/glossary#custodian\">custodian</a> recorded. Information disclosed carries the bars policy lists as mandatory (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-023\">DR-023</a>). Whether the ministry keeps its copy as custodian or transfers custody at referral or on transition is not stated in any source read (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-028\">DR-028</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated. The <a class=\"g\" href=\"%BASE%/glossary#sharing-agreement\">agreement registry</a> holds the agreement and its information conditions where one exists (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-085\">FR-085</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-117\">FR-117</a>).</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. Policy requires the written confirmation on the record before the director's involvement ends (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-124\">FR-124</a>), so a referral with no recorded confirmation of receipt stays open.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. Contact and referral must be possible at any hour (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-010\">NFR-A-010</a>). The notice and application periods are those the Act and the Regulation set (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-132\">FR-132</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each Indigenous authority, for its own records. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>On referral the director's duty to assess ends, and the authority's confirmation is the record of why (CL-D7-003, CL-D7-012, CL-D7-016, CL-D1-018, CL-D7-020, CL-D1-183, CL-D1-187, CL-D7-028, CL-D7-033, CL-D7-034, CL-D7-041, CL-D1-093, CL-D2-174, OB-LG2-69). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-111\">FR-111</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-112\">FR-112</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-114\">FR-114</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-122\">FR-122</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-128\">FR-128</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-130\">FR-130</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-135\">FR-135</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-156\">FR-156</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-161\">FR-161</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-204\">FR-204</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-207\">FR-207</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-224\">FR-224</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-028",
+     "anchor": "int-028",
+     "title": "Indigenous governing bodies, Indigenous communities and designated representatives",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Give the notices, copies and information the law requires to an Indigenous governing body, to a First Nation, the Nisga'a Nation or a Treaty First Nation, to the legal entity representing another Indigenous community, and to a designated representative, and re",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Give the notices, copies and information the law requires to an <a class=\"g\" href=\"%BASE%/glossary#igb\">Indigenous governing body</a>, to a First Nation, the Nisga'a Nation or a Treaty First Nation, to the legal entity representing another Indigenous community, and to a <a class=\"g\" href=\"%BASE%/glossary#designated-representative\">designated representative</a>, and receive their views. These recipients are different bodies under different sections and are not merged. This entry also covers the registers the system reads to find the right recipient.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Notice and response. Delivery today is by email, fax, registered mail or personal service. Not otherwise stated.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: notice before a <a class=\"g\" href=\"%BASE%/glossary#significant-measure\">significant measure</a>, carrying only the personal information the <a class=\"g\" href=\"%BASE%/glossary#federal-act\">federal Act</a> allows; information about a presentation hearing to the prescribed Indigenous organizations; notice of protection hearings and later applications served on designated representatives; a copy of a continuing custody order; a copy of an agreement and of the care plan to an Indigenous party, with information under the agreement's conditions on use, disclosure and security; the regular list of a community's children under a community agreement; written notice that a permanency plan is adoption, and notices of placement, disruption and the adoption order.</li><li><strong>Inbound</strong>: views on a significant measure; the record of consultation and cooperation; advice that confirms a child belongs to an Indigenous community; a report of any incident affecting the privacy or security of information given under an agreement.</li><li><strong>Reference sources read</strong>: the federal public list of Indigenous groups that gave notice, coordination agreements and Indigenous laws with their dates; the provincial and national repositories of Indigenous governing bodies; the Regulation's schedules of prescribed organizations and designated representative positions, held with effective dates.</li><li><strong>Published</strong>: each power or duty agreement and its amendments, which the minister must publish on a public government website.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each notice is kept as issued with proof of how and when it was given. The recipient is found from the registers at each notice, not from memory. Conditions on information given to an Indigenous party are recorded on the information itself and outlast the agreement (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-006\">DR-006</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated. Policy requires encryption and password protection when a notice is emailed (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-c-009\">NFR-C-009</a>).</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. Policy requires a copy of each notice and its delivery receipt on the child's record, verbal notice to be recorded, and reasons for withholding to be documented (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-136\">FR-136</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-137\">FR-137</a>).</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. Each notice runs on the notice period the Act or policy sets (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-136\">FR-136</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-188\">FR-188</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-189\">FR-189</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each Indigenous governing body, Nation or community, for its own records. The federal Minister for the federal public list. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The federal Act and the CFCSA require prior notice, service and copies, and the proof of each (CL-D7-056, RC-LG3-02, CL-D8-194, R-LG2-98, CL-D2-035, CL-D1-046, CL-D1-047, CL-D1-272, CL-D7-124, CL-D2-080, CL-D2-118, CL-D2-147, CL-D7-108, OB-LG1-121). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-110\">FR-110</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-116\">FR-116</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-117\">FR-117</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-119\">FR-119</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-120\">FR-120</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-136\">FR-136</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-138\">FR-138</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-142\">FR-142</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-164\">FR-164</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-174\">FR-174</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-188\">FR-188</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-189\">FR-189</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-217\">FR-217</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-223\">FR-223</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-236\">FR-236</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-248\">FR-248</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-250\">FR-250</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-257\">FR-257</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-259\">FR-259</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-029",
+     "anchor": "int-029",
+     "title": "Delegated agencies that keep their own case systems",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Reach the records, and exchange the transfers, that sit in a delegated agency's own case management system.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Reach the records, and exchange the transfers, that sit in a <a class=\"g\" href=\"%BASE%/glossary#delegated-agency\">delegated agency&#x27;s</a> own case management system. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> lists delegated-agency access to the ministry's system. This entry differs: some agencies hold records the ministry's system does not, and policy tells supervisors to consider the case systems each side uses when a file moves.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Not stated. A governed way to search or to ask is needed, with <a class=\"g\" href=\"%BASE%/glossary#custodian\">custodianship</a> recorded.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: a request for what an agency holds about a child, youth or family during the initial record review; transfer requests and the transfer summary; the record itself on transfer; a request for a prior contact check.</li><li><strong>Inbound</strong>: what the agency holds, recorded with its source; answers to transfer requests; entries by a secondary worker under joint file management; reportable circumstance reports written by an agency practitioner for the delegate of the director; prior contact check results.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>What an agency supplies is recorded as evidence with the agency as its source. A transfer of records from one director to another rests on a written instrument that names the records and its effective date (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-314\">FR-314</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Through the exchange and the agreement registry, as for <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a>.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. Safety information passes at once when a move involves immediate risk to a child, whatever the state of the transfer (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-303\">FR-303</a>).</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. The initial record review and each transfer step run on the time limits policy sets (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-144\">FR-144</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-301\">FR-301</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-302\">FR-302</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each delegated agency, for its own system. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>An initial record review that cannot reach an agency's records is incomplete, and a transfer between systems must not lose the record (CL-D1-020, R-RP1-31, CL-D8-025, CL-D1-217, R-QA1-24, CL-D7-176). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-144\">FR-144</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-226\">FR-226</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-301\">FR-301</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-306\">FR-306</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-314\">FR-314</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-338\">FR-338</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-339\">FR-339</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-348\">FR-348</a>. Whether the delegated-agency standards behind some of these remain in force waits on DEP-29.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-030",
+     "anchor": "int-030",
+     "title": "Police and the Protection Order Registry (child protection)",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Tell police what policy requires them to be told, receive what police report, and check the Protection Order Registry.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Tell police what policy requires them to be told, receive what police report, and check the Protection Order Registry. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-014\">INT-014</a> covers one exchange only: confirming arrest warrants for assistance applicants who consent. This entry covers child protection work.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Request and response, manual today. Registry checks go by email and telephone through centralized screening. Proof of service goes to the registry by fax. Checks with local police are telephone calls.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: a registry check request naming the alleged offender and the protected parties, or the adults in a proposed home, with its urgency; immediate notice to police in the circumstances policy lists; a request for an officer to make contact with a child in an emergency; a question to local police about a home where a child will live under a safety plan agreement; proof that a protective intervention order was served; requests for police help with orders and removals; a report of a suspected breach of an order; written requests for criminal record checks, sent with the person's consent; the updated address of a family that has moved where a no-contact order exists.</li><li><strong>Inbound</strong>: protection orders found and their conditions; the police answer about a home; a police officer's immediate report of taking charge of a child; criminal record check results.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>A registry result is held as unverified until a verification with police or the courthouse is recorded, where a decision depends on it (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-148\">FR-148</a>). Each disclosure to police is recorded with its legal basis (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-077\">FR-077</a>). Screening results about a person who is not a client carry a limit on use (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-030\">DR-030</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. A request with no answer stays visible as outstanding. Local protocols set the threshold for police investigation.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Notice to police in the listed circumstances is immediate. Other limits are those policy sets (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-148\">FR-148</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-182\">FR-182</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Police agencies and the registry's holder, which no source held names. Ministry business owner not stated. The ministry's criminal record check process document is not held (DEP-30).</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>A protection order or a police concern can change a safety decision, and an order police cannot see as served cannot be enforced (CL-D1-029, CL-D1-030, CL-D1-064, CL-D1-128, CL-D7-211, AU-LG1-21, CL-D1-150, CL-D1-308, CL-D2-013, OB-RP1-28). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-148\">FR-148</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-149\">FR-149</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-168\">FR-168</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-182\">FR-182</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-183\">FR-183</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-196\">FR-196</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-228\">FR-228</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-303\">FR-303</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-031",
+     "anchor": "int-031",
+     "title": "Public bodies that hold personal health information",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Request personal health information that a director needs, and record what comes back.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Request personal health information that a director needs, and record what comes back. The <a class=\"g\" href=\"%BASE%/glossary#cfcsa\">CFCSA</a> obliges a public body to disclose it. Health authorities are the main holders. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-008\">INT-008</a> covers health insurance enrolment and identity, which is a different exchange.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Request and response in writing. Not otherwise stated.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: the director's written request, stating what is required.</li><li><strong>Inbound</strong>: the information, recorded as evidence with the public body as its source.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each request records the legal basis and the delegation relied on (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-107\">FR-107</a>). The person the information is about is told afterwards as policy requires (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-308\">FR-308</a>). Policy states that physicians in private practice and the First Nations Health Authority and its service providers are private bodies, so this route does not reach them.</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. Where a record is withheld from the director, the court application in <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-312\">FR-312</a> is the route.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each public body, for its own records. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The right to the information is statutory and the request and the response are evidence for a protection decision (CL-D1-220, CL-D8-034, OB-LG1-133). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-308\">FR-308</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-312\">FR-312</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-032",
+     "anchor": "int-032",
+     "title": "Child protection and adoption authorities outside British Columbia, and licensed adoption agencies",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Exchange information with the child protection authorities of other provinces and territories, with licensed adoption agencies and with the federal immigration department, where a child, a family, a care provider or an adoptive applicant is or was outside the ",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Exchange information with the child protection authorities of other provinces and territories, with licensed adoption agencies and with the federal immigration department, where a child, a family, a care provider or an adoptive applicant is or was outside the province. No existing integration covers these bodies.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Request and response by letter today. The interprovincial protocol is not held (DEP-30).</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: requests for prior involvement; verbal notice of a report about a child who lives in the other jurisdiction; requests for prior contact and criminal record checks on a person who lived elsewhere; the proposed adoption plan; notices of placement; progress and final reports; records forwarded after a placement or a move; supervision reports for another jurisdiction's permanent ward; referral of applicants to licensed adoption agencies; the answer to the federal department's request for a letter before a child enters Canada, and notice of a disruption where a child returns to the country of origin; a revocation of consent passed at once to the agency that made the placement.</li><li><strong>Inbound</strong>: history, recorded with its source; preliminary assessments and homestudies; acceptance of an adoption plan; requests for assessment; supervision agreements with a delegation of authority; adoption orders; an agency's pre-placement records; requests for a search of the parents' registry.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each exchange is recorded as evidence with its source and date. Where another government delegates authority for its ward, the record carries that government as <a class=\"g\" href=\"%BASE%/glossary#custodian\">custodian</a> and the delegation it is held under (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-005\">DR-005</a>). Where a British Columbia child is adopted in another province, the ministry's record says that the adoption records are held there and keeps a copy of every document forwarded (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-028\">DR-028</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. An arrangement with a care provider outside the province is approved in collaboration with the authority there before it starts (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-200\">FR-200</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each authority and agency, for its own records. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy requires these checks and exchanges before a decision that relies on them (CL-D1-021, OB-CP4-08, CL-D1-236, CL-D1-150, OB-AD1-72, CL-D2-222, CL-D2-224, CL-D2-229, CL-D2-232, CL-D2-233, CL-D2-249, CL-D2-252, CL-D2-192, CL-D2-211). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-144\">FR-144</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-196\">FR-196</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-200\">FR-200</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-226\">FR-226</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-261\">FR-261</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-271\">FR-271</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-274\">FR-274</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-277\">FR-277</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-281\">FR-281</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-033",
+     "anchor": "int-033",
+     "title": "Indigenous Services Canada and registration and membership bodies",
+     "priority": "Should",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Apply for a child's registration, citizenship or membership, and give the notice policy requires when a registered child is adopted.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Apply for a child's registration, citizenship or membership, and give the notice policy requires when a registered child is adopted. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-012\">INT-012</a> names Indigenous Services Canada for assistance on reserve. This entry differs: it concerns a child's status and an adoption notice.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Application and notice. Not otherwise stated.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: applications for status under the Indian Act; applications for citizenship with Métis Nation BC and for membership or citizenship with the child's community or the Nisga'a Lisims Government; notice that a child registered under the Indian Act has been adopted.</li><li><strong>Inbound</strong>: the outcome of each application, recorded with its source.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Not stated. The content of the adoption notice rests on a template letter only. That letter discloses the adoptive parents' contact details, which the ministry should confirm against policy before the notice is built.</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Indigenous Services Canada and each registration or membership body. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy requires the applications to be made in adoption planning and the notice to be given on the order (CL-D2-088, CL-D2-155, CL-D7-109). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-235\">FR-235</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-259\">FR-259</a>. Finance policy also treats money for an eligible Indigenous child in care as due from the federal government, but the department it names no longer exists and the current procedures are not held (OB-FI1-77, CL-D7-149, CL-D7-150), so that exchange is not specified here.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-034",
+     "anchor": "int-034",
+     "title": "Vital statistics agency (adoption registries and a child's documents)",
+     "priority": "Should",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Learn whether a disclosure veto or a no-contact declaration is in effect for a named person, and when it is cancelled or lapses.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Learn whether a disclosure veto or a no-contact declaration is in effect for a named person, and when it is cancelled or lapses. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-016\">INT-016</a> receives births, deaths and name changes as events. This entry differs: the system asks about a status filed with the registrar general, which bars the Provincial director from helping to locate the filer and ends an openness registration.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Not stated. No source held describes how this status reaches the Provincial director today.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: a question naming the person a search or a registration concerns. Practice also has the ministry apply for a birth certificate when a child comes into care and, rarely, register a birth for a parent who cannot (practice only, to confirm: the identification policy is not held).</li><li><strong>Inbound</strong>: whether a veto or declaration is in effect; its cancellation or lapse.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>A search or a registry disclosure does not proceed until the answer is recorded (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-242\">FR-242</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-243\">FR-243</a>). When a registration ends, the registry information is removed (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-026\">DR-026</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. With no answer on record the system treats the search as not yet permitted.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>The provincial vital statistics agency. Ministry business owner not stated. Whether the adoption registries are inside the replacement waits on DEP-39.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Adoption Act bars help to locate a person who has filed a veto or declaration, so the system must know (R-LG2-45, R-LG2-61, R-LG2-40, R-LG2-41, CK-LG2-07, OB-LG2-30, CL-D2-016, CL-D2-017). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-242\">FR-242</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-243\">FR-243</a>, and by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-218\">FR-218</a> for the practice-only part.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-035",
+     "anchor": "int-035",
+     "title": "Public Guardian and Trustee as a child's property guardian",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Serve, notify and seek the consent of the Public Guardian and Trustee where it is, or will be, a child's property guardian.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Serve, notify and seek the consent of the Public Guardian and Trustee where it is, or will be, a child's <a class=\"g\" href=\"%BASE%/glossary#property-guardian\">property guardian</a>. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-017\">INT-017</a> covers payments and trustee arrangements for assistance clients. This entry differs: the exchange is notices, consents, copies of orders and incident reports about a child.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Notice, request and response. Not otherwise stated.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: information about a presentation hearing where the parent apparently entitled to custody is under the age the Act sets; notice of applications where it is the child's property guardian or the Act names it; copies of continuing custody orders, orders appointing it property guardian and orders transferring custody; a request for its consent before a permanent transfer of custody; notice that the director has consented to adoption or to residence outside British Columbia, that a child is placed, that an adoption will not proceed and that a child has been adopted, with a copy of the order and any change of name; notice of events affecting the child's financial or legal interests; reportable circumstance reports for the guardianship cases policy names.</li><li><strong>Inbound</strong>: its consent or refusal; an answer whether funds are held in trust for the child; whether it continues as property guardian by agreement with an <a class=\"g\" href=\"%BASE%/glossary#indigenous-authority\">Indigenous authority</a> after a transition.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each notice is kept as issued with proof of sending. The start and end of its property guardianship follow the order or consent that causes them (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-217\">FR-217</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-275\">FR-275</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. An application for a permanent transfer does not proceed without the recorded consent where the Act requires it (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-208\">FR-208</a>).</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. Each notice runs on the time limit the Act or policy sets.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Public Guardian and Trustee. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act requires these notices, consents and copies (CL-D1-138, CL-D1-142, CL-D1-202, CL-D1-205, CL-D2-035, CL-D2-036, CL-D2-038, CL-D7-218, CL-D2-125, CL-D2-126, CL-D2-127, CL-D2-254, CL-D2-212, CL-D7-045, CL-D8-174). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-131\">FR-131</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-135\">FR-135</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-188\">FR-188</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-189\">FR-189</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-207\">FR-207</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-209\">FR-209</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-217\">FR-217</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-252\">FR-252</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-259\">FR-259</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-274\">FR-274</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-275\">FR-275</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-339\">FR-339</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-036",
+     "anchor": "int-036",
+     "title": "Representative for Children and Youth and other bodies that review the ministry",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Send reportable circumstance reports, and produce records for the bodies that review a complaint or can require information.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Send reportable circumstance reports, and produce records for the bodies that review a complaint or can require information. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-024\">INT-024</a> lists coroners, police and others entitled to disclosure. It does not list the Representative for Children and Youth, the Office of the Ombudsperson, the Information and Privacy Commissioner or the central access office that acts for the head of the public body.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Report and request and response. Reportable circumstance reports go today by email to a distribution list. Not otherwise stated.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: a report of each fatality, critical injury and serious incident that meets the policy tests; a complaint or review record produced for further review; a copy of a youth justice file released to a reviewing body with written notice of the federal non-disclosure provisions; access requests with their arrival date and the responsive records; records the commissioner requires; breach notifications.</li><li><strong>Inbound</strong>: a request for an administrative review; a complaint received through a reviewing body; the access response as issued, with each severed passage and its ground.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each report and each production is a disclosure recorded with its legal basis (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-077\">FR-077</a>). A reportable circumstance report, its versions, the screening recommendation and the review decision form one record (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-338\">FR-338</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-340\">FR-340</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. The reporting time limit runs from being informed, with no stated allowance for weekends or holidays, so a report that cannot be sent is recorded and sent by a recorded manual route (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-010\">NFR-A-010</a>).</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>The time limits policy sets (CK-QA1-07, CK-QA1-08, CK-QA1-09). The Act that sets the Representative's powers is not held.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each reviewing body. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy requires each reportable circumstance to be reported in time, and these bodies may require records (CL-D8-168, CL-D8-169, CL-D8-170, CL-D3-056, CL-D7-145, CL-D3-222, CL-D3-230, R-MH2-37, CL-D8-046, CL-D8-047, OB-LG4-46, OB-LG4-44). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-315\">FR-315</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-337\">FR-337</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-340\">FR-340</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-342\">FR-342</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-344\">FR-344</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-388\">FR-388</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-434\">FR-434</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-462\">FR-462</a>. The youth justice and mental health parts are conditional on DEP-28 and DEP-26.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-037",
+     "anchor": "int-037",
+     "title": "Contracted agencies and accreditation organizations (statistics, results and service events)",
+     "priority": "Should",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Receive what contracted agencies and accreditation organizations must report to the ministry.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Receive what contracted agencies and accreditation organizations must report to the ministry. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-020\">INT-020</a> exchanges provider records, orders and invoices with the provider contract system. This entry differs: it carries program statistics, accreditation results and notice that a contracted service ended early.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Periodic report. The practice manual describes a common electronic reporting form. The reporting guide is not held.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Inbound</strong>: program statistics from each agency contracted for the Infant Development Program and the Supported Child Development program, for each reporting period (eligibility counts with reasons, and types and levels of service); accreditation results for contracted service providers, including a failure to achieve the full award; notice from a contracted family support provider that a service ended early.</li><li><strong>Outbound</strong>: referral information to contracted family support providers.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each report is recorded against the agency, the program and the reporting period, with who sent it and when it arrived. The agency keeps the child's file, the waitlist and the eligibility decision (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-297\">FR-297</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>A report not received for a period shows as outstanding (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-297\">FR-297</a>). Not otherwise stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>The reporting period policy sets. Not otherwise stated.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each contracted agency and accreditation organization. Ministry business owner not stated. Whether the early years agencies work in the ministry's system or report to it waits on DEP-34.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>Protected B</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy requires the statistics and the accreditation results to reach the ministry, and an early ending must reach the worker in time to start the follow-up time limits (CL-D6-088, CL-D6-090, OB-QA1-16, CL-D8-162, CL-D6-063, R-SRSN1-46). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-295\">FR-295</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-297\">FR-297</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-346\">FR-346</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-038",
+     "anchor": "int-038",
+     "title": "Health authority mental health services, referring health bodies and designated facilities",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-26)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Receive referrals from health bodies, plan a youth's move to adult services with the health authority, and exchange the notices the Mental Health Act requires where a director is the legal guardian of a child in a designated facility.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Receive referrals from health bodies, plan a youth's move to adult services with the health authority, and exchange the notices the Mental Health Act requires where a director is the legal guardian of a child in a designated facility.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Referral, notice and request and response. Today by telephone, fax, mail and paper notices. No electronic exchange is described and the Mental Health Act sets no electronic channel.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Inbound</strong>: urgent and non-urgent referrals from health authorities, primary care networks and hospitals, with a statement that the referring body obtained consent to refer; the adult services clinician's sign-off on admission; written notice of a patient's rights, notice of discharge and notice of a hearing request, sent to a director as legal guardian of a minor; the Mental Health Review Board chair's notice of a hearing and the determination.</li><li><strong>Outbound</strong>: with consent, the referral outcome to the referring professional; the written transition service plan and background information for a youth in the transition years; a contracted physician's report to the referring primary care provider, with consent; a guardian's request for admission or discharge; a request for a review panel hearing made on a child's behalf.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Referral information from a public body is filed on a client record only where the record shows that body obtained consent to refer (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-356\">FR-356</a>). What crosses to adult services is a plan and background shared with consent, not the client record. In this group \"the director of the facility\" means the person in charge of a designated facility, never a director under the <a class=\"g\" href=\"%BASE%/glossary#cfcsa\">CFCSA</a>.</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated for the exchange. The response to a referral runs on the time limit policy sets (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-357\">FR-357</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each health authority and designated facility; the Mental Health Review Board. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy and the Mental Health Act require these referrals, plans and notices (CL-D5-035, CL-D5-036, OB-MH2-83, CL-D5-046, CL-D5-047, CL-D5-119, OB-MH2-84, OB-MH2-64, OB-LG4-96, OB-LG4-97, OB-LG4-98, AU-LG4-26, AU-LG4-27, R-LG4-114). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-356\">FR-356</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-357\">FR-357</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-361\">FR-361</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-372\">FR-372</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-378\">FR-378</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-390\">FR-390</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-391\">FR-391</a>. Whether screening results held in the screening instrument's own service are copied or referenced is not settled by policy (CL-D5-031, CL-D5-116).</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-039",
+     "anchor": "int-039",
+     "title": "Integrated Child and Youth teams' shared record and partner employers",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-27)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Exchange with the shared team record and with the other employers of an integrated team (health authorities, school districts and contracted agencies), if the shared record is held outside the replacement.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Exchange with the shared team record and with the other employers of an integrated team (health authorities, school districts and contracted agencies), if the shared record is held outside the replacement.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Not stated. Today some information goes through the shared team record and some by encrypted email to the Program Leader.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: the ministry clinician's summary, high-level goals, closure documentation and closure summary; intake information and assessments shared with consent under information sharing agreements; crisis notes and alerts.</li><li><strong>Inbound</strong>: referrals relayed by the Program Leader; case assignments; team membership; level of service; alerts; the integrated care plan and case review outcomes; notice that the team has closed the case.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Every item shared is limited by the family's consent to share (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-395\">FR-395</a>). The clinical record a ministry team member keeps never passes through the shared view (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-398\">FR-398</a>). Custodian, retention and disposal of the shared record are not stated in any policy held.</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>The partner employers, and the body that runs the shared record, which another ministry does today for all partner employers (DEP-27). Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Team members from several employers must see the same goals, plan and alerts, within consent (CL-D5-135, CL-D5-167, CL-D5-174, CL-D5-180, CL-D5-181, CL-D5-189, CL-D5-191, RC-IC1-18, OB-IC1-71, OB-IC1-84, OB-IC1-85, R-MH3-12). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-354\">FR-354</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-394\">FR-394</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-400\">FR-400</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-403\">FR-403</a>. <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-354\">FR-354</a> also waits on DEP-26.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-040",
+     "anchor": "int-040",
+     "title": "Youth justice court registry and Crown Counsel",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Receive the court's orders and requests for reports, file reports and applications, and exchange referrals, reports and decisions with Crown Counsel and the federal prosecution service.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Receive the court's orders and requests for reports, file reports and applications, and exchange referrals, reports and decisions with Crown Counsel and the federal prosecution service. These are justice-sector bodies with their own case systems.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Not stated. Policy routes reports to Crown Counsel through the prosecution service's own system.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Inbound</strong>: orders for reports with the hearing date; referral forms; orders with or without a reporting condition; hearing dates; a variation of order form after a review; warrants for remand, orders for remand, warrants of committal and orders for discharge; the referral for an extrajudicial sanction with the report to Crown Counsel, court dates and the limitation date; Crown Counsel's approval, extension and outcome decisions; notice when Crown Counsel changes the kind of application.</li><li><strong>Outbound</strong>: completed reports, filed with the court clerk by the time limit; applications for review and requests for leave; applications for review of detention; conference and progress reports; the suitability finding, the proposed and revised agreement and compliance reports for an extrajudicial sanction; reports seeking a charge, a warrant or a variation of a release order; transfer of sentence and waiver forms; a report on an escape from remand; notice of a direct release; applications for public disclosure.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>The registry, not the officer, gives a report to the youth's counsel. A request for a court-ordered assessment report is referred to the registry. The date of a finding of guilt comes from the record of court proceedings and feeds the period of access (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-446\">FR-446</a>).</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated. A warrant in effect is confirmed with the court where the document is not in hand (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-452\">FR-452</a>).</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>The filing time limits policy sets for each kind of report (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-415\">FR-415</a>). Not otherwise stated.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>The youth justice court, Court Services, Crown Counsel and the federal prosecution service. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Supervision, custody and reports all start from a court order or a Crown referral (OB-YJ5-27, OB-YJ5-30, CL-D4-035, CL-D4-036, CL-D4-045, CL-D4-046, CL-D4-062, CL-D4-080, CL-D4-120, CL-D4-124, CL-D4-127, CL-D4-117, CL-D3-005, CL-D3-006, CL-D3-037, CL-D3-046, CL-D3-079, CL-D3-080, OB-YJ4-43, CL-D3-138). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-411\">FR-411</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-413\">FR-413</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-415\">FR-415</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-419\">FR-419</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-425\">FR-425</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-426\">FR-426</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-428\">FR-428</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-429\">FR-429</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-433\">FR-433</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-438\">FR-438</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-441\">FR-441</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-446\">FR-446</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-449\">FR-449</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-452\">FR-452</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-455\">FR-455</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-466\">FR-466</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-041",
+     "anchor": "int-041",
+     "title": "Police agencies (youth justice)",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Give police the orders, warrants and notices that youth justice policy requires, and receive what police return.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Give police the orders, warrants and notices that youth justice policy requires, and receive what police return. <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-030\">INT-030</a> covers police for child protection. This entry is separate because it rests on the youth justice sources and is conditional.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Notice and request and response. Not otherwise stated. Policy does not say whether the check for outstanding warrants before a release is made by ministry staff directly or through a police agency.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: a copy of an active order where police may not know that a youth who committed a sexual offence lives in their area; immediate notice of a community safety concern or a confirmed move, with the content policy lists; an approved warrant of suspension for entry on the national police information system, or a refusal with reasons; notice that a warrant was executed; varied conditions and the outcome of a review to the originating police agency; the order for supervision in the community and each change to its conditions, before release; a copy of a leave authorization, and a revocation with identity and location information when a youth is at large; escape notification with the content policy lists, and notice of apprehension; notice of a serious incident that may warrant charges; a seized item handed over as evidence; information from monitored communications that relates directly to safety and security.</li><li><strong>Inbound</strong>: victim contact details; the arrest date; a receipt for a seized item or for property removed; advance arrangements for an interview; notice before fingerprinting; assurances for an escorted absence; the result of the warrant check before release.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>Each disclosure is checked against the youth records rules before release and recorded (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-447\">FR-447</a>). Continuity of possession of a seized item is kept, with the receipt (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-474\">FR-474</a>). Other information from communications needs a production order.</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Immediate where policy says so (relocation, escape, revocation with the youth at large). Police may seek a warrant out of hours (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-011\">NFR-A-011</a>).</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Each police agency. Ministry business owner not stated.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Police can enforce only the orders and warrants they hold, and policy requires each notice (CL-D4-084, CL-D4-086, CL-D4-074, CL-D4-129, CL-D4-130, CL-D4-131, OB-YJ4-37, CK-YJ4-30, CL-D3-003, CL-D3-006, OB-YJ3-08, OB-YJ3-33, CL-D3-124, CL-D3-125, CL-D3-138, AU-LG3-51, CL-D3-181, CL-D3-191, CL-D3-194, CL-D3-195, CL-D3-196). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-423\">FR-423</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-424\">FR-424</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-427\">FR-427</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-432\">FR-432</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-433\">FR-433</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-439\">FR-439</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-455\">FR-455</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-459\">FR-459</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-460\">FR-460</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-466\">FR-466</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-467\">FR-467</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-474\">FR-474</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-477\">FR-477</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-478\">FR-478</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "INT-042",
+     "anchor": "int-042",
+     "title": "Adult corrections, the sheriff service, federal bodies and other jurisdictions (youth justice)",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Exchange what is needed when a youth moves between youth justice and adult corrections, is transported, serves an adult sentence, is supervised in another province or territory, or has a federally funded rehabilitative plan.",
+     "fields": [
+      {
+       "label": "Purpose",
+       "html": "<p>Exchange what is needed when a youth moves between youth justice and adult corrections, is transported, serves an adult sentence, is supervised in another province or territory, or has a federally funded rehabilitative plan. It also covers referrals to forensic psychiatric services and transfer to a designated mental health facility.</p>"
+      },
+      {
+       "label": "Integration Type",
+       "html": "<p>Not stated. Adult corrections and the sheriff service use justice-sector case systems of their own.</p>"
+      },
+      {
+       "label": "Data Exchanged",
+       "html": "<ul><li><strong>Outbound</strong>: placement directions to the sheriff service and the receiving adult provincial correctional centre; the record of a physical transfer and of any file transfer; notice of intent to transfer supervision to an adult probation officer; risk information about a youth to be transported; written notice, with active warrants of committal, to the Parole Board of Canada and the regional manager of conditional release programs when a youth begins an adult sentence in a youth custody centre; summary reports, supporting orders and progress reports to another province's or territory's youth justice service; the de-identified funding application, notice of withdrawal of consent, narrative reports and the account of spending to Justice Canada through the provincial coordinator; referrals to forensic psychiatric services; copies of medical certificates to the director of the facility.</li><li><strong>Inbound</strong>: transport alerts that only the sheriff service maintains; Correctional Service of Canada's assessment and the Parole Board of Canada's approval for leave on an adult sentence; agreement to courtesy supervision and written waiver agreements; Justice Canada's approval or denial; forensic findings, treatment recommendations, summary reports and post-sentence assessments; the facility's discharge decision; notice of duplicate identifiers that adult corrections has consolidated.</li></ul>"
+      },
+      {
+       "label": "Integration Pattern",
+       "html": "<p>The custody identifier is shared with adult corrections. Custody medical and master files do not follow a youth to adult custody, and on a waiver the community file is closed with a summary and kept (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-028\">DR-028</a>). What crosses to and from forensic services is a referral and a determination, not the clinical record. After a sentence moves to an adult institution, that institution calculates it.</p>"
+      },
+      {
+       "label": "Authentication",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "Error Handling",
+       "html": "<p>Not stated.</p>"
+      },
+      {
+       "label": "SLA",
+       "html": "<p>Not stated. Volumes for leave on an adult sentence are very low.</p>"
+      },
+      {
+       "label": "Owner",
+       "html": "<p>Adult corrections; the sheriff service; the Parole Board of Canada; Correctional Service of Canada; Justice Canada; each other jurisdiction's youth justice service; forensic psychiatric services; each designated facility. Ministry business owner not stated. Whether the forensic service's own records sit inside the replacement is a scope question.</p>"
+      },
+      {
+       "label": "Classification",
+       "html": "<p>not stated in the sources; treated as Protected C until classified, as <a class=\"rid\" href=\"%BASE%/requirements/integrations#int-013\">INT-013</a> is</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Each move of a youth between bodies carries duties of notice and record the manual sets (CL-D3-011, CL-D3-015, CL-D3-022, CL-D3-024, CL-D3-023, CL-D3-019, CL-D3-004, CL-D3-005, CL-D3-007, CL-D3-009, CL-D3-062, CL-D3-063, CL-D3-060, CL-D3-068, CL-D4-039, CL-D3-061, CL-D4-081, CL-D4-082, CL-D4-083, CL-D3-040, CL-D3-071, CL-D3-094, CL-D3-096, R-YJ3-33, CL-D3-121, CL-D3-219, CL-D3-220). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-413\">FR-413</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-417\">FR-417</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-418\">FR-418</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-420\">FR-420</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-423\">FR-423</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-433\">FR-433</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-442\">FR-442</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-444\">FR-444</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-448\">FR-448</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-450\">FR-450</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-453\">FR-453</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-454\">FR-454</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-458\">FR-458</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-481\">FR-481</a>.</p>"
+      }
+     ]
     }
    ]
   }

@@ -577,7 +577,458 @@ export default {
       },
       {
        "label": "Stakeholder",
-       "html": "<p>Chief Architect, with the <a class=\"g\" href=\"%BASE%/glossary#program-policy-authority\">program policy authority</a> for each family</p>"
+       "html": "<p>Chief Architect, with the <a class=\"g\" href=\"%BASE%/glossary#program-policy-authority\">program policy authority</a> for each family</p><p><em>Added v1.6.</em> <a class=\"rid\" href=\"%BASE%/requirements/business#br-015\">BR-015</a> to <a class=\"rid\" href=\"%BASE%/requirements/business#br-025\">BR-025</a> state what the ministry needs from the system for children and family services. Each is delivered by the functional requirements in the groups it names.</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-015",
+     "anchor": "br-015",
+     "title": "A report about a child is received, assessed and answered within the time the law and policy set",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Every report that a child may need protection is recorded when it arrives, on any day and at any hour.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>Every report that a child may need protection is recorded when it arrives, on any day and at any hour. It is screened, given a response priority and a response path, and followed through assessment or investigation to a recorded outcome, each step within its time limit and with the approval policy requires.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act requires a director to assess every report. Policy sets the limits in hours and days, and a report that is not received is a child who is not seen (TA §C.12.2). The reporting line already has its own availability target (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-007\">NFR-A-007</a>); this requirement covers what happens to the report after it is received.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every report has a recorded screening decision, response priority and response path, each with its approver and the time it was made (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-143\">FR-143</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-160\">FR-160</a>).</li><li>Every limit policy sets for these steps runs as a registered clock, and a missed limit is recorded without anyone having to notice (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-061\">FR-061</a>).</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-12, DRV-17, DRV-18</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a> [PROPOSED], <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n19\">N19</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-143\">FR-143</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-160\">FR-160</a>, <a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-007\">NFR-A-007</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The child protection practice authority (TA §E.5.9)</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-016",
+     "anchor": "br-016",
+     "title": "Indigenous laws, authorities and agreements are identified first and honoured at every step",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "For every child, the system records whether the child is an Indigenous child, each community, whether an Indigenous law or an agreement applies, and which Indigenous authority is responsible.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>For every child, the system records whether the child is an Indigenous child, each community, whether an Indigenous law or an agreement applies, and which Indigenous authority is responsible. It applies the terms of an applicable agreement to the work, supports referral of a report to an Indigenous authority and withdrawal from a proceeding at its request, and records every notice, consultation and placement decision the Acts require.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The federal Act and the provincial Acts make these duties conditions of acting lawfully for an Indigenous child, and an agreement with a governing body binds every director in the province. <a class=\"rid\" href=\"%BASE%/requirements/business#br-008\">BR-008</a> already requires custodianship and a class of participant outside the Crown; this requirement covers what the director must do case by case.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>No protection response, agreement, court step or placement for an Indigenous child proceeds without the recorded identity and applicable-law check (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-110\">FR-110</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-142\">FR-142</a>).</li><li>An agreement's terms are held once and applied to each child it covers; the registry of agreements (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-085\">FR-085</a>) and the register of agreements with governing bodies are one record.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-06, DRV-12, DRV-14</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a>, <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-110\">FR-110</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-142\">FR-142</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-084\">FR-084</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-085\">FR-085</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The Indigenous Child Welfare Director and the Provincial Director of Child Welfare, designated under the CFCSA</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-017",
+     "anchor": "br-017",
+     "title": "Every agreement and court step runs on its statutory time, with the record the court and the parties are owed",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Agreements with families and each step of a court proceeding are recorded with their parties, required content, term and cumulative limits.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>Agreements with families and each step of a court proceeding are recorded with their parties, required content, term and cumulative limits. Notices are served on everyone entitled, hearings are tracked against their limits, and the prescribed reports to court are produced from the record.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act fixes how long an agreement or order may run, who must be told of a hearing and what the court must be given. A term that passes unnoticed leaves a child in care with no legal basis.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every agreement and order has a recorded start, term and cumulative total, tested against the limit the Act sets for the child's age (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-161\">FR-161</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-176\">FR-176</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-177\">FR-177</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-195\">FR-195</a>).</li><li>Every hearing has a recorded list of persons entitled to notice, with proof of service for each.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-12</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n08\">N08</a>, <a class=\"rid\" href=\"%BASE%/parameters#n19\">N19</a>, <a class=\"rid\" href=\"%BASE%/parameters#n20\">N20</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-161\">FR-161</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-176\">FR-176</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-177\">FR-177</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-195\">FR-195</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-061\">FR-061</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The child protection practice authority, with legal counsel to the director</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-018",
+     "anchor": "br-018",
+     "title": "A child in care or in an out-of-care arrangement has a plan, a guardian's decisions and their rights on record",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "For each child in care, and each child placed with a care provider outside care, the system holds the plan of care and its reviews, the visits made, the health and consent decisions taken as guardian, the rights the child was told of, the checks made on the pe",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>For each child in care, and each child placed with a care provider outside care, the system holds the plan of care and its reviews, the visits made, the health and consent decisions taken as guardian, the rights the child was told of, the checks made on the people caring for the child, and the plan for permanency.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The director is the child's guardian or supervises the person who is. The Act sets the rights of children in care and the content of a plan of care, and policy sets how often a child is seen. Much of the policy that governs a child in care is not held (DEP-30), so several of these requirements are provisional.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every child in care has a current plan and a record of each review and each private visit (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-211\">FR-211</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-225\">FR-225</a>).</li><li>No child is placed with a care provider or caregiver whose required checks are not on record and current (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-196\">FR-196</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-210\">FR-210</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-226\">FR-226</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-234\">FR-234</a>).</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-12, DRV-17</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n01\">N01</a>, <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n19\">N19</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-196\">FR-196</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-210\">FR-210</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-211\">FR-211</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-225\">FR-225</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-226\">FR-226</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-234\">FR-234</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The child protection practice authority</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-019",
+     "anchor": "br-019",
+     "title": "Adoption records hold the consents, notices and identity information the Adoption Act requires",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "The system supports adoption from planning to the order and after it:",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>The system supports adoption from planning to the order and after it: consultation with Indigenous communities, matching, the proposal to adoptive applicants, placement, consents and their revocation, notices, the reports to court, registries, openness agreements and post-adoption assistance.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>An adoption changes a child's legal identity for life. A consent taken too early, a notice not given or a birth father not searched for can undo an order.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>No placement or application proceeds while a required consent, notice or consultation is not on record (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-235\">FR-235</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-281\">FR-281</a>).</li><li>The medical and social history, and an Indigenous child's community information, are preserved and can be given when the Act requires.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-13, DRV-14</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n08\">N08</a>, <a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-235\">FR-235</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-281\">FR-281</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The Provincial Director of Adoption</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-020",
+     "anchor": "br-020",
+     "title": "Services for children with support needs rest on recorded eligibility, consent and agreements",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Eligibility for each support needs program is decided against the criteria policy sets and recorded with its evidence.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>Eligibility for each support needs program is decided against the criteria policy sets and recorded with its evidence. Services start on recorded consent. Requests are ranked for priority, and each service, agreement and payment is recorded with how it ended.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>These services are voluntary and rationed. A family is owed a written decision on eligibility and a record of where they stand.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every eligibility decision records the criteria met, the evidence and the decision-maker, and is given in writing (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-282\">FR-282</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-296\">FR-296</a>).</li><li>No service is recorded as started without the consent policy requires.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-12, DRV-17</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n01\">N01</a>, <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n20\">N20</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-282\">FR-282</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-296\">FR-296</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-297\">FR-297</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-298\">FR-298</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The program policy authority for children and youth with support needs</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-021",
+     "anchor": "br-021",
+     "title": "Only a person with the delegated authority acts, and every approval is recorded",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "The system holds every designation of a director and every delegation of a director's powers, with its category, limits and dates.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>The system holds every designation of a director and every delegation of a director's powers, with its category, limits and dates. It tests a worker's delegation before a power is exercised and records each approval policy requires from a supervisor, team leader or director.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act lets a director delegate powers in writing. A removal or a consent given by a worker without the delegation is unlawful, and policy reserves named decisions to named positions.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Any exercise of a director's power can be traced to a delegation in force on that date (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-104\">FR-104</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-109\">FR-109</a>).</li><li>Every decision that policy reserves to a named position shows who approved it and when.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-12</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-104\">FR-104</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-109\">FR-109</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-004\">FR-004</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-094\">FR-094</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The Provincial Director of Child Welfare</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-022",
+     "anchor": "br-022",
+     "title": "Information about children and families is restricted, shared and disclosed as the Acts allow",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Collection, use and disclosure follow the child protection statute where it applies and the privacy statute where it does not.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>Collection, use and disclosure follow the child protection statute where it applies and the privacy statute where it does not. Records are restricted where policy requires, kept apart where a statute bars their use by another service line, disclosed to the parties to a proceeding, and transferred complete when a family moves.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>One family can be served under two statutes at once, with different rules for sharing between them. Staff in one service line may not open another line's records without consent or a written request. <a class=\"rid\" href=\"%BASE%/requirements/business#br-006\">BR-006</a> sets the general duty; this requirement covers the rules particular to children's services.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every disclosure names its legal basis under the governing Act (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-299\">FR-299</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-315\">FR-315</a>).</li><li>A user in one service line cannot open a record another line holds unless a recorded consent or request allows it.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-03, DRV-12</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-299\">FR-299</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-315\">FR-315</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-075\">FR-075</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-085\">FR-085</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The Ministry Privacy Officer</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-023",
+     "anchor": "br-023",
+     "title": "Money paid for a child's care is authorised, traceable and recoverable",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Payments to caregivers, care providers, service providers and families are made on a recorded agreement or entitlement, approved by a person with the spending authority, and issued through the controls BR-004 sets.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>Payments to caregivers, care providers, service providers and families are made on a recorded agreement or entitlement, approved by a person with the spending authority, and issued through the controls <a class=\"rid\" href=\"%BASE%/requirements/business#br-004\">BR-004</a> sets. A parent's contribution to a child's care is determined, agreed or ordered, and collected.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Finance policy separates the people who request, approve and issue a payment. The Act keeps parents responsible for contributing to the care of a child in care.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every payment traces to an agreement or entitlement and to an approver whose authority covered it (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-316\">FR-316</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-334\">FR-334</a>).</li><li>Every parental contribution has an agreement or an order behind it.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-07, DRV-12</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>, <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-316\">FR-316</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-334\">FR-334</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-042\">FR-042</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-048\">FR-048</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The Executive Financial Officer</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-024",
+     "anchor": "br-024",
+     "title": "Deaths, critical injuries, serious incidents and complaints are reported and reviewed on time",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "A reportable circumstance is recorded, approved and sent to those entitled to it within the limit policy sets, and screened for review.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>A reportable circumstance is recorded, approved and sent to those entitled to it within the limit policy sets, and screened for review. Requests for administrative review and complaints are taken by any means, tracked to an outcome, and never held against the person who made them.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The regulation gives a person a right to an administrative review. Policy requires a report on a death or critical injury of a child who received services, and the review that follows depends on that report being made.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Every reportable circumstance shows when the practitioner learned of it, when the report was approved and to whom it went (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-335\">FR-335</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-348\">FR-348</a>).</li><li>Every request for administrative review is recorded with the date it arrived and its outcome.</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-12, DRV-17</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n19\">N19</a>, <a class=\"rid\" href=\"%BASE%/parameters#n20\">N20</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-335\">FR-335</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-348\">FR-348</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-055\">FR-055</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-089\">FR-089</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The child protection practice authority</p>"
+      }
+     ]
+    },
+    {
+     "id": "BR-025",
+     "anchor": "br-025",
+     "title": "Mental health, integrated team and youth justice work is specified and held ready for the scope decisions",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-26 to DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "The requirements for child and youth mental health, the Integrated Child and Youth teams and youth justice are written from their own law and policy and kept in their own groups, so that each scope decision keeps or removes a whole group without rework.",
+     "fields": [
+      {
+       "label": "Description",
+       "html": "<p>The requirements for child and youth mental health, the Integrated Child and Youth teams and youth justice are written from their own law and policy and kept in their own groups, so that each scope decision keeps or removes a whole group without rework.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Each of these areas records its work today in a system other than the one being replaced, and nobody has decided whether the replacement covers them. Their statutes limit who may see their records: a youth justice record may not be seen by other service lines except as the federal Act allows.</p>"
+      },
+      {
+       "label": "Success Criteria",
+       "html": "<ul><li>Each of DEP-26, DEP-27 and DEP-28 is decided before the discovery for module M9 closes.</li><li>Whatever is decided, a person index shared across service lines does not reveal youth justice or mental health involvement to a user who may not see it (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-349\">FR-349</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-391\">FR-391</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-406\">FR-406</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-434\">FR-434</a>).</li></ul>"
+      },
+      {
+       "label": "Drivers",
+       "html": "<p>DRV-15, DRV-16, DRV-17</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n03\">N03</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a></p>"
+      },
+      {
+       "label": "Delivered by",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-349\">FR-349</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-391\">FR-391</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-392\">FR-392</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-405\">FR-405</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-406\">FR-406</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-434\">FR-434</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-435\">FR-435</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-481\">FR-481</a></p>"
+      },
+      {
+       "label": "Stakeholder",
+       "html": "<p>The Ministry Chief Information Officer, with the program policy authority for each area</p>"
       }
      ]
     }

@@ -120,7 +120,7 @@ src/
     service/                  what the service looks like today
     parameters/               the twenty-one rules, and the six that come first
     glossary/                 plain explanations of the words the parameters and requirements use
-    requirements/             the 217 requirements: overview, five categories, and trade-offs
+    requirements/             the requirements: overview, five categories, and trade-offs
   lib/components/
     BitemporalPlane.svelte    the hero interactive
     EvidenceOperations.svelte record, supersede, correct, invalidate
@@ -179,7 +179,7 @@ The requirements pages are generated from the requirements specification
 The specification is the source of truth. After it changes:
 
 ```bash
-python3 scripts/build-requirements.py ../projects/001-icm-modernization/ARC-001-REQ-v1.1.md
+python3 scripts/build-requirements.py ../projects/001-icm-modernization/ARC-001-REQ-v1.6.md
 npm run copy:update   # the wording changed, so the lock changes with it
 ```
 

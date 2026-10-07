@@ -11,7 +11,7 @@
   const strip = (html) => html.replace(/<[^>]+>/g, ' ');
 
   const groups = data.groups.map((g) => {
-    const m = g.title.match(/^([A-P])\.\s+(.*)$/);
+    const m = g.title.match(/^([A-P]|CF\d+)\.\s+(.*)$/);
     return { ...g, letter: m ? m[1] : null, name: m ? m[2] : g.title };
   });
   const all = groups.flatMap((g) => g.items);
@@ -291,9 +291,10 @@
   .letter {
     display: inline-grid;
     place-items: center;
-    width: 1.5rem;
+    min-width: 1.5rem;
     height: 1.5rem;
-    border-radius: 50%;
+    padding: 0 0.3rem;
+    border-radius: 999px;
     border: 1px solid var(--rule-strong);
     font-family: var(--font-ui);
     font-size: 0.72rem;
@@ -318,8 +319,9 @@
     border-bottom: 2px solid var(--ink);
   }
   .group h2 .letter {
-    width: 2rem;
+    min-width: 2rem;
     height: 2rem;
+    padding: 0 0.45rem;
     font-size: 0.9rem;
     background: var(--ink);
     color: var(--paper);

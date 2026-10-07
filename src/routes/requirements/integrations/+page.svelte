@@ -8,7 +8,7 @@
 
 <svelte:head>
   <title>Integration requirements — The Future of Case Management IT</title>
-  <meta name="description" content="The twenty-five outside systems the new system must exchange information with, and the terms of each exchange." />
+  <meta name="description" content="The outside systems and bodies the new system must exchange information with, and the terms of each exchange." />
 </svelte:head>
 
 <div class="shell">

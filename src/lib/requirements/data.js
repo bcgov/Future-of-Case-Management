@@ -111,7 +111,7 @@ export default {
       },
       {
        "label": "Acceptance Criteria",
-       "html": "<p>Every registered fact class has a method. A disposal run in test leaves the tamper-evident record chain verifiable and the financial <a class=\"g\" href=\"%BASE%/glossary#control-totals\">control totals</a> unchanged. The survivor list covers record header fields, the existence and outcome class of each determination, financial and recovery control facts, access-decision records, disclosure records and disposal certificates.</p>"
+       "html": "<p>Every registered fact class has a method. A disposal run in test leaves the tamper-evident record chain verifiable and the financial <a class=\"g\" href=\"%BASE%/glossary#control-totals\">control totals</a> unchanged. The survivor list covers record header fields, the existence and outcome class of each determination, financial and recovery control facts, access-decision records, disclosure records and disposal certificates.</p><p><em>Added v1.6 (OB-LG4-40, RC-LG4-11, CK-LG4-17).</em> Given a fact class that holds personal information used to make a decision that directly affects the individual, when its retention class is registered, then registration fails if the class could be disposed of sooner after that use than the minimum the Act sets (CK-LG4-17).</p>"
       },
       {
        "label": "Parameters",
@@ -331,6 +331,296 @@ export default {
       {
        "label": "Rationale",
        "html": "<p>This is a policy decision, not an engineering one. Left to each team, five case contexts will reach five answers to the same statutory question, and the client will see a correction that the payment and debt engines never acted on (TA §B.3.3).</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-022",
+     "anchor": "dr-022",
+     "title": "Youth justice information is kept apart from every other record of the young person",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (the parts in groups CF15, CF17 and CF18 are conditional on DEP-26 and DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Information that identifies a young person's involvement in a youth justice process is held apart from any other record of that person.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Information that identifies a young person's involvement in a youth justice process is held apart from any other record of that person. It is open only to those who need it and is destroyed when no longer required. Each youth justice record carries the date after which it may not be disclosed except to the youth and their counsel, worked out from the outcome and the period the federal Act sets. A copy disclosed to another person or body carries the same separation, restriction and duty to destroy. A record of an extrajudicial sanction and a record of extrajudicial measures are separate classes, each with its own access period. Youth justice record information is never included in a disclosure to an <a class=\"g\" href=\"%BASE%/glossary#indigenous-authority\">Indigenous authority</a> unless the federal youth justice Act authorises it.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>A test shows that no view, search, copy or disclosure of a child protection, mental health or support needs record returns youth justice information; that a record past its non-disclosure date opens only to the youth and their counsel; and that each disclosed copy is listed with its recipient until its destruction is recorded.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The federal youth justice Act requires the separation, the non-disclosure date and the destruction of copies, and mental health policy repeats the rule (CL-D5-140, CL-D3-037, CL-D3-042, CK-YJ1-16, CK-YJ1-17, CL-D4-041, CL-D4-042, CL-D7-016, CL-D3-054). The classes and their disposal rules cannot be added after the first record (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-004\">DR-004</a>). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-114\">FR-114</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-383\">FR-383</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-414\">FR-414</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-434\">FR-434</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-446\">FR-446</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-448\">FR-448</a>. The federal Act's records provisions are not yet extracted (DEP-37).</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-023",
+     "anchor": "dr-023",
+     "title": "Record classes that carry a bar on disclosure are marked when captured",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (test data, the custody health record and court-ordered reports are conditional on DEP-26 and DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Each of the following is its own record class, marked at the moment of capture so that the bar travels with every copy (DR-006):",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Each of the following is its own record class, marked at the moment of capture so that the bar travels with every copy (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-006\">DR-006</a>):</p><ul><li>information obtained in a family conference, mediation or other alternative dispute resolution process, which the <a class=\"g\" href=\"%BASE%/glossary#cfcsa\">CFCSA</a> bars from disclosure except as it lists;</li><li>the identity of a person who reports that a child needs protection;</li><li>information under solicitor-client privilege;</li><li>raw psychological test data, test scores and completed test protocols, open only to qualified test users;</li><li>the custody health record, which is not part of the youth's custody file;</li><li>medical, psychological and psychiatric reports ordered by a court, externally written Gladue reports, and any report a court has ordered withheld from the youth or a parent;</li><li>information a parent gives the parents' registry, which may be used only to give notice;</li><li>what screening shows about a care provider, a caregiver, an applicant or another adult in a home (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-030\">DR-030</a>).</li></ul>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>For each class, a test shows that the mark is present on the record and on a copy made from it, that a person outside the permitted group cannot open it, and that a disclosure package built from the surrounding record leaves it out unless a recorded basis allows it.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>A mark cannot be added later to copies already made (CL-D8-039, CL-D1-114, CK-LG1-12, CL-D1-013, OB-IN1-24, CL-D7-016, R-MH2-42, RC-MH2-18, OB-MH2-74, CL-D3-051, CL-D3-166, RC-YJ5-03, CL-D4-052, CL-D2-195, CL-D1-153). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-114\">FR-114</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-143\">FR-143</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-178\">FR-178</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-196\">FR-196</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-271\">FR-271</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-310\">FR-310</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-313\">FR-313</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-389\">FR-389</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-416\">FR-416</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-450\">FR-450</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-471\">FR-471</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-024",
+     "anchor": "dr-024",
+     "title": "A restriction reaches every instance of a record, and each physical file has a known holder",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Any record class can be restricted, contact and identity records included.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Any record class can be restricted, contact and identity records included. A restriction applies to every instance of the record in every medium the system holds or tracks. The system records, for each physical file, who holds it and where it is, as a fact with its own history. A restricted physical file is not sent to offsite storage while the restriction is active. When responsibility for a file transfers, the physical file goes to the receiving office. Under joint management the lead worker's office holds it.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>Given a restricted record with an electronic part and a physical part, when the restriction is applied or removed, then both parts show the change, and a request to send the physical part offsite is refused while the restriction is active.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy requires a restriction to cover all media and instances and bars offsite storage of a restricted record (CL-D8-001, CL-D8-006, CL-D8-009, CL-D1-218, CL-D8-022, CL-D8-025, CL-D5-137, CL-D5-141). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-299\">FR-299</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-300\">FR-300</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-302\">FR-302</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-304\">FR-304</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-381\">FR-381</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-384\">FR-384</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-025",
+     "anchor": "dr-025",
+     "title": "Adoption records are kept apart, and what the Act preserves for the child outlasts them",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Information about the child, about the birth parents and about an adoptive applicant or prospective adoptive parent is held on three separate records.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Information about the child, about the birth parents and about an adoptive applicant or prospective adoptive parent is held on three separate records. No information about prospective adoptive parents is placed on the birth parents' record, and applicants' names are not kept on the child's record. The medical and social history of the child's biological family, and an Indigenous child's cultural identity and community information, are preserved for the child in a class that survives closure of the adoption records and stays linked to the birth identity. The preserved copy keeps identifying information that is removed from the version given to prospective adoptive parents. Original signed consents and statements of alternatives are kept as unmarked originals. A revoked consent is kept and marked as no longer valid, never removed. A homestudy is kept and disposed of as one record with every update. The signed acknowledgement of Indigenous community information is kept for each placement.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>After an adoption order closes the child's record and the adoptive parent's record, the preserved history and cultural identity information can still be found from the birth identity by a person entitled to it, and a search of the birth parents' record returns nothing about the adoptive parents.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Adoption Act requires the history and the cultural identity information to be preserved for the child, and policy requires the three records to be separate (RC-LG2-01, RC-LG2-15, CL-D2-237, CL-D2-073, CL-D2-076, CL-D7-097, CL-D7-100, CL-D7-092, CL-D2-257, CL-D2-253, CL-D2-186, CL-D2-208, CL-D2-143, RC-LG2-13, CL-D2-156). No source held states the retention period or the reopening rule for adoption records, and the period a job aid gives for applicant records is not confirmed (CK-AD4-01, CK-AD4-02; DEP-30). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-237\">FR-237</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-244\">FR-244</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-256\">FR-256</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-259\">FR-259</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-263\">FR-263</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-265\">FR-265</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-267\">FR-267</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-268\">FR-268</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-273\">FR-273</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-276\">FR-276</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-026",
+     "anchor": "dr-026",
+     "title": "Records removed on an event, and records that are never kept",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (recordings, referrals, communications and scan images are conditional on DEP-26 and DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "The disposal design (DR-004) covers classes whose removal is triggered by an event, not by a period, and classes that policy says are never kept:",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>The disposal design (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-004\">DR-004</a>) covers classes whose removal is triggered by an event, not by a period, and classes that policy says are never kept:</p><ul><li>adoption registry information, removed promptly when a registration is cancelled or no longer valid;</li><li>copies of a proposal package, each registered when issued and tracked until returned, and the package and other identifying information about the child removed from the prospective adoptive parent's record after a disruption;</li><li>audio and visual recordings of mental health sessions, which are never stored: the transcribed notes, the approval and the signed permissions are the record;</li><li>a referral that is not accepted, and documents received from a guardian's social worker that policy calls transitory;</li><li>recorded copies of a youth's communications in custody, kept under the short limit policy sets and extended only item by item on recorded grounds;</li><li>body scan images, kept only where the scan led to separate confinement or a consequence, for the period policy sets from the end of that event.</li></ul><p>For each, the system records that the removal took place, and what was removed, without keeping the content.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>For each class a test triggers the event and shows the content is gone from every copy the system holds, that a removal record remains, and that a <a class=\"g\" href=\"%BASE%/glossary#replay\">replay</a> returns a <a class=\"g\" href=\"%BASE%/glossary#tombstone\">tombstone</a>.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Adoption Regulation requires prompt removal from the registries, and policy sets the other rules (OB-LG2-61, R-LG2-61, R-LG2-64, CK-LG2-14, RC-AD2-15, OB-AD2-20, OB-AD2-27, OB-AD2-28, CL-D2-127, CL-D2-124, CL-D5-023, CL-D5-038, RC-MH2-29, CL-D3-192, CK-YJ2-22, CL-D3-176, CK-YJ2-10, CK-YJ2-11). The rule for a referral that is not accepted rests on practice material only (CL-D5-037), and whether identification viewed to decide residency is kept waits on a ministry answer (CL-D6-016, MQ-085). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-242\">FR-242</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-245\">FR-245</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-250\">FR-250</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-353\">FR-353</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-356\">FR-356</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-473\">FR-473</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-477\">FR-477</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-027",
+     "anchor": "dr-027",
+     "title": "Agreements and consents made verbally are recorded with their later written confirmation",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "An agreement, a confirmation or a consent that the law or policy lets a person give verbally is recorded when it is given, with who gave it, how, and why it was not in writing where policy asks for the reason.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>An agreement, a confirmation or a consent that the law or policy lets a person give verbally is recorded when it is given, with who gave it, how, and why it was not in writing where policy asks for the reason. The written copy, each party's signature or written confirmation (an email or text message included, where the Act allows it) and the date each arrived are added to the same record. The record keeps the terms as agreed and the date all parties agreed, which is the date the agreement takes effect. Each amendment and each renewal is kept as issued and linked in sequence to the first signing. Every version of a suicide risk assessment and of a safety plan is added to the record and none is replaced.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>Given a safety plan agreement made verbally, when the written confirmations arrive later, then the record shows one agreement with its original effective date, each confirmation with its own date, and no confirmation overwrites what was first recorded.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n01\">N01</a>, <a class=\"rid\" href=\"%BASE%/parameters#n08\">N08</a>, <a class=\"rid\" href=\"%BASE%/parameters#n09\">N09</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act makes an agreement effective when the parties agree, whether or not anyone has signed, and the total duration of a care agreement is counted from the first signing (CL-D1-048, CL-D1-050, CL-D1-042, CL-D1-051, CL-D1-261, CL-D1-267, CL-D7-020, CL-D1-018, CL-D6-041, CL-D5-006, CL-D8-233). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-122\">FR-122</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-163\">FR-163</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-166\">FR-166</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-172\">FR-172</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-175\">FR-175</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-289\">FR-289</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-349\">FR-349</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-350\">FR-350</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-401\">FR-401</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-028",
+     "anchor": "dr-028",
+     "title": "Records that move with a child, and records that stay, on a transfer",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (the integrated care plan and custody parts are conditional on DEP-27 and DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "For each kind of transfer the system records what moves, what is copied and what stays, with the custodian before and after:",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>For each kind of transfer the system records what moves, what is copied and what stays, with the <a class=\"g\" href=\"%BASE%/glossary#custodian\">custodian</a> before and after:</p><ul><li>a transfer of responsibility between offices or agencies, where the record and the physical file move and agreements stay with the child;</li><li>a written transfer of records from one director to another, which names the records and its effective date;</li><li>a referral or a transition to an <a class=\"g\" href=\"%BASE%/glossary#indigenous-authority\">Indigenous authority</a>, where the ministry's records close and the confirmations, proofs of notification and notices are kept as filed with the court;</li><li>an adoption in another province, where the ministry's record states that the adoption records are held there and keeps a copy of every document forwarded;</li><li>an integrated care plan, which moves with a child who leaves the region, with consent;</li><li>health information that goes with a youth to another custody centre or to an appointment, which travels sealed;</li><li>custody medical and master files, which stay with the ministry when a youth moves to adult custody.</li></ul><p>The periods a child spent under each listed agreement, order or guardianship are kept, with exact dates and their source, for as long as the person can ask for an agreement as a <a class=\"g\" href=\"%BASE%/glossary#specified-adult\">specified adult</a>, whatever happens to the rest of the child's record.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>For each kind of transfer a test shows the list of records transferred, the custodian of each afterwards, that every copy the ministry keeps records its source (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-007\">DR-007</a>), and that a disposal run on a closed child's record leaves the periods that decide later eligibility.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a>, <a class=\"rid\" href=\"%BASE%/parameters#n06\">N06</a>, <a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act and policy set what moves on each transfer (CL-D1-218, CL-D8-025, CL-D1-267, CL-D1-164, CL-D7-035, CL-D1-187, CL-D1-183, CL-D7-026, CL-D2-232, CL-D2-229, R-IC1-31, CL-D3-211, CL-D3-022, OB-YJ1-07, CL-D3-051, R-LG2-90, R-LG2-91, CK-LG2-20). No source read says whether the ministry keeps its copy as custodian or transfers custody when information goes to an Indigenous authority; <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-084\">FR-084</a> needs that answer for each kind of record. Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-124\">FR-124</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-126\">FR-126</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-134\">FR-134</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-135\">FR-135</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-224\">FR-224</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-277\">FR-277</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-301\">FR-301</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-302\">FR-302</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-306\">FR-306</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-314\">FR-314</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-397\">FR-397</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-442\">FR-442</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-450\">FR-450</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-479\">FR-479</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-029",
+     "anchor": "dr-029",
+     "title": "A parent's contribution to a child's maintenance is held as a receivable",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Where a maintenance agreement or a maintenance order requires a parent to pay, the amount owed is held as a receivable with the document that proves the debt.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Where a maintenance agreement or a maintenance order requires a parent to pay, the amount owed is held as a receivable with the document that proves the debt. One signed agreement is linked to the child's or youth's record and to the parents' record, and its retention follows the longer of the two. Its dates stay in step with the care agreement it accompanies. An in-kind contribution is recorded apart from the financial amount. Arrears owing under a maintenance order that the Act cancels on a withdrawal are kept. Financial support to a guardian after a permanent transfer of custody is held on a record of its own, which stays open after the child's service record closes.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>Given a care agreement with a maintenance agreement, when the care agreement ends, then billing stops, the receivable keeps its history and its proving document, and the signed agreement can be found from both the child's record and the parents' record.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n08\">N08</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act keeps a parent responsible to contribute, and financial policy requires a copy of the agreement so the receivable can be set up (RC-CP2-25, OB-FI1-74, CL-D1-270, CL-D1-246, CL-D1-164, CL-D1-156, CL-D2-185). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-135\">FR-135</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-171\">FR-171</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-199\">FR-199</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-209\">FR-209</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-329\">FR-329</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-333\">FR-333</a>. This entry states what must be kept. Where the receivable sits among the financial records is for the ledger decision (ADR-010).</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-030",
+     "anchor": "dr-030",
+     "title": "Records about people who are not clients have their own handling",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (visitor, staff search and victim records are conditional on DEP-28)",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Information the ministry holds about a person who is not a client is held under its own access, use and retention rules, apart from any child's or youth's record it relates to.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Information the ministry holds about a person who is not a client is held under its own access, use and retention rules, apart from any child's or youth's record it relates to. This covers:</p><ul><li>adults in a care provider's home, and what record searches, voluntary disclosures and police say about them;</li><li>care providers, caregivers and adoptive applicants: screening results, prior contact check consents and results, and the foster caregiver review report, which is filed on the caregiver's record and not released to the caregiver;</li><li>visitors to a youth custody centre, in the visitor's registry;</li><li>staff members and visitors who are searched, refuse a search or are detained;</li><li>victims, whose identity and contact details are kept from the youth and from disclosure of the youth's own record;</li><li>complainants and the staff a complaint is about.</li></ul><p>What screening shows about a person is not shared with others, the parent and the Indigenous community included, without that person's consent. A prior contact check reads records collected for another purpose, so it starts only on the person's signed consent and its result carries a limit on use.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>For each class a test shows that the record cannot be opened from a child's or youth's record by a person without access to the class, that a search or detention report about a staff member cannot be read by that person's peers, and that release outside the ministry or agency is refused without a recorded consent or legal basis.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy limits the sharing of screening results and requires consent for a prior contact check (CL-D1-064, CL-D1-153, CL-D1-150, CL-D2-006, CL-D2-009, OB-GU1-11, RC-GU1-02, OB-GU1-07, CL-D3-185, CL-D3-169, CL-D3-170, CL-D3-171, CL-D3-172, CL-D4-074, CL-D4-075, OB-QA1-04, CL-D8-155, RC-YJ2-39). No source held states a retention period for any of these classes. Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-168\">FR-168</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-196\">FR-196</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-226\">FR-226</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-227\">FR-227</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-230\">FR-230</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-405\">FR-405</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-424\">FR-424</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-462\">FR-462</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-472\">FR-472</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-474\">FR-474</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-475\">FR-475</a>.</p>"
+      }
+     ]
+    },
+    {
+     "id": "DR-031",
+     "anchor": "dr-031",
+     "title": "Retention classes for children's services records are set before the first record, from schedules not yet held",
+     "priority": "Must",
+     "priorityNote": "",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Each children's services record class is given a retention class and a disposal method before the first record is written (DR-004).",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Each children's services record class is given a retention class and a disposal method before the first record is written (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-004\">DR-004</a>). The classes include the child's service record, agreements and their amendments, court reports and orders kept as presented and as issued, notices of significant measures with proof of delivery, delegation records, reportable circumstance reports, administrative review and complaint records, the mental health client record with its physical part, and youth justice records. A delegation record is kept at least as long as any decision record that cites it. An agreement is kept at least as long as any decision made under it can be reviewed. Where policy keeps a record in both electronic and paper form, the design says which copy is the record.</p>"
+      },
+      {
+       "label": "Acceptance Criteria",
+       "html": "<p>Every children's services record class in the registry has a retention class, a start event and a disposal method, each citing the schedule entry it rests on, and none rests on a job aid alone.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a></p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The sources held state few retention periods and several defer to records schedules that are not in the corpus (CL-D1-010, CL-D7-112, CL-D7-129, CL-D8-190, CL-D8-192, RC-IN1-22, CL-D8-171, CL-D8-183, CL-D5-118, CL-D5-100, CL-D5-141, RC-LG3-18, CK-RP1-19; DEP-30). The guideline tells a person formerly in care they may apply for their information for a very long period, which implies a long retention class for the child's record. Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-104\">FR-104</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-117\">FR-117</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-136\">FR-136</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-190\">FR-190</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-192\">FR-192</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-218\">FR-218</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-338\">FR-338</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-343\">FR-343</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-380\">FR-380</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-381\">FR-381</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-406\">FR-406</a>.</p>"
       }
      ]
     }
@@ -691,6 +981,36 @@ export default {
    "id": "entity-10",
    "title": "Issued notice",
    "html": "<p><strong>Description</strong>: What the client was actually sent. Owned by Notices &amp; Correspondence.</p><p><strong>Attributes</strong>: notice identifier; determination reference; template version fingerprint; language; format; the rendered document; delivery events (issued, delivered, deemed received, proven served); notification date.</p><p><strong>Data Classification</strong>: Same as the determination it explains.</p><p><strong>Data Retention</strong>: Same as the decision it explains. The rendered document is kept for every notice that conveys a decision.</p>"
+  },
+  {
+   "id": "entity-11",
+   "title": "Issuance run",
+   "html": "<p><em>Added v1.5 (TA §C.6.2).</em></p><p><strong>Description</strong>: One scheduled batch of payments for a value date and benefit period. A supplementary or off-cycle payment is a run of one. Owned by Payments &amp; Benefit Issuance.</p><p><strong>Attributes</strong>:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Attribute</th><th scope=\"col\">Type</th><th scope=\"col\">Required</th><th scope=\"col\">Description</th><th scope=\"col\">Constraints</th></tr></thead><tbody><tr><td>run_id</td><td>Identifier</td><td>Yes</td><td>—</td><td>—</td></tr><tr><td>value_date, benefit_period</td><td>Date, Period</td><td>Yes</td><td>—</td><td>—</td></tr><tr><td>cycle_definition_version</td><td>Reference</td><td>Yes</td><td>The versioned query that selected the instructions</td><td>Stored with the run</td></tr><tr><td>stage</td><td>Enum</td><td>Yes</td><td>open, cutoff, assembled, totals set, approved, released, settling, reconciled, closed</td><td>A closed run cannot be reopened</td></tr><tr><td>stage_owner</td><td>Reference</td><td>Yes</td><td>The named owner of the current stage</td><td>—</td></tr><tr><td>control_totals</td><td>Structure</td><td>Yes</td><td>Count, gross, deductions and net, by channel and by program</td><td>Fixed at assembly; never changed</td></tr><tr><td>requested_by, approved_by</td><td>Reference</td><td>Yes</td><td>—</td><td>The approver requested no instruction in the run (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-046\">FR-046</a>)</td></tr><tr><td>delegated_authority_ref</td><td>Reference</td><td>Yes</td><td>The approver's authority at the time</td><td>Not below the run's net value</td></tr></tbody></table></div><p><strong>Relationships</strong>: Holds many payment instructions (Entity 3) and their disbursements (Entity 12).</p><p><strong>Data Classification</strong>: Protected B.</p><p><strong>Data Retention</strong>: The control totals are on the shred-survivor list.</p>"
+  },
+  {
+   "id": "entity-12",
+   "title": "Disbursement",
+   "html": "<p><em>Added v1.5 (TA §C.6.1, §C.6.3; ADR-001).</em></p><p><strong>Description</strong>: What happened to one payment instruction once the chokepoint accepted it. Payments &amp; Benefit Issuance is its sole writer.</p><p><strong>Attributes</strong>:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Attribute</th><th scope=\"col\">Type</th><th scope=\"col\">Required</th><th scope=\"col\">Description</th><th scope=\"col\">Constraints</th></tr></thead><tbody><tr><td>disbursement_id</td><td>Identifier</td><td>Yes</td><td>—</td><td>—</td></tr><tr><td>payment_instruction_id</td><td>Reference</td><td>Yes</td><td>The instruction it carries out</td><td>One per instruction</td></tr><tr><td>run_id</td><td>Reference</td><td>Yes</td><td>—</td><td>No disbursement exists outside a run</td></tr><tr><td>channel_ref</td><td>Reference</td><td>Yes</td><td>Bank file item, cheque number, or the provincial payment service's token and settlement reference</td><td>Cheque numbers come from a controlled range; no cardholder data (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-097\">FR-097</a>)</td></tr><tr><td>released_at, settled_at</td><td>Timestamp</td><td>Conditional</td><td>—</td><td>Two separate events with two dates</td></tr><tr><td>stop</td><td>Structure</td><td>No</td><td>requested, confirmed or failed</td><td>Success is never assumed</td></tr><tr><td>recall</td><td>Structure</td><td>No</td><td>The request and its outcome</td><td>A failed recall becomes an overpayment by an event</td></tr><tr><td>return</td><td>Structure</td><td>No</td><td>Return or rejection, with the channel's reason</td><td>Reopens the entitlement as unpaid</td></tr><tr><td>reissue_request</td><td>Reference</td><td>No</td><td>The request for a new instruction</td><td>Only when stopped, returned or rejected</td></tr></tbody></table></div><p><strong>Data Classification</strong>: Protected B.</p><p><strong>Data Retention</strong>: As Entity 3.</p>"
+  },
+  {
+   "id": "entity-13",
+   "title": "Ledger entry",
+   "html": "<p><em>Added v1.5 (TA §C.6.4).</em></p><p><strong>Description</strong>: One double-entry record in the ministry's subsidiary ledger of benefit obligations. Owned by Financial Components. The corporate financial system remains the book of record.</p><p><strong>Attributes</strong>:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Attribute</th><th scope=\"col\">Type</th><th scope=\"col\">Required</th><th scope=\"col\">Description</th><th scope=\"col\">Constraints</th></tr></thead><tbody><tr><td>entry_id</td><td>Identifier</td><td>Yes</td><td>—</td><td>Entries are added, never changed</td></tr><tr><td>entry_type</td><td>Enum</td><td>Yes</td><td>obligation raised, disbursement released, disbursement settled, reversal, receivable raised, recovery, write-off</td><td>Interest only where <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-102\">FR-102</a> is switched on</td></tr><tr><td>debit, credit</td><td>Money</td><td>Yes</td><td>—</td><td>Every entry balances</td></tr><tr><td>coding_block</td><td>Structure</td><td>Yes</td><td>The corporate accounting code</td><td>—</td></tr><tr><td>determination_ref</td><td>Reference</td><td>Yes</td><td>—</td><td>An obligation with no determination is a break</td></tr><tr><td>run_id</td><td>Reference</td><td>Conditional</td><td>—</td><td>Required for disbursement entries</td></tr><tr><td>period</td><td>Period</td><td>Yes</td><td>The entitlement period the entry belongs to</td><td>—</td></tr></tbody></table></div><p><strong>Data Classification</strong>: Protected B.</p><p><strong>Data Retention</strong>: On the shred-survivor list; totals are the same before and after disposal (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-004\">DR-004</a>).</p>"
+  },
+  {
+   "id": "entity-14",
+   "title": "Reconciliation break",
+   "html": "<p><em>Added v1.5 (TA §C.6.4).</em></p><p><strong>Description</strong>: One unmatched item or variance found by reconciliation.</p><p><strong>Attributes</strong>:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Attribute</th><th scope=\"col\">Type</th><th scope=\"col\">Required</th><th scope=\"col\">Description</th><th scope=\"col\">Constraints</th></tr></thead><tbody><tr><td>break_id</td><td>Identifier</td><td>Yes</td><td>—</td><td>—</td></tr><tr><td>reconciliation</td><td>Enum</td><td>Yes</td><td>ledger to channel settlement, ledger to corporate financial system, determination to obligation</td><td>—</td></tr><tr><td>items</td><td>List</td><td>Yes</td><td>The entries, postings or determinations that do not match</td><td>—</td></tr><tr><td>owner</td><td>Reference</td><td>Yes</td><td>Payment operations lead, financial systems lead, or determination platform owner</td><td>Set by the reconciliation type</td></tr><tr><td>opened_at, age</td><td>Timestamp, Duration</td><td>Yes</td><td>—</td><td>Age is published (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-m-003\">NFR-M-003</a>)</td></tr><tr><td>escalation_threshold</td><td>Duration</td><td>Yes</td><td>—</td><td><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-045\">FR-045</a></td></tr><tr><td>status</td><td>Enum</td><td>Yes</td><td>open, escalated, explained, cleared</td><td>Cleared only by finance operations, who cannot approve runs (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-046\">FR-046</a>)</td></tr></tbody></table></div><p><strong>Data Classification</strong>: Protected B.</p>"
+  },
+  {
+   "id": "entity-15",
+   "title": "Repayment agreement",
+   "html": "<p><em>Added v1.5 (TA §C.7.1, §C.7.3).</em></p><p><strong>Description</strong>: The terms on which a debt is repaid. Owned by Overpayment &amp; Recovery.</p><p><strong>Attributes</strong>:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Attribute</th><th scope=\"col\">Type</th><th scope=\"col\">Required</th><th scope=\"col\">Description</th><th scope=\"col\">Constraints</th></tr></thead><tbody><tr><td>agreement_id, version</td><td>Identifier, Integer</td><td>Yes</td><td>—</td><td>Each change is a new version</td></tr><tr><td>component_refs</td><td>List</td><td>Yes</td><td>The overpayment components it covers (Entity 4)</td><td>—</td></tr><tr><td>basis</td><td>Enum</td><td>Yes</td><td>agreed with the client, default terms</td><td>—</td></tr><tr><td>rate</td><td>Structure</td><td>Yes</td><td>The rate, the period it applies to and the date it was recorded</td><td>Between the statutory minimum protection and the policy maximum (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-101\">FR-101</a>)</td></tr><tr><td>mechanism</td><td>Enum</td><td>Yes</td><td>deduction, set-off, direct repayment</td><td>Set-off only through Overpayment &amp; Recovery and the chokepoint (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-048\">FR-048</a>)</td></tr><tr><td>hardship_or_deferral</td><td>Structure</td><td>No</td><td>The decision, the decision-maker, the authority, the reasons, the end date</td><td><a class=\"rid\" href=\"%BASE%/requirements/functional#fr-101\">FR-101</a></td></tr></tbody></table></div><p><strong>Data Classification</strong>: Protected B.</p><p><strong>Data Retention</strong>: The existence and status of the agreement remain after the rest is destroyed.</p>"
+  },
+  {
+   "id": "entity-16",
+   "title": "Repayable issuance",
+   "html": "<p><em>Added v1.5 (TA §C.6.1; ADR-005; <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-041\">FR-041</a>).</em></p><p><strong>Description</strong>: Money paid against a promise to repay, where a later determination settles whether it must be repaid. Financial Components is its sole writer and decides nothing.</p><p><strong>Attributes</strong>:</p><div class=\"tbl\"><table><thead><tr><th scope=\"col\">Attribute</th><th scope=\"col\">Type</th><th scope=\"col\">Required</th><th scope=\"col\">Description</th><th scope=\"col\">Constraints</th></tr></thead><tbody><tr><td>repayable_issuance_id</td><td>Identifier</td><td>Yes</td><td>—</td><td>—</td></tr><tr><td>undertaking</td><td>Structure</td><td>Yes</td><td>The promise to repay, with its signature requirement</td><td>No payment without it</td></tr><tr><td>awaited_determination</td><td>Reference</td><td>Yes</td><td>The determination that will settle it</td><td>—</td></tr><tr><td>covered_period</td><td>Compound clock</td><td>Yes</td><td>—</td><td>—</td></tr><tr><td>payment_instruction_refs</td><td>List</td><td>Yes</td><td>The instructions that paid it</td><td>Each passes the chokepoint with its own purpose code</td></tr><tr><td>resolution</td><td>Enum</td><td>Conditional</td><td>closed, partly repayable, fully repayable</td><td>Set only by the awaited determination's event</td></tr></tbody></table></div><p><strong>Relationships</strong>: On denial it produces an overpayment component (Entity 4) whose classification policy sets.</p><p><strong>Data Classification</strong>: Protected B.</p>"
   }
  ],
  "quality": "<p><strong>Data Accuracy</strong>: <a class=\"g\" href=\"%BASE%/glossary#shadow\">Shadow comparison</a> proves correctness separately for each type of difference (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-095\">FR-095</a>). A single overall match rate does not count. Two wrong amounts that cancel each other out to a zero total count as a defect.</p><p><strong>Data Completeness</strong>: Mandatory questions are answered or recorded as <a class=\"g\" href=\"%BASE%/glossary#asserted-negative\">asserted negatives</a> (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-009\">DR-009</a>). <a class=\"g\" href=\"%BASE%/glossary#determination\">Determination</a> records carry every required field (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-001\">FR-001</a>). Migrated facts that affect entitlement meet minimum rates, agreed in advance, for having a known <a class=\"g\" href=\"%BASE%/glossary#valid-time\">valid period</a> and a recoverable old-system date (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-012\">DR-012</a>).</p><p><strong>Data Consistency</strong>: There is one writer per <a class=\"g\" href=\"%BASE%/glossary#aggregate\">aggregate</a> per <a class=\"g\" href=\"%BASE%/glossary#client-group\">cohort</a> (<a class=\"rid\" href=\"%BASE%/parameters#n05\">N05</a>). <em>(Restored 2026-09-30, drift Δ1.2: v1.1–v1.3 read \"Only one system can change each record for each group of clients\".)</em> Reference data has one master copy, published as events (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-094\">FR-094</a>). Money is reconciled three ways every day (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-045\">FR-045</a>). Read-only views are compared with the old system every day, with rows written back by the new system removed from both sides first (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-014\">DR-014</a>).</p><p><strong>Data Timeliness</strong>: The system refuses a determination when its facts are older than the consistency limit allows (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-009\">FR-009</a>). Delays in processing published events have limits and raise alarms (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-p-005\">NFR-P-005</a>).</p><p><strong>Data Lineage</strong>: Every fact records where it came from, including the extraction tool version and confidence where a machine read it. Every copy records its source (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-007\">DR-007</a>). Every migrated fact records its source system, source record, migration batch, migration time and confidence (<a class=\"rid\" href=\"%BASE%/requirements/data#dr-011\">DR-011</a>).</p>",

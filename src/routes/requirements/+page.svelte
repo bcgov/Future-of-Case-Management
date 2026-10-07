@@ -4,7 +4,7 @@
 
   const blurb = {
     business: 'What the ministry needs the new system to achieve, and how success is measured.',
-    functional: 'What the system must do, from a first application to an appeal, grouped by capability.',
+    functional: 'What the system must do, from a first application to an appeal and from a report about a child to an adoption order, grouped by capability.',
     quality: 'How well it must do it: availability, recovery, security, privacy, accessibility and more.',
     integrations: 'Every outside system it must exchange information with, and on what terms.',
     data: 'How facts are recorded, kept, destroyed and moved from the legacy systems.'
@@ -28,12 +28,12 @@
   const ladder = [
     {
       tier: 'Legislation',
-      what: 'The Employment and Assistance Acts and their regulations, privacy, records and human rights law.',
+      what: 'The Employment and Assistance Acts and their regulations, privacy, records and human rights law. For children and families: the Child, Family and Community Service Act, the Adoption Act and the federal Act on Indigenous children, youth and families.',
       standing: 'Overrides everything else.'
     },
     {
       tier: 'Policy',
-      what: 'The BCEA Policy and Procedure Manual: 126 pages, 270 obligations, 297 rules, 138 time limits.',
+      what: 'The BCEA Policy and Procedure Manual: 126 pages, 270 obligations, 297 rules, 138 time limits. For children and families: the policy chapters, standards and practice directives of the Ministry of Children and Family Development.',
       standing: 'Overrides every procedure, job aid and spreadsheet.'
     },
     {
@@ -48,7 +48,7 @@
   <title>Requirements — The Future of Case Management IT</title>
   <meta
     name="description"
-    content="The 214 requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are."
+    content="The requirements for the system that replaces ICM and MIS: what it must do, how well, what it connects to, and where the trade-offs are."
   />
 </svelte:head>
 
@@ -70,6 +70,12 @@
       <span class="big">{summary.obligations}<small>/270</small></span>
       <span class="what">policy obligations traced to a requirement</span>
     </li>
+    {#if summary.cfdProvisions}
+      <li>
+        <span class="big">{summary.cfdProvisions.toLocaleString('en-CA')}</span>
+        <span class="what">provisions of children and family law and policy read, each with a recorded outcome</span>
+      </li>
+    {/if}
     <li>
       <span class="big">{summary.parameters}<small>/21</small></span>
       <span class="what">design parameters carried by at least one requirement</span>
@@ -189,6 +195,12 @@
       the records schedules, and several architecture decisions. The
       <a href="{base}/requirements/trade-offs">trade-offs page</a> sets out each conflict, how it was
       resolved or who must resolve it, and the dependencies and risks that go with them.
+    </p>
+    <p>
+      The requirements for children and family services were added in version 1.6. Each was written
+      from the passage of law or policy it rests on. Nobody at the ministry has reviewed them yet.
+      Those for mental health, integrated teams and youth justice are marked conditional, because
+      nobody has decided whether the new system covers that work.
     </p>
     <p class="source">
       Source: requirements specification, version {summary.version}, a draft. Words with a special

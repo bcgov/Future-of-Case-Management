@@ -8,7 +8,7 @@
 
 <svelte:head>
   <title>Business requirements — The Future of Case Management IT</title>
-  <meta name="description" content="The fourteen outcomes the new system must deliver for the ministry, with how success is measured and what delivers each one." />
+  <meta name="description" content="The outcomes the new system must deliver for the two ministries, with how success is measured and what delivers each one." />
 </svelte:head>
 
 <div class="shell">

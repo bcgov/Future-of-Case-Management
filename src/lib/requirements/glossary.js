@@ -580,6 +580,231 @@ export default {
    "term": "Write-back",
    "short": "Copying changes from the new system back into the old one so its reports and interfaces keep working during the move.",
    "body": []
+  },
+  "administrative-review": {
+   "term": "Administrative review",
+   "short": "A review, under the regulation to the CFCSA, of a director's decision, act or failure to act, conducted by a review authority the director designates. A person who was involved in the matter cannot be designated, and the review authority recommends but does not decide the matter.",
+   "body": []
+  },
+  "at-home-program": {
+   "term": "At Home Program",
+   "short": "A program for children and youth with support needs. Eligibility is decided on a qualified assessor's assessment and a Regional Eligibility Committee's recommendation, or by Direct Admit, and an eligible decision opens the child's Medical Benefits (FR-283 to FR-285).",
+   "body": []
+  },
+  "care-provider": {
+   "term": "Care provider",
+   "short": "An extended family member or other person who has a relationship with, or a cultural or traditional responsibility to, a child, is not already the child's guardian, and agrees to care for the child in an out-of-care arrangement. A care provider is not a caregiver.",
+   "body": []
+  },
+  "caregiver": {
+   "term": "Caregiver",
+   "short": "A person with whom a child is placed by a director and who, by agreement with the director, is authorized to carry out the rights and responsibilities, under the agreement, of the director (CFCSA section 1). Often called a foster caregiver.",
+   "body": []
+  },
+  "child-in-care": {
+   "term": "Child in care",
+   "short": "A child who is in the custody, care or guardianship of a director or a director of adoption (CFCSA section 1).",
+   "body": []
+  },
+  "community-agreement": {
+   "term": "Community agreement",
+   "short": "Policy's name for an agreement a director makes under section 92.1 of the CFCSA with a First Nation, the Nisga'a Nation, a Treaty First Nation or a legal entity representing another Indigenous community. It provides for consultation and cooperation on named kinds of work or for the community to provide services, and it applies to all directors except in its services part.",
+   "body": []
+  },
+  "conditional-requirement": {
+   "term": "Conditional requirement",
+   "short": "A requirement in groups CF15 to CF18 that applies only if a scope decision brings its area into the replacement: child and youth mental health (DEP-26), the Integrated Child and Youth teams (DEP-27) or youth justice (DEP-28).",
+   "body": []
+  },
+  "continuing-custody-order": {
+   "term": "Continuing custody order",
+   "short": "A court order under the CFCSA under which the director becomes the child's sole personal guardian and the Public Guardian and Trustee becomes the child's sole property guardian.",
+   "body": []
+  },
+  "coordination-agreement": {
+   "term": "Coordination agreement",
+   "short": "An agreement contemplated by the federal Act among Canada, the Province and an Indigenous governing body, to coordinate the exercise of Indigenous jurisdiction over child and family services. A community does not need one to make laws, and the agreement must carry conditions on the use, disclosure and security of information.",
+   "body": []
+  },
+  "delegation-category": {
+   "term": "Delegation category",
+   "short": "One of the cumulative categories policy sets, each carrying a stated set of a director's powers, duties and functions. The system holds what each category carries as versioned reference data (FR-107).",
+   "body": []
+  },
+  "delegation": {
+   "term": "Delegation of authority, delegated worker",
+   "short": "The legal process through which a Designated Director entrusts statutory authority to an individual assessed as qualified and competent to carry out specific powers, duties and functions under the Act. A delegated worker is a person who holds such a delegation, in the ministry or in a delegated agency.",
+   "body": []
+  },
+  "designated-representative": {
+   "term": "Designated representative",
+   "short": "The holder of a position the regulation lists for a First Nation, the Nisga'a Lisims Government, a Treaty First Nation or another Indigenous community, who is served with notice of hearings and receives copies of orders. It is not the same as a prescribed Indigenous organization, which the regulation lists to be informed of presentation hearings.",
+   "body": []
+  },
+  "director": {
+   "term": "Director, Designated Director",
+   "short": "A person the minister designates under section 91 of the CFCSA, with statutory responsibility for the director's powers, duties and functions. In the Mental Health Act the word means the person in charge of a designated facility, so those requirements say \"the director of the facility\".",
+   "body": []
+  },
+  "extended-family-program": {
+   "term": "Extended Family Program",
+   "short": "The program under which a director makes an agreement under section 8 of the CFCSA with a person to whom a parent has given care of a child. It is one of the out-of-care arrangements, in which the child is not in the director's care.",
+   "body": []
+  },
+  "fdr": {
+   "term": "Family development response",
+   "short": "One of the two responses to a child protection report that needs a protection response; the other is an investigation. It is the primary response where there is no severe physical abuse or severe neglect and the parents are able and willing to take part in collaborative assessment and planning.",
+   "body": []
+  },
+  "federal-act": {
+   "term": "Federal Act",
+   "short": "An Act respecting First Nations, Inuit and Métis children, youth and families (Canada). Under it an Indigenous governing body may make Indigenous laws for child and family services and ask for a coordination agreement, and notice must be given before a significant measure is taken for an Indigenous child.",
+   "body": []
+  },
+  "homestudy": {
+   "term": "Homestudy",
+   "short": "The assessment the Adoption Regulation requires of prospective adoptive parents' ability to provide for a child's physical and emotional needs, set out in a written report. Each later update is part of the homestudy.",
+   "body": []
+  },
+  "indigenous-authority": {
+   "term": "Indigenous authority",
+   "short": "A body or entity, including an Indigenous governing body, that is authorized by an Indigenous governing body to provide Indigenous child and family services under Indigenous law (CFCSA section 1). It is not a synonym for Indigenous governing body or Indigenous community.",
+   "body": []
+  },
+  "indigenous-child": {
+   "term": "Indigenous child",
+   "short": "Under the CFCSA: a First Nation child, a Nisga'a child or a Treaty First Nation child; a child below the age the Act sets who has a biological parent of Indigenous ancestry, including Métis and Inuit, who considers themselves Indigenous; a child at or over that age who has Indigenous ancestry and considers themselves Indigenous; or a child an Indigenous governing body or Indigenous authority confirms, by advising a director, belongs to an Indigenous community.",
+   "body": []
+  },
+  "indigenous-community": {
+   "term": "Indigenous community",
+   "short": "Used as each source uses it; no definition was found in the passages read. It is not the same as an Indigenous governing body or an Indigenous authority, and the duties owed to each differ. Agreements under section 92.1 of the CFCSA are made with a First Nation, the Nisga'a Nation, a Treaty First Nation or a legal entity representing another Indigenous community.",
+   "body": []
+  },
+  "igb": {
+   "term": "Indigenous governing body",
+   "short": "Has the meaning given in the Declaration on the Rights of Indigenous Peoples Act (CFCSA section 1). It makes Indigenous law, may authorize an Indigenous authority, and receives notice of a significant measure where it has informed the director that it acts for the child's Indigenous group, community or people.",
+   "body": []
+  },
+  "indigenous-law": {
+   "term": "Indigenous law",
+   "short": "A law in relation to Indigenous child and family services made by an Indigenous governing body under its law-making authority (CFCSA section 1).",
+   "body": []
+  },
+  "openness-agreement": {
+   "term": "Openness agreement",
+   "short": "An agreement between a prospective adoptive parent and another individual with a significant relationship with the child, setting out the type and frequency of contact after adoption. It is made in good faith and is not intended to be enforceable in court.",
+   "body": []
+  },
+  "permanent-transfer": {
+   "term": "Permanent transfer of custody",
+   "short": "A court order under the CFCSA, made before or after a continuing custody order, that makes a person other than the child's parent the child's guardian. It cannot be enforced, modified or cancelled under the Act and has the same effect as a guardianship order under the Family Law Act.",
+   "body": []
+  },
+  "plan-of-care": {
+   "term": "Plan of care",
+   "short": "A plan relating to a child that contains the information required under the regulations and is prepared in accordance with them (CFCSA section 1). Policy and forms also call it a care plan.",
+   "body": []
+  },
+  "post-adoption-assistance": {
+   "term": "Post-adoption assistance",
+   "short": "Assistance a director may provide under a written agreement after the adoption of a child the director has designated, on the income and asset tests the Adoption Regulation sets (FR-240).",
+   "body": []
+  },
+  "practice-only": {
+   "term": "Practice-only",
+   "short": "Said of a provision that rests on practice material alone (job aids, forms, user guides), with no legislation or policy held to support it. No requirement is written from it, and the missing authority is named.",
+   "body": []
+  },
+  "presentation-hearing": {
+   "term": "Presentation hearing",
+   "short": "The summary hearing held soon after a removal or an application for a supervision order, at which the court makes an interim order.",
+   "body": []
+  },
+  "prior-contact-check": {
+   "term": "Prior contact check",
+   "short": "A review of all previous records involving the individual who is the subject of the check, collected under the CFCSA or the Adoption Act. It starts only on that person's signed consent (FR-226).",
+   "body": []
+  },
+  "property-guardian": {
+   "term": "Property guardian, personal guardian",
+   "short": "Under a continuing custody order the director is the child's sole personal guardian and the Public Guardian and Trustee is the sole property guardian. During a temporary custody order the court may appoint the Public Guardian and Trustee property guardian.",
+   "body": []
+  },
+  "protection-hearing": {
+   "term": "Protection hearing",
+   "short": "The hearing that follows the presentation hearing and decides whether the child needs protection. It ends or replaces the interim order.",
+   "body": []
+  },
+  "provision": {
+   "term": "Provision (CL-)",
+   "short": "One thing that children and family services law or policy states, reconciled from two or more register rows and numbered CL-Dn-nnn. Each requirement in groups CF1 to CF18 lists the provisions it meets.",
+   "body": []
+  },
+  "register-row": {
+   "term": "Register row",
+   "short": "One row of the children and family services register: an obligation (OB-), a rule (R-), a time limit (CK-), a record (RC-) or an authority (AU-), each pointing to the passage it came from. Ages, amounts and numbers of days are held in these rows and never stated in a requirement.",
+   "body": []
+  },
+  "removal": {
+   "term": "Removal",
+   "short": "A director's removal of a child without a court order, on reasonable grounds to believe that the child needs protection and that either the child's health or safety is in immediate danger or no available less disruptive measure is adequate to protect the child. A presentation hearing follows.",
+   "body": []
+  },
+  "reportable-circumstance": {
+   "term": "Reportable circumstance",
+   "short": "A fatality, critical injury or serious incident involving a child or youth that meets the tests policy sets, and so must be reported within the time limit policy sets to the people and bodies entitled to the report (FR-337 to FR-339).",
+   "body": []
+  },
+  "safety-plan-agreement": {
+   "term": "Safety plan agreement",
+   "short": "An agreement made under Division 1.1 of Part 3 of the CFCSA. Policy describes it as a voluntary plan to keep the child or youth safe until the assessment or investigation has concluded, or when a court order has been applied for but not yet granted.",
+   "body": []
+  },
+  "service-line": {
+   "term": "Service line",
+   "short": "One of the eight areas of the ministry's work that each requirement is tagged with: child protection and family services, guardianship, adoption and permanency, youth transitions, children and youth with support needs, early years and inclusion, children and youth mental health, and youth justice. A requirement that applies to all of them is tagged ministry-wide.",
+   "body": []
+  },
+  "significant-measure": {
+   "term": "Significant measure",
+   "short": "A measure for an Indigenous child that needs prior notice to the parent, the care provider and the Indigenous governing body. The federal Act does not define the term; policy lists the measures under the CFCSA that count, and the system holds that list as dated reference data (FR-136).",
+   "body": []
+  },
+  "special-needs-agreement": {
+   "term": "Special needs agreement",
+   "short": "A written agreement under section 7 of the CFCSA by which a parent keeps custody and gives the director care of a child with a special need. Policy defines a special need as a documented significant impairment that requires specialized care and support.",
+   "body": []
+  },
+  "specified-adult": {
+   "term": "Specified adult",
+   "short": "A person at or over the age the CFCSA sets for whom services under the Act, or Indigenous child and family services, were provided while the person was a child (CFCSA section 1). A director may make an agreement with a specified adult who meets the regulation's criteria (FR-224).",
+   "body": []
+  },
+  "supervision-order": {
+   "term": "Supervision order",
+   "short": "A court order under the CFCSA that the director supervise a child's care, with the terms and conditions the court attaches. The director may apply for one without removing the child (FR-184, FR-193).",
+   "body": []
+  },
+  "support-services-agreement": {
+   "term": "Support services agreement",
+   "short": "A written agreement under section 5 of the CFCSA between a director and the parent of a child, for services or support to help the family care for the child.",
+   "body": []
+  },
+  "temporary-custody-order": {
+   "term": "Temporary custody order",
+   "short": "A court order under the CFCSA that places a child in the custody of a director or of a person other than the parent for a term. The Act limits each term and the total time a child may spend in temporary custody (FR-192).",
+   "body": []
+  },
+  "voluntary-care-agreement": {
+   "term": "Voluntary care agreement",
+   "short": "A written agreement under section 6 of the CFCSA by which a parent keeps custody, gives care of the child to the director and delegates as much guardianship authority as the agreement needs. The child is in care while it runs.",
+   "body": []
+  },
+  "youth-agreement": {
+   "term": "Youth agreement",
+   "short": "A written agreement under section 12.2 of the CFCSA between a director and a youth, who signs in their own right and is not a child in care. It includes a plan for independence, and the Act limits its term (FR-220 to FR-222).",
+   "body": []
   }
  },
  "usage": {
@@ -700,6 +925,10 @@ export default {
    },
    {
     "id": "DR-004",
+    "page": "data"
+   },
+   {
+    "id": "DR-026",
     "page": "data"
    },
    {
@@ -863,6 +1092,10 @@ export default {
    {
     "id": "FR-085",
     "page": "functional"
+   },
+   {
+    "id": "INT-027",
+    "page": "integrations"
    }
   ],
   "bcea-manual": [
@@ -886,6 +1119,10 @@ export default {
    },
    {
     "id": "FR-043",
+    "page": "functional"
+   },
+   {
+    "id": "FR-103",
     "page": "functional"
    },
    {
@@ -933,7 +1170,23 @@ export default {
     "page": "quality"
    },
    {
+    "id": "INT-027",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-029",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-032",
+    "page": "integrations"
+   },
+   {
     "id": "DR-005",
+    "page": "data"
+   },
+   {
+    "id": "DR-028",
     "page": "data"
    }
   ],
@@ -1109,6 +1362,10 @@ export default {
    {
     "id": "FR-048",
     "page": "functional"
+   },
+   {
+    "id": "FR-101",
+    "page": "functional"
    }
   ],
   "determination": [
@@ -1192,6 +1449,10 @@ export default {
   "rules-engine": [
    {
     "id": "FR-001",
+    "page": "functional"
+   },
+   {
+    "id": "FR-102",
     "page": "functional"
    },
    {
@@ -1326,6 +1587,10 @@ export default {
    },
    {
     "id": "FR-044",
+    "page": "functional"
+   },
+   {
+    "id": "FR-101",
     "page": "functional"
    },
    {
@@ -1549,6 +1814,10 @@ export default {
     "page": "functional"
    },
    {
+    "id": "FR-100",
+    "page": "functional"
+   },
+   {
     "id": "FR-060",
     "page": "functional"
    },
@@ -1597,6 +1866,14 @@ export default {
     "page": "functional"
    },
    {
+    "id": "FR-102",
+    "page": "functional"
+   },
+   {
+    "id": "FR-103",
+    "page": "functional"
+   },
+   {
     "id": "NFR-U-002",
     "page": "quality"
    }
@@ -1611,6 +1888,10 @@ export default {
    {
     "id": "FR-047",
     "page": "functional"
+   },
+   {
+    "id": "NFR-A-008",
+    "page": "quality"
    },
    {
     "id": "NFR-C-008",
@@ -2013,6 +2294,32 @@ export default {
     "page": "quality"
    }
   ],
+  "indigenous-authority": [
+   {
+    "id": "NFR-A-010",
+    "page": "quality"
+   },
+   {
+    "id": "INT-026",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-027",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-035",
+    "page": "integrations"
+   },
+   {
+    "id": "DR-022",
+    "page": "data"
+   },
+   {
+    "id": "DR-028",
+    "page": "data"
+   }
+  ],
   "key-destruction": [
    {
     "id": "NFR-S-002",
@@ -2191,6 +2498,38 @@ export default {
     "page": "data"
    }
   ],
+  "cfcsa": [
+   {
+    "id": "NFR-SEC-013",
+    "page": "quality"
+   },
+   {
+    "id": "INT-013",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-027",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-031",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-038",
+    "page": "integrations"
+   },
+   {
+    "id": "DR-023",
+    "page": "data"
+   }
+  ],
+  "service-line": [
+   {
+    "id": "NFR-SEC-013",
+    "page": "quality"
+   }
+  ],
   "tombstone": [
    {
     "id": "NFR-C-003",
@@ -2199,12 +2538,26 @@ export default {
    {
     "id": "DR-004",
     "page": "data"
+   },
+   {
+    "id": "DR-026",
+    "page": "data"
    }
   ],
   "copy": [
    {
     "id": "NFR-C-004",
     "page": "quality"
+   }
+  ],
+  "igb": [
+   {
+    "id": "NFR-C-009",
+    "page": "quality"
+   },
+   {
+    "id": "INT-028",
+    "page": "integrations"
    }
   ],
   "shadow-root": [
@@ -2237,15 +2590,17 @@ export default {
     "page": "integrations"
    }
   ],
-  "cfcsa": [
-   {
-    "id": "INT-013",
-    "page": "integrations"
-   }
-  ],
   "delegated-agency": [
    {
     "id": "INT-013",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-027",
+    "page": "integrations"
+   },
+   {
+    "id": "INT-029",
     "page": "integrations"
    }
   ],
@@ -2264,6 +2619,36 @@ export default {
   "fmep": [
    {
     "id": "INT-024",
+    "page": "integrations"
+   }
+  ],
+  "indigenous-law": [
+   {
+    "id": "INT-027",
+    "page": "integrations"
+   }
+  ],
+  "designated-representative": [
+   {
+    "id": "INT-028",
+    "page": "integrations"
+   }
+  ],
+  "federal-act": [
+   {
+    "id": "INT-028",
+    "page": "integrations"
+   }
+  ],
+  "significant-measure": [
+   {
+    "id": "INT-028",
+    "page": "integrations"
+   }
+  ],
+  "property-guardian": [
+   {
+    "id": "INT-035",
     "page": "integrations"
    }
   ],
@@ -2286,6 +2671,12 @@ export default {
   "replay-horizon": [
    {
     "id": "DR-008",
+    "page": "data"
+   }
+  ],
+  "specified-adult": [
+   {
+    "id": "DR-028",
     "page": "data"
    }
   ],

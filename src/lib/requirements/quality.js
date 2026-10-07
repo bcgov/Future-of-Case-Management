@@ -412,7 +412,7 @@ export default {
      "fields": [
       {
        "label": "Requirement",
-       "html": "<p>Each failure below has a fallback mode that is rehearsed and has a named decision-maker:</p><ul><li>The <a class=\"g\" href=\"%BASE%/glossary#translation-layer\">anti-corruption layer</a> is unavailable. Read models keep serving and show a visible staleness indicator.</li><li>The event backbone is unavailable. The outbox accumulates messages.</li><li>The determination service is unavailable. Determinations queue, and a captured <a class=\"g\" href=\"%BASE%/glossary#client-group\">cohort</a> never falls back to legacy.</li><li>The exchange is unavailable. Where policy permits, determinations proceed on the evidence held and are flagged for verification after issue <span class=\"cite\">TA-C32</span>.</li><li>The legacy platform is unavailable. Cohorts not yet captured become read-only.</li></ul>"
+       "html": "<p>Each failure below has a fallback mode that is rehearsed and has a named decision-maker:</p><ul><li>The <a class=\"g\" href=\"%BASE%/glossary#translation-layer\">anti-corruption layer</a> is unavailable. Read models keep serving and show a visible staleness indicator.</li><li>The event backbone is unavailable. The outbox accumulates messages.</li><li>The determination service is unavailable. Determinations queue, and a captured <a class=\"g\" href=\"%BASE%/glossary#client-group\">cohort</a> never falls back to legacy.</li><li>The exchange is unavailable. Where policy permits, determinations proceed on the evidence held and are flagged for verification after issue <span class=\"cite\">TA-C32</span>.</li><li>The legacy platform is unavailable. Cohorts not yet captured become read-only.</li></ul><p><em>Amended v1.5 (TA §E.8.3), payments under each fallback:</em></p><ul><li>The event backbone is unavailable. Each consumer has a published maximum lag, with an alarm at half of it. Past the maximum, captured cohorts are verified by a person before payment is issued.</li><li>The determination service is unavailable. Once determinations have queued for longer than the stated interval, the trigger for <a class=\"g\" href=\"%BASE%/glossary#emergency-issuance\">emergency issuance</a> is met (<a class=\"rid\" href=\"%BASE%/requirements/functional#fr-047\">FR-047</a>).</li><li>The exchange is unavailable. No client's payment waits on another organisation's gateway.</li></ul>"
       },
       {
        "label": "Measurement Method",
@@ -462,6 +462,64 @@ export default {
       {
        "label": "Decision",
        "html": "<p>ADR-009 (Part A ACCEPTED; Part B PROPOSED)</p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-A-010",
+     "anchor": "nfr-a-010",
+     "title": "Child protection work done at any hour can be recorded and approved at any hour",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (M9) ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "NFR-A-007 covers receipt of a report on the reporting line.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-a-007\">NFR-A-007</a> covers receipt of a report on the reporting line. This requirement covers the work that follows it and runs on limits counted in hours or from the moment a person is informed. Outside office hours and away from the office, a worker can screen a report and a supervisor can approve the screening; contact an <a class=\"g\" href=\"%BASE%/glossary#indigenous-authority\">Indigenous authority</a>, record its confirmation and refer a report; record a safety assessment, a verbal safety plan agreement and a withdrawal from one; record that a child was taken charge of or removed, with the start time, the efforts to reach a parent and the supervisor's approval; and write, approve and send a reportable circumstance report. When the system is unavailable, an entry made afterwards carries the time each act took place, and no start time is lost.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>The availability target for these functions is set by their business owner with the CIO and measured for evenings, weekends and holidays apart from office hours. A rehearsal takes the system down during a taking charge and shows that the start time and the approval are recorded afterwards with their true times.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The Act requires a prompt report, policy requires an immediate screening assessment in a dangerous situation, taking charge runs on limits counted in hours, and the reportable circumstance limit runs from being informed with no stated allowance for weekends or holidays (CL-D1-022, CL-D1-023, CL-D7-160, CL-D1-018, CL-D1-019, CL-D1-042, CL-D1-051, CL-D1-059, CL-D1-060, CL-D1-131, CL-D7-211, CL-D1-118, CK-QA1-07, CK-QA1-08, CK-QA1-09). The standards for delegated agencies require an on-call service with access to a supervisor at all times, subject to DEP-29. Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-122\">FR-122</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-123\">FR-123</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-145\">FR-145</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-160\">FR-160</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-165\">FR-165</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-166\">FR-166</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-180\">FR-180</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-182\">FR-182</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-338\">FR-338</a>.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a>, <a class=\"rid\" href=\"%BASE%/parameters#n19\">N19</a>, <a class=\"rid\" href=\"%BASE%/parameters#n01\">N01</a></p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-A-011",
+     "anchor": "nfr-a-011",
+     "title": "Youth justice records are made at any hour",
+     "priority": "Should",
+     "priorityNote": "SHOULD_HAVE (conditional on DEP-28) ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "A custody centre runs day and night.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>A custody centre runs day and night. The system is available for custody records through nights, weekends and holidays, or takes entries made after the event with the time each act took place. This covers the restraint log and its intervals, the use of force notice, the health care assessment after a restraint, an emergency medical leave approved in the centre Director's absence, a serious complaint made after hours to the on-call youth custody director, a warrant of suspension sought by police out of hours, and the provincial director's review for a youth detained on a weekend.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>The availability target for custody functions is set by their business owner with the CIO and measured across all hours. A rehearsal records a restraint during an outage and shows each interval entered afterwards with its true time.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The restraint intervals, the use of force notice and the health care assessment run in minutes and hours, and policy sends out-of-hours warrants, reviews and serious complaints to an on-call manager or director (CL-D3-157, CL-D3-161, CL-D3-163, CL-D3-166, CL-D4-129, CL-D4-130, AU-YJ3-12, OB-YJ2-78). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-427\">FR-427</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-458\">FR-458</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-462\">FR-462</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-469\">FR-469</a> to <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-471\">FR-471</a>.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n16\">N16</a>, <a class=\"rid\" href=\"%BASE%/parameters#n19\">N19</a></p>"
       }
      ]
     }
@@ -815,7 +873,7 @@ export default {
      "fields": [
       {
        "label": "Requirement",
-       "html": "<p>The <a class=\"g\" href=\"%BASE%/glossary#decision-record\">decision record</a> store, the <a class=\"g\" href=\"%BASE%/glossary#event\">event backbone</a> and the access-decision stream are <a class=\"g\" href=\"%BASE%/glossary#hash-chain\">hash-chained</a>. Chain heads are signed and kept separately from the store, under different administrative control. An offline verifier can check integrity without the live systems.</p>"
+       "html": "<p>The <a class=\"g\" href=\"%BASE%/glossary#decision-record\">decision record</a> store, the <a class=\"g\" href=\"%BASE%/glossary#event\">event backbone</a> and the access-decision stream are <a class=\"g\" href=\"%BASE%/glossary#hash-chain\">hash-chained</a>. Chain heads are signed and kept separately from the store, under different administrative control. An offline verifier can check integrity without the live systems.</p><p><em>Amended v1.5 (TA §B.5.5 item 6):</em> the covered streams are named, and for money they are: the payment instruction and disbursement streams of Payments &amp; Benefit Issuance; the double-entry event log of Financial Components; and the assessment, agreement and write-off streams of Overpayment &amp; Recovery. None of these is left to a later judgement of where integrity matters.</p>"
       },
       {
        "label": "Measurement Method",
@@ -915,6 +973,93 @@ export default {
       {
        "label": "Parameters",
        "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n12\">N12</a></p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-SEC-013",
+     "anchor": "nfr-sec-013",
+     "title": "Access follows the service line and the Act that governs the record",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE (M0 schema, M9) ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Access rules for children and family services are written per service line and tested as code (NFR-SEC-002).",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Access rules for children and family services are written per <a class=\"g\" href=\"%BASE%/glossary#service-line\">service line</a> and tested as code (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-sec-002\">NFR-SEC-002</a>). A support needs worker delivering a service outside the <a class=\"g\" href=\"%BASE%/glossary#cfcsa\">CFCSA</a> mandate cannot open child protection or other CFCSA records. A child protection worker cannot open a family's support needs record. Information passes between the two only on a recorded basis: consent, or a request under the Act. The Act that governs each record is recorded on it and decides who may see it. Psychological test data is open only to qualified test users. Within an integrated team, a declined consent to share limits reading to the serving member and the people policy names, and a clinical note is never readable through the shared view. During a pending transfer the receiving office has read access, so access follows the state of the transfer and not office membership alone. Every director and delegate, delegated agencies included, can read every community agreement.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>An automated test for each pair of service lines attempts to open the other's records and is refused, and each refused attempt appears in the access log (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-sec-004\">NFR-SEC-004</a>). The test set is run on every release.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy bars access across the support needs and child protection lines in both directions and sets the other limits (CL-D6-026, CL-D6-027, CL-D6-028, CL-D1-106, R-RX1-06, CL-D5-157, CL-D5-158, R-IC1-15, CL-D5-109, CL-D7-008, R-MH2-42). An access rule that does not exist before the first record is written leaves earlier records open. Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-117\">FR-117</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-118\">FR-118</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-289\">FR-289</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-291\">FR-291</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-377\">FR-377</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-389\">FR-389</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-395\">FR-395</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-398\">FR-398</a>. The access rule for mental health clinical records is described only in a user manual, so the ministry should state it as policy first (R-MH1-41, AU-MH1-20). The mental health and integrated team parts are conditional on DEP-26 and DEP-27.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n13\">N13</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a></p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-SEC-014",
+     "anchor": "nfr-sec-014",
+     "title": "An access bar on a person holds against every role that person has",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Where a staff member is also the subject of a record, the bar follows the person and not the role.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Where a staff member is also the subject of a record, the bar follows the person and not the role. An employee who is a foster caregiver cannot open records relating to the children they foster, whatever role they hold, and decisions on their own foster care arrangement go to a director of operations outside their chain of command. An employee does not serve, as an employee, a person recorded as one they have seen in private counselling work. A report of a search, a refusal or a detention of a staff member cannot be read by that person's peers or from a youth's file. People with permission to see information but no authority to act, such as those in a practicum category of delegation, can read and cannot record a director's act. Staff who review records for a prior contact check, an audit or a foster caregiver review are given access limited to the person or the evaluation named, and each access records that purpose.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>Tests give one person two roles and show that the bar holds in each. Refused attempts are logged and reviewed (<a class=\"rid\" href=\"%BASE%/requirements/quality#nfr-sec-004\">NFR-SEC-004</a>). A sample of review and audit accesses is checked against the consent or the evaluation scope on record.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>The ministry's guidance requires these safeguards where it permits an employee to foster or to do private counselling work, and policy scopes access for checks and audits (OB-RF1-40, OB-QA1-22, CL-D2-009, RC-GU1-06, CL-D1-006, CL-D3-169, CL-D3-170, CL-D3-171, CL-D3-172). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-107\">FR-107</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-226\">FR-226</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-229\">FR-229</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-345\">FR-345</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-347\">FR-347</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-472\">FR-472</a>. The custody search records are conditional on DEP-28. Practice guidance also restricts staff members' own homestudies further (R-AD4-13), which is to confirm against current policy.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a>, <a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a></p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-SEC-015",
+     "anchor": "nfr-sec-015",
+     "title": "What a person may learn about the existence of a record is itself an access rule",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "The system sets, for each record class, whether a person without access to the content may learn that a record exists.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>The system sets, for each record class, whether a person without access to the content may learn that a record exists. A person search by a support needs worker shows that a record exists without opening it. A safety alert and its recommended actions are shown to all staff who meet the child, youth or family, including staff who cannot see the clinical record behind it. A safety plan agreement, its copies and its notices are visible only to the parties to that agreement, so that an agreement made with one parent alone need not be made known to the other where domestic violence is a factor. Any record class can be restricted, contact and identity records included, and a restricted record is open only to the limited group policy names.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>For each record class a test signs in as a person without content access and compares what the search, the alert view and the notice list show against the rule registered for that class.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy sets each of these visibility rules (CL-D6-027, CL-D6-028, OB-MH2-15, CL-D5-007, CL-D1-062, CL-D8-001, CL-D8-006). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-164\">FR-164</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-291\">FR-291</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-299\">FR-299</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-351\">FR-351</a>. The alert rule is conditional on DEP-26.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a>, <a class=\"rid\" href=\"%BASE%/parameters#n15\">N15</a></p>"
       }
      ]
     }
@@ -1154,6 +1299,35 @@ export default {
       {
        "label": "Parameters",
        "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n17\">N17</a></p>"
+      }
+     ]
+    },
+    {
+     "id": "NFR-C-009",
+     "anchor": "nfr-c-009",
+     "title": "Channel limits that policy sets are applied to each kind of content",
+     "priority": "Must",
+     "priorityNote": "MUST_HAVE ---",
+     "module": null,
+     "moduleText": "",
+     "complexity": null,
+     "lead": "Each outbound channel checks the kind of content it is asked to carry against the limits policy sets, held as versioned data.",
+     "fields": [
+      {
+       "label": "Requirement",
+       "html": "<p>Each outbound channel checks the kind of content it is asked to carry against the limits policy sets, held as versioned data. A notice emailed to a parent, a care provider or an <a class=\"g\" href=\"%BASE%/glossary#igb\">Indigenous governing body</a> is encrypted and password protected. No channel carries proposal package content by email or fax unless the ministry approves that channel. A message about the mental health waitlist keeps identifying and clinical information out of text messages. No monitoring or reading entry can be made for a youth's communication with a privileged person, and any exception to that privacy is documented with notice to the privileged person.</p>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>A test sends each restricted kind of content through each channel and shows that the barred combinations are refused and logged, and that the allowed ones carry the protection policy requires.</p>"
+      },
+      {
+       "label": "Rationale",
+       "html": "<p>Policy sets each limit because of the risk to privacy if the content goes astray (OB-IN1-58, R-AD2-21, OB-AD2-24, R-MH3-76, CL-D3-187, CL-D3-190, CL-D3-191). Needed by <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-136\">FR-136</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-245\">FR-245</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-367\">FR-367</a>, <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-476\">FR-476</a> and <a class=\"rid\" href=\"%BASE%/requirements/functional#fr-477\">FR-477</a>. The waitlist and custody parts are conditional on DEP-26 and DEP-28.</p>"
+      },
+      {
+       "label": "Parameters",
+       "html": "<p><a class=\"rid\" href=\"%BASE%/parameters#n21\">N21</a>, <a class=\"rid\" href=\"%BASE%/parameters#n04\">N04</a>, <a class=\"rid\" href=\"%BASE%/parameters#n18\">N18</a></p>"
       }
      ]
     }
@@ -1483,7 +1657,11 @@ export default {
      "fields": [
       {
        "label": "Requirement",
-       "html": "<p>Deployment blackout windows for payment services follow the corporate financial calendar. The child protection reporting line has its own change window and rollback rehearsal.</p>"
+       "html": "<p>Deployment blackout windows for payment services follow the corporate financial calendar. The child protection reporting line has its own change window and rollback rehearsal.</p><p><em>Amended v1.5 (TA §E.7):</em></p><ul><li><strong>Month-end blackout.</strong> No production change is made to any payment-path component, any determination component or the anti-corruption layer from three business days before the issuance run until reconciliation is signed off. The only exception is one signed by a named executive, and the exception is published <span class=\"cite\">TA-C46</span>.</li><li><strong>Freeze periods</strong> are published once a year. They cover month-ends, the fiscal year-end and the seasonal peak. An emergency change follows a separate, audited path.</li></ul>"
+      },
+      {
+       "label": "Measurement Method",
+       "html": "<p>The change record for each blackout and freeze, checked against the published calendar; every exception has its signature.</p>"
       },
       {
        "label": "Rationale",

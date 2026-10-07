@@ -8,7 +8,7 @@
 
 <svelte:head>
   <title>Quality requirements — The Future of Case Management IT</title>
-  <meta name="description" content="The fifty-six non-functional requirements: performance, availability, scalability, security, compliance, usability, supportability and interoperability." />
+  <meta name="description" content="The non-functional requirements: performance, availability, scalability, security, compliance, usability, supportability and interoperability." />
 </svelte:head>
 
 <div class="shell">

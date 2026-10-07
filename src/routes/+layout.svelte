@@ -195,8 +195,9 @@
       and child protection.
     </p>
     <p class="fine">
-      Figures on this site are drawn from the architecture document and from 326 service-delivery
-      procedures. Nothing here is a government commitment.
+      Figures on this site are drawn from the architecture document, from 326 service-delivery
+      procedures, and from 308 documents and 14 statutes and regulations on children and family
+      services. Nothing here is a government commitment.
     </p>
   </div>
 </footer>
